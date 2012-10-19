@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Assemblies>
+    <Assembly DeploymentTarget="GlobalAssemblyCache" Location="VP.Sharepoint.CQ.dll">
+      <SafeControls>
+        <SafeControl Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="VP.Sharepoint.CQ.Core.WebParts" TypeName="*" />
+        <SafeControl Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="VP.Sharepoint.CQ.Core.WebControls" TypeName="*" />
+      </SafeControls>
+    </Assembly>
+  </Assemblies>
+</Solution>

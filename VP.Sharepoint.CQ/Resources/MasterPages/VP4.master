@@ -1,0 +1,82 @@
+﻿<%@Master language="C#"%>
+<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> 
+<%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %> <%@ Import Namespace="Microsoft.SharePoint" %> <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Import Namespace="Microsoft.SharePoint.ApplicationPages" %>
+<%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<%@ Register TagPrefix="wssuc" TagName="Welcome" src="~/_controltemplates/Welcome.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="MUISelector" src="~/_controltemplates/MUISelector.ascx" %>
+<%@ Register TagPrefix="wssuc" TagName="DesignModeConsole" src="~/_controltemplates/DesignModeConsole.ascx" %>
+<%@ Register TagPrefix="PublishingWebControls" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>
+<%@ Register TagPrefix="PublishingSiteAction" TagName="SiteActionMenu" src="~/_controltemplates/PublishingActionMenu.ascx" %>
+<%@ Register TagPrefix="PublishingConsole" Namespace="System" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="<%$Resources:wss,language_value%>" dir="<%$Resources:wss,multipages_direction_dir_value%>" runat="server" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head runat="server">
+	<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+	<meta name="GENERATOR" content="Microsoft SharePoint"/>
+	<meta name="progid" content="SharePoint.WebPartPage.Document"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Expires" content="0"/>
+	<SharePoint:RobotsMetaTag runat="server"/>
+	<title id="onetidTitle"><asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server"/></title>
+	<SharePoint:CssLink runat="server" Version="4"/>
+	<SharePoint:Theme runat="server"/>
+	<SharePoint:ULSClientConfig runat="server"/>
+	<script type="text/javascript">
+	var _fV4UI = true;
+	</script>
+	<SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" />
+	<SharePoint:CustomJSUrl runat="server" />
+	<SharePoint:SoapDiscoveryLink runat="server" />
+	<asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server"/>
+	<SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true"/>
+	<SharePoint:SPShortcutIcon runat="server" IconUrl="/_layouts/images/favicon.ico" />
+	<SharePoint:SPPageManager runat="server" />
+	<SharePoint:SPHelpPageComponent Visible="false" runat="server" />
+</head>
+<body scroll="no" onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();" class="v4master">
+  <form runat="server" onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}">
+    <WebPartPages:SPWebPartManager id="m" runat="Server" />
+    <div id="wrapper">
+	    <!-- Master Header -->
+        <div id="MasterHeader">
+            <div class="authoringRegion1">
+                <span class="siteActionMenu"><PublishingSiteAction:SiteActionMenu runat="server"/></span>
+            </div>
+            <div class="cleaner"></div>
+        </div>
+        <!-- Main content -->
+	    <asp:ContentPlaceHolder id="PlaceHolderMain" runat="server" />
+    </div>
+	<%-- The PlaceHolderMain content placeholder defines where to place 
+the page content for all the content from the page layout. The page 
+layout can overwrite any content placeholder from the master page. 
+Example: The PlaceHolderLeftNavBar can overwrite the left navigation bar. --%>
+      
+    <asp:Panel ID="Panel1" visible="false" runat="server">
+    <%-- These ContentPlaceHolders ensure all default Office SharePoint Server pages 
+render with this master page. If the system master page is set to 
+any default master page, the only content placeholders required are
+those that are overridden by your page layouts. --%>
+        <asp:ContentPlaceHolder id="PlaceHolderSearchArea" runat="server"/>
+        <asp:ContentPlaceHolder id="PlaceHolderTitleBreadcrumb" runat="server"/>
+        <asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea"  runat="server"/>            
+        <asp:ContentPlaceHolder ID="PlaceHolderPageImage" runat="server"/>
+        <asp:ContentPlaceHolder ID="PlaceHolderBodyLeftBorder" runat="server"/>
+        <asp:ContentPlaceHolder ID="PlaceHolderNavSpacer" runat="server"/>
+        <asp:ContentPlaceHolder ID="PlaceHolderTitleLeftBorder" runat="server"/>
+        <asp:ContentPlaceHolder ID="PlaceHolderTitleAreaSeparator" runat="server"/>
+        <asp:ContentPlaceHolder ID="PlaceHolderMiniConsole" runat="server"/>
+        <asp:ContentPlaceHolder id="PlaceHolderCalendarNavigator" runat ="server" />
+        <asp:ContentPlaceHolder id="PlaceHolderLeftActions" runat ="server"/>
+        <asp:ContentPlaceHolder id="PlaceHolderPageDescription" runat ="server"/>
+        <asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat ="server"/>
+        <asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" runat ="server"/>
+        <asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" runat="server"/>
+    </asp:Panel>
+  </form>
+  <asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server"/>
+	<SharePoint:WarnOnUnsupportedBrowsers runat="server"/>
+</body>
+</html>
