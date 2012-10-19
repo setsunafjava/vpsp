@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="Resources\" Type="ElementManifest" />
+    <ProjectItemFile Source="Javascript\jquery-1.7.1.js" Target="Resources\Javascript\" Type="ElementFile" />
+    <ProjectItemFile Source="Javascript\Cookies.js" Target="Resources\Javascript\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\NewsList.ascx" Target="Resources\UserControls\" Type="ElementFile" />
+    <ProjectItemFile Source="Css\CommonStyleSheet.css" Target="Resources\Css\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\94f88e03b7d2f6.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="MasterPages\VP4.master" Target="Resources\MasterPages\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\HomePage.ascx" Target="Resources\UserControls\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

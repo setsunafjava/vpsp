@@ -1,0 +1,81 @@
+﻿/*SharePoint Field*/
+
+.FieldWidth50
+{
+    width: 50px;
+}
+
+.FieldWidth60
+{
+    width: 60px;
+}
+
+.FieldWidth70
+{
+    width: 70px;
+}
+
+.FieldWidth80
+{
+    width: 80px;
+}
+
+.FieldWidth90
+{
+    width: 90px;
+}
+
+.FieldWidth100
+{
+    width: 100px;
+}
+
+.FieldWidth150
+{
+    width: 150px;
+}
+
+.FieldWidth160
+{
+    width: 164px;
+}
+
+.FieldWidth200
+{
+    width: 200px;
+}
+
+.Width50P
+{
+    width: 50%;
+}
+
+.Width100P
+{
+    width: 100%;
+}
+
+.column100
+{
+    width: 100px;
+}
+
+.width-120
+{
+    width: 120px;
+}
+
+/*half size*/
+input.ime-mode_on
+{
+    ime-mode: inactive;
+}
+/*IME mode：Hiragana*/
+input.ime-mode_on_j
+{
+    ime-mode: active;
+}
+input.ime-mode_off
+{
+    ime-mode: disabled;
+}

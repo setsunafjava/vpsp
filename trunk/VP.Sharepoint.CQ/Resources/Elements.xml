@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="UserControls">
+    <File Path="Resources\Css\CommonStyleSheet.css" Url="Resources/Css/CommonStyleSheet.css" />       
+    <File Path="Resources\UserControls\NewsList.ascx" Url="UserControls/NewsList.ascx" />    
+    <File Path="Resources\Images\94f88e03b7d2f6.jpg" Url="Resources/Images/94f88e03b7d2f6.jpg" />
+    <File Path="Resources\MasterPages\VP4.master" Url="Resources/MasterPages/VP4.master" />
+    <File Path="Resources\UserControls\HomePage.ascx" Url="UserControls/HomePage.ascx" />
+  </Module>
+  <Module Name="JavaScript" Url="Javascript">
+    <File Path="Resources\Javascript\jquery-1.7.1.js" Url="Javascript/jquery-1.7.1.js" />
+    <File Path="Resources\Javascript\Cookies.js" Url="Javascript/Cookies.js" />
+  </Module>
+</Elements>
