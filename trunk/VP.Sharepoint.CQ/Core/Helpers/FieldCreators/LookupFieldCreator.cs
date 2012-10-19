@@ -64,11 +64,9 @@ namespace VP.Sharepoint.CQ.Core.Helpers
                 }
             }
 
-            if (!list.Fields.ContainsField(Name))
+            if (!list.Fields.ContainsFieldWithStaticName(InternalName))
             {
-                // var name = list.Fields.AddLookup(InternalName, targetList.ID, Required);
-                list.Fields.AddFieldAsXml(this.XMLFieldFormat(targetList.ID.ToString()), true, SPAddFieldOptions.AddFieldInternalNameHint);
-                list.Update();
+                list.Fields.AddLookup(InternalName, targetList.ID, Required);
             }
 
             var field = (SPFieldLookup) list.Fields.GetFieldByInternalName(InternalName);

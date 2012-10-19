@@ -111,7 +111,6 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\FieldsName.cs" />
     <Compile Include="Common\ListsName.cs" />
-    <Compile Include="Core\Helpers\FieldCreators\DependentLookupFieldCreator.cs" />
     <Compile Include="Core\Helpers\QuickLaunchHelper.cs" />
     <Compile Include="Common\Utilities.cs" />
     <Compile Include="Core\WebControls\FieldControls\BooleanField.cs" />
