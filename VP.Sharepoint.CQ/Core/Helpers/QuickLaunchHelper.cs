@@ -1,6 +1,6 @@
 ﻿using Microsoft.SharePoint;
 using Microsoft.SharePoint.Navigation;
-using Microsoft.SharePoint.Publishing.Navigation;
+
 
 namespace VP.Sharepoint.CQ.Common
 {
@@ -64,18 +64,18 @@ namespace VP.Sharepoint.CQ.Common
         */
         #endregion
 
-        public SPNavigationNode AddHeading(string title, string url, string group)
-        {
-            if (nodes != null)
-            {
-                SPNavigationNode nodeItem = SPNavigationSiteMapNode.CreateSPNavigationNode(title, url, Microsoft.SharePoint.Publishing.NodeTypes.Heading, nodes);
-                nodeItem.Properties.Add("Audience", ";;;;" + group);
-                nodeItem.Update();
+        //public SPNavigationNode AddHeading(string title, string url, string group)
+        //{
+        //    if (nodes != null)
+        //    {
+        //        SPNavigationNode nodeItem = SPNavigationSiteMapNode.CreateSPNavigationNode(title, url, Microsoft.SharePoint.Publishing.NodeTypes.Heading, nodes);
+        //        nodeItem.Properties.Add("Audience", ";;;;" + group);
+        //        nodeItem.Update();
 
-                return nodeItem;
-            }
-            return null;
-        }
+        //        return nodeItem;
+        //    }
+        //    return null;
+        //}
 
         #region Obsolete - Only for URL is a URI
         /*
