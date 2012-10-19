@@ -34,7 +34,7 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.Status, FieldsName.NewsList.DisplayName.Status));
             helper.AddField(new DateTimeFieldCreator(FieldsName.NewsList.InternalName.PostedDate, FieldsName.NewsList.DisplayName.PostedDate)
                 {
-                     DefaultValue = "[ToDay]",
+                     //DefaultValue = "[ToDay]",
                      DisplayFormat = SPDateTimeFieldFormatType.DateTime
                 }
                 );
