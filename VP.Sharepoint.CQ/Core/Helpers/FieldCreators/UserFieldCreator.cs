@@ -24,7 +24,7 @@ namespace VP.Sharepoint.CQ.Core.Helpers
         {
             if (!list.Fields.ContainsFieldWithStaticName(InternalName))
             {
-                list.Fields.AddFieldAsXml(string.Format("<Field Type=\"UserMulti\" DisplayName=\"{0}\" List=\"UserInfo\" Required=\"{1}\" UserSelectionMode=\"{2}\" UserSelectionScope=\"{3}\" Mult=\"TRUE\" Sortable=\"FALSE\" />", InternalName, Required.ToString().ToUpperInvariant(), SelectionMode, SelectionGroup), false, SPAddFieldOptions.Default);
+                list.Fields.AddFieldAsXml(string.Format("<Field Type=\"UserMulti\" DisplayName=\"{0}\" List=\"UserInfo\" ShowField=\"ImnName\" Required=\"{1}\" UserSelectionMode=\"{2}\" UserSelectionScope=\"{3}\" Mult=\"TRUE\" Sortable=\"FALSE\" />", InternalName, Required.ToString().ToUpperInvariant(), SelectionMode, SelectionGroup), false, SPAddFieldOptions.Default);
             }
 
             var field = (SPFieldUser) list.Fields.GetFieldByInternalName(InternalName);
