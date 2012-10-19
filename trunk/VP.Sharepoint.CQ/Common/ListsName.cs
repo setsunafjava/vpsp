@@ -5,7 +5,7 @@
         // This is URL of list
         public class InternalName
         {
-            public const string NewsList = "TinTuc";
+            public const string NewsList = "NewsList";
             public const string ResourcesList = "ResourcesList";
         }
 
