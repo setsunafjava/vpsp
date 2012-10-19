@@ -20,7 +20,7 @@ namespace VP.Sharepoint.CQ
             web.AllowUnsafeUpdates = true;
             web.Update();
             //Create pages
-            PagesStructure.Create(web);
+            PagesStructure.Create(web);            
         }
     }
 }

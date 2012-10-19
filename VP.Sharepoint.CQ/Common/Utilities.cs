@@ -686,6 +686,7 @@ namespace VP.Sharepoint.CQ.Common
         /// <param name="userControlPath">Path of custom UserControl</param>
         public static void AddForms(SPWeb web, SPList list, int formType, string userControlPath)
         {
+            web.AllowUnsafeUpdates = true;
             ContainerWebPart containerWebPart = WebPartHelper.GetContainerWebPart(web);
 
             if (containerWebPart != null)
@@ -709,6 +710,7 @@ namespace VP.Sharepoint.CQ.Common
                     WebPartHelper.HideDefaultWebPartOnDisplayPage(web, list);
                     break;
             }
+            web.AllowUnsafeUpdates = false;
         }
 
         /// <summary>
