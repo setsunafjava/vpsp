@@ -11,23 +11,5 @@ namespace VP.Sharepoint.CQ.UserControls {
     
     
     public partial class HomePage {
-        
-        /// <summary>
-        /// LeftContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebPartPages.WebPartZone LeftContent;
-        
-        /// <summary>
-        /// RightContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebPartPages.WebPartZone RightContent;
     }
 }

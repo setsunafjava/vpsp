@@ -179,7 +179,9 @@
       <DependentUpon>Package.package</DependentUpon>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Resources\MasterPages\VP4.master" />
+    <None Include="Resources\MasterPages\VP4.master">
+      <SubType>ASPXCodeBehind</SubType>
+    </None>
     <None Include="Resources\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1a21b053-6c96-43f4-9bcb-18f9ecd454e0}</SharePointProjectItemId>
       <SubType>Designer</SubType>
