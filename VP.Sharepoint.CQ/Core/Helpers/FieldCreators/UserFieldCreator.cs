@@ -22,11 +22,9 @@ namespace VP.Sharepoint.CQ.Core.Helpers
         
         internal override void CreateField(SPList list)
         {
-            if (!list.Fields.ContainsField(Name))
+            if (!list.Fields.ContainsFieldWithStaticName(InternalName))
             {
-                // var name = list.Fields.Add(InternalName, SPFieldType.User, Required);
-                list.Fields.AddFieldAsXml(this.XMLFieldFormat(string.Empty), true, SPAddFieldOptions.AddFieldInternalNameHint);
-                list.Update();
+                list.Fields.AddFieldAsXml(string.Format("<Field Type=\"UserMulti\" DisplayName=\"{0}\" List=\"UserInfo\" Required=\"{1}\" UserSelectionMode=\"{2}\" UserSelectionScope=\"{3}\" Mult=\"TRUE\" Sortable=\"FALSE\" />", InternalName, Required.ToString().ToUpperInvariant(), SelectionMode, SelectionGroup), false, SPAddFieldOptions.Default);
             }
 
             var field = (SPFieldUser) list.Fields.GetFieldByInternalName(InternalName);

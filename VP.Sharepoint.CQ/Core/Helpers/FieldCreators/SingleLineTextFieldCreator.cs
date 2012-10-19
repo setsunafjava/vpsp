@@ -17,12 +17,9 @@ namespace VP.Sharepoint.CQ.Core.Helpers
 
         internal override void CreateField(SPList list)
         {
-            if (!list.Fields.ContainsField(Name))
+            if (!list.Fields.ContainsFieldWithStaticName(InternalName))
             {
-                // var name = list.Fields.Add(InternalName, SPFieldType.Text, Required);
-
-                list.Fields.AddFieldAsXml(this.XMLFieldFormat(string.Empty), true, SPAddFieldOptions.AddFieldInternalNameHint);
-                list.Update();
+                list.Fields.Add(InternalName, SPFieldType.Text, Required);
             }
 
             var field = (SPFieldText)list.Fields.GetFieldByInternalName(InternalName);
