@@ -21,6 +21,12 @@ namespace VP.Sharepoint.CQ
                 RichText = true,
                 RichTextMode = SPRichTextMode.FullHtml
             });
+            helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.NewsList.InternalName.Description, FieldsName.NewsList.DisplayName.Description)
+            {
+                RichText = true,
+                RichTextMode = SPRichTextMode.FullHtml
+            });
+
             helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.NewsList.InternalName.Content, FieldsName.NewsList.DisplayName.Content)
             {
                 RichText = true,
@@ -39,6 +45,11 @@ namespace VP.Sharepoint.CQ
                 }
                 );
 
+            // Thumbnai image
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.ImageThumb, FieldsName.NewsList.DisplayName.ImageThumb));
+            // Small thumbnai image
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.ImageSmallThumb, FieldsName.NewsList.DisplayName.ImageSmallThumb));
+
             var list = helper.Apply();
 
             //Set menu link
@@ -49,7 +60,7 @@ namespace VP.Sharepoint.CQ
             Utilities.CreateEventReceivers(list, "VP.Sharepoint.CQ.EventReceivers.NewsEventReceiver", SPEventReceiverType.ItemUpdated);
 
             //Add custom usercontrol to form
-            Utilities.AddForms(web, list, "../../UserControls/NewsList.ascx");
+            //Utilities.AddForms(web, list, "../../UserControls/NewsList.ascx");
         }
     }
 }

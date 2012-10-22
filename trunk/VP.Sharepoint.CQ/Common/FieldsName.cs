@@ -15,6 +15,9 @@
                 public const string Description = "Description";
                 public const string Content = "Content";
                 public const string Status = "Status";
+                public const string ImageThumb = "ImageThumb";
+                public const string ImageSmallThumb = "ImageSmallThumb";                
+
             }
             #endregion
             //Display Name
@@ -27,6 +30,8 @@
                 public const string Content = "Nội dung";
                 public const string PostedDate = "Ngày đăng";
                 public const string Status = "Trạng thái";
+                public const string ImageThumb = "Anh trich dan";
+                public const string ImageSmallThumb = "Anh trich dan nho";
             }
             #endregion
         }
