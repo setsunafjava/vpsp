@@ -16,6 +16,8 @@ namespace VP.Sharepoint.CQ
                             OnQuickLaunch = false, EnableAttachments = true
                         };
 
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.NewsGroup, FieldsName.NewsList.DisplayName.NewsGroup));
+
             helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.NewsList.InternalName.Description, FieldsName.NewsList.DisplayName.Description) 
             { 
                 RichText = true,

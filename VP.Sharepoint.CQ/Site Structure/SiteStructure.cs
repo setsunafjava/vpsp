@@ -32,6 +32,7 @@ namespace VP.Sharepoint.CQ
             //Create News list
             Console.WriteLine("Create News list");
             CreateNewsListStructre.CreateListStructure(web);
+            NewsGroupList.CreateListStructure(web);
             DocumentType.CreateListStructure(web);
             PublishPlace.CreateListStructure(web);
             DocumentSubject.CreateListStructure(web);
