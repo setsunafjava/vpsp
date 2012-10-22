@@ -12,6 +12,7 @@
             public const string PublishPlace = "PublishPlace";
             public const string DocumentSubject = "DocumentSubject";
             public const string SignaturePerson = "SignaturePerson";
+            public const string DocumentsList = "DocumentsList";
         }
 
         // Display Name of list
@@ -24,6 +25,7 @@
             public const string PublishPlace = "Cơ quan ban hành";
             public const string DocumentSubject = "Lĩnh vực";
             public const string SignaturePerson = "Người ký";
+            public const string DocumentsList = "Văn bản";
         }
     }
 }
