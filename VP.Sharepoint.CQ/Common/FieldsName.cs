@@ -128,5 +128,35 @@
             }
         }
         #endregion
+
+        #region DocumentsList
+        public class DocumentsList
+        {
+            // Nested Documents list
+            public class InternalName
+            {
+                public const string Title = "Title";
+                public const string PublishPlace = "PublishPlace";
+                public const string DocumentType = "DocumentType";
+                public const string DocumentSubject = "DocumentSubject";
+                public const string SignaturePerson = "SignaturePerson";
+                public const string EffectedDate = "EffectedDate";
+                public const string ExpiredDate = "ExpiredDate";
+                public const string FilePath = "LinkToFile";
+            }
+
+            public class DisplayName
+            {
+                public const string Title = "Tiêu đề";
+                public const string PublishPlace = "Cơ quan ban hành";
+                public const string DocumentType = "Loại văn bản";
+                public const string DocumentSubject = "Lĩnh vực";
+                public const string SignaturePerson = "Người ký";
+                public const string EffectedDate = "Ngày hiệu lực";
+                public const string ExpiredDate = "Ngày hết hiệu lực";
+                public const string FilePath = "Đường dẫn file";
+            }
+        }
+        #endregion
     }
 }

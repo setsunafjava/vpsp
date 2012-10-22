@@ -138,6 +138,7 @@
     <Compile Include="Core\Helpers\WebPartHelper.cs" />
     <Compile Include="Core\WebParts\ContainerWebPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site Structure\DocumentsList.cs" />
     <Compile Include="Site Structure\NewsGroupList.cs" />
     <Compile Include="Site Structure\SignaturePerson.cs" />
     <Compile Include="Site Structure\DocumentSubject.cs" />
