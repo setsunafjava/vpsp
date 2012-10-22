@@ -35,6 +35,7 @@ namespace VP.Sharepoint.CQ
             DocumentType.CreateListStructure(web);
             PublishPlace.CreateListStructure(web);
             DocumentSubject.CreateListStructure(web);
+            SignaturePerson.CreateListStructure(web);
             // Add QuichLaunch
             Console.WriteLine("Process CreateQuichLaunch..");
             QuickLaunchStructure.CreateQuickLaunch(web);
