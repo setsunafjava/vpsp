@@ -39,11 +39,11 @@
         }
         #endregion
 
-        #region News list
+        #region NewsGroupList list
         public class NewsGroupList // --> ListName
         {
             //Internal Name
-            #region Nested type: NewsList Internal Name
+            #region Nested type: NewsGroupList Internal Name
             public class InternalName
             {
                 public const string Title = "Title";
