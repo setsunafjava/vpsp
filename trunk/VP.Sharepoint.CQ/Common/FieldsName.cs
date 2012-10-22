@@ -84,5 +84,21 @@
             }
         }
         #endregion
+
+        #region SignaturePerson
+        public class SignaturePerson
+        {
+            // Nested Document Subject list
+            public class InternalName
+            {
+                public const string Title = "Title";
+            }
+
+            public class DisplayName
+            {
+                public const string Title = "Ký bởi";
+            }
+        }
+        #endregion
     }
 }
