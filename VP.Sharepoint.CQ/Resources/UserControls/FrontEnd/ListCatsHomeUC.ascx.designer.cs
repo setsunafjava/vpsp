@@ -8,8 +8,9 @@
 //------------------------------------------------------------------------------
 
 namespace VP.Sharepoint.CQ.UserControls {
-    
-    
-    public partial class HomePage {
+
+
+    public partial class ListCatsHomeUC
+    {
     }
 }

@@ -9,7 +9,7 @@ using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
-    public partial class NewsSlideUC : UserControl
+    public partial class NewsSlideUC : FrontEndUC
     {
         #region Form Events
         /// <summary>

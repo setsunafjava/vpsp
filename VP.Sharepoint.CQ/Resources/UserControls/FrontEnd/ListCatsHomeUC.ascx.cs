@@ -9,7 +9,7 @@ using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
-    public partial class HomePage : UserControl
+    public partial class ListCatsHomeUC : FrontEndUC
     {
         protected void Page_Load(object sender, EventArgs e)
         {

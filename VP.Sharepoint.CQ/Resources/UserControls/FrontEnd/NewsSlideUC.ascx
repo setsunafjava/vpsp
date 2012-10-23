@@ -8,4 +8,24 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NewsSlideUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.NewsSlideUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
-xxx
+<div class="hot_news-content">
+    <div class="artical_hottest">
+        <!-------------slide News------------------------>
+        <div id="gallery">
+            <a href="#" class="show">
+                <img src="<%=DocLibUrl%>/flowing-rock.jpg" alt="Flowing Rock" width="580"
+                    height="360" title="" alt="" rel="" /><h3>
+                        Hai nữ thủ khoa từng... trượt đại học</h3>
+                Các bạn ấy cũng đã từng thi trượt đại học rồi sau đó quyết tâm thi lại vào năm sau
+                và thi đậu với số điểm cao nhất. "/> </a><a href="#">
+                    <img src="<%=DocLibUrl%>/grass-blades.jpg" alt="Grass Blades" width="580"
+                        height="360" title="" alt="" rel="" /><h3>Đường tội lỗi của nữ giáo viên xuân sắc</h3>Người đàn bà đẹp được đào tạo ở nước ngoài, đứng trên bục giảng nhiều năm đâu ngờ có ngày lại giam thân trong chốn lao tù không biết ngày được trở về. " />
+                </a>
+            <div class="caption">
+                <div class="content">
+                </div>
+            </div>
+        </div>
+        <!-------------End Slide News------------------------>
+    </div>
+</div>

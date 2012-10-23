@@ -9,7 +9,7 @@ using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
-    public partial class LinkSiteUC : UserControl
+    public partial class LinkSiteUC : FrontEndUC
     {
         #region Form Events
         /// <summary>

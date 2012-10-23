@@ -7,7 +7,7 @@
     <ProjectItemFile Source="Css\CommonStyleSheet.css" Target="Resources\Css\" Type="ElementFile" />
     <ProjectItemFile Source="Images\94f88e03b7d2f6.jpg" Target="Resources\Images\" Type="ElementFile" />
     <ProjectItemFile Source="MasterPages\VP4.master" Target="Resources\MasterPages\" Type="ElementFile" />
-    <ProjectItemFile Source="UserControls\FrontEnd\HomePage.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\ListCatsHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\NewsList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="Css\ie7.css" Target="Resources\Css\" Type="ElementFile" />
     <ProjectItemFile Source="Css\simpletree.css" Target="Resources\Css\" Type="ElementFile" />
