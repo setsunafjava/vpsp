@@ -4,13 +4,13 @@ padding: 0;
 }
 
 .treeview li{ /*Style for LI elements in general (excludes an LI that contains sub lists)*/
-background: url(../images/list.png) no-repeat left top;
+background: url(list.png) no-repeat left top;
 list-style-type: none;
 padding-left: 20px;
 }
 
 .treeview li.submenu{ /* Style for LI that contains sub lists (other ULs). */
-background: url(../images/closed.png) no-repeat left 1px;
+background: url(closed.png) no-repeat left 1px;
 cursor: hand !important;
 cursor: pointer !important;
 }

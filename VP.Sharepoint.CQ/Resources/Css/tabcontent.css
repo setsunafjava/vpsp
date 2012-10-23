@@ -13,7 +13,7 @@
 	list-style-type: none;
 	text-align: left; /*set to left, center, or right to align the menu as desired*/
 	height: 28px;
-	background: url(../images/bg_titletab_content.gif) top left repeat-x;
+	background: url(bg_titletab_content.gif) top left repeat-x;
 	padding-bottom: 2px;
 	border-bottom: 1px solid #ccc;
 
@@ -38,7 +38,7 @@
 	position: relative;	
 	padding: 8px 13px 9px 13px;
 	color: #2d2b2b;
-	background: url(../images/bg_titletab_content.jpg) top left repeat-x;
+	background: url(bg_titletab_content.jpg) top left repeat-x;
 	margin-top: 5px;
 	border-bottom: 1px solid #ccc;
 	border-left: 1px solid #ccc;
@@ -58,7 +58,7 @@
 
 
 .shadetabs li a.selected{ /*selected main tab style */
-	background: url(../images/bg_titletab_active.jpg);
+	background: url(bg_titletab_active.jpg);
     background-repeat: repeat-x;
 	border-bottom: 1px solid white;
 	/*border-right: 1px solid #ccc;*/
@@ -90,7 +90,7 @@
 .inner_content_tab ul li a{
 	color: #024780;
 	font-weight: bold;
-	background: url(../images/icon_line_news.jpg) left center no-repeat;
+	background: url(icon_line_news.jpg) left center no-repeat;
 	padding-left: 13px;
 }
 .inner_content_tab ul li span{

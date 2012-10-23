@@ -57,5 +57,4 @@
         </div>
     </div>
 </div>
-<div class="cleaner">
-</div>
+<div class="cleaner"></div>
