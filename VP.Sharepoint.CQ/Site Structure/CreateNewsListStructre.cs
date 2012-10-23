@@ -62,7 +62,7 @@ namespace VP.Sharepoint.CQ
             Utilities.CreateEventReceivers(list, "VP.Sharepoint.CQ.EventReceivers.NewsEventReceiver", SPEventReceiverType.ItemUpdated);
 
             //Add custom usercontrol to form
-            //Utilities.AddForms(web, list, "../../UserControls/NewsList.ascx");
+            Utilities.AddForms(web, list, "../../UserControls/NewsList.ascx");
         }
     }
 }

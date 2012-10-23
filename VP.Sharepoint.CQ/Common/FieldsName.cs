@@ -158,5 +158,23 @@
             }
         }
         #endregion
+
+        #region ExternalNews list
+        public class ExternalNews
+        {
+            // Nested ExternalNews list
+            public class InternalName
+            {
+                public const string Title = "Title";
+                public const string Description = "Description";
+            }
+
+            public class DisplayName
+            {
+                public const string Title = "Tiêu đề";                
+                public const string Description = "Mô tả";
+            }
+        }
+        #endregion
     }
 }
