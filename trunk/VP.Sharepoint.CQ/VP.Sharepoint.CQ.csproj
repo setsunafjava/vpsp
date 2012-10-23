@@ -104,11 +104,228 @@
     <Compile Include="Core\WebControls\UrlBuilder.cs" />
     <Compile Include="EventReceivers\NewsEventReceiver.cs" />
     <Compile Include="FeatureReceivers\FeatureReceivers.cs" />
-    <Compile Include="Resources\UserControls\HomePage.ascx.cs">
+    <Compile Include="Resources\UserControls\FrontEnd\AdvUC.ascx.cs">
+      <DependentUpon>AdvUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\AdvUC.ascx.designer.cs">
+      <DependentUpon>AdvUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\BoxNewsHomeUC.ascx.cs">
+      <DependentUpon>BoxNewsHomeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\BoxNewsHomeUC.ascx.designer.cs">
+      <DependentUpon>BoxNewsHomeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\BottomMenuUC.ascx.cs">
+      <DependentUpon>BottomMenuUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\BottomMenuUC.ascx.designer.cs">
+      <DependentUpon>BottomMenuUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\VanBanUC.ascx.cs">
+      <DependentUpon>VanBanUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\VanBanUC.ascx.designer.cs">
+      <DependentUpon>VanBanUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ThongKeUC.ascx.cs">
+      <DependentUpon>ThongKeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ThongKeUC.ascx.designer.cs">
+      <DependentUpon>ThongKeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\SoDoToChucUC.ascx.cs">
+      <DependentUpon>SoDoToChucUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\SoDoToChucUC.ascx.designer.cs">
+      <DependentUpon>SoDoToChucUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ToChucDetailUC.ascx.cs">
+      <DependentUpon>ToChucDetailUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ToChucDetailUC.ascx.designer.cs">
+      <DependentUpon>ToChucDetailUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\FoldersByFolderUC.ascx.cs">
+      <DependentUpon>FoldersByFolderUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\FoldersByFolderUC.ascx.designer.cs">
+      <DependentUpon>FoldersByFolderUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\FilesByFolderUC.ascx.cs">
+      <DependentUpon>FilesByFolderUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\FilesByFolderUC.ascx.designer.cs">
+      <DependentUpon>FilesByFolderUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\NewsDetailUC.ascx.cs">
+      <DependentUpon>NewsDetailUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\NewsDetailUC.ascx.designer.cs">
+      <DependentUpon>NewsDetailUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\OtherNewsUC.ascx.cs">
+      <DependentUpon>OtherNewsUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\OtherNewsUC.ascx.designer.cs">
+      <DependentUpon>OtherNewsUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HotNewsByCatUC.ascx.cs">
+      <DependentUpon>HotNewsByCatUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HotNewsByCatUC.ascx.designer.cs">
+      <DependentUpon>HotNewsByCatUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ListNewsByCatUC.ascx.cs">
+      <DependentUpon>ListNewsByCatUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ListNewsByCatUC.ascx.designer.cs">
+      <DependentUpon>ListNewsByCatUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\FooterUC.ascx.cs">
+      <DependentUpon>FooterUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\FooterUC.ascx.designer.cs">
+      <DependentUpon>FooterUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ShouldToKnowUC.ascx.cs">
+      <DependentUpon>ShouldToKnowUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ShouldToKnowUC.ascx.designer.cs">
+      <DependentUpon>ShouldToKnowUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HitCountUC.ascx.cs">
+      <DependentUpon>HitCountUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HitCountUC.ascx.designer.cs">
+      <DependentUpon>HitCountUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\NewsCatHomeUC.ascx.cs">
+      <DependentUpon>NewsCatHomeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\NewsCatHomeUC.ascx.designer.cs">
+      <DependentUpon>NewsCatHomeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\GalleryHomeUC.ascx.cs">
+      <DependentUpon>GalleryHomeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\GalleryHomeUC.ascx.designer.cs">
+      <DependentUpon>GalleryHomeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\LoginHomeUC.ascx.cs">
+      <DependentUpon>LoginHomeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\LoginHomeUC.ascx.designer.cs">
+      <DependentUpon>LoginHomeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\LinkSiteUC.ascx.cs">
+      <DependentUpon>LinkSiteUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\LinkSiteUC.ascx.designer.cs">
+      <DependentUpon>LinkSiteUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\KnowledgeHomeUC.ascx.cs">
+      <DependentUpon>KnowledgeHomeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\KnowledgeHomeUC.ascx.designer.cs">
+      <DependentUpon>KnowledgeHomeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ListNewsHomeUC.ascx.cs">
+      <DependentUpon>ListNewsHomeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ListNewsHomeUC.ascx.designer.cs">
+      <DependentUpon>ListNewsHomeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\VideoHomeUC.ascx.cs">
+      <DependentUpon>VideoHomeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\VideoHomeUC.ascx.designer.cs">
+      <DependentUpon>VideoHomeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ImagesHomeUC.ascx.cs">
+      <DependentUpon>ImagesHomeUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\ImagesHomeUC.ascx.designer.cs">
+      <DependentUpon>ImagesHomeUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\IconLinkUC.ascx.cs">
+      <DependentUpon>IconLinkUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\IconLinkUC.ascx.designer.cs">
+      <DependentUpon>IconLinkUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\EmailBoxUC.ascx.cs">
+      <DependentUpon>EmailBoxUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\EmailBoxUC.ascx.designer.cs">
+      <DependentUpon>EmailBoxUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\LatestDocsUC.ascx.cs">
+      <DependentUpon>LatestDocsUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\LatestDocsUC.ascx.designer.cs">
+      <DependentUpon>LatestDocsUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HomeHotNewsUC.ascx.cs">
+      <DependentUpon>HomeHotNewsUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HomeHotNewsUC.ascx.designer.cs">
+      <DependentUpon>HomeHotNewsUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\NewsSlideUC.ascx.cs">
+      <DependentUpon>NewsSlideUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\NewsSlideUC.ascx.designer.cs">
+      <DependentUpon>NewsSlideUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\TopMenuUC.ascx.cs">
+      <DependentUpon>TopMenuUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\TopMenuUC.ascx.designer.cs">
+      <DependentUpon>TopMenuUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HeaderUC.ascx.cs">
+      <DependentUpon>HeaderUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HeaderUC.ascx.designer.cs">
+      <DependentUpon>HeaderUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\HomePage.ascx.cs">
       <DependentUpon>HomePage.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Resources\UserControls\HomePage.ascx.designer.cs">
+    <Compile Include="Resources\UserControls\FrontEnd\HomePage.ascx.designer.cs">
       <DependentUpon>HomePage.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Helpers\FieldCreators\BaseFieldCreator.cs" />
@@ -131,11 +348,11 @@
     <Compile Include="Core\Helpers\WebPartHelper.cs" />
     <Compile Include="Core\WebParts\ContainerWebPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\UserControls\NewsList.ascx.cs">
+    <Compile Include="Resources\UserControls\BackEnd\NewsList.ascx.cs">
       <DependentUpon>NewsList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Resources\UserControls\NewsList.ascx.designer.cs">
+    <Compile Include="Resources\UserControls\BackEnd\NewsList.ascx.designer.cs">
       <DependentUpon>NewsList.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Site Structure\ExternalNews.cs" />
@@ -270,10 +487,103 @@
     <Content Include="Resources\Javascript\slider.js" />
     <Content Include="Resources\Javascript\slide_news.js" />
     <Content Include="Resources\Javascript\tabcontent.js" />
-    <Content Include="Resources\UserControls\HomePage.ascx">
+    <Content Include="Resources\UserControls\FrontEnd\AdvUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\NewsList.ascx">
+    <Content Include="Resources\UserControls\FrontEnd\BoxNewsHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\BottomMenuUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\VanBanUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\ThongKeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\SoDoToChucUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\ToChucDetailUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\FoldersByFolderUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\FilesByFolderUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\NewsDetailUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\OtherNewsUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\HotNewsByCatUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\ListNewsByCatUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\FooterUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\ShouldToKnowUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\HitCountUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\NewsCatHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\GalleryHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\LoginHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\LinkSiteUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\KnowledgeHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\ListNewsHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\VideoHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\ImagesHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\IconLinkUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\EmailBoxUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\LatestDocsUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\HomeHotNewsUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\NewsSlideUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\TopMenuUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\HeaderUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\HomePage.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\BackEnd\NewsList.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
   </ItemGroup>

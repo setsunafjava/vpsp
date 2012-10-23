@@ -7,8 +7,8 @@
     <ProjectItemFile Source="Css\CommonStyleSheet.css" Target="Resources\Css\" Type="ElementFile" />
     <ProjectItemFile Source="Images\94f88e03b7d2f6.jpg" Target="Resources\Images\" Type="ElementFile" />
     <ProjectItemFile Source="MasterPages\VP4.master" Target="Resources\MasterPages\" Type="ElementFile" />
-    <ProjectItemFile Source="UserControls\HomePage.ascx" Target="Resources\UserControls\" Type="ElementFile" />
-    <ProjectItemFile Source="UserControls\NewsList.ascx" Target="Resources\UserControls\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\HomePage.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\BackEnd\NewsList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="Css\ie7.css" Target="Resources\Css\" Type="ElementFile" />
     <ProjectItemFile Source="Css\simpletree.css" Target="Resources\Css\" Type="ElementFile" />
     <ProjectItemFile Source="Css\styles.css" Target="Resources\Css\" Type="ElementFile" />
@@ -99,5 +99,36 @@
     <ProjectItemFile Source="Javascript\slide_news.js" Target="Resources\Javascript\" Type="ElementFile" />
     <ProjectItemFile Source="Javascript\slider.js" Target="Resources\Javascript\" Type="ElementFile" />
     <ProjectItemFile Source="Javascript\tabcontent.js" Target="Resources\Javascript\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\HeaderUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\TopMenuUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\NewsSlideUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\HomeHotNewsUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\LatestDocsUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\EmailBoxUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\IconLinkUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\ImagesHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\VideoHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\AdvUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\BoxNewsHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\ListNewsHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\KnowledgeHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\LinkSiteUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\LoginHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\GalleryHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\NewsCatHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\HitCountUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\ShouldToKnowUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\BottomMenuUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\FooterUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\ListNewsByCatUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\HotNewsByCatUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\OtherNewsUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\NewsDetailUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\FilesByFolderUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\FoldersByFolderUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\ToChucDetailUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\SoDoToChucUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\ThongKeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\VanBanUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
   </Files>
 </ProjectItem>
