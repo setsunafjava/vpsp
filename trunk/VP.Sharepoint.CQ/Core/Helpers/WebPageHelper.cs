@@ -54,7 +54,7 @@ namespace VP.Sharepoint.CQ.Core.Helpers
             sb.AppendLine("<asp:Content ID=\"PlaceHolderMain\" ContentPlaceHolderId=\"PlaceHolderMain\" runat=\"server\">");
             sb.AppendLine("<SharePoint:ScriptLink Name=\"SP.UI.Dialog.js\" runat=\"server\" OnDemand=\"true\" Localizable=\"false\" />");
             sb.AppendLine("<SharePoint:ScriptLink Name=\"SP.Ribbon.js\" runat=\"server\" OnDemand=\"true\" Localizable=\"false\" />");
-            sb.AppendLine("<div id=\"wrapper\">");
+            //sb.AppendLine("<div id=\"wrapper\">");
             sb.AppendLine("<WebPartPages:WebPartZone runat=\"server\" Title=\"loc:HeaderUC\" ID=\"HeaderUC\" FrameType=\"None\"><ZoneTemplate></ZoneTemplate></WebPartPages:WebPartZone>");
             sb.AppendLine("<div id=\"container_content\">");
             sb.AppendLine("<div class=\"left_content\">");
@@ -80,7 +80,7 @@ namespace VP.Sharepoint.CQ.Core.Helpers
             sb.AppendLine("<div id=\"footer\">");
             sb.AppendLine("<WebPartPages:WebPartZone runat=\"server\" Title=\"loc:FooterUC\" ID=\"FooterUC\" FrameType=\"None\"><ZoneTemplate></ZoneTemplate></WebPartPages:WebPartZone>");
             sb.AppendLine("</div>");
-            sb.AppendLine("</div>");
+            //sb.AppendLine("</div>");
             sb.AppendLine("</asp:Content>");
             return sb.ToString();
         }
