@@ -4,7 +4,7 @@
     <File Path="Resources\Css\CommonStyleSheet.css" Url="Resources/Css/CommonStyleSheet.css" />
     <File Path="Resources\Images\94f88e03b7d2f6.jpg" Url="Resources/Images/94f88e03b7d2f6.jpg" />
     <File Path="Resources\MasterPages\VP4.master" Url="Resources/MasterPages/VP4.master" />
-    <File Path="Resources\UserControls\FrontEnd\HomePage.ascx" Url="HomePage.ascx" />
+    <File Path="Resources\UserControls\FrontEnd\ListCatsHomeUC.ascx" Url="ListCatsHomeUC.ascx" />
     <File Path="Resources\UserControls\BackEnd\NewsList.ascx" Url="NewsList.ascx" />
     <File Path="Resources\Css\ie7.css" Url="Resources/Css/ie7.css" />
     <File Path="Resources\Css\simpletree.css" Url="Resources/Css/simpletree.css" />

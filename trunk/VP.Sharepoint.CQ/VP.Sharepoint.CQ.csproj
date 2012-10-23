@@ -324,12 +324,12 @@
     <Compile Include="Resources\UserControls\FrontEnd\HeaderUC.ascx.designer.cs">
       <DependentUpon>HeaderUC.ascx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources\UserControls\FrontEnd\HomePage.ascx.cs">
-      <DependentUpon>HomePage.ascx</DependentUpon>
+    <Compile Include="Resources\UserControls\FrontEnd\ListCatsHomeUC.ascx.cs">
+      <DependentUpon>ListCatsHomeUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Resources\UserControls\FrontEnd\HomePage.ascx.designer.cs">
-      <DependentUpon>HomePage.ascx.cs</DependentUpon>
+    <Compile Include="Resources\UserControls\FrontEnd\ListCatsHomeUC.ascx.designer.cs">
+      <DependentUpon>ListCatsHomeUC.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Core\Helpers\FieldCreators\BaseFieldCreator.cs" />
     <Compile Include="Core\Helpers\FieldCreators\BooleanFieldCreator.cs" />
@@ -585,7 +585,7 @@
     <Content Include="Resources\UserControls\FrontEnd\HeaderUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\FrontEnd\HomePage.ascx">
+    <Content Include="Resources\UserControls\FrontEnd\ListCatsHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\NewsList.ascx">
