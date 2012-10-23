@@ -22,7 +22,7 @@ namespace VP.Sharepoint.CQ
             {
                 webUrl = "";
             }
-            CreatePage(web, "default", "HomePage", webUrl + "/" + ListsName.InternalName.ResourcesList + "/VP4.master", true);
+            CreatePage(web, "default", webUrl + "/" + ListsName.InternalName.ResourcesList + "/VP4.master", true);
         }
 
         private static void CreatePage(SPWeb web, string pageName, string usercontrolName, string masterUrl, bool overWrite)
@@ -34,6 +34,15 @@ namespace VP.Sharepoint.CQ
             WebPageHelper.CreateDefaultWebPage(web, string.Format(CultureInfo.InvariantCulture, "{0}.aspx", pageName), masterUrl, overWrite);
 
             AddUserControlToPage(web, pageName, pageName, usercontrolName);
+        }
+
+        private static void CreatePage(SPWeb web, string pageName, string masterUrl, bool overWrite)
+        {
+            string notifyPageUrl = string.Concat(web.Url, string.Format(CultureInfo.InvariantCulture, "/{0}.aspx", pageName));
+            SPFile pageFile = web.GetFile(notifyPageUrl);
+            if (pageFile.Exists) pageFile.Delete();
+
+            WebPageHelper.CreateDefaultWebPage(web, string.Format(CultureInfo.InvariantCulture, "{0}.aspx", pageName), masterUrl, overWrite);
         }
 
         private static void AddUserControlToPage(SPWeb web, string pageName, string pageTitle, string userControlName)
