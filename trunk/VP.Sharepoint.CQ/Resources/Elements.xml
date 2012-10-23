@@ -127,5 +127,7 @@
     <File Path="Resources\UserControls\FrontEnd\SoDoToChucUC.ascx" Url="SoDoToChucUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\ThongKeUC.ascx" Url="ThongKeUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\VanBanUC.ascx" Url="VanBanUC.ascx" />
-  </Module>
+  <File Path="Resources\Images\grass-blades.jpg" Url="Resources/Images/grass-blades.jpg" />
+<File Path="Resources\Images\flowing-rock.jpg" Url="Resources/Images/flowing-rock.jpg" />
+</Module>
 </Elements>
