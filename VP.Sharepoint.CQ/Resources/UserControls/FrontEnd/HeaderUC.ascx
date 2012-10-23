@@ -8,4 +8,20 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HeaderUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.HeaderUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
-xxx
+<link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/styles.css" />
+<link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/tabcontent.css" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/ie6.css">
+<![endif]-->
+<!--[if lte IE 7]>
+<link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/ie7.css">
+<![endif]-->
+<script type="text/javascript" src="<%=DocLibUrl%>/jquery-1.7.1.js"></script>
+<script type="text/javascript" src="<%=DocLibUrl%>/tabcontent.js"></script>
+<script type="text/javascript" src="<%=DocLibUrl%>/script.js"></script>
+
+<div id="header">
+	<div class="banner">
+		<img src="<%=DocLibUrl%>/header.jpg" />
+	</div>
+</div>

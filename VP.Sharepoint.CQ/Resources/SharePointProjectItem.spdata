@@ -130,5 +130,7 @@
     <ProjectItemFile Source="UserControls\FrontEnd\SoDoToChucUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\ThongKeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\VanBanUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\grass-blades.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\flowing-rock.jpg" Target="Resources\Images\" Type="ElementFile" />
   </Files>
 </ProjectItem>
