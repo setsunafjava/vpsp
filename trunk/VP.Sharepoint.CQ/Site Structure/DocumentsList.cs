@@ -61,7 +61,7 @@ namespace VP.Sharepoint.CQ
             SPField fieldTitle = list.Fields.GetField(FieldsName.DocumentsList.InternalName.Title);
             if (fieldTitle != null)
             {
-                fieldTitle.Title = FieldsName.PublishPlace.DisplayName.Title;
+                fieldTitle.Title = FieldsName.DocumentsList.DisplayName.Title;
                 fieldTitle.Update();
             }
             list.Update();

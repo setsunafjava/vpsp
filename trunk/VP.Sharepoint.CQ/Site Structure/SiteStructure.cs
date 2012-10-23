@@ -41,6 +41,8 @@ namespace VP.Sharepoint.CQ
             // Add QuichLaunch
             Console.WriteLine("Process CreateQuichLaunch..");
             QuickLaunchStructure.CreateQuickLaunch(web);
+
+            ExternalNews.CreateListStructure(web);
             
             Console.WriteLine("Deploy Successful!");
         }
