@@ -7,7 +7,7 @@
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="HeaderUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.HeaderUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-
+<link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/COREV4.CSS" />
 <link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/styles.css" />
 <link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/tabcontent.css" />
 <!--[if lte IE 6]>
