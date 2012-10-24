@@ -30,14 +30,14 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.DefaultPage, "quangcao1", "HomeNewsCatUC", 1, "AdvUC");
             AddUserControlToPage(web, Constants.DefaultPage, "newscathome1", "HomeNewsCatUC", 2, "NewsCatHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "quangcao2", "HomeNewsCatUC", 3, "AdvUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "newscathome1", "HomeNewsCatUC", 4, "NewsCatHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "newscathome2", "HomeNewsCatUC", 4, "NewsCatHomeUC");
             //left-left-home
             AddUserControlToPage(web, Constants.DefaultPage, "quangcao0", "HomeNewsLeftUC", 0, "AdvUC");
             AddUserControlToPage(web, Constants.DefaultPage, "listnewshome1", "HomeNewsLeftUC", 1, "ListNewsHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "quangcao1", "HomeNewsLeftUC", 2, "AdvUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "listnewshome1", "HomeNewsLeftUC", 3, "ListNewsHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "listnewshome2", "HomeNewsLeftUC", 3, "ListNewsHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "quangcao2", "HomeNewsLeftUC", 4, "AdvUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "listnewshome1", "HomeNewsLeftUC", 5, "ListNewsHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "listnewshome3", "HomeNewsLeftUC", 5, "ListNewsHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "quangcao3", "HomeNewsLeftUC", 6, "AdvUC");
             //right-left-home
             AddUserControlToPage(web, Constants.DefaultPage, "knowledgehome", "HomeNewsRightUC", 0, "KnowledgeHomeUC");
