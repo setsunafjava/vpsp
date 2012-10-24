@@ -17,7 +17,70 @@
             <td class="ms-formbody" style="font-size: 11px;">
                 <SharePoint:TextField runat="server" ID="txtTitle" FieldName="Title"/>
             </td>
-        </tr>
+        </tr>      
+
+         <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblNewsGroup" runat="server" FieldName="NewsGroup" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:TextField runat="server" ID="txtNewsGroup" FieldName="NewsGroup"/>
+            </td>
+        </tr>      
+
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblDescription" runat="server" FieldName="Description" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:RichTextField runat="server" ID="txtDescription" FieldName="Description"/>
+            </td>
+        </tr>      
+
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblContent" runat="server" FieldName="Content" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:RichTextField runat="server" ID="txtContent" FieldName="Content"/>
+            </td>
+        </tr>  
+
+         <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblStatus" runat="server" FieldName="Status" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:TextField runat="server" ID="txtStatus" FieldName="Status"/>
+            </td>
+        </tr>      
+
+         <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblPostedDate" runat="server" FieldName="PostedDate" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:DateTimeField runat="server" ID="txtPostedDate" FieldName="PostedDate" DateOnly="true"/>
+            </td>
+        </tr>      
+
+         <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblImageThumb" runat="server" FieldName="ImageThumb" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:TextField runat="server" ID="txtImageThubm" FieldName="ImageThumb"/>
+            </td>
+        </tr>    
+        
+          <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblSmallImageThumb" runat="server" FieldName="SmallImageThumb" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:TextField runat="server" ID="txtSmallImageThumb" FieldName="SmallImageThumb"/>
+            </td>
+        </tr>      
         
         <tr id="idAttachmentsRow">
             <td style="width: 190px; vertical-align: top; font-weight: normal;" class="ms-formlabel"
