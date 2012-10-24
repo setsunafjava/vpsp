@@ -396,6 +396,7 @@
       <DependentUpon>VP.Sharepoint.CQ.feature</DependentUpon>
     </Content>
     <Content Include="Resources\Css\CommonStyleSheet.css" />
+    <Content Include="Resources\Css\COREV4.CSS" />
     <Content Include="Resources\Css\ie7.css" />
     <Content Include="Resources\Css\simpletree.css" />
     <Content Include="Resources\Css\styles.css" />
