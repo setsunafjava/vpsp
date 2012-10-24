@@ -358,6 +358,8 @@
     <Compile Include="Resources\UserControls\BackEnd\NewsList.ascx.designer.cs">
       <DependentUpon>NewsList.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Site Structure\CategoryList.cs" />
+    <Compile Include="Site Structure\ImageLibrary.cs" />
     <Compile Include="Site Structure\ExternalNews.cs" />
     <Compile Include="Site Structure\DocumentsList.cs" />
     <Compile Include="Site Structure\NewsGroupList.cs" />
