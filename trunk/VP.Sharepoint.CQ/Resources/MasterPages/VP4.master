@@ -33,7 +33,7 @@
 	<SharePoint:SPPageManager runat="server" />
 	<SharePoint:SPHelpPageComponent Visible="false" runat="server" />
 </head>
-<body scroll="no" onload="if (typeof(_spBodyOnLoadWrapper) != 'undefined') _spBodyOnLoadWrapper();" class="v4master">
+<body>
   <form runat="server" onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}">
     <asp:ScriptManager id="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
     <WebPartPages:SPWebPartManager id="m" runat="Server" />

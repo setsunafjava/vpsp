@@ -10,51 +10,52 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="BoxNewsHomeUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.BoxNewsHomeUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<div class="tab_content_News">
-    <div class="info_tab_content">
-        <ul id="countrytabs" class="shadetabs">
-            <li><a href="#" rel="country1" class="selected">Mới nhất</a></li>
-            <li><a href="#" rel="country2">Đọc nhiều</a></li>
-        </ul>
-        <div class="inner_content_tab">
-            <div id="country1" class="tabcontent">
-                <ul>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Khai hội Yên Tử</a><span>(ngày 20/02/2012)</span></li>
-                </ul>
-            </div>
-            <div id="country2" class="tabcontent">
-                <ul>
-                    <li><a href="#">Đẩy lùi tình trạng suy thoái đạo đức trong cán bộ</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Đẩy lùi tình trạng suy thoái đạo đức trong cán bộ</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Đẩy lùi tình trạng suy thoái đạo đức trong cán bộ</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Đẩy lùi tình trạng suy thoái đạo đức trong cán bộ</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Đẩy lùi tình trạng suy thoái đạo đức trong cán bộ</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Đẩy lùi tình trạng suy thoái đạo đức trong cán bộ</a><span>(ngày 20/02/2012)</span></li>
-                    <li><a href="#">Đẩy lùi tình trạng suy thoái đạo đức trong cán bộ</a><span>(ngày 20/02/2012)</span></li>
-                </ul>
-            </div>
-            <script type="text/javascript">
 
-                var countries = new ddtabcontent("countrytabs")
-                countries.setpersist(true)
-                countries.setselectedClassTarget("link") //"link" or "linkparent"
-                countries.init()
-								
-            </script>
-            <div class="cleaner">
+<div class="slide_news">
+    <div class="bg_top">
+    </div>
+    <div id="slider">
+        <img class="scrollButtons left" src="<%=DocLibUrl%>/leftarrow.png">
+        <div style="overflow: hidden;" class="scroll">
+            <div class="scrollContainer">
+                <div class="panel" id="panel_1">
+                    <div class="inside">
+                        <img src="<%=DocLibUrl%>/images769948_440002_2984_1924_EVE_1.jpg" alt="picture" />
+                        <a href="#">Trẻ luyện chữ trước khi vào lớp 1: Vấn đề không ở phụ huynh! </a>
+                    </div>
+                </div>
+                <div class="panel" id="panel_2">
+                    <div class="inside">
+                        <img src="<%=DocLibUrl%>/images769948_440002_2984_1924_EVE_1.jpg" alt="picture" />
+                        <a href="#">Trẻ luyện chữ trước khi vào lớp 1: Vấn đề không ở phụ huynh! </a>
+                    </div>
+                </div>
+                <div class="panel" id="panel_3">
+                    <div class="inside">
+                        <img src="<%=DocLibUrl%>/images769948_440002_2984_1924_EVE_1.jpg" alt="picture" />
+                        <a href="#">Trẻ luyện chữ trước khi vào lớp 1: Vấn đề không ở phụ huynh! </a>
+                    </div>
+                </div>
+                <div class="panel" id="panel_4">
+                    <div class="inside">
+                        <img src="<%=DocLibUrl%>/images769948_440002_2984_1924_EVE_1.jpg" alt="picture" />
+                        <a href="#">Trẻ luyện chữ trước khi vào lớp 1: Vấn đề không ở phụ huynh! </a>
+                    </div>
+                </div>
+                <div class="panel" id="panel_5">
+                    <div class="inside">
+                        <img src="<%=DocLibUrl%>/images769948_440002_2984_1924_EVE_1.jpg" alt="picture" />
+                        <a href="#">Trẻ luyện chữ trước khi vào lớp 1: Vấn đề không ở phụ huynh! </a>
+                    </div>
+                </div>
+            </div>
+            <div id="left-shadow">
+            </div>
+            <div id="right-shadow">
             </div>
         </div>
+        <img class="scrollButtons right" src="<%=DocLibUrl%>/rightarrow.png">
+    </div>
+    <div class="bg_bottom">
     </div>
 </div>
-<div class="cleaner"></div>
