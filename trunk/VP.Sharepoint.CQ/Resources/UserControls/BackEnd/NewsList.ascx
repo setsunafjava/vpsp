@@ -8,4 +8,50 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NewsList.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.NewsList" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
-
+<div id="part1">
+    <table class="ms-formtable" style="width: 100%">
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblTitle" runat="server" FieldName="Title" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:TextField runat="server" ID="txtTitle" FieldName="Title"/>
+            </td>
+        </tr>
+        
+        <tr id="idAttachmentsRow">
+            <td style="width: 190px; vertical-align: top; font-weight: normal;" class="ms-formlabel"
+                valign="top">
+                <SharePoint:FieldLabel ID="labelAttachments" runat="server" FieldName="Attachments" />
+            </td>
+            <td class="ms-formbody" id="tdAttachments" style="font-size: 11px;">
+            </td>
+        </tr>
+        <tr>
+            <td align="right" colspan="2" style="vertical-align: top; font-weight: normal;" class="ms-formlabel"
+                valign="top">
+                <table>
+                    <tr>
+                        <td width="99%">
+                            <SharePoint:CreatedModifiedInfo ID="CreatedModifiedInfo1" runat="server" />
+                        </td>
+                        <td class="ms-ButtonHeightWidth">
+                            <SharePoint:SaveButton runat="server" ID="saveButton" />
+                        </td>
+                        <td class="ms-ButtonHeightWidth">
+                            <SharePoint:GoBackButton ID="goBackButton" runat="server" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divAttachments">
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#partAttachment").appendTo("#divAttachments");
+        $("#idAttachmentsTable").appendTo("#tdAttachments");
+    });
+</script>
