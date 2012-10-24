@@ -22,12 +22,7 @@ namespace VP.Sharepoint.CQ
             { 
                 RichText = true,
                 RichTextMode = SPRichTextMode.FullHtml
-            });
-            helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.NewsList.InternalName.Description, FieldsName.NewsList.DisplayName.Description)
-            {
-                RichText = true,
-                RichTextMode = SPRichTextMode.FullHtml
-            });
+            });           
 
             helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.NewsList.InternalName.Content, FieldsName.NewsList.DisplayName.Content)
             {

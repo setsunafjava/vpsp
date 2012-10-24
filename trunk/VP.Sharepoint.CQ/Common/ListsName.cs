@@ -17,6 +17,7 @@
             public const string ImageLibrary = "ImageLibrary";
             public const string VideoLibrary = "VideoLibrary";
             public const string CategoryList = "CategoryList";
+            public const string AlbumList = "AlbumList";
             public const string WebsiteLink = "WebsiteLink";
         }
 
@@ -35,6 +36,7 @@
             public const string ImageLibrary = "Thư viện ảnh";
             public const string VideoLibrary = "Thư viện video";
             public const string CategoryList = "Chuyên mục";
+            public const string AlbumList = "Album";
             public const string WebsiteLink = "Liên kết website";
         }
     }

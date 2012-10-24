@@ -359,6 +359,9 @@
       <DependentUpon>NewsList.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Site Structure\CategoryList.cs" />
+    <Compile Include="Site Structure\AlbumList.cs" />
+    <Compile Include="Site Structure\WebsiteLink.cs" />
+    <Compile Include="Site Structure\VideoLibrary.cs" />
     <Compile Include="Site Structure\ImageLibrary.cs" />
     <Compile Include="Site Structure\ExternalNews.cs" />
     <Compile Include="Site Structure\DocumentsList.cs" />

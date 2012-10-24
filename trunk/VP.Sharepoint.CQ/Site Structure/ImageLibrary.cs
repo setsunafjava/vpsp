@@ -8,28 +8,29 @@ using VP.Sharepoint.CQ.Common;
 
 namespace VP.Sharepoint.CQ
 {
-    class CategoryList
+    class ImageLibrary
     {
         public static void CreateListStructure(SPWeb web)
         {
 
             var helper = new ListHelper(web)
                         {
-                            Title = ListsName.DisplayName.CategoryList,
-                            Name = ListsName.InternalName.CategoryList,
+                            Title = ListsName.DisplayName.ImageLibrary,
+                            Name = ListsName.InternalName.ImageLibrary,
                             OnQuickLaunch = false,
                             EnableAttachments = true
                         };
-            helper.AddField( new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));
-            helper.AddField(new NumberFieldCreator(FieldsName.CategoryList.InternalName.Type, FieldsName.CategoryList.DisplayName.Type));
-            helper.AddField(new NumberFieldCreator(FieldsName.CategoryList.InternalName.Status, FieldsName.CategoryList.DisplayName.Status));
-            helper.AddField(new NumberFieldCreator(FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.DisplayName.Order));
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ImageDesc, FieldsName.CategoryList.DisplayName.ImageDesc));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ImageLibrary.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ImageLibrary.InternalName.AlbumId, FieldsName.ImageLibrary.DisplayName.AlbumId));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ImageLibrary.InternalName.CategoryId, FieldsName.ImageLibrary.DisplayName.CategoryId));
+            helper.AddField(new NumberFieldCreator(FieldsName.ImageLibrary.InternalName.Status, FieldsName.ImageLibrary.DisplayName.Status));
+            helper.AddField(new NumberFieldCreator(FieldsName.ImageLibrary.InternalName.Order, FieldsName.ImageLibrary.DisplayName.Order));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ImageLibrary.InternalName.FilePath, FieldsName.ImageLibrary.DisplayName.FilePath));            
             SPList list = helper.Apply();
-            SPField fieldTitle = list.Fields.GetField(FieldsName.CategoryList.InternalName.Title);
+            SPField fieldTitle = list.Fields.GetField(FieldsName.ImageLibrary.InternalName.Title);
             if (fieldTitle!=null)
             {
-                fieldTitle.Title = FieldsName.CategoryList.DisplayName.Title;
+                fieldTitle.Title = FieldsName.ImageLibrary.DisplayName.Title;
                 fieldTitle.Update();
             }
             list.Update();
