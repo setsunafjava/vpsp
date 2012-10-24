@@ -1,5 +1,5 @@
 /*RESET SETTINGS*/
-html, body, div, span, h1, h2, h3, h4, a, em, font, img, small, strike, strong{
+html, body, div, span, h1, h2, h3, h4, a, em, font, img, small, strike, strong, form, table, tr, td, th{
 margin: 0;
 padding: 0;
 border: 0;

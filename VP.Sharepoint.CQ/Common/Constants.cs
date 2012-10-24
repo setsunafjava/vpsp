@@ -10,5 +10,6 @@
         public const string FieldLinkToFileName = "LinkFilename";
         public const string LinkTitleNoMenu = "LinkTitleNoMenu";
         public const string CreatedBy = "Author";
+        public const string DefaultPage = "default";
     }
 }
