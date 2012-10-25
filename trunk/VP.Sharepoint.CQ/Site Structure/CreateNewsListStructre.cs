@@ -27,7 +27,8 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.NewsList.InternalName.Content, FieldsName.NewsList.DisplayName.Content)
             {
                 RichText = true,
-                RichTextMode = SPRichTextMode.FullHtml
+                RichTextMode = SPRichTextMode.FullHtml,
+                NumberOfLines = 20
             });
             helper.AddField(new UserFieldCreator(FieldsName.NewsList.InternalName.Poster, FieldsName.NewsList.DisplayName.Poster) 
                 { 
