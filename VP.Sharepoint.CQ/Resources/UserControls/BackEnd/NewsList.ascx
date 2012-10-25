@@ -18,7 +18,7 @@
                 <SharePoint:TextField runat="server" ID="txtTitle" FieldName="Title"/>
             </td>
         </tr>      
-
+        <asp:Label ID="lblTest" runat="server" Text="Test"></asp:Label>
          <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblNewsGroup" runat="server" FieldName="NewsGroup" />
@@ -60,7 +60,7 @@
                 <SharePoint:FieldLabel ID="lblPostedDate" runat="server" FieldName="PostedDate" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:DateTimeField runat="server" ID="txtPostedDate" FieldName="PostedDate" DateOnly="true"/>
+                <SharePoint:DateTimeField runat="server" ID="txtPostedDate" FieldName="PostedDate" />
             </td>
         </tr>      
 

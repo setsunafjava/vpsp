@@ -48,6 +48,7 @@ namespace VP.Sharepoint.CQ.UserControls
             var item = SPContext.Current.Item;
             SPContext.Current.Web.AllowUnsafeUpdates = true;
             //Save item to list
+            //item[FieldsName.NewsList.InternalName.Content] = "adfdasf";
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
         }
         #region Properties
