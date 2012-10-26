@@ -39,25 +39,37 @@
         }
         #endregion
 
-        #region NewsGroupList list
-        public class NewsGroupList // --> ListName
+        #region MenuList list
+        public class MenuList // --> ListName
         {
             //Internal Name
-            #region Nested type: NewsGroupList Internal Name
+            #region Nested type: MenuList Internal Name
             public class InternalName
             {
                 public const string Title = "Title";
+                public const string MenuID = "MenuID";
+                public const string MenuType = "MenuType";
+                public const string MenuPosition = "MenuPosition";
+                public const string MenuOrder = "MenuOrder";
+                public const string MenuOrderDisp = "MenuOrderDisp";
                 public const string ParentID = "ParentID";
+                public const string ParentName = "ParentName";
                 public const string Description = "Description";
                 public const string Status = "Status";
             }
             #endregion
             //Display Name
-            #region Nested type: NewsList Display Name
+            #region Nested type: MenuList Display Name
             public static class DisplayName
             {
-                public const string Title = "Tên nhóm";
-                public const string ParentID = "Nhóm cha";
+                public const string Title = "Tên menu";
+                public const string MenuID = "MenuID";
+                public const string MenuType = "MenuType";
+                public const string MenuPosition = "MenuPosition";
+                public const string MenuOrder = "MenuOrder";
+                public const string MenuOrderDisp = "MenuOrderDisp";
+                public const string ParentID = "Menu cha";
+                public const string ParentName = "Tên menu cha";
                 public const string Description = "Mô tả";
                 public const string Status = "Trạng thái";
             }

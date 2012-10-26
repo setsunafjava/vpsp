@@ -376,7 +376,6 @@
     <Compile Include="Site Structure\ImageLibrary.cs" />
     <Compile Include="Site Structure\ExternalNews.cs" />
     <Compile Include="Site Structure\DocumentsList.cs" />
-    <Compile Include="Site Structure\NewsGroupList.cs" />
     <Compile Include="Site Structure\SignaturePerson.cs" />
     <Compile Include="Site Structure\DocumentSubject.cs" />
     <Compile Include="Site Structure\PublishPlace.cs" />

@@ -15,19 +15,19 @@ namespace VP.Sharepoint.CQ
 
             var helper = new ListHelper(web)
                         {
-                            Title = ListsName.DisplayName.NewsGroupList,
-                            Name = ListsName.InternalName.NewsGroupList,
+                            Title = ListsName.DisplayName.MenuList,
+                            Name = ListsName.InternalName.MenuList,
                             OnQuickLaunch = false,
                             EnableAttachments = true
                         };
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsGroupList.InternalName.Description, FieldsName.NewsGroupList.DisplayName.Description));
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsGroupList.InternalName.ParentID, FieldsName.NewsGroupList.DisplayName.ParentID));
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsGroupList.InternalName.Status, FieldsName.NewsGroupList.DisplayName.Status));
-            SPList list = helper.Apply();            
-            SPField fieldTitle = list.Fields.GetField(FieldsName.NewsGroupList.InternalName.Title);
-            if (fieldTitle!=null)
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.MenuID, FieldsName.MenuList.DisplayName.MenuID));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.MenuOrder, FieldsName.MenuList.DisplayName.MenuOrder));
+            helper.AddField(new NumberFieldCreator(FieldsName.MenuList.InternalName.MenuOrderDisp, FieldsName.MenuList.DisplayName.MenuOrderDisp));
+            SPList list = helper.Apply();
+            SPField fieldTitle = list.Fields.GetFieldByInternalName(FieldsName.MenuList.InternalName.Title);
+            if (fieldTitle != null)
             {
-                fieldTitle.Title = FieldsName.NewsGroupList.DisplayName.Title;
+                fieldTitle.Title = FieldsName.MenuList.DisplayName.Title;
                 fieldTitle.Update();
             }
             list.Update();

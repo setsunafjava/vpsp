@@ -19,6 +19,7 @@
             public const string CategoryList = "CategoryList";
             public const string AlbumList = "AlbumList";
             public const string WebsiteLink = "WebsiteLink";
+            public const string MenuList = "MenuList";
         }
 
         // Display Name of list
@@ -38,6 +39,7 @@
             public const string CategoryList = "Chuyên mục";
             public const string AlbumList = "Album";
             public const string WebsiteLink = "Liên kết website";
+            public const string MenuList = "Danh sách menu";
         }
     }
 }
