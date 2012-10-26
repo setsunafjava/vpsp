@@ -75,10 +75,10 @@
         
           <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblSmallImageThumb" runat="server" FieldName="SmallImageThumb" />
+                <SharePoint:FieldLabel ID="lblSmallImageThumb" runat="server" FieldName="ImageSmallThumb" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtSmallImageThumb" FieldName="SmallImageThumb"/>
+                <SharePoint:TextField runat="server" ID="txtSmallImageThumb" FieldName="ImageSmallThumb"/>
             </td>
         </tr>      
         
