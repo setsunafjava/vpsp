@@ -851,53 +851,6 @@ namespace VP.Sharepoint.CQ.Common
         }
 
         /// <summary>
-        /// The function to start WF
-        /// </summary>
-        /// <param name="web">Current Web</param>
-        /// <param name="listUrl">Url of current list - English name</param>
-        /// <param name="currentItemId">Id of current item</param>
-        /// <param name="wfName">Name of WF</param>
-        public static void StartWf(SPWeb web, string listUrl, int currentItemId, string wfName)
-        {
-            SPSecurity.RunWithElevatedPrivileges(() =>
-            {
-                using (var site = new SPSite(web.Site.ID))
-                {
-                    using (var adminWeb = site.OpenWeb(web.ID))
-                    {
-                        var list = GetCustomListByUrl(adminWeb, listUrl);
-
-                        if (list == null) return;
-
-                        var item = list.GetItemById(currentItemId);
-
-                        if (item == null) return;
-
-                        SPWorkflowManager workflowManager = site.WorkflowManager;
-                        SPWorkflowAssociation assoc = list.WorkflowAssociations.GetAssociationByName(wfName, CultureInfo.InvariantCulture);
-
-                        var allowUnsafeUpdates = SecurityHelper.SetAllowUnsafeUpdates(adminWeb);
-                        try
-                        {
-                            workflowManager.StartWorkflow(item, assoc, assoc.AssociationData, SPWorkflowRunOptions.Asynchronous);
-                        }
-                        catch (SPException ex)
-                        {
-                            LogToULS(ex);
-                            Thread.Sleep(5000);
-                            var ontherItem = list.GetItemById(currentItemId);
-                            workflowManager.StartWorkflow(ontherItem, assoc, assoc.AssociationData, SPWorkflowRunOptions.Asynchronous);
-                        }
-                        finally
-                        {
-                            SecurityHelper.RollbackAllowUnsafeUpdates(adminWeb, allowUnsafeUpdates);
-                        }
-                    }
-                }
-            });
-        }
-
-        /// <summary>
         /// Create events for list
         /// </summary>
         /// <param name="list">Current list</param>
@@ -1024,6 +977,63 @@ namespace VP.Sharepoint.CQ.Common
 
             web.AllowUnsafeUpdates = true;
             web.Update();
+        }
+
+        /// <summary>
+        /// LoadJS
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="page"></param>
+        /// <param name="name"></param>
+        public static void LoadJS(SPWeb web, Page page, string name)
+        {
+            // Load Js
+            SPListItem js = Utilities.GetResourceByType(web, name);
+
+            if (js != null)
+            {
+                string jsUrl = web.Url + "/" + js.Url;
+                page.ClientScript.RegisterClientScriptInclude(js.ID + "js", jsUrl);
+            }
+        }
+
+        /// <summary>
+        /// GetResourceByType
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static SPListItem GetResourceByType(SPWeb web, string name)
+        {
+            if (web == null) return null;
+            SPListItem item = null;
+
+            try
+            {
+                var listUrl = web.Url + "/" + ListsName.InternalName.ResourcesList;
+                var resource = web.GetList(listUrl);
+
+                if (resource != null)
+                {
+                    const string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{0}</Value></Eq></Where>";
+                    var query = new SPQuery()
+                    {
+                        Query = string.Format(CultureInfo.InvariantCulture, caml, name),
+                        RowLimit = 1
+                    };
+
+                    var items = resource.GetItems(query);
+                    if (items != null && items.Count > 0)
+                        item = items[0];
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                LogToULS(ex);
+            }
+
+            return item;
         }
     }
 }
