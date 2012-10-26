@@ -10,8 +10,9 @@ namespace VP.Sharepoint.CQ.Common
     {
         protected override void OnPreRender(EventArgs e)
         {
+            Utilities.LoadJS(SPContext.Current.Web, this.Page, FieldsName.AC00004Resources.FieldValuesDefault.Name.Jquery);
+            Utilities.LoadCSS(SPContext.Current.Web, this.Page, FieldsName.AC00004Resources.FieldValuesDefault.Name.B1);
             base.OnPreRender(e);
-
         }
     }
 }
