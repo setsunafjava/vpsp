@@ -988,7 +988,7 @@ namespace VP.Sharepoint.CQ.Common
         public static void LoadJS(SPWeb web, Page page, string name)
         {
             // Load Js
-            SPListItem js = Utilities.GetResourceByType(web, name);
+            SPListItem js = Utilities.GetResource(web, name);
 
             if (js != null)
             {
@@ -998,13 +998,13 @@ namespace VP.Sharepoint.CQ.Common
         }
 
         /// <summary>
-        /// GetResourceByType
+        /// GetResource
         /// </summary>
         /// <param name="web"></param>
         /// <param name="type"></param>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static SPListItem GetResourceByType(SPWeb web, string name)
+        public static SPListItem GetResource(SPWeb web, string name)
         {
             if (web == null) return null;
             SPListItem item = null;
@@ -1016,7 +1016,7 @@ namespace VP.Sharepoint.CQ.Common
 
                 if (resource != null)
                 {
-                    const string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{0}</Value></Eq></Where>";
+                    const string caml = @"<Where><Eq><FieldRef Name='FileLeafRef' /><Value Type='Text'>{0}</Value></Eq></Where>";
                     var query = new SPQuery()
                     {
                         Query = string.Format(CultureInfo.InvariantCulture, caml, name),
