@@ -110,6 +110,13 @@
     <Compile Include="Core\WebControls\UrlBuilder.cs" />
     <Compile Include="EventReceivers\NewsEventReceiver.cs" />
     <Compile Include="FeatureReceivers\FeatureReceivers.cs" />
+    <Compile Include="Resources\UserControls\BackEnd\MenuList.ascx.cs">
+      <DependentUpon>MenuList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\MenuList.ascx.designer.cs">
+      <DependentUpon>MenuList.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\FrontEnd\AdvUC.ascx.cs">
       <DependentUpon>AdvUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -363,6 +370,7 @@
     </Compile>
     <Compile Include="Site Structure\CategoryList.cs" />
     <Compile Include="Site Structure\AlbumList.cs" />
+    <Compile Include="Site Structure\MenuList.cs" />
     <Compile Include="Site Structure\WebsiteLink.cs" />
     <Compile Include="Site Structure\VideoLibrary.cs" />
     <Compile Include="Site Structure\ImageLibrary.cs" />
@@ -501,6 +509,9 @@
     <Content Include="Resources\Javascript\slider.js" />
     <Content Include="Resources\Javascript\slide_news.js" />
     <Content Include="Resources\Javascript\tabcontent.js" />
+    <Content Include="Resources\UserControls\BackEnd\MenuList.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\FrontEnd\AdvUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

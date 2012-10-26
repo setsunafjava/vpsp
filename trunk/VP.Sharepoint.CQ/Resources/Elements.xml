@@ -130,5 +130,6 @@
   <File Path="Resources\Images\grass-blades.jpg" Url="Resources/Images/grass-blades.jpg" />
 <File Path="Resources\Images\flowing-rock.jpg" Url="Resources/Images/flowing-rock.jpg" />
 <File Path="Resources\Css\COREV4.CSS" Url="Resources/Css/COREV4.CSS" />
+<File Path="Resources\UserControls\BackEnd\MenuList.ascx" Url="MenuList.ascx" />
 </Module>
 </Elements>
