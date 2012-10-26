@@ -69,10 +69,10 @@
             {
                 public const string Title = "Tên menu";
                 public const string MenuID = "MenuID";
-                public const string MenuType = "MenuType";
-                public const string MenuPosition = "MenuPosition";
+                public const string MenuType = "Loại menu";
+                public const string MenuPosition = "Vị trí menu";
                 public const string MenuOrder = "MenuOrder";
-                public const string MenuOrderDisp = "MenuOrderDisp";
+                public const string MenuOrderDisp = "Thứ tự";
                 public const string ParentID = "Menu cha";
                 public const string ParentName = "Tên menu cha";
                 public const string Description = "Mô tả";
