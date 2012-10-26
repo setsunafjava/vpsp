@@ -20,9 +20,41 @@ namespace VP.Sharepoint.CQ
                             OnQuickLaunch = false,
                             EnableAttachments = true
                         };
+            helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.MenuList.InternalName.Description, FieldsName.MenuList.DisplayName.Description)
+            {
+                RichText = false,
+                RichTextMode = SPRichTextMode.Compatible
+            });
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.MenuID, FieldsName.MenuList.DisplayName.MenuID));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.MenuOrder, FieldsName.MenuList.DisplayName.MenuOrder));
             helper.AddField(new NumberFieldCreator(FieldsName.MenuList.InternalName.MenuOrderDisp, FieldsName.MenuList.DisplayName.MenuOrderDisp));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.ParentID, FieldsName.MenuList.DisplayName.ParentID));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.ParentName, FieldsName.MenuList.DisplayName.ParentName));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.CatID, FieldsName.MenuList.DisplayName.CatID));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.CatName, FieldsName.MenuList.DisplayName.CatName));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.PageName, FieldsName.MenuList.DisplayName.PageName));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.MenuUrl, FieldsName.MenuList.DisplayName.MenuUrl));
+
+            var choiceField = new ChoiceFieldCreator(FieldsName.MenuList.InternalName.Status, FieldsName.MenuList.DisplayName.Status);
+            choiceField.Choices.AddRange(new[] { "Ẩn", "Hiện" });
+            choiceField.DefaultValue = "Hiện";
+            helper.AddField(choiceField);
+
+            choiceField = new ChoiceFieldCreator(FieldsName.MenuList.InternalName.MenuType, FieldsName.MenuList.DisplayName.MenuType);
+            choiceField.Choices.AddRange(new[] { "Link tới chuyên mục", "Đường link xác định" });
+            choiceField.DefaultValue = "Link tới chuyên mục";
+            helper.AddField(choiceField);
+
+            choiceField = new ChoiceFieldCreator(FieldsName.MenuList.InternalName.MenuPosition, FieldsName.MenuList.DisplayName.MenuPosition);
+            choiceField.Choices.AddRange(new[] { "Top menu", "Footer menu" });
+            choiceField.DefaultValue = "Top menu";
+            helper.AddField(choiceField);
+
+            choiceField = new ChoiceFieldCreator(FieldsName.MenuList.InternalName.OpenType, FieldsName.MenuList.DisplayName.OpenType);
+            choiceField.Choices.AddRange(new[] { "Giữ nguyên cửa sổ hiện tại", "Mở cửa sổ mới" });
+            choiceField.DefaultValue = "Giữ nguyên cửa sổ hiện tại";
+            helper.AddField(choiceField);
+
             SPList list = helper.Apply();
             SPField fieldTitle = list.Fields.GetFieldByInternalName(FieldsName.MenuList.InternalName.Title);
             if (fieldTitle != null)
