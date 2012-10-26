@@ -56,6 +56,11 @@
                 public const string ParentName = "ParentName";
                 public const string Description = "Description";
                 public const string Status = "Status";
+                public const string OpenType = "OpenType";
+                public const string CatID = "CatID";
+                public const string CatName = "CatName";
+                public const string PageName = "PageName";
+                public const string MenuUrl = "MenuUrl";
             }
             #endregion
             //Display Name
@@ -72,6 +77,11 @@
                 public const string ParentName = "Tên menu cha";
                 public const string Description = "Mô tả";
                 public const string Status = "Trạng thái";
+                public const string OpenType = "Kiểu trả về";
+                public const string CatID = "Chuyên mục ID";
+                public const string CatName = "Tên chuyên mục";
+                public const string PageName = "Trên trang";
+                public const string MenuUrl = "Đường link";
             }
             #endregion
         }
