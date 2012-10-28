@@ -49,13 +49,13 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::Microsoft.SharePoint.WebControls.FieldLabel lblNewsGroup;
         
         /// <summary>
-        /// txtNewsGroup control.
+        /// lblCatDisplay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.TextField txtNewsGroup;
+        protected global::System.Web.UI.WebControls.Label lblCatDisplay;
         
         /// <summary>
         /// ddlCategory control.

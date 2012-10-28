@@ -29,12 +29,12 @@ namespace VP.Sharepoint.CQ.UserControls
                 formMode = SPContext.Current.FormContext.FormMode;
                 if (formMode == Constants.EditForm || formMode == Constants.NewForm)
                 {
-                    txtNewsGroup.Visible = false;
+                    lblCatDisplay.Visible = false;
                     ddlCategory.Visible = true;
                 }
                 else
                 {
-                    txtNewsGroup.Visible = true;
+                    lblCatDisplay.Visible = true;
                     ddlCategory.Visible = false;
                 }
                 BindData();
@@ -71,6 +71,7 @@ namespace VP.Sharepoint.CQ.UserControls
 
         private void BindData()
         {
+           
             //Bind ddlCategory
             SPList catList = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
             if (catList != null)
@@ -81,6 +82,24 @@ namespace VP.Sharepoint.CQ.UserControls
                     ddlCategory.Items.Add(new ListItem(Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]), Convert.ToString(item[FieldsName.CategoryList.InternalName.CategoryID])));
                 }
             }
+            SPListItem currentItem = GetCurrentItem();
+            if (currentItem!=null)
+            {
+                ddlCategory.SelectedValue = Convert.ToString(currentItem[FieldsName.CategoryList.InternalName.CategoryID]);
+                lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
+            }
+        }
+
+        private SPListItem GetCurrentItem()
+        {
+            int itemId = 0;
+            if (Page.Request.QueryString["ID"] != null && Page.Request.QueryString["ID"] != string.Empty)
+            {
+                itemId = Convert.ToInt32(Page.Request.QueryString["ID"]);
+            }
+            SPList list = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
+            SPListItem listItem = list.GetItemById(itemId);
+            return listItem;
         }
 
         #region Properties
