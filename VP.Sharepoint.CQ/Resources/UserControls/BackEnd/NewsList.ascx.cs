@@ -31,7 +31,7 @@ namespace VP.Sharepoint.CQ.UserControls
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            SPContext.Current.FormContext.OnSaveHandler += CustomSaveHandler;
+            SPContext.Current.FormContext.OnSaveHandler += CustomSaveHandler;            
             Page.Validators.Add(this);
         }
         #endregion
@@ -51,6 +51,12 @@ namespace VP.Sharepoint.CQ.UserControls
             //item[FieldsName.NewsList.InternalName.Content] = "adfdasf";
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
         }
+
+        private void GetFormMode()
+        {
+            //txtNewsGroup.ItemContext.
+        }
+
         #region Properties
         /// <summary>
         /// ErrorMessage
