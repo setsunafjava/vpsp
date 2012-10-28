@@ -285,8 +285,10 @@
             // Nested CategoryList list
             public class InternalName
             {
+                public const string CategoryID = "CategoryID";
                 public const string Title = "Title";
                 public const string Description = "Description";
+                public const string ParentID = "ParentID";
                 public const string Type = "Type";
                 public const string Status = "Status";
                 public const string Order = "Order";
@@ -295,8 +297,10 @@
 
             public class DisplayName
             {
+                public const string CategoryID = "Category ID";
                 public const string Title = "Tiêu đề";
                 public const string Description = "Mô tả";
+                public const string ParentID = "Chuyên mục cha";
                 public const string Type = "Loại chuyên mục";
                 public const string Status = "Trạng thái";
                 public const string Order = "Thứ tự";
