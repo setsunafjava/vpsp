@@ -24,7 +24,8 @@
                 <SharePoint:FieldLabel ID="lblNewsGroup" runat="server" FieldName="NewsGroup" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtNewsGroup" FieldName="NewsGroup"/>
+                <%--<SharePoint:TextField runat="server" ID="txtNewsGroup" FieldName="NewsGroup"/>--%>
+                <asp:Label ID="lblCatDisplay" runat="server"></asp:Label>
                 <asp:DropDownList ID="ddlCategory" runat="server"></asp:DropDownList>
             </td>
         </tr>
