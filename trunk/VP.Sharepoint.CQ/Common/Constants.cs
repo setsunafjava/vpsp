@@ -1,4 +1,5 @@
-﻿namespace VP.Sharepoint.CQ.Common
+﻿using Microsoft.SharePoint.WebControls;
+namespace VP.Sharepoint.CQ.Common
 {
     public static class Constants
     {
@@ -11,5 +12,8 @@
         public const string LinkTitleNoMenu = "LinkTitleNoMenu";
         public const string CreatedBy = "Author";
         public const string DefaultPage = "default";
+        public const SPControlMode EditForm = SPControlMode.Edit;
+        public const SPControlMode NewForm = SPControlMode.New;
+        public const SPControlMode DisplayForm = SPControlMode.Display;
     }
 }

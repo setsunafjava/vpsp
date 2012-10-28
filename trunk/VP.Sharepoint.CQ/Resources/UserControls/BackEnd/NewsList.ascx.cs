@@ -6,6 +6,7 @@ using VP.Sharepoint.CQ.Common;
 using System.Globalization;
 using Constants = VP.Sharepoint.CQ.Common.Constants;
 using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
+using System.Web.UI.WebControls;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -17,13 +18,29 @@ namespace VP.Sharepoint.CQ.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        SPControlMode formMode;
+        SPWeb web;
         protected void Page_Load(object sender, EventArgs e)
         {
+            web = SPContext.Current.Web;
             if (!Page.IsPostBack)
             {
-                
+                formMode = SPContext.Current.FormContext.FormMode;
+                if (formMode == Constants.EditForm || formMode == Constants.NewForm)
+                {
+                    txtNewsGroup.Visible = false;
+                    ddlCategory.Visible = true;
+                }
+                else
+                {
+                    txtNewsGroup.Visible = true;
+                    ddlCategory.Visible = false;
+                }
+                BindData();
             }
         }
+
         /// <summary>
         /// OnInit
         /// </summary>
@@ -31,7 +48,7 @@ namespace VP.Sharepoint.CQ.UserControls
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            SPContext.Current.FormContext.OnSaveHandler += CustomSaveHandler;            
+            SPContext.Current.FormContext.OnSaveHandler += CustomSaveHandler;
             Page.Validators.Add(this);
         }
         #endregion
@@ -48,13 +65,22 @@ namespace VP.Sharepoint.CQ.UserControls
             var item = SPContext.Current.Item;
             SPContext.Current.Web.AllowUnsafeUpdates = true;
             //Save item to list
-            //item[FieldsName.NewsList.InternalName.Content] = "adfdasf";
+            item[FieldsName.NewsList.InternalName.NewsGroup] = ddlCategory.SelectedValue;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
         }
 
-        private void GetFormMode()
+        private void BindData()
         {
-            //txtNewsGroup.ItemContext.
+            //Bind ddlCategory
+            SPList catList = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
+            if (catList != null)
+            {
+                SPListItemCollection items = catList.Items;
+                foreach (SPListItem item in items)
+                {
+                    ddlCategory.Items.Add(new ListItem(Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]), Convert.ToString(item[FieldsName.CategoryList.InternalName.CategoryID])));
+                }
+            }
         }
 
         #region Properties
