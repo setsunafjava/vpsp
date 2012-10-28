@@ -25,8 +25,9 @@
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
                 <SharePoint:TextField runat="server" ID="txtNewsGroup" FieldName="NewsGroup"/>
+                <asp:DropDownList ID="ddlCategory" runat="server"></asp:DropDownList>
             </td>
-        </tr>      
+        </tr>
 
         <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
