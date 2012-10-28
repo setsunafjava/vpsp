@@ -31,8 +31,11 @@ namespace VP.Sharepoint.CQ.Core.Helpers
             {
                 field.Indexed = true;
                 field.EnforceUniqueValues = true;    
-            }
+            }            
             field.Title = Name;
+            //field.ShowInDisplayForm = ShowInDisplayForm;
+            //field.ShowInEditForm = ShowInEditForm;
+            //field.ShowInNewForm = ShowInNewForm;
             field.ValidationFormula = ValidationFormula;
             field.ValidationMessage = ValidationMessage;
             field.AllowDeletion = true;

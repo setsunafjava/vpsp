@@ -60,6 +60,13 @@ namespace VP.Sharepoint.CQ.Core.Helpers
         /// </summary>
         public string ValidationMessage { get; set; }
 
+        /// <summary>
+        /// Set show/hide status of this field
+        /// </summary>
+        public bool ShowInNewForm { protected get; set; }
+        public bool ShowInEditForm { protected get; set; }
+        public bool ShowInDisplayForm { protected get; set; }
+
         internal abstract void CreateField(SPList list);
     }
 }

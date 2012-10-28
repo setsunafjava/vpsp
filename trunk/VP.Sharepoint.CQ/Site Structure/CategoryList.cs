@@ -20,14 +20,20 @@ namespace VP.Sharepoint.CQ
                             OnQuickLaunch = false,
                             EnableAttachments = true
                         };
-            helper.AddField( new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));
-            helper.AddField(new NumberFieldCreator(FieldsName.CategoryList.InternalName.Type, FieldsName.CategoryList.DisplayName.Type));
-            helper.AddField(new NumberFieldCreator(FieldsName.CategoryList.InternalName.Status, FieldsName.CategoryList.DisplayName.Status));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.CategoryID, FieldsName.CategoryList.DisplayName.CategoryID));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.DisplayName.ParentID));
+            helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.Type, FieldsName.CategoryList.DisplayName.Type)
+            {
+                Choices = { "Menu", "Tin tức", "Văn bản", "Thư viện ảnh", "Thư viện video", "Tài nguyên" },
+                DefaultValue = "Menu"
+            });
+            helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.Status, FieldsName.CategoryList.DisplayName.Status) { Choices = { "Ẩn", "Hiển thị" }, DefaultValue = "Hiển thị", EditFormat = SPChoiceFormatType.RadioButtons });
             helper.AddField(new NumberFieldCreator(FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.DisplayName.Order));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ImageDesc, FieldsName.CategoryList.DisplayName.ImageDesc));
             SPList list = helper.Apply();
             SPField fieldTitle = list.Fields.GetField(FieldsName.CategoryList.InternalName.Title);
-            if (fieldTitle!=null)
+            if (fieldTitle != null)
             {
                 fieldTitle.Title = FieldsName.CategoryList.DisplayName.Title;
                 fieldTitle.Update();
