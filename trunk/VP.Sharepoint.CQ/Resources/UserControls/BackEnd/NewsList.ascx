@@ -17,8 +17,7 @@
             <td class="ms-formbody" style="font-size: 11px;">
                 <SharePoint:TextField runat="server" ID="txtTitle" FieldName="Title"/>
             </td>
-        </tr>      
-        <asp:Label ID="lblTest" runat="server" Text="Test"></asp:Label>
+        </tr>
          <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblNewsGroup" runat="server" FieldName="NewsGroup" />

@@ -49,6 +49,13 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.ImageSmallThumb, FieldsName.NewsList.DisplayName.ImageSmallThumb));
 
             var list = helper.Apply();
+            
+            SPField fieldTitle = list.Fields.GetField(FieldsName.NewsList.InternalName.Title);
+            if (fieldTitle != null)
+            {
+                fieldTitle.Title = FieldsName.NewsList.DisplayName.Title;
+                fieldTitle.Update();
+            }
 
             //Set menu link
             Utilities.SetMenuLink(list, FieldsName.NewsList.InternalName.Status);
