@@ -70,37 +70,56 @@ namespace VP.Sharepoint.CQ.UserControls
         }
 
         private void BindData()
-        {
-           
+        {           
             //Bind ddlCategory
-            SPList catList = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
-            if (catList != null)
+            try
             {
-                SPListItemCollection items = catList.Items;
-                foreach (SPListItem item in items)
+                SPList catList = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
+                if (catList != null)
                 {
-                    ddlCategory.Items.Add(new ListItem(Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]), Convert.ToString(item[FieldsName.CategoryList.InternalName.CategoryID])));
+                    SPListItemCollection items = catList.Items;
+                    foreach (SPListItem item in items)
+                    {
+                        ddlCategory.Items.Add(new ListItem(Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]), Convert.ToString(item[FieldsName.CategoryList.InternalName.CategoryID])));
+                    }
                 }
+                //Set value of control when form mode is Edit or Display
+                if (formMode==Constants.DisplayForm||formMode==Constants.EditForm)
+                {
+                    //SPListItem currentItem = GetCurrentItem();
+                    var currentItem = SPContext.Current.Item;
+                    if (currentItem != null)
+                    {
+                        ddlCategory.SelectedValue = Convert.ToString(currentItem[FieldsName.NewsList.InternalName.NewsGroup]);
+                        lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
+                    }
+                }                
             }
-            SPListItem currentItem = GetCurrentItem();
-            if (currentItem!=null)
+            catch (Exception ex)
             {
-                ddlCategory.SelectedValue = Convert.ToString(currentItem[FieldsName.CategoryList.InternalName.CategoryID]);
-                lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
+                throw ex;
             }
         }
 
-        private SPListItem GetCurrentItem()
-        {
-            int itemId = 0;
-            if (Page.Request.QueryString["ID"] != null && Page.Request.QueryString["ID"] != string.Empty)
-            {
-                itemId = Convert.ToInt32(Page.Request.QueryString["ID"]);
-            }
-            SPList list = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
-            SPListItem listItem = list.GetItemById(itemId);
-            return listItem;
-        }
+        //private SPListItem GetCurrentItem()
+        //{
+        //    try
+        //    {
+        //        int itemId = 0;
+        //        if (Page.Request.QueryString["ID"] != null && Page.Request.QueryString["ID"] != string.Empty)
+        //        {
+        //            itemId = Convert.ToInt32(Page.Request.QueryString["ID"]);
+        //        }
+        //        SPList list = web.Lists.TryGetList(ListsName.DisplayName.NewsList);
+        //        SPListItem listItem = list.GetItemById(itemId);
+        //        return listItem;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    return null;
+        //}
 
         #region Properties
         /// <summary>
