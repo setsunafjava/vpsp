@@ -164,6 +164,13 @@
     <Compile Include="Core\WebControls\UrlBuilder.cs" />
     <Compile Include="EventReceivers\NewsEventReceiver.cs" />
     <Compile Include="FeatureReceivers\FeatureReceivers.cs" />
+    <Compile Include="Resources\UserControls\BackEnd\MenuView.ascx.cs">
+      <DependentUpon>MenuView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\MenuView.ascx.designer.cs">
+      <DependentUpon>MenuView.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\BackEnd\MenuList.ascx.cs">
       <DependentUpon>MenuList.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -562,9 +569,10 @@
     <Content Include="Resources\Javascript\slider.js" />
     <Content Include="Resources\Javascript\slide_news.js" />
     <Content Include="Resources\Javascript\tabcontent.js" />
-    <Content Include="Resources\UserControls\BackEnd\MenuList.ascx">
+    <Content Include="Resources\UserControls\BackEnd\MenuView.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Resources\UserControls\BackEnd\MenuList.ascx" />
     <Content Include="Resources\UserControls\FrontEnd\AdvUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
