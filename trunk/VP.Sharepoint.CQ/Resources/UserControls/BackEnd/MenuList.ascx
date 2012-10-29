@@ -11,79 +11,90 @@
 <div id="part1">
     <table class="ms-formtable" style="width: 100%">
         <tr>
-            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+            <td style="width: 120px; vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblTitle" runat="server" FieldName="Title" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
                 <SharePoint:TextField runat="server" ID="txtTitle" FieldName="Title"/>
             </td>
-        </tr>      
-        <asp:Label ID="lblTest" runat="server" Text="Test"></asp:Label>
-         <tr>
-            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblNewsGroup" runat="server" FieldName="NewsGroup" />
-            </td>
-            <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtNewsGroup" FieldName="NewsGroup"/>
-            </td>
-        </tr>      
-
+        </tr> 
         <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblDescription" runat="server" FieldName="Description" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:RichTextField runat="server" ID="txtDescription" FieldName="Description"/>
+                <SharePoint:NoteField runat="server" ID="txtDescription" FieldName="Description" />
             </td>
-        </tr>      
-
+        </tr>
         <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblContent" runat="server" FieldName="Content" />
+                <SharePoint:FieldLabel ID="lblParentName" runat="server" FieldName="ParentName" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:RichTextField runat="server" ID="txtContent" FieldName="Content"/>
+                <asp:Label ID="lblParentNameDsp" runat="server"></asp:Label>
+                <asp:DropDownList ID="ddlParentName" runat="server"></asp:DropDownList>
             </td>
-        </tr>  
-
+        </tr>     
          <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblMenuType" runat="server" FieldName="MenuType" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:DropDownChoiceField runat="server" ID="ddlMenuType" FieldName="MenuType"/>
+            </td>
+        </tr>      
+        <tr id="trMenuUrl">
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblMenuUrl" runat="server" FieldName="MenuUrl" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:TextField runat="server" ID="txtMenuUrl" FieldName="MenuUrl"/>
+            </td>
+        </tr>
+        <tr id="trCatName">
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblCatName" runat="server" FieldName="CatName" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <asp:Label ID="lblCatDisplay" runat="server"></asp:Label>
+                <asp:DropDownList ID="ddlCategory" runat="server"></asp:DropDownList>
+            </td>
+        </tr>      
+        <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblStatus" runat="server" FieldName="Status" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtStatus" FieldName="Status"/>
+                <SharePoint:DropDownChoiceField runat="server" ID="ddlStatus" FieldName="Status"/>
+            </td>
+        </tr>  
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblOpenType" runat="server" FieldName="OpenType" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:DropDownChoiceField runat="server" ID="ddlOpenType" FieldName="OpenType"/>
+            </td>
+        </tr>
+         <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblMenuOrde" runat="server" FieldName="MenuOrder" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:NumberField runat="server" ID="txtMenuOrder" FieldName="MenuOrder"/>
             </td>
         </tr>      
 
          <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblPostedDate" runat="server" FieldName="PostedDate" />
+                <SharePoint:FieldLabel ID="lblMenuPosition" runat="server" FieldName="MenuPosition" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:DateTimeField runat="server" ID="txtPostedDate" FieldName="PostedDate" />
+                <SharePoint:CheckBoxChoiceField runat="server" ID="chkMenuPosition" FieldName="MenuPosition" />
             </td>
         </tr>      
-
-         <tr>
-            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblImageThumb" runat="server" FieldName="ImageThumb" />
-            </td>
-            <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtImageThubm" FieldName="ImageThumb"/>
-            </td>
-        </tr>    
-        
-          <tr>
-            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblSmallImageThumb" runat="server" FieldName="ImageSmallThumb" />
-            </td>
-            <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtSmallImageThumb" FieldName="ImageSmallThumb"/>
-            </td>
-        </tr>      
-        
         <tr id="idAttachmentsRow">
-            <td style="width: 190px; vertical-align: top; font-weight: normal;" class="ms-formlabel"
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel"
                 valign="top">
                 <SharePoint:FieldLabel ID="labelAttachments" runat="server" FieldName="Attachments" />
             </td>
@@ -112,9 +123,30 @@
 </div>
 <div id="divAttachments">
 </div>
+<input runat="server" type="hidden" id="hidMenuLevel" />
 <script type="text/javascript">
     $(document).ready(function () {
         $("#partAttachment").appendTo("#divAttachments");
         $("#idAttachmentsTable").appendTo("#tdAttachments");
+        if ($("[id*='_ddlMenuType_']")) {
+            SetShowHideControl();
+            $("[id*='_ddlMenuType_']").change(function () {
+                SetShowHideControl();
+            });
+        }
     });
+
+    function SetShowHideControl() {
+        if ($("[id*='_ddlMenuType_']")) {
+            var selectedValue = $("[id*='_ddlMenuType_']").val();
+            if (selectedValue == 'Link tới chuyên mục') {
+                $("#trCatName").show();
+                $("#trMenuUrl").hide();
+            }
+            else if (selectedValue == 'Đường link xác định') {
+                $("#trCatName").hide();
+                $("#trMenuUrl").show();
+            }
+        }
+    }
 </script>

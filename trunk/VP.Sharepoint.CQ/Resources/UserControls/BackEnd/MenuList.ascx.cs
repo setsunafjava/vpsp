@@ -21,7 +21,25 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (!Page.IsPostBack)
             {
-                
+                if (CurrentMode.Equals(SPControlMode.New))
+                {
+                    Utilities.BindToDropDown(CurrentWeb, ddlParentName, ListsName.InternalName.MenuList, FieldsName.MenuList.InternalName.MenuID, 
+                        FieldsName.MenuList.InternalName.ParentID, FieldsName.MenuList.InternalName.MenuOrder, FieldsName.MenuList.InternalName.MenuLevel);
+                }
+                if (CurrentMode.Equals(SPControlMode.Edit))
+                {
+                    Utilities.BindToDropDown(CurrentWeb, ddlParentName, ListsName.InternalName.MenuList, FieldsName.MenuList.InternalName.MenuID, 
+                        FieldsName.MenuList.InternalName.ParentID, FieldsName.MenuList.InternalName.MenuOrder,
+                        FieldsName.MenuList.InternalName.MenuLevel, Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.MenuID])
+                        , Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.ParentID]));
+                    hidMenuLevel.Value = Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.MenuLevel]);
+                }
+                if (CurrentMode.Equals(SPControlMode.Display))
+                {
+                    ddlParentName.Visible = false;
+                    lblParentNameDsp.Visible = true;
+                    lblParentNameDsp.Text = Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.ParentName]);
+                }
             }
         }
         /// <summary>
@@ -44,11 +62,32 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         private void CustomSaveHandler(object sender, EventArgs e)
         {
-            //Get current item
-            var item = SPContext.Current.Item;
             SPContext.Current.Web.AllowUnsafeUpdates = true;
+            //set menuID
+            if (CurrentMode.Equals(SPControlMode.New))
+            {
+                CurrentItem[FieldsName.MenuList.InternalName.MenuID] = Guid.NewGuid();
+            }
+            //set menulevel
+            if (!string.IsNullOrEmpty(ddlParentName.SelectedValue))
+            {
+                CurrentItem[FieldsName.MenuList.InternalName.MenuLevel] = Utilities.GetMenuLevel(CurrentWeb, ListsName.InternalName.MenuList, 
+                    FieldsName.MenuList.InternalName.MenuID, ddlParentName.SelectedValue, FieldsName.MenuList.InternalName.MenuLevel);
+            }
+            //set menuparent
+            CurrentItem[FieldsName.MenuList.InternalName.ParentID] = ddlParentName.SelectedValue;
+            CurrentItem[FieldsName.MenuList.InternalName.ParentName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.MenuList, 
+                FieldsName.MenuList.InternalName.MenuID, ddlParentName.SelectedValue, "Text", FieldsName.MenuList.InternalName.Title);
+            //update menulevel for all children
+            var newLevel = Convert.ToInt32(Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.MenuList,
+                FieldsName.MenuList.InternalName.MenuID, ddlParentName.SelectedValue, "Text", FieldsName.MenuList.InternalName.MenuLevel)) + 1;
+            if (CurrentMode.Equals(SPControlMode.Edit) && !newLevel.ToString().Equals(hidMenuLevel.Value))
+            {
+                Utilities.UpdateChildrenLevel(CurrentWeb, ListsName.InternalName.MenuList, FieldsName.MenuList.InternalName.MenuID,
+                    FieldsName.MenuList.InternalName.ParentID, Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.MenuID]), newLevel + 1,
+                    FieldsName.MenuList.InternalName.MenuLevel);
+            }
             //Save item to list
-            //item[FieldsName.NewsList.InternalName.Content] = "adfdasf";
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
         }
         #region Properties

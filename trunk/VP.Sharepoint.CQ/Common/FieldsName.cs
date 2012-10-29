@@ -51,7 +51,6 @@
                 public const string MenuType = "MenuType";
                 public const string MenuPosition = "MenuPosition";
                 public const string MenuOrder = "MenuOrder";
-                public const string MenuOrderDisp = "MenuOrderDisp";
                 public const string ParentID = "ParentID";
                 public const string ParentName = "ParentName";
                 public const string Description = "Description";
@@ -61,6 +60,7 @@
                 public const string CatName = "CatName";
                 public const string PageName = "PageName";
                 public const string MenuUrl = "MenuUrl";
+                public const string MenuLevel = "MenuLevel";
             }
             #endregion
             //Display Name
@@ -71,8 +71,7 @@
                 public const string MenuID = "MenuID";
                 public const string MenuType = "Loại menu";
                 public const string MenuPosition = "Vị trí menu";
-                public const string MenuOrder = "MenuOrder";
-                public const string MenuOrderDisp = "Thứ tự";
+                public const string MenuOrder = "Thứ tự";
                 public const string ParentID = "Menu cha";
                 public const string ParentName = "Tên menu cha";
                 public const string Description = "Mô tả";
@@ -82,6 +81,7 @@
                 public const string CatName = "Tên chuyên mục";
                 public const string PageName = "Trên trang";
                 public const string MenuUrl = "Đường link";
+                public const string MenuLevel = "MenuLevel";
             }
             #endregion
         }
