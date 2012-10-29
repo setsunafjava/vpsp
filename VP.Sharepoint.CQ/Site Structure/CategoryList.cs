@@ -23,6 +23,8 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.CategoryID, FieldsName.CategoryList.DisplayName.CategoryID));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.DisplayName.ParentID));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ParentName, FieldsName.CategoryList.DisplayName.ParentName));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.CategoryLevel, FieldsName.CategoryList.DisplayName.CategoryLevel));
             helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.Type, FieldsName.CategoryList.DisplayName.Type)
             {
                 Choices = { "Menu", "Tin tức", "Văn bản", "Thư viện ảnh", "Thư viện video", "Tài nguyên" },
@@ -39,6 +41,9 @@ namespace VP.Sharepoint.CQ
                 fieldTitle.Update();
             }
             list.Update();
+
+            //Add custom usercontrol to form
+            Utilities.AddForms(web, list, "../../UserControls/CategoryList.ascx");
         }
     }
 }
