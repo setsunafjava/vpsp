@@ -139,13 +139,13 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::Microsoft.SharePoint.WebControls.FieldLabel lblImageThumb;
         
         /// <summary>
-        /// txtImageThubm control.
+        /// fuThumb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.TextField txtImageThubm;
+        protected global::System.Web.UI.WebControls.FileUpload fuThumb;
         
         /// <summary>
         /// lblSmallImageThumb control.
@@ -157,13 +157,31 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::Microsoft.SharePoint.WebControls.FieldLabel lblSmallImageThumb;
         
         /// <summary>
-        /// txtSmallImageThumb control.
+        /// fuSmallThumb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.TextField txtSmallImageThumb;
+        protected global::System.Web.UI.WebControls.FileUpload fuSmallThumb;
+        
+        /// <summary>
+        /// lblImageHot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.FieldLabel lblImageHot;
+        
+        /// <summary>
+        /// fuImageHot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuImageHot;
         
         /// <summary>
         /// labelAttachments control.

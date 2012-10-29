@@ -64,8 +64,25 @@ namespace VP.Sharepoint.CQ.UserControls
             //Get current item
             var item = SPContext.Current.Item;
             SPContext.Current.Web.AllowUnsafeUpdates = true;
+
+            //if(CurrentMode==SPControlMode.Edit||CurrentMode==SPControlMode.New)
+            //{
+            //    SPFile file = Utilities.UploadFileToDocumentLibrary(web, fuThumb.FileName, ListsName.InternalName.ResourcesList);
+            //    item[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
+
+            //    file = Utilities.UploadFileToDocumentLibrary(web, fuSmallThumb.FileName, ListsName.InternalName.ResourcesList);
+            //    item[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
+
+            //    file = Utilities.UploadFileToDocumentLibrary(web, fuImageHot.FileName, ListsName.InternalName.ResourcesList);
+            //    item[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
+            //}
+
             //Save item to list
-            item[FieldsName.NewsList.InternalName.NewsGroup] = ddlCategory.SelectedValue;
+            
+            item[FieldsName.NewsList.InternalName.ImageThumb] = Server.MapPath(fuThumb.FileName);
+           
+            item[FieldsName.NewsList.InternalName.ImageHot] = fuImageHot.FileName;
+
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
         }
 
@@ -95,32 +112,47 @@ namespace VP.Sharepoint.CQ.UserControls
                 //    }
                 //}
 
+                if (CurrentMode.Equals(SPControlMode.New) || CurrentMode.Equals(SPControlMode.Edit))
+                {
+                    Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
+                        FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.InternalName.CategoryLevel);
+                }
+                if (CurrentMode.Equals(SPControlMode.Edit))
+                {
+                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.NewsList.InternalName.NewsGroup]);
+                }
+                if (CurrentMode.Equals(SPControlMode.Display))
+                {                    
+                    ddlCategory.Visible = false;
+                    lblCatDisplay.Visible = true;
+                    lblCatDisplay.Text = GetCatNameByCatId();
+                }
+
             }
             catch (Exception ex)
             {
-                throw ex;
+                Utilities.LogToULS(ex);
             }
         }
 
-        //private SPListItem GetCurrentItem()
-        //{
-        //    try
-        //    {
-        //        int itemId = 0;
-        //        if (Page.Request.QueryString["ID"] != null && Page.Request.QueryString["ID"] != string.Empty)
-        //        {
-        //            itemId = Convert.ToInt32(Page.Request.QueryString["ID"]);
-        //        }
-        //        SPList list = web.Lists.TryGetList(ListsName.DisplayName.NewsList);
-        //        SPListItem listItem = list.GetItemById(itemId);
-        //        return listItem;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    return null;
-        //}
+        private string GetCatNameByCatId()
+        {
+            SPQuery query = new SPQuery();
+            SPList list = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
+            if (list!=null)
+            {
+                query.Query = string.Format(@"<Where><Eq><FieldRef Name='{0}'/><Value Type='Text'>{1}</Value></Eq></Where>", FieldsName.CategoryList.InternalName.CategoryID, CurrentItem[FieldsName.NewsList.InternalName.NewsGroup]);
+                query.RowLimit = 1;
+
+                SPListItemCollection listItemColection = list.GetItems(query);
+                if (listItemColection.Count>0)
+                {
+                    SPListItem spListItem = listItemColection[0];
+                    return Convert.ToString(spListItem[FieldsName.CategoryList.InternalName.ParentName]);
+                }
+            }
+            return string.Empty;
+        }      
 
         #region Properties
         /// <summary>
