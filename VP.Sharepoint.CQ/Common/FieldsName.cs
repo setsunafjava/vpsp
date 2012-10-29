@@ -17,7 +17,8 @@
                 public const string Content = "Content";
                 public const string Status = "Status";
                 public const string ImageThumb = "ImageThumb";
-                public const string ImageSmallThumb = "ImageSmallThumb";                
+                public const string ImageSmallThumb = "ImageSmallThumb";
+                public const string ImageHot = "ImageHot";
 
             }
             #endregion
@@ -34,6 +35,7 @@
                 public const string Status = "Trạng thái";
                 public const string ImageThumb = "Ảnh trích dẫn";
                 public const string ImageSmallThumb = "Ảnh trích dẫn nhỏ";
+                public const string ImageHot = "Ảnh nổi bật";
             }
             #endregion
         }

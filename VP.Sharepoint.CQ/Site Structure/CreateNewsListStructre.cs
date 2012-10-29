@@ -47,6 +47,7 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.ImageThumb, FieldsName.NewsList.DisplayName.ImageThumb));
             // Small thumbnai image
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.ImageSmallThumb, FieldsName.NewsList.DisplayName.ImageSmallThumb));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.ImageHot, FieldsName.NewsList.DisplayName.ImageHot));
 
             var list = helper.Apply();
             

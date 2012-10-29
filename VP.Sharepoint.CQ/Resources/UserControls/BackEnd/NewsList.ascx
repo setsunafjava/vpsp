@@ -22,8 +22,7 @@
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblNewsGroup" runat="server" FieldName="NewsGroup" />
             </td>
-            <td class="ms-formbody" style="font-size: 11px;">
-                <%--<SharePoint:TextField runat="server" ID="txtNewsGroup" FieldName="NewsGroup"/>--%>
+            <td class="ms-formbody" style="font-size: 11px;">                
                 <asp:Label ID="lblCatDisplay" runat="server"></asp:Label>
                 <asp:DropDownList ID="ddlCategory" runat="server"></asp:DropDownList>
             </td>
@@ -70,7 +69,7 @@
                 <SharePoint:FieldLabel ID="lblImageThumb" runat="server" FieldName="ImageThumb" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtImageThubm" FieldName="ImageThumb"/>
+                <asp:FileUpload ID="fuThumb" runat="server" />
             </td>
         </tr>    
         
@@ -78,10 +77,18 @@
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblSmallImageThumb" runat="server" FieldName="ImageSmallThumb" />
             </td>
-            <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtSmallImageThumb" FieldName="ImageSmallThumb"/>
+            <td class="ms-formbody" style="font-size: 11px;">                
+                <asp:FileUpload ID="fuSmallThumb" runat="server" />
             </td>
-        </tr>      
+        </tr>        
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblImageHot" runat="server" FieldName="ImageHot" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">                
+                <asp:FileUpload ID="fuImageHot" runat="server" />
+            </td>
+        </tr>
         
         <tr id="idAttachmentsRow">
             <td style="width: 190px; vertical-align: top; font-weight: normal;" class="ms-formlabel"
