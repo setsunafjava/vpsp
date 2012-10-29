@@ -65,17 +65,17 @@ namespace VP.Sharepoint.CQ.UserControls
             var item = SPContext.Current.Item;
             SPContext.Current.Web.AllowUnsafeUpdates = true;
 
-            //if(CurrentMode==SPControlMode.Edit||CurrentMode==SPControlMode.New)
-            //{
-            //    SPFile file = Utilities.UploadFileToDocumentLibrary(web, fuThumb.FileName, ListsName.InternalName.ResourcesList);
-            //    item[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
+            if (CurrentMode == SPControlMode.Edit || CurrentMode == SPControlMode.New)
+            {
+                SPFile file = Utilities.UploadFileToDocumentLibrary(web, fuThumb.PostedFile.FileName, ListsName.InternalName.ResourcesList);
+                item[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
 
-            //    file = Utilities.UploadFileToDocumentLibrary(web, fuSmallThumb.FileName, ListsName.InternalName.ResourcesList);
-            //    item[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
+                //file = Utilities.UploadFileToDocumentLibrary(web, fuSmallThumb.FileName, ListsName.InternalName.ResourcesList);
+                //item[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
 
-            //    file = Utilities.UploadFileToDocumentLibrary(web, fuImageHot.FileName, ListsName.InternalName.ResourcesList);
-            //    item[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
-            //}
+                //file = Utilities.UploadFileToDocumentLibrary(web, fuImageHot.FileName, ListsName.InternalName.ResourcesList);
+                //item[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
+            }
 
             //Save item to list
             
@@ -90,28 +90,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {           
             //Bind ddlCategory
             try
-            {
-                //SPList catList = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
-                //if (catList != null)
-                //{
-                //    SPListItemCollection items = catList.Items;
-                //    foreach (SPListItem item in items)
-                //    {
-                //        ddlCategory.Items.Add(new ListItem(Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]), Convert.ToString(item[FieldsName.CategoryList.InternalName.CategoryID])));
-                //    }
-                //}
-                ////Set value of control when form mode is Edit or Display
-                //if (formMode==Constants.DisplayForm||formMode==Constants.EditForm)
-                //{
-                //    //SPListItem currentItem = GetCurrentItem();
-                //    var currentItem = SPContext.Current.Item;
-                //    if (currentItem != null)
-                //    {
-                //        ddlCategory.SelectedValue = Convert.ToString(currentItem[FieldsName.NewsList.InternalName.NewsGroup]);
-                //        lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
-                //    }
-                //}
-
+            {               
                 if (CurrentMode.Equals(SPControlMode.New) || CurrentMode.Equals(SPControlMode.Edit))
                 {
                     Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
@@ -125,7 +104,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 {                    
                     ddlCategory.Visible = false;
                     lblCatDisplay.Visible = true;
-                    lblCatDisplay.Text = GetCatNameByCatId();
+                    lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
                 }
 
             }
