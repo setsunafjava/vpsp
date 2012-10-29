@@ -72,7 +72,7 @@ namespace VP.Sharepoint.CQ.UserControls
 
             if (CurrentMode.Equals(SPControlMode.Edit) && !newLevel.ToString().Equals(hidLevel.Value))
             {
-                Utilities.UpdateChildrenLevel(CurrentWeb, ListsName.InternalName.MenuList, FieldsName.CategoryList.InternalName.CategoryID,
+                Utilities.UpdateChildrenLevel(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
                     FieldsName.CategoryList.InternalName.ParentID, Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.CategoryID]), newLevel + 1,
                     FieldsName.CategoryList.InternalName.CategoryLevel);
             }
@@ -92,7 +92,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 if (CurrentMode.Equals(SPControlMode.Edit))
                 {
                     Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
-                        FieldsName.CategoryList.InternalName.ParentID, FieldsName.MenuList.InternalName.MenuOrder,
+                        FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.CategoryLevel,
                         FieldsName.CategoryList.InternalName.CategoryLevel, Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.CategoryLevel])
                         , Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.ParentID]));
                     hidLevel.Value = Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.CategoryLevel]);
