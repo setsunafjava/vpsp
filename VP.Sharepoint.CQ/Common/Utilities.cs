@@ -98,6 +98,41 @@ namespace VP.Sharepoint.CQ.Common
         }
 
         /// <summary>
+        /// AddStandardView
+        /// </summary>
+        /// <param name="spWeb"></param>
+        /// <param name="list"></param>
+        /// <param name="viewName"></param>
+        /// <param name="viewPath"></param>
+        /// <param name="query"></param>
+        /// <param name="rowLimit"></param>
+        /// <param name="defaultView"></param>
+        public static void AddStandardView(SPWeb spWeb, SPList list, string viewName,
+            string viewPath, string query, int rowLimit, bool defaultView)
+        {
+            SPView viewStandard;
+            try
+            {
+                viewStandard = list.Views[viewName];
+            }
+            catch (Exception)//Exception occur when the View doesn't exist
+            {
+                var fields = new StringCollection { "LinkTitle" };
+                viewStandard = list.Views.Add(viewName, fields, query, (uint)rowLimit, true, false);
+                viewStandard.Query = query;
+                viewStandard.DefaultView = defaultView;
+                viewStandard.Update();
+            }
+
+            WebPartHelper.HideDefaultWebPartOnView(spWeb, viewStandard);
+            // Add container WebPart to view
+            var containerWebPart = WebPartHelper.GetContainerWebPart(spWeb);
+            containerWebPart.Title = viewName;
+            containerWebPart.UserControlPath = viewPath;
+            WebPartHelper.AddWebPartToViewPage(spWeb, viewStandard, containerWebPart);
+        }
+
+        /// <summary>
         /// Log exception to SharePoint log
         /// </summary>
         /// <param name="message"></param>

@@ -134,5 +134,6 @@
     <ProjectItemFile Source="Images\flowing-rock.jpg" Target="Resources\Images\" Type="ElementFile" />
     <ProjectItemFile Source="Css\COREV4.CSS" Target="Resources\Css\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\MenuList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\BackEnd\MenuView.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
   </Files>
 </ProjectItem>
