@@ -26,8 +26,8 @@ namespace VP.Sharepoint.CQ
                 RichTextMode = SPRichTextMode.Compatible
             });
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.MenuID, FieldsName.MenuList.DisplayName.MenuID));
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.MenuOrder, FieldsName.MenuList.DisplayName.MenuOrder));
-            helper.AddField(new NumberFieldCreator(FieldsName.MenuList.InternalName.MenuOrderDisp, FieldsName.MenuList.DisplayName.MenuOrderDisp));
+            helper.AddField(new NumberFieldCreator(FieldsName.MenuList.InternalName.MenuOrder, FieldsName.MenuList.DisplayName.MenuOrder));
+            helper.AddField(new NumberFieldCreator(FieldsName.MenuList.InternalName.MenuLevel, FieldsName.MenuList.DisplayName.MenuLevel) { DefaultValue = "1"});
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.ParentID, FieldsName.MenuList.DisplayName.ParentID));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.ParentName, FieldsName.MenuList.DisplayName.ParentName));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.MenuList.InternalName.CatID, FieldsName.MenuList.DisplayName.CatID));
@@ -45,10 +45,9 @@ namespace VP.Sharepoint.CQ
             choiceField.DefaultValue = "Link tới chuyên mục";
             helper.AddField(choiceField);
 
-            choiceField = new ChoiceFieldCreator(FieldsName.MenuList.InternalName.MenuPosition, FieldsName.MenuList.DisplayName.MenuPosition);
-            choiceField.Choices.AddRange(new[] { "Top menu", "Footer menu" });
-            choiceField.DefaultValue = "Top menu";
-            helper.AddField(choiceField);
+            var choiceFields = new MultipleChoiceFieldCreator(FieldsName.MenuList.InternalName.MenuPosition, FieldsName.MenuList.DisplayName.MenuPosition);
+            choiceFields.Choices.AddRange(new[] { "Top menu", "Footer menu" });
+            helper.AddField(choiceFields);
 
             choiceField = new ChoiceFieldCreator(FieldsName.MenuList.InternalName.OpenType, FieldsName.MenuList.DisplayName.OpenType);
             choiceField.Choices.AddRange(new[] { "Giữ nguyên cửa sổ hiện tại", "Mở cửa sổ mới" });
@@ -63,6 +62,9 @@ namespace VP.Sharepoint.CQ
                 fieldTitle.Update();
             }
             list.Update();
+
+            //Add custom usercontrol to form
+            Utilities.AddForms(web, list, "../../UserControls/MenuList.ascx");
         }
     }
 }

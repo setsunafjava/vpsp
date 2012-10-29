@@ -21,6 +21,7 @@ using VP.Sharepoint.CQ.Core.Helpers;
 using VP.Sharepoint.CQ.Core.WebParts;
 using Microsoft.SharePoint.WebPartPages;
 using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.WebControls;
 
 namespace VP.Sharepoint.CQ.Common
 {
@@ -1034,6 +1035,352 @@ namespace VP.Sharepoint.CQ.Common
             }
 
             return item;
+        }
+
+        /// <summary>
+        /// GetMenuLevel
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="listName"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="fieldIDValue"></param>
+        /// <param name="fieldLevel"></param>
+        /// <returns></returns>
+        public static int GetMenuLevel(SPWeb web, string listName, string fieldID, string fieldIDValue, string fieldLevel) {
+            var result = 1;
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, fieldID, fieldIDValue),
+                                RowLimit = 1
+                            };
+                            var list = Utilities.GetCustomListByUrl(adminWeb, listName);
+                            var items = list.GetItems(query);
+                            if (items != null && items.Count > 0)
+                            {
+                                result = Convert.ToInt32(items[0][fieldLevel]) + 1;
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+            return result;
+        }
+
+        /// <summary>
+        /// BindToDropDown
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="ddl"></param>
+        /// <param name="listName"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="parentField"></param>
+        /// <param name="orderField"></param>
+        /// <param name="levelField"></param>
+        public static void BindToDropDown(SPWeb web, ListControl ddl, string listName, string fieldID, string parentField, string orderField, string levelField)
+        {
+            ddl.Items.Clear();
+            ddl.Items.Add(new ListItem("Root", ""));
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            string caml = @"<Where><IsNull><FieldRef Name='{0}' /></IsNull></Where><OrderBy><FieldRef Name='{1}' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, orderField)
+                            };
+                            var list = Utilities.GetCustomListByUrl(adminWeb, listName);
+                            var items = list.GetItems(query);
+                            if (items != null && items.Count > 0)
+                            {
+                                foreach (SPListItem item in items)
+                                {
+                                    ddl.Items.Add(new ListItem(Utilities.GetPreValue(Convert.ToInt32(item[levelField])) + Convert.ToString(item[FieldsName.MenuList.InternalName.Title]), Convert.ToString(item[fieldID])));
+                                    Utilities.BindToDropDown(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField);
+                                }
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
+
+        /// <summary>
+        /// BindToDropDown
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="ddl"></param>
+        /// <param name="listName"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="parentField"></param>
+        /// <param name="orderField"></param>
+        /// <param name="levelField"></param>
+        /// <param name="currentValue"></param>
+        /// <param name="currentParent"></param>
+        public static void BindToDropDown(SPWeb web, ListControl ddl, string listName, string fieldID, string parentField, string orderField, string levelField, string currentValue, string currentParent)
+        {
+            ddl.Items.Clear();
+            ddl.Items.Add(new ListItem("Root", ""));
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            string caml = @"<Where><And><IsNull><FieldRef Name='{0}' /></IsNull><Neq><FieldRef Name='{1}' /><Value Type='Text'>{2}</Value></Neq></And></Where><OrderBy><FieldRef Name='{3}' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, fieldID, currentValue, orderField)
+                            };
+                            var list = Utilities.GetCustomListByUrl(adminWeb, listName);
+                            var items = list.GetItems(query);
+                            if (items != null && items.Count > 0)
+                            {
+                                foreach (SPListItem item in items)
+                                {
+                                    ddl.Items.Add(new ListItem(Utilities.GetPreValue(Convert.ToInt32(item[levelField])) + Convert.ToString(item[FieldsName.MenuList.InternalName.Title]), Convert.ToString(item[fieldID])));
+                                    Utilities.BindToDropDown(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField, currentValue);
+                                }
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+            ddl.SelectedValue = currentParent;
+        }
+
+        /// <summary>
+        /// BindToDropDown
+        /// </summary>
+        /// <param name="ddl"></param>
+        /// <param name="list"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="parentField"></param>
+        /// <param name="parentFieldValue"></param>
+        /// <param name="orderField"></param>
+        /// <param name="levelField"></param>
+        private static void BindToDropDown(ListControl ddl, SPList list, string fieldID, string parentField, string parentFieldValue, string orderField, string levelField)
+        {
+            string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='{2}' /></OrderBy>";
+            var query = new SPQuery()
+            {
+                Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, parentFieldValue, orderField)
+            };
+            var items = list.GetItems(query);
+            if (items != null && items.Count > 0)
+            {
+                foreach (SPListItem item in items)
+                {
+                    ddl.Items.Add(new ListItem(Utilities.GetPreValue(Convert.ToInt32(item[levelField])) + Convert.ToString(item[FieldsName.MenuList.InternalName.Title]), Convert.ToString(item[fieldID])));
+                    Utilities.BindToDropDown(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField);
+                }
+            }
+        }
+
+        /// <summary>
+        /// BindToDropDown
+        /// </summary>
+        /// <param name="ddl"></param>
+        /// <param name="list"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="parentField"></param>
+        /// <param name="parentFieldValue"></param>
+        /// <param name="orderField"></param>
+        /// <param name="levelField"></param>
+        /// <param name="currentValue"></param>
+        private static void BindToDropDown(ListControl ddl, SPList list, string fieldID, string parentField, string parentFieldValue, string orderField, string levelField, string currentValue)
+        {
+            string caml = @"<Where><And><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq><Neq><FieldRef Name='{2}' /><Value Type='Text'>{3}</Value></Neq></And></Where><OrderBy><FieldRef Name='{4}' /></OrderBy>";
+            var query = new SPQuery()
+            {
+                Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, parentFieldValue, fieldID, currentValue, orderField)
+            };
+            var items = list.GetItems(query);
+            if (items != null && items.Count > 0)
+            {
+                foreach (SPListItem item in items)
+                {
+                    ddl.Items.Add(new ListItem(Utilities.GetPreValue(Convert.ToInt32(item[levelField])) + Convert.ToString(item[FieldsName.MenuList.InternalName.Title]), Convert.ToString(item[fieldID])));
+                    Utilities.BindToDropDown(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField, currentValue);
+                }
+            }
+        }
+
+        /// <summary>
+        /// GetPreValue
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        private static string GetPreValue(int number) {
+            string result = "";
+            for (int i = 0; i < number; i++)
+            {
+                result += "---";
+            }
+            return result + " ";
+        }
+
+        /// <summary>
+        /// GetValueByField
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="listName"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="fieldIDValue"></param>
+        /// <param name="fieldType"></param>
+        /// <param name="parentField"></param>
+        /// <returns></returns>
+        public static string GetValueByField(SPWeb web, string listName, string fieldID, string fieldIDValue, string fieldType, string returnField)
+        {
+            string result = "";
+            if (!string.IsNullOrEmpty(fieldIDValue))
+            {
+                SPSecurity.RunWithElevatedPrivileges(() =>
+                {
+                    using (var adminSite = new SPSite(web.Site.ID))
+                    {
+                        using (var adminWeb = adminSite.OpenWeb(web.ID))
+                        {
+                            try
+                            {
+                                adminWeb.AllowUnsafeUpdates = true;
+                                string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='" + fieldType + "'>{1}</Value></Eq></Where>";
+                                var query = new SPQuery()
+                                {
+                                    Query = string.Format(CultureInfo.InvariantCulture, caml, fieldID, fieldIDValue),
+                                    RowLimit = 1
+                                };
+                                var list = Utilities.GetCustomListByUrl(adminWeb, listName);
+                                var items = list.GetItems(query);
+                                if (items != null && items.Count > 0)
+                                {
+                                    result = Convert.ToString(items[0][returnField]);
+                                }
+                            }
+                            catch (SPException ex)
+                            {
+                                Utilities.LogToULS(ex);
+                            }
+                        }
+                    }
+                });
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// UpdateChildrenLevel
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="listName"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="parentField"></param>
+        /// <param name="parentFieldValue"></param>
+        /// <param name="newLevel"></param>
+        /// <param name="levelField"></param>
+        public static void UpdateChildrenLevel(SPWeb web, string listName, string fieldID, string parentField, string parentFieldValue, int newLevel, string levelField)
+        {
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            var list = Utilities.GetCustomListByUrl(adminWeb, listName);
+                            string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, parentFieldValue)
+                            };
+                            var items = list.GetItems(query);
+                            if (items != null && items.Count > 0)
+                            {
+                                foreach (SPListItem item in items)
+                                {
+                                    var itemUpdate = list.GetItemById(item.ID);
+                                    itemUpdate[levelField] = newLevel;
+                                    adminWeb.AllowUnsafeUpdates = true;
+                                    itemUpdate.SystemUpdate(false);
+                                    UpdateChildrenLevel(list, fieldID, parentField, Convert.ToString(item[fieldID]), newLevel + 1, levelField);
+                                }
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
+
+        /// <summary>
+        /// UpdateChildrenLevel
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="parentField"></param>
+        /// <param name="parentFieldValue"></param>
+        /// <param name="newLevel"></param>
+        /// <param name="levelField"></param>
+        public static void UpdateChildrenLevel(SPList list, string fieldID, string parentField, string parentFieldValue, int newLevel, string levelField) {
+            try
+            {
+                string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where>";
+                var query = new SPQuery()
+                {
+                    Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, parentFieldValue)
+                };
+                var items = list.GetItems(query);
+                if (items != null && items.Count > 0)
+                {
+                    foreach (SPListItem item in items)
+                    {
+                        var itemUpdate = list.GetItemById(item.ID);
+                        itemUpdate[levelField] = newLevel;
+                        list.ParentWeb.AllowUnsafeUpdates = true;
+                        itemUpdate.SystemUpdate(false);
+                        UpdateChildrenLevel(list, fieldID, parentField, Convert.ToString(item[fieldID]), newLevel + 1, levelField);
+                    }
+                }
+            }
+            catch (SPException ex)
+            {
+                Utilities.LogToULS(ex);
+            }
         }
     }
 }
