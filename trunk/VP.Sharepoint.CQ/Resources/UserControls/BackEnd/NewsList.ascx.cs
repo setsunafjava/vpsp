@@ -23,7 +23,7 @@ namespace VP.Sharepoint.CQ.UserControls
         SPWeb web;
         protected void Page_Load(object sender, EventArgs e)
         {
-            web = SPContext.Current.Web;
+            web = SPContext.Current.Web;            
             if (!Page.IsPostBack)
             {
                 formMode = SPContext.Current.FormContext.FormMode;
@@ -74,26 +74,27 @@ namespace VP.Sharepoint.CQ.UserControls
             //Bind ddlCategory
             try
             {
-                SPList catList = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
-                if (catList != null)
-                {
-                    SPListItemCollection items = catList.Items;
-                    foreach (SPListItem item in items)
-                    {
-                        ddlCategory.Items.Add(new ListItem(Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]), Convert.ToString(item[FieldsName.CategoryList.InternalName.CategoryID])));
-                    }
-                }
-                //Set value of control when form mode is Edit or Display
-                if (formMode==Constants.DisplayForm||formMode==Constants.EditForm)
-                {
-                    //SPListItem currentItem = GetCurrentItem();
-                    var currentItem = SPContext.Current.Item;
-                    if (currentItem != null)
-                    {
-                        ddlCategory.SelectedValue = Convert.ToString(currentItem[FieldsName.NewsList.InternalName.NewsGroup]);
-                        lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
-                    }
-                }                
+                //SPList catList = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
+                //if (catList != null)
+                //{
+                //    SPListItemCollection items = catList.Items;
+                //    foreach (SPListItem item in items)
+                //    {
+                //        ddlCategory.Items.Add(new ListItem(Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]), Convert.ToString(item[FieldsName.CategoryList.InternalName.CategoryID])));
+                //    }
+                //}
+                ////Set value of control when form mode is Edit or Display
+                //if (formMode==Constants.DisplayForm||formMode==Constants.EditForm)
+                //{
+                //    //SPListItem currentItem = GetCurrentItem();
+                //    var currentItem = SPContext.Current.Item;
+                //    if (currentItem != null)
+                //    {
+                //        ddlCategory.SelectedValue = Convert.ToString(currentItem[FieldsName.NewsList.InternalName.NewsGroup]);
+                //        lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
+                //    }
+                //}
+
             }
             catch (Exception ex)
             {
