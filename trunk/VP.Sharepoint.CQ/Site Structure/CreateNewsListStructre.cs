@@ -49,6 +49,8 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.ImageSmallThumb, FieldsName.NewsList.DisplayName.ImageSmallThumb));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.ImageHot, FieldsName.NewsList.DisplayName.ImageHot));
 
+            helper.AddField(new UrlFieldCreator(FieldsName.NewsList.InternalName.ImageDsp, FieldsName.NewsList.DisplayName.ImageDsp) { DisplayFormat = SPUrlFieldFormatType.Image });
+
             var list = helper.Apply();
             
             SPField fieldTitle = list.Fields.GetField(FieldsName.NewsList.InternalName.Title);

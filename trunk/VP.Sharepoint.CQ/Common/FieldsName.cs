@@ -19,7 +19,7 @@
                 public const string ImageThumb = "ImageThumb";
                 public const string ImageSmallThumb = "ImageSmallThumb";
                 public const string ImageHot = "ImageHot";
-
+                public const string ImageDsp = "ImageDsp";
             }
             #endregion
             //Display Name
@@ -36,6 +36,7 @@
                 public const string ImageThumb = "Ảnh trích dẫn";
                 public const string ImageSmallThumb = "Ảnh trích dẫn nhỏ";
                 public const string ImageHot = "Ảnh nổi bật";
+                public const string ImageDsp = "Ảnh mô tả";
             }
             #endregion
         }

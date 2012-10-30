@@ -58,24 +58,31 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         private void CustomSaveHandler(object sender, EventArgs e)
         {
-            //Get current item
-            var item = SPContext.Current.Item;
-
             List<string> fileNames = new List<string>();
             if (fuThumb.HasFile)
             {
                 var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuThumb.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
                     "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuThumbName));
-                item[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
+                CurrentItem[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
                 fileNames.Add(fuThumb.FileName);
+
+                SPFieldUrlValue imgDsp = new SPFieldUrlValue();
+                imgDsp.Description = CurrentItem.Title;
+                var webUrl = CurrentWeb.ServerRelativeUrl;
+                if (webUrl.Equals("/"))
+                {
+                    webUrl = "";
+                }
+                imgDsp.Url = webUrl + "/" + file.Url;
+                CurrentItem[FieldsName.NewsList.InternalName.ImageDsp] = imgDsp;
             }
             if (fuSmallThumb.HasFile)
             {
                 var fuSmallThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuSmallThumb.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuSmallThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
                     "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuSmallThumbName));
-                item[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
+                CurrentItem[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
                 fileNames.Add(fuSmallThumb.FileName);
             }
             if (fuSmallThumb.HasFile)
@@ -83,20 +90,9 @@ namespace VP.Sharepoint.CQ.UserControls
                 var fuImageHotName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuImageHot.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuImageHot.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
                     "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuImageHotName));
-                item[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
+                CurrentItem[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
                 fileNames.Add(fuImageHot.FileName);
             }
-            //file = Utilities.UploadFileToDocumentLibrary(web, fuSmallThumb.FileName, ListsName.InternalName.ResourcesList);
-            //item[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
-
-            //file = Utilities.UploadFileToDocumentLibrary(web, fuImageHot.FileName, ListsName.InternalName.ResourcesList);
-            //item[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
-
-            //Save item to list
-            
-            //item[FieldsName.NewsList.InternalName.ImageThumb] = Server.MapPath(fuThumb.FileName);
-           
-            //item[FieldsName.NewsList.InternalName.ImageHot] = fuImageHot.FileName;
 
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
