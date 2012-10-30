@@ -6,10 +6,11 @@ using VP.Sharepoint.CQ.Common;
 using System.Globalization;
 using Constants = VP.Sharepoint.CQ.Common.Constants;
 using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
+using VP.Sharepoint.CQ.Core.WebControls;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
-    public partial class MenuView : BackEndUC
+    public partial class MenuView : BaseUserControl
     {
         #region Form Events
         /// <summary>

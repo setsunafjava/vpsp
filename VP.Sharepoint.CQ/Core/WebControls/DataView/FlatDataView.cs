@@ -16,7 +16,7 @@ using Microsoft.SharePoint.Utilities;
 
 namespace VP.Sharepoint.CQ.Core.WebControls
 {
-    public class ListDataView : BaseDataView
+    public class FlatDataView : BaseDataView
     {
         #region Privates
 
@@ -56,7 +56,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             {
                 if (list == null && !string.IsNullOrEmpty(ListName))
                 {
-                    list = SPContext.Current.Web.Lists[ListName];
+                    list = VP.Sharepoint.CQ.Common.Utilities.GetCustomListByUrl(SPContext.Current.Web, ListName);
                 }
                 return list;
             }
@@ -172,141 +172,23 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             set { enableDeleteItem = value; }
         }
 
-        /// <summary>
-        /// Enable show archive button
-        /// </summary>
-        public bool EnableArchiveList
-        {
-            get
-            {
-                var value = ViewState["EnableArchiveList"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableArchiveList"] = value; }
-        }
-
-        /// <summary>
-        /// Enable show archive items button
-        /// </summary>
-        public bool EnableArchiveListItems
-        {
-            get
-            {
-                var value = ViewState["EnableArchiveListItems"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableArchiveListItems"] = value; }
-        }
-
-        /// <summary>
-        /// Enable show restore button
-        /// </summary>
-        public bool EnableRestoreList
-        {
-            get
-            {
-                var value = ViewState["EnableRestoreList"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableRestoreList"] = value; }
-        }
-
-
-        /// <summary>
-        /// Enable show archive items button
-        /// </summary>
-        public bool EnableRestoreListItems
-        {
-            get
-            {
-                var value = ViewState["EnableRestoreListItems"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableRestoreListItems"] = value; }
-        }
-
-        /// <summary>
-        /// Show Print button to print item
-        /// </summary>
-        public bool EnablePrintItemButton
-        {
-            get
-            {
-                var value = ViewState["EnablePrintItemButton"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnablePrintItemButton"] = value; }
-        }
-        
-        /// <summary>
-        /// The print preview template options
-        /// </summary>
-        public DataViewTemplateOption PrintTemplate { get; set; }
-
-        /// <summary>
-        /// Show Send Item button to print item
-        /// </summary>
-        public bool EnableSendItemButton
-        {
-            get
-            {
-                var value = ViewState["EnableSendItemButton"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableSendItemButton"] = value; }
-        }
-
-        /// <summary>
-        /// The send item template options
-        /// </summary>
-        public DataViewTemplateOption SendItemTemplate { get; set; }
-
-        protected override bool SupportAggregationFunctions
-        {
-            get { return AllDataSource != null; }
-        }
-
         protected override void CreateChildControls()
         {
             foreach (var viewField in ViewFields.Cast<IViewFieldRef>().Where(item => !item.IsVirtualField))
             {
-                var field = List.Fields[viewField.FieldName];
+                var field = List.Fields.GetFieldByInternalName(viewField.FieldName);
                 viewField.Initialize(field);
             }
 
             foreach (var groupField in GroupFields.Cast<IGroupFieldRef>().Where(item => !item.IsVirtualField))
             {
-                var field = List.Fields[groupField.FieldName];
+                var field = List.Fields.GetFieldByInternalName(groupField.FieldName);
                 groupField.Initialize(field);
             }
 
             foreach (var sortField in SortFields.Cast<SortFieldRef>())
             {
-                var field = List.Fields[sortField.FieldName];
+                var field = List.Fields.GetFieldByInternalName(sortField.FieldName);
                 sortField.Initialize(field);
             }
 
@@ -381,7 +263,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             fieldNames.AddRange(SortFields.Cast<SortFieldRef>().Select(sortField => sortField.FieldName));
             fieldNames.AddRange(new[] { "ID", "Created" });
             fieldNames = fieldNames.Distinct().ToList();
-            var fields = fieldNames.Select(f => List.Fields[f]).ToList();
+            var fields = fieldNames.Select(f => List.Fields.GetFieldByInternalName(f)).ToList();
             if (!fields.Any(f => f.InternalName == "FSObjType"))
             {
                 fieldNames.Add("Item Type");
@@ -683,7 +565,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             
             fieldNames = fieldNames.Distinct().ToList();
 
-            var fields = fieldNames.Select(f => List.Fields[f]).ToList();
+            var fields = fieldNames.Select(f => List.Fields.GetFieldByInternalName(f)).ToList();
 
             SPListItemCollection items;
             SPListItemCollectionPosition position = null;
@@ -721,7 +603,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 foreach (var fieldName in fieldNames)
                 {
                     Type dataType;
-                    var field = List.Fields[fieldName];
+                    var field = List.Fields.GetFieldByInternalName(fieldName);
                     
                     switch (field.Type)
                     {
@@ -860,9 +742,9 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             if (ShowRibbonTabs)
             {
-                RegisterListItemTab();
-                RegisterListTab();
-                RegisterOtherTabs();
+                //RegisterListItemTab();
+                //RegisterListTab();
+                //RegisterOtherTabs();
             }
         }
 

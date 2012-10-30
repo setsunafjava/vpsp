@@ -133,5 +133,6 @@
 <File Path="Resources\UserControls\BackEnd\MenuList.ascx" Url="MenuList.ascx" />
 <File Path="Resources\UserControls\BackEnd\MenuView.ascx" Url="MenuView.ascx" />
 <File Path="Resources\UserControls\BackEnd\CategoryList.ascx" Url="CategoryList.ascx" />
+<File Path="Resources\Javascript\DataViewBehavior.js" Url="Resources/Javascript/DataViewBehavior.js" />
 </Module>
 </Elements>
