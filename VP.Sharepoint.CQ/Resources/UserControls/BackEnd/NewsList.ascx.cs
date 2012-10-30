@@ -7,6 +7,7 @@ using System.Globalization;
 using Constants = VP.Sharepoint.CQ.Common.Constants;
 using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
 using System.Web.UI.WebControls;
+using System.Collections.Generic;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -19,15 +20,11 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// 
-        SPControlMode formMode;
-        SPWeb web;
         protected void Page_Load(object sender, EventArgs e)
         {
-            web = SPContext.Current.Web;            
             if (!Page.IsPostBack)
             {
-                formMode = SPContext.Current.FormContext.FormMode;
-                if (formMode == Constants.EditForm || formMode == Constants.NewForm)
+                if (CurrentMode == Constants.EditForm || CurrentMode == Constants.NewForm)
                 {
                     lblCatDisplay.Visible = false;
                     ddlCategory.Visible = true;
@@ -63,27 +60,63 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             //Get current item
             var item = SPContext.Current.Item;
-            SPContext.Current.Web.AllowUnsafeUpdates = true;
 
-            if (CurrentMode == SPControlMode.Edit || CurrentMode == SPControlMode.New)
+            List<string> fileNames = new List<string>();
+            if (fuThumb.HasFile)
             {
-                SPFile file = Utilities.UploadFileToDocumentLibrary(web, fuThumb.PostedFile.FileName, ListsName.InternalName.ResourcesList);
+                var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuThumb.FileName);
+                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
+                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuThumbName));
                 item[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
-
-                //file = Utilities.UploadFileToDocumentLibrary(web, fuSmallThumb.FileName, ListsName.InternalName.ResourcesList);
-                //item[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
-
-                //file = Utilities.UploadFileToDocumentLibrary(web, fuImageHot.FileName, ListsName.InternalName.ResourcesList);
-                //item[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
+                fileNames.Add(fuThumb.FileName);
             }
+            if (fuSmallThumb.HasFile)
+            {
+                var fuSmallThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuSmallThumb.FileName);
+                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuSmallThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
+                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuSmallThumbName));
+                item[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
+                fileNames.Add(fuSmallThumb.FileName);
+            }
+            if (fuSmallThumb.HasFile)
+            {
+                var fuImageHotName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuImageHot.FileName);
+                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuImageHot.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
+                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuImageHotName));
+                item[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
+                fileNames.Add(fuImageHot.FileName);
+            }
+            //file = Utilities.UploadFileToDocumentLibrary(web, fuSmallThumb.FileName, ListsName.InternalName.ResourcesList);
+            //item[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
+
+            //file = Utilities.UploadFileToDocumentLibrary(web, fuImageHot.FileName, ListsName.InternalName.ResourcesList);
+            //item[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
 
             //Save item to list
             
-            item[FieldsName.NewsList.InternalName.ImageThumb] = Server.MapPath(fuThumb.FileName);
+            //item[FieldsName.NewsList.InternalName.ImageThumb] = Server.MapPath(fuThumb.FileName);
            
-            item[FieldsName.NewsList.InternalName.ImageHot] = fuImageHot.FileName;
+            //item[FieldsName.NewsList.InternalName.ImageHot] = fuImageHot.FileName;
 
+            CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
+            if (fileNames.Count > 0)
+            {
+                foreach (var fileName in fileNames)
+                {
+                    try
+                    {
+                        CurrentWeb.AllowUnsafeUpdates = true;
+                        CurrentItem.Attachments.Delete(fileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utilities.LogToULS(ex);
+                    }
+                }
+                CurrentWeb.AllowUnsafeUpdates = true;
+                CurrentItem.SystemUpdate(false);
+            }
         }
 
         private void BindData()
@@ -113,25 +146,6 @@ namespace VP.Sharepoint.CQ.UserControls
                 Utilities.LogToULS(ex);
             }
         }
-
-        private string GetCatNameByCatId()
-        {
-            SPQuery query = new SPQuery();
-            SPList list = web.Lists.TryGetList(ListsName.DisplayName.CategoryList);
-            if (list!=null)
-            {
-                query.Query = string.Format(@"<Where><Eq><FieldRef Name='{0}'/><Value Type='Text'>{1}</Value></Eq></Where>", FieldsName.CategoryList.InternalName.CategoryID, CurrentItem[FieldsName.NewsList.InternalName.NewsGroup]);
-                query.RowLimit = 1;
-
-                SPListItemCollection listItemColection = list.GetItems(query);
-                if (listItemColection.Count>0)
-                {
-                    SPListItem spListItem = listItemColection[0];
-                    return Convert.ToString(spListItem[FieldsName.CategoryList.InternalName.ParentName]);
-                }
-            }
-            return string.Empty;
-        }      
 
         #region Properties
         /// <summary>

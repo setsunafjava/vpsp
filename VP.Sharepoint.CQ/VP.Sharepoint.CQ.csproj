@@ -435,6 +435,7 @@
     </Compile>
     <Compile Include="Site Structure\CategoryList.cs" />
     <Compile Include="Site Structure\AlbumList.cs" />
+    <Compile Include="Site Structure\CreateDocLibs.cs" />
     <Compile Include="Site Structure\MenuList.cs" />
     <Compile Include="Site Structure\WebsiteLink.cs" />
     <Compile Include="Site Structure\VideoLibrary.cs" />
