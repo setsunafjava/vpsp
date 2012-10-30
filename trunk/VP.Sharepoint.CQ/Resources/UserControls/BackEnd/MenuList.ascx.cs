@@ -62,7 +62,6 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         private void CustomSaveHandler(object sender, EventArgs e)
         {
-            SPContext.Current.Web.AllowUnsafeUpdates = true;
             //set menuID
             if (CurrentMode.Equals(SPControlMode.New))
             {
@@ -88,6 +87,7 @@ namespace VP.Sharepoint.CQ.UserControls
                     FieldsName.MenuList.InternalName.MenuLevel);
             }
             //Save item to list
+            CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
         }
         #region Properties

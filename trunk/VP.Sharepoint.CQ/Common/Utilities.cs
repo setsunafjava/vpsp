@@ -619,60 +619,44 @@ namespace VP.Sharepoint.CQ.Common
         /// <param name="sourceFilePath">Physical part of file</param>
         /// <param name="targetDocumentLibraryPath">Url of file when upload to document library, ex: http://cureentWebUrl/DocLib/FileName </param>
         /// <returns></returns>
-        public static SPFile UploadFileToDocumentLibrary(SPWeb web, string sourceFilePath, string targetDocumentLibraryPath)
+        public static SPFile UploadFileToDocumentLibrary(SPWeb web, Stream sourceFile, string targetDocumentLibraryPath)
         {
-            // Create buffer to transfer file
-            byte[] fileBuffer = new byte[1024];
-            try
+            SPFile result = null;
+            SPSecurity.RunWithElevatedPrivileges(() =>
             {
-                using (MemoryStream stream = new MemoryStream())
+                using (var adminSite = new SPSite(web.Site.ID))
                 {
-                    //Load the content from local file to stream
-                    using (FileStream fsWorkbook = File.Open(sourceFilePath, FileMode.Open, FileAccess.Read))
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
                     {
-                        //Get the start point
-                        int startBuffer = fsWorkbook.Read(fileBuffer, 0, fileBuffer.Length);
-                        for (int i = startBuffer; i > 0; i = fsWorkbook.Read(fileBuffer, 0, fileBuffer.Length))
+                        try
                         {
-                            stream.Write(fileBuffer, 0, i);
+                            adminWeb.AllowUnsafeUpdates = true;
+                            result = adminWeb.Files.Add(targetDocumentLibraryPath, sourceFile, true);
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
                         }
                     }
-
-                    web.AllowUnsafeUpdates = true;
-                    return web.Files.Add(targetDocumentLibraryPath, stream.ToArray(), true);
                 }
-            }
-            catch (Exception ex)
-            {
-                Utilities.LogToULS(ex);
-                throw;
-            }
+            });
+            return result;
         }
 
         /// <summary>
-        /// This function is used to upload resource files in application
+        /// GetPreByTime
         /// </summary>
-        /// <param name="sourceFilePath"></param>
-        /// <param name="targetDocumentLibraryPath"></param>
-        /// <param name="web"></param>
-        /// <param name="type"></param>
+        /// <param name="dateNow"></param>
         /// <returns></returns>
-        public static void UploadResourceFiles(string sourceFilePath, string targetDocumentLibraryPath, SPWeb web)
+        public static string GetPreByTime(DateTime dateNow)
         {
-            try
-            {
-                SPFile file = UploadFileToDocumentLibrary(web, sourceFilePath, targetDocumentLibraryPath);
-
-                if (file == null) return;
-
-                web.AllowUnsafeUpdates = true;
-                file.Item.Update();
- }
-            catch (Exception ex)
-            {
-                Utilities.LogToULS(ex);
-                throw;
-            }
+            var result = string.Empty;
+            result = dateNow.Year + String.Format(CultureInfo.InvariantCulture, "{0:00}", dateNow.Month)
+                                + String.Format(CultureInfo.InvariantCulture, "{0:00}", dateNow.Day)
+                                + String.Format(CultureInfo.InvariantCulture, "{0:00}", dateNow.Hour)
+                                + String.Format(CultureInfo.InvariantCulture, "{0:00}", dateNow.Minute)
+                                + String.Format(CultureInfo.InvariantCulture, "{0:00}", dateNow.Second);
+            return result;
         }
 
         /// <summary>

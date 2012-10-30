@@ -12,11 +12,11 @@
 <cl:RecursiveDataView ID="viewMenu" runat="server" ListName="MenuList" ShowRibbonTabs="True" ShowTotalItems="True" MenuField="Title" 
     FieldIDName="MenuID" FieldParentName="ParentID" FieldOrderName="MenuOrder" FieldLevelName="MenuLevel" FieldRecursiveName="Title">
     <ViewFields>
-	    <cl:TextFieldRef ID="fName" FieldName="Title" HeaderText="Tên menu" runat="server" Filterable="true" Sortable="true" />
-        <cl:TextFieldRef ID="TextFieldRef1" FieldName="MenuID" HeaderText="Tên menu" runat="server" IsHidden="true" />
-        <cl:TextFieldRef ID="TextFieldRef2" FieldName="ParentID" HeaderText="Tên menu" runat="server" IsHidden="true" />
-        <cl:TextFieldRef ID="TextFieldRef3" FieldName="MenuOrder" HeaderText="Tên menu" runat="server" IsHidden="true" />
-        <cl:TextFieldRef ID="TextFieldRef4" FieldName="MenuLevel" HeaderText="Tên menu" runat="server" IsHidden="true" />
+	    <cl:TextFieldRef ID="fName" FieldName="Title" HeaderText="Tên menu" runat="server"/>
+        <cl:TextFieldRef ID="TextFieldRef1" FieldName="MenuID" runat="server" IsHidden="true" />
+        <cl:TextFieldRef ID="TextFieldRef2" FieldName="ParentID" runat="server" IsHidden="true" />
+        <cl:TextFieldRef ID="TextFieldRef3" FieldName="MenuOrder" runat="server" IsHidden="true" />
+        <cl:TextFieldRef ID="TextFieldRef4" FieldName="MenuLevel" runat="server" IsHidden="true" />
     </ViewFields>
 	<%--<GroupFields>
 		<cl:TextFieldRef FieldName="Title" HeaderText ="Key Kostenstelle" SortDirection="Ascending" runat="server" CollapsedGroup="True" />

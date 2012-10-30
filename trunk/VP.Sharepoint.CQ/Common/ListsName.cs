@@ -20,6 +20,13 @@
             public const string AlbumList = "AlbumList";
             public const string WebsiteLink = "WebsiteLink";
             public const string MenuList = "MenuList";
+            public const string NewsImagesList = "NewsImagesList";
+            public const string NewsContentImagesList = "NewsContentImagesList";
+            public const string AllImagesList = "AllImagesList";
+            public const string VideoImagesList = "VideoImagesList";
+            public const string AlbumImagesList = "AlbumImagesList";
+            public const string CategoryImagesList = "CategoryImagesList";
+            public const string GalleryImagesList = "GalleryImagesList";
         }
 
         // Display Name of list
@@ -40,6 +47,13 @@
             public const string AlbumList = "Album";
             public const string WebsiteLink = "Liên kết website";
             public const string MenuList = "Danh sách menu";
+            public const string NewsImagesList = "Ảnh trích dẫn tin tức";
+            public const string NewsContentImagesList = "Ảnh nội dung tin tức";
+            public const string AllImagesList = "Ảnh dùng chung";
+            public const string VideoImagesList = "Ảnh trích dẫn Video";
+            public const string AlbumImagesList = "Ảnh trích dẫn Album";
+            public const string CategoryImagesList = "Ảnh trích dẫn chuyên mục";
+            public const string GalleryImagesList = "Thư viện ảnh files";
         }
     }
 }
