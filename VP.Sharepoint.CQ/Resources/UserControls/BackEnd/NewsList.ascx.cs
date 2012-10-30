@@ -135,7 +135,6 @@ namespace VP.Sharepoint.CQ.UserControls
                     lblCatDisplay.Visible = true;
                     lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
                 }
-
             }
             catch (Exception ex)
             {
