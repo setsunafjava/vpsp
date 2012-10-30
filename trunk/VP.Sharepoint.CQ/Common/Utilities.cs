@@ -1276,7 +1276,8 @@ namespace VP.Sharepoint.CQ.Common
         /// </summary>
         /// <param name="number"></param>
         /// <returns></returns>
-        private static string GetPreValue(int number) {
+        public static string GetPreValue(int number)
+        {
             string result = "";
             for (int i = 0; i < number; i++)
             {

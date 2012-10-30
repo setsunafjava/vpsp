@@ -136,5 +136,6 @@
     <ProjectItemFile Source="UserControls\BackEnd\MenuList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\MenuView.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\CategoryList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="Javascript\DataViewBehavior.js" Target="Resources\Javascript\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -15,6 +15,7 @@ using Microsoft.SharePoint.Utilities;
 using Microsoft.SharePoint.WebControls;
 using Menu = Microsoft.SharePoint.WebControls.Menu;
 using System.Linq.Expressions;
+using VP.Sharepoint.CQ.Common;
 
 namespace VP.Sharepoint.CQ.Core.WebControls
 {
@@ -235,8 +236,6 @@ namespace VP.Sharepoint.CQ.Core.WebControls
         }
 
         protected virtual bool ThresholdException { get; set; }
-
-        protected abstract bool SupportAggregationFunctions { get; }
 
         protected virtual bool RequiredAggregations
         {
@@ -508,10 +507,14 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             base.OnPreRender(e);
 
             BindDataSource();
-            
+
+            if (!Page.ClientScript.IsClientScriptIncludeRegistered("jquery-1.7.1.js"))
+            {
+                Utilities.LoadJS(SPContext.Current.Web, this.Page, "jquery-1.7.1.js");
+            }
             if (!Page.ClientScript.IsClientScriptIncludeRegistered("DataViewBehavior.js"))
             {
-                Page.ClientScript.RegisterClientScriptInclude("DataViewBehavior.js", "");
+                Utilities.LoadJS(SPContext.Current.Web, this.Page, "DataViewBehavior.js");
             }
 
             // Clear selected items;
@@ -896,46 +899,6 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 RenderEmptyData(writer);
             }
 
-            // Sum
-            if (SupportAggregationFunctions && ViewFields.Cast<BaseFieldRef>().Where(f => !f.IsHidden).Any(item => item.SumFieldData))
-            {
-                writer.RenderBeginTag(HtmlTextWriterTag.Tbody);
-                writer.RenderBeginTag(HtmlTextWriterTag.Tr);
-
-                // Empty cell
-                writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.RenderEndTag(); // td
-
-                foreach (var viewField in ViewFields.Cast<BaseFieldRef>().Where(f => !f.IsHidden))
-                {
-                    writer.AddAttribute(HtmlTextWriterAttribute.Class, "ms-vb2");
-                    writer.AddStyleAttribute(HtmlTextWriterStyle.TextAlign, "right");
-                    writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    if (viewField.SumFieldData)
-                    {
-                        writer.RenderBeginTag(HtmlTextWriterTag.Nobr);
-                        writer.RenderBeginTag(HtmlTextWriterTag.B);
-                        var value = GetSumFieldData(viewField);
-                        viewField.RenderSumFieldData(writer, value);
-                        writer.RenderEndTag(); // b
-                        writer.RenderEndTag(); // nobr
-                    }
-                    writer.RenderEndTag(); // td
-                }
-
-                writer.RenderEndTag(); // tr
-                writer.RenderEndTag(); // tbody
-            }
-
-            if (ShowTotalItems && SupportAggregationFunctions)
-            {
-                var totalItems = GetTotalItems();
-                if (totalItems > 0)
-                {
-                    RenderTotalItems(writer, totalItems);
-                }
-            }
-
             RenderEndTag(writer);
 
             if (DataSource.Rows.Count > 0)
@@ -1054,33 +1017,6 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             }
 
             writer.RenderEndTag(); // tr
-
-            if (SupportAggregationFunctions && ViewFields.Cast<BaseFieldRef>().Any(item => item.CountFieldData && !item.IsHidden))
-            {
-                writer.RenderBeginTag(HtmlTextWriterTag.Tr);
-
-                // Empty td
-                writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.RenderEndTag();
-
-                foreach (BaseFieldRef viewField in ViewFields.Cast<BaseFieldRef>().Where(f => !f.IsHidden))
-                {
-                    writer.AddAttribute(HtmlTextWriterAttribute.Class, "ms-vb2");
-                    writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    if (viewField.CountFieldData)
-                    {
-                        writer.RenderBeginTag(HtmlTextWriterTag.Nobr);
-                        writer.RenderBeginTag(HtmlTextWriterTag.B);
-                        var viewFieldName = viewField.FieldName;
-                        writer.Write(string.Format(viewField.CountStringFormat, GetCountFieldData(viewField, item =>GetObjectData<object>(item, viewFieldName) != null)));
-                        writer.RenderEndTag(); // b
-                        writer.RenderEndTag(); // nobr
-                    }
-                    writer.RenderEndTag();
-                }
-
-                writer.RenderEndTag(); // tr
-            }
 
             writer.RenderEndTag(); // tbody
         }
@@ -1334,103 +1270,10 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             groupField.RenderCell(writer, group);
 
-            if (SupportAggregationFunctions)
-            {
-                filter = groupField.AddFilterExpression(filter, group);
-
-                whereCondition = filter.Compile();
-
-                if (groupField.CountGroupItems)
-                {
-                    var groupItemsCounter = CountGroupItems(groupField, whereCondition);
-
-                    writer.AddStyleAttribute("font-weight", "lighter");
-                    writer.RenderBeginTag(HtmlTextWriterTag.Span);
-                    writer.Write(string.Format("&nbsp;({0})", groupItemsCounter));
-                    writer.RenderEndTag(); // span        
-                }
-            }
-
             writer.RenderEndTag(); // td
 
             writer.RenderEndTag(); // tr
             writer.RenderEndTag(); // tbody
-
-            #region Group Count
-
-            // Render group counter (check if group required has counter and any column had counter)
-            if (SupportAggregationFunctions && groupField.CountFieldData &&
-                ViewFields.Cast<BaseFieldRef>().Any(item => item.CountFieldData))
-            {
-                writer.AddAttribute("groupId", groupId + "-counter");
-                writer.RenderBeginTag(HtmlTextWriterTag.Tbody);
-                writer.RenderBeginTag(HtmlTextWriterTag.Tr);
-
-                // Empty cell
-                writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.RenderEndTag(); // td
-
-                foreach (var viewField in ViewFields.Cast<BaseFieldRef>().Where(f => !f.IsHidden))
-                {
-                    writer.AddAttribute(HtmlTextWriterAttribute.Class, "ms-vb2");
-                    writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    if (viewField.CountFieldData)
-                    {
-                        var fieldName = viewField.FieldName;
-
-                        var countCondition = filter.And(item => GetObjectData<object>(item, fieldName) != null);
-
-                        writer.RenderBeginTag(HtmlTextWriterTag.Nobr);
-                        writer.RenderBeginTag(HtmlTextWriterTag.B);
-                        writer.Write(string.Format(viewField.CountStringFormat, GetCountFieldData(viewField, countCondition.Compile())));
-                        writer.RenderEndTag(); // b
-                        writer.RenderEndTag(); // nobr
-                    }
-                    writer.RenderEndTag(); // td
-                }
-
-                writer.RenderEndTag(); // tr
-                writer.RenderEndTag(); // tbody
-            }
-
-            #endregion
-
-            // Todo: new group sum position (on group top)
-            #region Group Sum
-
-            if (SupportAggregationFunctions && groupField.SumGroupFieldData &&
-                ViewFields.Cast<BaseFieldRef>().Any(item => item.SumFieldData && !item.IsHidden))
-            {
-                writer.AddAttribute("groupId", groupId + "-sum");
-                writer.RenderBeginTag(HtmlTextWriterTag.Tbody);
-                writer.RenderBeginTag(HtmlTextWriterTag.Tr);
-
-                // Empty cell
-                writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                writer.RenderEndTag(); // td
-
-                foreach (BaseFieldRef viewField in ViewFields.Cast<BaseFieldRef>().Where(f => !f.IsHidden))
-                {
-                    writer.AddAttribute(HtmlTextWriterAttribute.Class, "ms-vb2");
-                    writer.AddStyleAttribute(HtmlTextWriterStyle.TextAlign, "right");
-                    writer.RenderBeginTag(HtmlTextWriterTag.Td);
-                    if (viewField.SumFieldData)
-                    {
-                        var sum = GetSumFieldData(viewField, whereCondition);
-                        writer.RenderBeginTag(HtmlTextWriterTag.Nobr);
-                        writer.RenderBeginTag(HtmlTextWriterTag.B);
-                        viewField.RenderSumFieldData(writer, sum);
-                        writer.RenderEndTag(); // b
-                        writer.RenderEndTag(); // nobr
-                    }
-                    writer.RenderEndTag(); // td
-                }
-
-                writer.RenderEndTag(); // tr
-                writer.RenderEndTag(); // tbody
-            }
-
-            #endregion
 
             if (groupLevel < GroupFields.Count)
             {

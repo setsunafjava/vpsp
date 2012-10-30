@@ -50,6 +50,96 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             }
         }
 
+        public string FieldIDName
+        {
+            get
+            {
+                var value = ViewState["FieldIDName"];
+                if (value != null)
+                {
+                    return (string)value;
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["FieldIDName"] = value;
+                list = null;
+            }
+        }
+
+        public string FieldParentName
+        {
+            get
+            {
+                var value = ViewState["FieldParentName"];
+                if (value != null)
+                {
+                    return (string)value;
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["FieldParentName"] = value;
+                list = null;
+            }
+        }
+
+        public string FieldOrderName
+        {
+            get
+            {
+                var value = ViewState["FieldOrderName"];
+                if (value != null)
+                {
+                    return (string)value;
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["FieldOrderName"] = value;
+                list = null;
+            }
+        }
+
+        public string FieldLevelName
+        {
+            get
+            {
+                var value = ViewState["FieldLevelName"];
+                if (value != null)
+                {
+                    return (string)value;
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["FieldLevelName"] = value;
+                list = null;
+            }
+        }
+
+        public string FieldRecursiveName
+        {
+            get
+            {
+                var value = ViewState["FieldRecursiveName"];
+                if (value != null)
+                {
+                    return (string)value;
+                }
+                return string.Empty;
+            }
+            set
+            {
+                ViewState["FieldRecursiveName"] = value;
+                list = null;
+            }
+        }
+
         public virtual SPList List
         {
             get
@@ -172,124 +262,6 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             set { enableDeleteItem = value; }
         }
 
-        /// <summary>
-        /// Enable show archive button
-        /// </summary>
-        public bool EnableArchiveList
-        {
-            get
-            {
-                var value = ViewState["EnableArchiveList"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableArchiveList"] = value; }
-        }
-
-        /// <summary>
-        /// Enable show archive items button
-        /// </summary>
-        public bool EnableArchiveListItems
-        {
-            get
-            {
-                var value = ViewState["EnableArchiveListItems"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableArchiveListItems"] = value; }
-        }
-
-        /// <summary>
-        /// Enable show restore button
-        /// </summary>
-        public bool EnableRestoreList
-        {
-            get
-            {
-                var value = ViewState["EnableRestoreList"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableRestoreList"] = value; }
-        }
-
-
-        /// <summary>
-        /// Enable show archive items button
-        /// </summary>
-        public bool EnableRestoreListItems
-        {
-            get
-            {
-                var value = ViewState["EnableRestoreListItems"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableRestoreListItems"] = value; }
-        }
-
-        /// <summary>
-        /// Show Print button to print item
-        /// </summary>
-        public bool EnablePrintItemButton
-        {
-            get
-            {
-                var value = ViewState["EnablePrintItemButton"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnablePrintItemButton"] = value; }
-        }
-        
-        /// <summary>
-        /// The print preview template options
-        /// </summary>
-        public DataViewTemplateOption PrintTemplate { get; set; }
-
-        /// <summary>
-        /// Show Send Item button to print item
-        /// </summary>
-        public bool EnableSendItemButton
-        {
-            get
-            {
-                var value = ViewState["EnableSendItemButton"];
-                if (value != null)
-                {
-                    return (bool)value;
-                }
-                return false;
-            }
-            set { ViewState["EnableSendItemButton"] = value; }
-        }
-
-        /// <summary>
-        /// The send item template options
-        /// </summary>
-        public DataViewTemplateOption SendItemTemplate { get; set; }
-
-        protected override bool SupportAggregationFunctions
-        {
-            get { return AllDataSource != null; }
-        }
-
         protected override void CreateChildControls()
         {
             foreach (var viewField in ViewFields.Cast<IViewFieldRef>().Where(item => !item.IsVirtualField))
@@ -394,7 +366,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             DataSource = dataSource;
         }
 
-        protected static void ConvertToDataTable(IEnumerable<SPListItem> items, List<string> fieldNames, List<SPField> fields, Guid listId, ref DataTable dt)
+        protected void ConvertToDataTable(IEnumerable<SPListItem> items, List<string> fieldNames, List<SPField> fields, Guid listId, ref DataTable dt)
         {
             if (dt == null)
             {
@@ -402,38 +374,8 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 var indexOf = 0;
                 foreach (var fieldName in fieldNames)
                 {
-                    Type dataType;
+                    Type dataType = typeof(string);
                     var field = fields[indexOf];
-
-                    switch (field.Type)
-                    {
-                        case SPFieldType.Number:
-                        case SPFieldType.Currency:
-                            dataType = typeof(double);
-                            break;
-                        case SPFieldType.DateTime:
-                            dataType = typeof(DateTime);
-                            break;
-                        case SPFieldType.Boolean:
-                        case SPFieldType.Attachments:
-                            dataType = typeof(bool);
-                            break;
-                        case SPFieldType.Calculated:
-                            dataType = typeof(object);
-                            break;
-                        case SPFieldType.Counter:
-                            dataType = typeof(int);
-                            break;
-                        case SPFieldType.User:
-                            dataType = ((SPFieldUser)field).AllowMultipleValues ? typeof(SPFieldUserValueCollection) : typeof(SPFieldUserValue);
-                            break;
-                        case SPFieldType.Lookup:
-                            dataType = ((SPFieldLookup)field).AllowMultipleValues ? typeof(SPFieldLookupValueCollection) : typeof(SPFieldLookupValue);
-                            break;
-                        default:
-                            dataType = typeof(string);
-                            break;
-                    }
                     var dataColumn = new DataColumn(fieldName, dataType);
                     dt.Columns.Add(dataColumn);
                     indexOf++;
@@ -443,75 +385,17 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 dt.Columns.Add("RowIndex", typeof(int));
             }
 
+            var rootItems = items.Where(t => string.IsNullOrEmpty(Convert.ToString(t[FieldParentName]))).OrderBy(t => t[FieldOrderName]);
+
             var rowIndex = 0;
-            foreach (var item in items)
+            foreach (var item in rootItems)
             {
                 var row = dt.NewRow();
                 var index = 0;
 
                 foreach (var fieldName in fieldNames)
                 {
-                    var fieldValue = Convert.ToString(item[fieldName]);
-                    var field = fields[index];
-                    switch (field.Type)
-                    {
-                        case SPFieldType.User:
-                        case SPFieldType.Lookup:
-                            row[fieldName] = field.GetFieldValue(fieldValue);
-                            break;
-                        case SPFieldType.Calculated:
-                            var split = item[fieldName].ToString().Split(new[] { ";#" }, StringSplitOptions.None);
-                            var value = string.Join("", split, 1, split.Length - 1);
-                            if (!string.IsNullOrEmpty(value))
-                            {
-                                var calculatedField = (SPFieldCalculated)field;
-                                switch (calculatedField.OutputType)
-                                {
-                                    case SPFieldType.Number:
-                                    case SPFieldType.Currency:
-                                        try
-                                        {
-                                            row[fieldName] = Convert.ToDouble(value, CultureInfo.InvariantCulture);
-                                        }
-                                        catch (FormatException)
-                                        {
-                                            row[fieldName] = value;
-                                        }
-                                        break;
-                                    case SPFieldType.DateTime:
-                                        try
-                                        {
-                                            row[fieldName] = Convert.ToDateTime(value, CultureInfo.InvariantCulture);
-                                        }
-                                        catch (FormatException)
-                                        {
-                                            row[fieldName] = value;
-                                        }
-                                        break;
-                                    case SPFieldType.Boolean:
-                                        switch (value)
-                                        {
-                                            case "1":
-                                                row[fieldName] = true;
-                                                break;
-                                            case "0":
-                                                row[fieldName] = false;
-                                                break;
-                                            default:
-                                                row[fieldName] = value;
-                                                break;
-                                        }
-                                        break;
-                                    default:
-                                        row[fieldName] = value;
-                                        break;
-                                }
-                            }
-                            break;
-                        default:
-                            row[fieldName] = item[fieldName] ?? DBNull.Value;
-                            break;
-                    }
+                    row[fieldName] = Convert.ToString(item[fieldName]);
                     index++;
                 }
 
@@ -519,6 +403,34 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 row["RowIndex"] = rowIndex;
                 dt.Rows.Add(row);
                 rowIndex++;
+                ConvertToDataTable(items, Convert.ToString(item[FieldIDName]), fieldNames, listId, ref dt, ref rowIndex);
+            }
+        }
+
+        private void ConvertToDataTable(IEnumerable<SPListItem> items, string parentValue, List<string> fieldNames, Guid listId, ref DataTable dt, ref int rowIndex)
+        {
+            var childrenItems = items.Where(t => parentValue.Equals(Convert.ToString(t[FieldParentName]))).OrderBy(t => t[FieldOrderName]);
+            foreach (var item in childrenItems)
+            {
+                var row = dt.NewRow();
+                var index = 0;
+                foreach (var fieldName in fieldNames)
+                {
+                    if (fieldName.Equals(FieldRecursiveName))
+                    {
+                        row[fieldName] = VP.Sharepoint.CQ.Common.Utilities.GetPreValue(Convert.ToInt32(item[FieldLevelName]) - 1) + Convert.ToString(item[fieldName]);
+                    }
+                    else
+                    {
+                        row[fieldName] = Convert.ToString(item[fieldName]);
+                    }
+                    index++;
+                }
+                row["ListId"] = listId.ToString();
+                row["RowIndex"] = rowIndex;
+                dt.Rows.Add(row);
+                rowIndex++;
+                ConvertToDataTable(items, Convert.ToString(item[FieldIDName]), fieldNames, listId, ref dt, ref rowIndex);
             }
         }
 
@@ -720,35 +632,8 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 dt = new DataTable();
                 foreach (var fieldName in fieldNames)
                 {
-                    Type dataType;
+                    Type dataType = typeof(string); ;
                     var field = List.Fields.GetFieldByInternalName(fieldName);
-                    
-                    switch (field.Type)
-                    {
-                        case SPFieldType.Number:
-                        case SPFieldType.Currency:
-                            dataType = typeof(double);
-                            break;
-                        case SPFieldType.DateTime:
-                            dataType = typeof(DateTime);
-                            break;
-                        case SPFieldType.Boolean:
-                        case SPFieldType.Attachments:
-                            dataType = typeof(bool);
-                            break;
-                        case SPFieldType.Calculated:
-                            dataType = typeof(object);
-                            break;
-                        case SPFieldType.Counter:
-                            dataType = typeof(int);
-                            break;
-                        case SPFieldType.User:
-                            dataType = ((SPFieldUser)field).AllowMultipleValues ? typeof (SPFieldUserValueCollection) : typeof(SPFieldUserValue);
-                            break;
-                        default:
-                            dataType = typeof(string);
-                            break;
-                    }
                     var dataColumn = new DataColumn(fieldName, dataType);
                     dt.Columns.Add(dataColumn);
                 }
@@ -766,65 +651,6 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 foreach (var fieldName in fieldNames)
                 {
                     var fieldValue = Convert.ToString(item[fieldName]);
-                    var field = fields[index];
-                    switch (field.Type)
-                    {
-                        case SPFieldType.User:
-                            row[fieldName] = field.GetFieldValue(fieldValue);
-                            break;
-                        case SPFieldType.Calculated:
-                            var split = item[fieldName].ToString().Split(new[] { ";#" }, StringSplitOptions.None);
-                            var value = string.Join("", split, 1, split.Length - 1);
-                            if (!string.IsNullOrEmpty(value))
-                            {
-                                var calculatedField = (SPFieldCalculated)field;
-                                switch (calculatedField.OutputType)
-                                {
-                                    case SPFieldType.Number:
-                                    case SPFieldType.Currency:
-                                        try
-                                        {
-                                            row[fieldName] = Convert.ToDouble(value, CultureInfo.InvariantCulture);
-                                        }
-                                        catch (FormatException)
-                                        {
-                                            row[fieldName] = value;
-                                        }
-                                        break;
-                                    case SPFieldType.DateTime:
-                                        try
-                                        {
-                                            row[fieldName] = Convert.ToDateTime(value, CultureInfo.InvariantCulture);
-                                        }
-                                        catch (FormatException)
-                                        {
-                                            row[fieldName] = value;
-                                        }
-                                        break;
-                                    case SPFieldType.Boolean:
-                                        switch (value)
-                                        {
-                                            case "1":
-                                                row[fieldName] = true;
-                                                break;
-                                            case "0":
-                                                row[fieldName] = false;
-                                                break;
-                                            default:
-                                                row[fieldName] = value;
-                                                break;
-                                        }
-                                        break;
-                                    default:
-                                        row[fieldName] = value;
-                                        break;
-                                }
-                            }
-                            break;
-                        default:
-                            row[fieldName] = item[fieldName] ?? DBNull.Value;
-                            break;
-                    }
                     index++;
                 }
 
@@ -837,7 +663,8 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
         protected override DateTime GetCreateDateTime(DataRow item)
         {
-            return (DateTime)item["Created"];
+            //return (DateTime)item["Created"];
+            return Convert.ToDateTime(item["Created"]);
         }
 
         protected string BuildViewFields()
@@ -860,9 +687,9 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             if (ShowRibbonTabs)
             {
-                RegisterListItemTab();
-                RegisterListTab();
-                RegisterOtherTabs();
+                //RegisterListItemTab();
+                //RegisterListTab();
+                //RegisterOtherTabs();
             }
         }
 
