@@ -1402,5 +1402,33 @@ namespace VP.Sharepoint.CQ.Common
                 Utilities.LogToULS(ex);
             }
         }
+
+        #region News bussiness        
+        ///</summary> 
+        /// // Get news by status
+        /// <summary> 
+        /// <param name="web"></param>
+        /// <param name="strStatus"></param>
+        public static DataTable GetNewsByStatus(SPWeb web,string strStatus)
+        {
+            try
+            {
+                SPList list = Utilities.GetCustomListByUrl(web, ListsName.InternalName.NewsList);
+                if (list != null)
+                {
+                    SPQuery query = new SPQuery();
+                    query.Query = string.Empty;
+                    //query.Query = string.Format("<Where><Contains><FieldRef Name='{0}'/><Value Type='Text'>{1}</Value></Contains></Where>", FieldsName.NewsList.InternalName.Status, strStatus);
+                    SPListItemCollection listItemCollection = list.GetItems(query);
+                    return listItemCollection.GetDataTable();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogToULS(ex);
+            }
+            return null;
+        }
+        #endregion
     }
 }

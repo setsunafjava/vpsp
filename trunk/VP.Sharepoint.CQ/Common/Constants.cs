@@ -17,5 +17,13 @@ namespace VP.Sharepoint.CQ.Common
         public const SPControlMode EditForm = SPControlMode.Edit;
         public const SPControlMode NewForm = SPControlMode.New;
         public const SPControlMode DisplayForm = SPControlMode.Display;
+
+        #region NewsStatus
+        public class NewsStatus{
+            public const string HomeNews = "Tin trang nhất";
+            public const string HotNews = "Tin nổi bật";
+            public const string SlideNews = "Tin slide show";
+        }
+        #endregion
     }
 }

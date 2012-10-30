@@ -35,7 +35,11 @@ namespace VP.Sharepoint.CQ
                     SelectionMode = SPFieldUserSelectionMode.PeopleOnly, 
                     AllowMultipleValues = false }
                 );
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.Status, FieldsName.NewsList.DisplayName.Status));
+            helper.AddField(new MultipleChoiceFieldCreator(FieldsName.NewsList.InternalName.Status, FieldsName.NewsList.DisplayName.Status) 
+            { 
+                Choices = { Constants.NewsStatus.HomeNews, Constants.NewsStatus.HotNews, Constants.NewsStatus.SlideNews }, 
+                DefaultValue = Constants.NewsStatus.HomeNews                
+            });
             helper.AddField(new DateTimeFieldCreator(FieldsName.NewsList.InternalName.PostedDate, FieldsName.NewsList.DisplayName.PostedDate)
                 {
                      DefaultValue = "[ToDay]",
