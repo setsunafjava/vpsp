@@ -12,6 +12,8 @@ namespace VP.Sharepoint.CQ.Common
         public const string LinkTitleNoMenu = "LinkTitleNoMenu";
         public const string CreatedBy = "Author";
         public const string DefaultPage = "default";
+        public const string NewsPage = "news";
+        public const string NewsDetailPage = "newsdetail";
         public const SPControlMode EditForm = SPControlMode.Edit;
         public const SPControlMode NewForm = SPControlMode.New;
         public const SPControlMode DisplayForm = SPControlMode.Display;
