@@ -51,7 +51,7 @@
                 <SharePoint:FieldLabel ID="lblStatus" runat="server" FieldName="Status" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtStatus" FieldName="Status"/>
+                <SharePoint:CheckBoxChoiceField runat="server" ID="txtStatus" FieldName="Status"/>
             </td>
         </tr>      
 

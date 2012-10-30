@@ -109,7 +109,7 @@ namespace VP.Sharepoint.CQ.UserControls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.TextField txtStatus;
+        protected global::Microsoft.SharePoint.WebControls.CheckBoxChoiceField txtStatus;
         
         /// <summary>
         /// lblPostedDate control.
