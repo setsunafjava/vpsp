@@ -49,9 +49,10 @@ namespace VP.Sharepoint.CQ.UserControls
                     DataRowView drv = (DataRowView)e.Item.DataItem;
                     HtmlImage imgNewsHome = (HtmlImage)e.Item.FindControl("imgNewsHome");
                     HtmlAnchor aImg = (HtmlAnchor)e.Item.FindControl("aImg");
-                    imgNewsHome.Src = Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                    // Todo: Need to reset Src property
+                    imgNewsHome.Src = "../" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);                    
                     imgNewsHome.Attributes.Remove("rel");
-                    imgNewsHome.Attributes.Add("rel", string.Format("<h3>{0}</h3>{1}", drv[FieldsName.NewsList.InternalName.Title], drv[FieldsName.NewsList.InternalName.Description]));
+                    imgNewsHome.Attributes.Add("rel", string.Format("<h3>{0}</h3>{1}", drv[FieldsName.NewsList.InternalName.Title], Utilities.StripHTML(Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]))));
                     aImg.HRef = string.Format("/{0}/?ID={1}", "newsdetail", drv["ID"]);
                 }
             }

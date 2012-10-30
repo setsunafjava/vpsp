@@ -22,6 +22,7 @@ using VP.Sharepoint.CQ.Core.WebParts;
 using Microsoft.SharePoint.WebPartPages;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace VP.Sharepoint.CQ.Common
 {
@@ -1428,6 +1429,15 @@ namespace VP.Sharepoint.CQ.Common
                 Utilities.LogToULS(ex);
             }
             return null;
+        }
+        #endregion
+
+        #region Common        
+        public static string StripHTML(string inputString)
+        {
+            string HTML_TAG_PATTERN = "<.*?>";
+            return Regex.Replace
+              (inputString, HTML_TAG_PATTERN, string.Empty);
         }
         #endregion
     }
