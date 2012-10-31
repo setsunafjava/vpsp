@@ -680,9 +680,7 @@
     <Content Include="Resources\UserControls\FrontEnd\ListCatsHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\NewsList.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Resources\UserControls\BackEnd\NewsList.ascx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
