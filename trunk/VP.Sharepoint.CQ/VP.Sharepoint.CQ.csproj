@@ -204,6 +204,27 @@
     <Compile Include="Resources\UserControls\FrontEnd\BottomMenuUC.ascx.designer.cs">
       <DependentUpon>BottomMenuUC.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\AboutUC.ascx.cs">
+      <DependentUpon>AboutUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\AboutUC.ascx.designer.cs">
+      <DependentUpon>AboutUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\VanBanDetailUC.ascx.cs">
+      <DependentUpon>VanBanDetailUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\VanBanDetailUC.ascx.designer.cs">
+      <DependentUpon>VanBanDetailUC.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\FileDetailUC.ascx.cs">
+      <DependentUpon>FileDetailUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\FileDetailUC.ascx.designer.cs">
+      <DependentUpon>FileDetailUC.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\FrontEnd\VanBanUC.ascx.cs">
       <DependentUpon>VanBanUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -592,6 +613,15 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\FrontEnd\BottomMenuUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\AboutUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\VanBanDetailUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\FileDetailUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\FrontEnd\VanBanUC.ascx">

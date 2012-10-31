@@ -137,5 +137,8 @@
     <ProjectItemFile Source="UserControls\BackEnd\MenuView.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\CategoryList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="Javascript\DataViewBehavior.js" Target="Resources\Javascript\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\FileDetailUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\AboutUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\FrontEnd\VanBanDetailUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
   </Files>
 </ProjectItem>
