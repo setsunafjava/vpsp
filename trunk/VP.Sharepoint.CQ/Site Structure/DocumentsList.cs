@@ -20,7 +20,9 @@ namespace VP.Sharepoint.CQ
                             OnQuickLaunch = false,
                             EnableAttachments = true
                         };
-
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.DocumentsList.InternalName.DocumentNo, FieldsName.DocumentsList.DisplayName.DocumentNo)
+            {
+            });
             helper.AddField(new LookupFieldCreator(FieldsName.DocumentsList.InternalName.DocumentSubject, FieldsName.DocumentsList.DisplayName.DocumentSubject)
              {
                  LookupList = ListsName.InternalName.DocumentSubject,

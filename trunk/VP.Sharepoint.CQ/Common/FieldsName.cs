@@ -20,6 +20,7 @@
                 public const string ImageSmallThumb = "ImageSmallThumb";
                 public const string ImageHot = "ImageHot";
                 public const string ImageDsp = "ImageDsp";
+                public const string NewsCount = "NewsCount";
             }
             #endregion
             //Display Name
@@ -37,6 +38,7 @@
                 public const string ImageSmallThumb = "Ảnh trích dẫn nhỏ";
                 public const string ImageHot = "Ảnh nổi bật";
                 public const string ImageDsp = "Ảnh mô tả";
+                public const string NewsCount = "Số lần đọc";
             }
             #endregion
         }
@@ -160,6 +162,7 @@
             // Nested Documents list
             public class InternalName
             {
+                public const string DocumentNo = "DocumentNo";
                 public const string Title = "Title";
                 public const string PublishPlace = "PublishPlace";
                 public const string DocumentType = "DocumentType";
@@ -172,6 +175,7 @@
 
             public class DisplayName
             {
+                public const string DocumentNo = "Số/Ký hiệu";
                 public const string Title = "Tiêu đề";
                 public const string PublishPlace = "Cơ quan ban hành";
                 public const string DocumentType = "Loại văn bản";

@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="VP.Sharepoint.CQ.Common" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -9,6 +10,17 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="VanBanUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.VanBanUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+
+<script type="text/javascript">
+    function showDocumentDetail(id)
+    {
+        var divId = document.getElementById(id);
+        if (divId.style.display == "none")
+            divId.style.display = "block";
+        else
+            divId.style.display = "none";
+    }
+</script>
 <div class="sub_page">
     <div class="title_name_content">
         Sở Giáo dục và đào tạo</div>
@@ -16,25 +28,33 @@
         <table>
             <tr>
                 <td>
-                    <select onchange="modvanban_showFilter();" class="input" name="cqbanhanh" id="cqbanhanh">
+                    <%-- <select onchange="modvanban_showFilter();" class="input" name="cqbanhanh" id="cqbanhanh">
                         <option value="">-- Cơ quan ban hành --</option>
                         <option value="HEAD147">Bộ Giáo dục và Đào tạo</option>
-                    </select>
+                    </select>--%>
+                    <asp:DropDownList ID="ddlCoQuanBanHanh" runat="server" CssClass="input">
+                    </asp:DropDownList>
                 </td>
                 <td>
-                    <select onchange="modvanban_showFilter();" class="input" name="cqbanhanh" id="cqbanhanh">
+                    <%--<select onchange="modvanban_showFilter();" class="input" name="cqbanhanh" id="cqbanhanh">
                         <option value="">-- Các loại Văn Bản--</option>
-                    </select>
+                    </select>--%>
+                    <asp:DropDownList ID="ddlLoaiVanBan" runat="server" CssClass="input">
+                    </asp:DropDownList>
                 </td>
                 <td>
-                    <select onchange="modvanban_showFilter();" class="input" name="cqbanhanh" id="cqbanhanh">
+                    <%-- <select onchange="modvanban_showFilter();" class="input" name="cqbanhanh" id="cqbanhanh">
                         <option value="">-- Lĩnh vực--</option>
-                    </select>
+                    </select>--%>
+                    <asp:DropDownList ID="ddlLinhVuc" runat="server" CssClass="input">
+                    </asp:DropDownList>
                 </td>
                 <td>
-                    <select onchange="modvanban_showFilter();" class="input" name="cqbanhanh" id="cqbanhanh">
+                    <%--  <select onchange="modvanban_showFilter();" class="input" name="cqbanhanh" id="cqbanhanh">
                         <option value="">-- Người ký--</option>
-                    </select>
+                    </select>--%>
+                    <asp:DropDownList ID="ddlNguoiKy" runat="server" CssClass="input">
+                    </asp:DropDownList>
                 </td>
             </tr>
         </table>
@@ -54,22 +74,33 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="">
-                    <td valign="top">
-                        ...................
-                    </td>
-                    <td>
-                        <a style="font-weight: bold" href="javascript: modvanban_showDetails('844');">Báo cáo
-                            Tổng kết Đề án “Xây dựng xã hội học tập giai đoạn 2012-2020” </a>
-                        <div style="display: none; border-top: 1px dashed #336666; margin-top: 10px" class="vanban_details"
-                            id="vanban_details844">
-                        </div>
-                    </td>
-                    <td valign="top">
-                        10/09/2012
-                    </td>
-                </tr>
-                <tr class="alt">
+                <asp:Repeater ID="rptVanBan" runat="server" OnItemDataBound="rptVanBan_ItemDataBound">
+                    <ItemTemplate>
+                        <tr class="">
+                            <td valign="top">
+                                <%#Eval(FieldsName.DocumentsList.InternalName.DocumentNo)%>
+                            </td>
+                            <td>
+                                <a style="font-weight: bold" href="javascript:void(0);" id="aLink" runat="server">
+                                    <%#Eval(FieldsName.DocumentsList.InternalName.Title)%>
+                                </a>
+                                <div style="display: none; border-top: 1px dashed #336666; margin-top: 10px" class="vanban_details"
+                                    id="vbId_<%=i%>">
+                                    <b>Cơ quan ban hành:</b> <%#Eval(FieldsName.DocumentsList.InternalName.PublishPlace)%><br/>
+                                    <b>Loại văn bản:</b> <%#Eval(FieldsName.DocumentsList.InternalName.DocumentType)%><br/>
+                                    <b>Lĩnh vực:</b> <%#Eval(FieldsName.DocumentsList.InternalName.DocumentSubject)%><br/>
+                                    <b>Người ký:</b> <%#Eval(FieldsName.DocumentsList.InternalName.SignaturePerson)%><br/>
+                                    <b>Ngày hiệu lực:</b> <%#Eval(FieldsName.DocumentsList.InternalName.EffectedDate)%><br/>
+                                    <b>Người hết hiệu lực:</b> <%#Eval(FieldsName.DocumentsList.InternalName.ExpiredDate)%><br/>
+                                </div>
+                            </td>
+                            <td valign="top">
+                                <%#Eval(FieldsName.DocumentsList.InternalName.EffectedDate)%><br/>
+                            </td>
+                        </tr>                        
+                    </ItemTemplate>
+                </asp:Repeater>
+                <%--<tr class="alt">
                     <td valign="top">
                         Số: 891 /SGDĐT - GDTrH
                     </td>
@@ -2034,7 +2065,7 @@
                     <td valign="top">
                         09/01/2012
                     </td>
-                </tr>
+                </tr>--%>
             </tbody>
         </table>
         <div class="fdtablePaginaterWrap fdtablePaginatorWrapBottom" id="vanbantb2443-fdtablePaginaterWrapBottom">
