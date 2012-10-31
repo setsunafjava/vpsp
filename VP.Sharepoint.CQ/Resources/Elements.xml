@@ -127,12 +127,15 @@
     <File Path="Resources\UserControls\FrontEnd\SoDoToChucUC.ascx" Url="SoDoToChucUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\ThongKeUC.ascx" Url="ThongKeUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\VanBanUC.ascx" Url="VanBanUC.ascx" />
-  <File Path="Resources\Images\grass-blades.jpg" Url="Resources/Images/grass-blades.jpg" />
-<File Path="Resources\Images\flowing-rock.jpg" Url="Resources/Images/flowing-rock.jpg" />
-<File Path="Resources\Css\COREV4.CSS" Url="Resources/Css/COREV4.CSS" />
-<File Path="Resources\UserControls\BackEnd\MenuList.ascx" Url="MenuList.ascx" />
-<File Path="Resources\UserControls\BackEnd\MenuView.ascx" Url="MenuView.ascx" />
-<File Path="Resources\UserControls\BackEnd\CategoryList.ascx" Url="CategoryList.ascx" />
-<File Path="Resources\Javascript\DataViewBehavior.js" Url="Resources/Javascript/DataViewBehavior.js" />
-</Module>
+    <File Path="Resources\Images\grass-blades.jpg" Url="Resources/Images/grass-blades.jpg" />
+    <File Path="Resources\Images\flowing-rock.jpg" Url="Resources/Images/flowing-rock.jpg" />
+    <File Path="Resources\Css\COREV4.CSS" Url="Resources/Css/COREV4.CSS" />
+    <File Path="Resources\UserControls\BackEnd\MenuList.ascx" Url="MenuList.ascx" />
+    <File Path="Resources\UserControls\BackEnd\MenuView.ascx" Url="MenuView.ascx" />
+    <File Path="Resources\UserControls\BackEnd\CategoryList.ascx" Url="CategoryList.ascx" />
+    <File Path="Resources\Javascript\DataViewBehavior.js" Url="Resources/Javascript/DataViewBehavior.js" />
+    <File Path="Resources\UserControls\FrontEnd\FileDetailUC.ascx" Url="FileDetailUC.ascx" />
+    <File Path="Resources\UserControls\FrontEnd\AboutUC.ascx" Url="AboutUC.ascx" />
+    <File Path="Resources\UserControls\FrontEnd\VanBanDetailUC.ascx" Url="VanBanDetailUC.ascx" />
+  </Module>
 </Elements>
