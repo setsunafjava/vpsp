@@ -12,48 +12,21 @@
 <div class="top_menu">
     <div class="menu">
         <ul id="nav">
-            <li><a href="#" style="background: url(<%=DocLibUrl%>/bg_menu_hover.gif) top left repeat-x;">
-                Trang chủ</a> </li>
-            <li><a href="#">Giới thiệu</a>
-                <ul>
-                    <li><a href="#">Di tích lịch sử</a></li>
-                    <li><a href="#">Điều kiện KT-XH</a></li>
-                    <li><a href="#">Đơn vị hành chính</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Tổ chức</a>
-                <ul>
-                    <li><a href="#">Định hướng phát triển</a></li>
-                    <li><a href="#">Số liệu thống kê</a></li>
-                    <li><a href="#">Thông tin KT-XH</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Tin tức</a>
-                <ul>
-                    <li><a href="#">Văn bản 1</a></li>
-                    <li><a href="#">Văn bản 2</a></li>
-                    <li><a href="#">Văn bản 3</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Văn bản</a>
-                <ul>
-                    <li><a href="#">Mới thành lập</a></li>
-                    <li><a href="#">Thay đổi ĐKKD</a></li>
-                    <li><a href="#">Giải thể</a></li>
-                    <li><a href="#">Đăng tin</a></li>
-                    <li><a href="#">Khác</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Tài nguyên</a>
-                <ul>
-                    <li><a href="#">Dịch vụ 1</a></li>
-                    <li><a href="#">Dịch vụ 2</a></li>
-                    <li><a href="#">Dịch vụ 3</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Thống kê</a> </li>
-            <li><a href="#">Diễn đàn</a> </li>
-            <li><a href="#">EOS</a> </li>
+            <li><a href="#" style="background: url(<%=DocLibUrl%>/bg_menu_hover.gif) top left repeat-x;">Trang chủ</a></li>
+            <asp:Repeater ID="rptMenu" runat="server" 
+                onitemdatabound="rptMenu_ItemDataBound">
+                <ItemTemplate>
+                    <li><a runat="server" id="aLink"></a>
+                        <asp:Repeater ID="rptSubMenu" runat="server">
+                            <HeaderTemplate><ul></HeaderTemplate>
+                            <ItemTemplate>
+                                <li><a runat="server" id="aLink"></a></li>
+                            </ItemTemplate>
+                            <FooterTemplate></ul></FooterTemplate>
+                        </asp:Repeater>
+                    </li>
+                </ItemTemplate>
+            </asp:Repeater>
         </ul>
     </div>
     <div class="search">

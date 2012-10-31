@@ -14,6 +14,13 @@ namespace VP.Sharepoint.CQ.Common
         public const string DefaultPage = "default";
         public const string NewsPage = "news";
         public const string NewsDetailPage = "newsdetail";
+        public const string OrganizationPage = "organization";
+        public const string LibraryPage = "library";
+        public const string LibraryDetailPage = "librarydetail";
+        public const string AboutPage = "about";
+        public const string DocumentPage = "document";
+        public const string DocumentDetailPage = "documentdetail";
+        public const string StatisticPage = "statistic";
         public const SPControlMode EditForm = SPControlMode.Edit;
         public const SPControlMode NewForm = SPControlMode.New;
         public const SPControlMode DisplayForm = SPControlMode.Display;
