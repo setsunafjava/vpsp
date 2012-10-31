@@ -23,5 +23,10 @@ namespace VP.Sharepoint.CQ.Common
                 return webUrl + "/" + ListsName.InternalName.ResourcesList;
             }
         }
+
+        public SPWeb CurrentWeb
+        {
+            get { return SPContext.Current.Web; }
+        }
     }
 }

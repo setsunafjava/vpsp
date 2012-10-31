@@ -59,6 +59,11 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.DefaultPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.DefaultPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
             AddUserControlToPage(web, Constants.DefaultPage, "FooterUC", "FooterUC", 2, "FooterUC");
+
+            //newspage
+            CreateAppPage(web, Constants.NewsPage, webUrl + "/" + ListsName.InternalName.ResourcesList + "/VP4.master", true);
+            AddUserControlToPage(web, Constants.NewsPage, "header", "HeaderUC", 0, "HeaderUC");
+            AddUserControlToPage(web, Constants.NewsPage, "topmenu", "HeaderUC", 1, "TopMenuUC");
         }
 
         private static void CreatePage(SPWeb web, string pageName, string usercontrolName, string masterUrl, bool overWrite)
@@ -79,6 +84,15 @@ namespace VP.Sharepoint.CQ
             if (pageFile.Exists) pageFile.Delete();
 
             WebPageHelper.CreateDefaultWebPage(web, string.Format(CultureInfo.InvariantCulture, "{0}.aspx", pageName), masterUrl, overWrite);
+        }
+
+        private static void CreateAppPage(SPWeb web, string pageName, string masterUrl, bool overWrite)
+        {
+            string notifyPageUrl = string.Concat(web.Url, string.Format(CultureInfo.InvariantCulture, "/{0}.aspx", pageName));
+            SPFile pageFile = web.GetFile(notifyPageUrl);
+            if (pageFile.Exists) pageFile.Delete();
+
+            WebPageHelper.CreateAppWebPage(web, string.Format(CultureInfo.InvariantCulture, "{0}.aspx", pageName), masterUrl, overWrite);
         }
 
         private static void AddUserControlToPage(SPWeb web, string pageName, string pageTitle, string userControlName)
