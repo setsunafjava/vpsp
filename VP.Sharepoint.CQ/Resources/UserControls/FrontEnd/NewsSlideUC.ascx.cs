@@ -36,8 +36,16 @@ namespace VP.Sharepoint.CQ.UserControls
         private void BindRepeater(SPWeb spWeb)
         {
             DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews);
+            //Bind repeater news slide
             rptNewsHome.DataSource = dt;
             rptNewsHome.DataBind();
+
+            // Bind repeater new news
+            rptMoiNhat.DataSource = dt;
+            rptMoiNhat.DataBind();
+            // Bind repeater most read
+            rptDocNhieu.DataSource = dt;
+            rptDocNhieu.DataBind();
         }
         #endregion
         protected void rptNewsHome_ItemDataBound(object sender,RepeaterItemEventArgs e)
@@ -53,12 +61,32 @@ namespace VP.Sharepoint.CQ.UserControls
                     imgNewsHome.Src = "../" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);                    
                     imgNewsHome.Attributes.Remove("rel");
                     imgNewsHome.Attributes.Add("rel", string.Format("<h3>{0}</h3>{1}", drv[FieldsName.NewsList.InternalName.Title], Utilities.StripHTML(Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]))));
-                    aImg.HRef = string.Format("/{0}/?ID={1}", "newsdetail", drv["ID"]);
+                    aImg.HRef = string.Format("../{0}?ID={1}", "newsdetail", drv["ID"]);
                 }
             }
             catch (Exception ex)
             {
                 Utilities.LogToULS(ex);
+            }
+        }
+
+        protected void rptMoiNhat_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            {
+                DataRowView drv = (DataRowView)e.Item.DataItem;
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                aLink.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
+            }
+        }
+
+        protected void rptDocNhieu_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            {
+                DataRowView drv = (DataRowView)e.Item.DataItem;
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                aLink.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
             }
         }
     }

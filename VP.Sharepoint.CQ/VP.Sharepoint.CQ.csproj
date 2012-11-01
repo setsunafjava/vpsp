@@ -169,6 +169,13 @@
     <Compile Include="Resources\UserControls\BackEnd\CategoryList.ascx.designer.cs">
       <DependentUpon>CategoryList.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ExternalNews.ascx.cs">
+      <DependentUpon>ExternalNews.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ExternalNews.ascx.designer.cs">
+      <DependentUpon>ExternalNews.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\BackEnd\MenuView.ascx.cs">
       <DependentUpon>MenuView.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -609,6 +616,9 @@
     <Content Include="Resources\UserControls\BackEnd\CategoryList.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Resources\UserControls\BackEnd\ExternalNews.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\BackEnd\MenuView.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -723,7 +733,9 @@
     <Content Include="Resources\UserControls\FrontEnd\ListCatsHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\NewsList.ascx" />
+    <Content Include="Resources\UserControls\BackEnd\NewsList.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />

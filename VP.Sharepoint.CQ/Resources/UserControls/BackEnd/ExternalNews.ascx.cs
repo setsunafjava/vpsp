@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
-    public partial class NewsList : BackEndUC, IValidator
+    public partial class ExternalNews : BackEndUC, IValidator
     {
         #region Form Events
         /// <summary>
@@ -64,7 +64,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuThumb.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
                     "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuThumbName));
-                CurrentItem[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
+                CurrentItem[FieldsName.ExternalNews.InternalName.ImageThumb] = file.Url;
                 fileNames.Add(fuThumb.FileName);
 
                 SPFieldUrlValue imgDsp = new SPFieldUrlValue();
@@ -75,26 +75,9 @@ namespace VP.Sharepoint.CQ.UserControls
                     webUrl = "";
                 }
                 imgDsp.Url = webUrl + "/" + file.Url;
-                CurrentItem[FieldsName.NewsList.InternalName.ImageDsp] = imgDsp;
-            }
-            if (fuSmallThumb.HasFile)
-            {
-                var fuSmallThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuSmallThumb.FileName);
-                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuSmallThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuSmallThumbName));
-                CurrentItem[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
-                fileNames.Add(fuSmallThumb.FileName);
-            }
-            if (fuSmallThumb.HasFile)
-            {
-                var fuImageHotName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuImageHot.FileName);
-                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuImageHot.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuImageHotName));
-                CurrentItem[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
-                fileNames.Add(fuImageHot.FileName);
+                CurrentItem[FieldsName.ExternalNews.InternalName.ImageDsp] = imgDsp;
             }
             CurrentItem[FieldsName.ExternalNews.InternalName.NewsGroup] = ddlCategory.SelectedValue;
-
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
             if (fileNames.Count > 0)
@@ -121,21 +104,22 @@ namespace VP.Sharepoint.CQ.UserControls
             //Bind ddlCategory
             try
             {               
-                if (CurrentMode.Equals(SPControlMode.New) || CurrentMode.Equals(SPControlMode.Edit))
-                {                    
-                }
+                //if (CurrentMode.Equals(SPControlMode.New) || CurrentMode.Equals(SPControlMode.Edit))
+                //{
+                    
+                //}
                 Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
                         FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.InternalName.CategoryLevel);
-
-                if (CurrentMode.Equals(SPControlMode.Edit) || CurrentMode.Equals(SPControlMode.Display))
+                if (CurrentMode.Equals(SPControlMode.Edit))
                 {
-                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.NewsList.InternalName.NewsGroup]);
+                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.ExternalNews.InternalName.NewsGroup]);
                 }
                 if (CurrentMode.Equals(SPControlMode.Display))
-                {                    
+                {
+                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.ExternalNews.InternalName.NewsGroup]);
+                    lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
                     ddlCategory.Visible = false;
                     lblCatDisplay.Visible = true;
-                    lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
                 }
             }
             catch (Exception ex)
