@@ -211,6 +211,13 @@
     <Compile Include="Resources\UserControls\FrontEnd\AboutUC.ascx.designer.cs">
       <DependentUpon>AboutUC.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\InitUC.ascx.cs">
+      <DependentUpon>InitUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\FrontEnd\InitUC.ascx.designer.cs">
+      <DependentUpon>InitUC.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\FrontEnd\VanBanDetailUC.ascx.cs">
       <DependentUpon>VanBanDetailUC.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -618,6 +625,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\FrontEnd\AboutUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\InitUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\FrontEnd\VanBanDetailUC.ascx">
