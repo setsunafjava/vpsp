@@ -6,6 +6,9 @@ using VP.Sharepoint.CQ.Common;
 using System.Globalization;
 using Constants = VP.Sharepoint.CQ.Common.Constants;
 using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Web.UI.HtmlControls;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -21,7 +24,32 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (!Page.IsPostBack)
             {
-                
+                SPWeb web = SPContext.Current.Web;
+                BindRepeater(web);
+            }
+        }
+        #endregion
+
+        #region BindRepeater
+        private void BindRepeater(SPWeb spWeb)
+        {
+            DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews);
+            //Bind repeater news slide
+            rptHotNews.DataSource = dt;
+            rptHotNews.DataBind();
+        }
+        #endregion
+
+        #region rptHotNews_ItemDataBound
+        protected void rptHotNews_ItemDataBound(object sender,RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            {
+                DataRowView drv = (DataRowView)e.Item.DataItem;
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                HtmlImage imgThumb = (HtmlImage)e.Item.FindControl("imgThumb");
+                imgThumb.Src = "../" + drv[FieldsName.NewsList.InternalName.ImageThumb];
+                aLink.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
             }
         }
         #endregion

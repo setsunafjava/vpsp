@@ -141,5 +141,6 @@
     <ProjectItemFile Source="UserControls\FrontEnd\AboutUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\VanBanDetailUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\InitUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\BackEnd\ExternalNews.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
   </Files>
 </ProjectItem>

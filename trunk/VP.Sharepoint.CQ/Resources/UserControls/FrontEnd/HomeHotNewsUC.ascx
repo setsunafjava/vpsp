@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="VP.Sharepoint.CQ.Common" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -18,58 +19,21 @@
             </div>
         </div>
         <div class="content_F_Right">
-            <!--<marquee direction="up" scrolldelay="50" scrollamount="1" truespeed="true" onmouseover="this.stop()" onmouseout="this.start()" height="350px" >-->
-            <div class="line_news">
-                <div class="thumb_img">
-                    <img src="<%=DocLibUrl%>/images.jpg" /></div>
-                <div class="name_news">
-                    <a href="#">Ủy ban nhân dân tỉnh Quảng Ninh ban điện khẩn về triển khai XDCB trên địa
-                        bàn tỉnh</a> <span class="time_update">(Ngày 20 - 03 - 2012)</span>
-                </div>
-                <div class="cleaner">
-                </div>
-            </div>
-            <div class="line_news">
-                <div class="thumb_img">
-                    <img src="<%=DocLibUrl%>/images.jpg" /></div>
-                <div class="name_news">
-                    <a href="#">Ủy ban nhân dân tỉnh Quảng Ninh ban điện khẩn về triển khai XDCB trên địa
-                        bàn tỉnh</a> <span class="time_update">(Ngày 20 - 03 - 2012)</span>
-                </div>
-                <div class="cleaner">
-                </div>
-            </div>
-            <div class="line_news">
-                <div class="thumb_img">
-                    <img src="<%=DocLibUrl%>/images.jpg" /></div>
-                <div class="name_news">
-                    <a href="#">Ủy ban nhân dân tỉnh Quảng Ninh ban điện khẩn về triển khai XDCB trên địa
-                        bàn tỉnh</a> <span class="time_update">(Ngày 20 - 03 - 2012)</span>
-                </div>
-                <div class="cleaner">
-                </div>
-            </div>
-            <div class="line_news">
-                <div class="thumb_img">
-                    <img src="<%=DocLibUrl%>/images.jpg" /></div>
-                <div class="name_news">
-                    <a href="#">Ủy ban nhân dân tỉnh Quảng Ninh ban điện khẩn về triển khai XDCB trên địa
-                        bàn tỉnh</a> <span class="time_update">(Ngày 20 - 03 - 2012)</span>
-                </div>
-                <div class="cleaner">
-                </div>
-            </div>
-            <div class="line_news">
-                <div class="thumb_img">
-                    <img src="<%=DocLibUrl%>/images.jpg" /></div>
-                <div class="name_news">
-                    <a href="#">Ủy ban nhân dân tỉnh Quảng Ninh ban điện khẩn về triển khai XDCB trên địa
-                        bàn tỉnh</a> <span class="time_update">(Ngày 20 - 03 - 2012)</span>
-                </div>
-                <div class="cleaner">
-                </div>
-            </div>
-            <!--</marquee>-->
+            <asp:Repeater ID="rptHotNews" runat="server" OnItemDataBound="rptHotNews_ItemDataBound">
+                <ItemTemplate>
+                    <div class="line_news">
+                        <div class="thumb_img">
+                            <img id="imgThumb" runat="server" alt="" width="100" height="78" /></div>
+                        <div class="name_news">
+                            <a id="aLink" runat="server">
+                                <%#Eval(FieldsName.NewsList.InternalName.Title) %></a> <span class="time_update">(Ngày
+                                    <%#Eval(FieldsName.NewsList.InternalName.PostedDate) %>)</span>
+                        </div>
+                        <div class="cleaner">
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
             <div class="read_more">
                 <a href="#">&raquo; Xem thêm</a></div>
         </div>
