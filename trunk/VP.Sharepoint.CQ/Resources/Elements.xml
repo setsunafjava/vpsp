@@ -137,5 +137,6 @@
     <File Path="Resources\UserControls\FrontEnd\FileDetailUC.ascx" Url="FileDetailUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\AboutUC.ascx" Url="AboutUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\VanBanDetailUC.ascx" Url="VanBanDetailUC.ascx" />
-  </Module>
+  <File Path="Resources\UserControls\FrontEnd\InitUC.ascx" Url="InitUC.ascx" />
+</Module>
 </Elements>

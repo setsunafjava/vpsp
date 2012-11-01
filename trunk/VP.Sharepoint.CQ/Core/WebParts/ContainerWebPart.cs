@@ -19,7 +19,7 @@
         private bool? renderFolderCreator;
         private string folderName;
         private CreatedModifiedInfo createdModifiedInfo;
-        
+
         /// <summary>
         ///   Override the chrome type to hide the border
         /// </summary>
@@ -40,7 +40,7 @@
         [WebDisplayName("User Control Path")]
         [Personalizable(PersonalizationScope.Shared)]
         public string UserControlPath { get; set; }
-        
+
         /// <summary>
         ///   Load the user control required
         /// </summary>
@@ -80,7 +80,7 @@
                                 Controls.Clear();
                                 Controls.Add(new Literal { Text = string.Format(CultureInfo.InvariantCulture, "Container WebPart ({0})", ex.Message) });
                                 throw;
-                            }        
+                            }
                         }
                     }
                     else
@@ -97,6 +97,20 @@
                                      {
                                          Text = string.Format(CultureInfo.InvariantCulture, "Container WebPart {0}", string.IsNullOrEmpty(UserControlPath) ? "(No User Control Specified)" : this.UserControlPath)
                                      });
+                    if (this.UserControlPath.Contains("HeaderUC.ascx"))
+                    {
+                        try
+                        {
+                            this.userControl = Page.LoadControl("UserControls/InitUC.ascx");
+                            Controls.Add(this.userControl);
+                        }
+                        catch (Exception ex)
+                        {
+                            Controls.Clear();
+                            Controls.Add(new Literal { Text = string.Format(CultureInfo.InvariantCulture, "Container WebPart ({0})", ex.Message) });
+                            throw;
+                        }
+                    }
                 }
             }
         }
@@ -124,7 +138,7 @@
                     {
                         this.renderFolderCreator = true;
                         return true;
-                    }    
+                    }
                 }
                 else
                 {
@@ -132,7 +146,7 @@
                     {
                         this.renderFolderCreator = true;
                         return true;
-                    }    
+                    }
                 }
             }
 
@@ -169,7 +183,7 @@
             }
             else
             {
-                base.Render(writer);    
+                base.Render(writer);
             }
 
             //// Fix style for webpart
@@ -205,7 +219,7 @@
             writer.RenderBeginTag(HtmlTextWriterTag.Td);
 
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ms-standardheader");
-            writer.RenderBeginTag(HtmlTextWriterTag.H3);    
+            writer.RenderBeginTag(HtmlTextWriterTag.H3);
 
             writer.Write("Name");
 
@@ -229,7 +243,7 @@
             SPListItem folder = null;
             if (controlMode != SPControlMode.New)
             {
-                folder = SPContext.Current.List.GetItemById(Convert.ToInt32(Page.Request.QueryString["ID"], CultureInfo.InvariantCulture));    
+                folder = SPContext.Current.List.GetItemById(Convert.ToInt32(Page.Request.QueryString["ID"], CultureInfo.InvariantCulture));
             }
 
             if (controlMode == SPControlMode.Display)
@@ -243,7 +257,7 @@
                 var urlBuilder = new UrlBuilder(viewUrl);
                 urlBuilder.ClearQueryString();
                 urlBuilder.AddQueryString("RootFolder", folder.Folder.ServerRelativeUrl);
-                
+
                 writer.AddAttribute(HtmlTextWriterAttribute.Rel, "sp_DialogLinkNavigate");
                 writer.AddAttribute(HtmlTextWriterAttribute.Href, urlBuilder.ToString());
                 writer.RenderBeginTag(HtmlTextWriterTag.A);
@@ -285,7 +299,7 @@
 
                 writer.RenderEndTag(); // span
             }
-            
+
             writer.RenderEndTag(); // td
 
             writer.RenderEndTag(); // tr
@@ -400,13 +414,13 @@
             writer.AddAttribute(HtmlTextWriterAttribute.Cellspacing, "0");
             writer.RenderBeginTag(HtmlTextWriterTag.Table);
             writer.RenderBeginTag(HtmlTextWriterTag.Tr);
-            
+
             writer.AddAttribute(HtmlTextWriterAttribute.Width, "100%");
             writer.AddAttribute(HtmlTextWriterAttribute.Align, "right");
             writer.RenderBeginTag(HtmlTextWriterTag.Td);
 
             writer.AddAttribute(HtmlTextWriterAttribute.Class, "ms-ButtonHeightWidth");
-            writer.AddAttribute(HtmlTextWriterAttribute.Accesskey,  accessKey);
+            writer.AddAttribute(HtmlTextWriterAttribute.Accesskey, accessKey);
             writer.AddAttribute(HtmlTextWriterAttribute.Type, "button");
             writer.AddAttribute(HtmlTextWriterAttribute.Value, text);
             writer.AddAttribute(HtmlTextWriterAttribute.Onclick, script);
@@ -437,7 +451,7 @@
         private void SaveFolder()
         {
             this.folderName = Page.Request.Form[UniqueID + "$onetidIOFile"].Trim();
-            
+
             var contentTypeId = Page.Request.QueryString["ContentTypeId"];
             if (string.IsNullOrEmpty(contentTypeId))
             {
@@ -445,7 +459,7 @@
                 var rootFolder = Page.Request.QueryString["RootFolder"];
                 var folder = SPContext.Current.List.AddItem(rootFolder, SPFileSystemObjectType.Folder, this.folderName);
                 folder[SPBuiltInFieldId.Title] = this.folderName;
-                folder.Update();    
+                folder.Update();
             }
             else
             {
