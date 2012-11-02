@@ -10,6 +10,22 @@ namespace VP.Sharepoint.CQ.Common
 {
     public class AdvBO
     {
+        public static Dictionary<string, string> AdvPosition = new Dictionary<string, string> { {"advhomeleft1","Trang chủ - bên trái - thứ nhất"},
+                                                                                                {"advhomeleft2","Trang chủ - bên trái - thứ 2"},
+                                                                                                {"advhomeleft3","Trang chủ - bên trái - thứ 3"},
+                                                                                                {"advhomeleft4","Trang chủ - bên trái - thứ 4"},
+                                                                                                {"advhomeleft5","Trang chủ - bên trái - thứ 5"},
+                                                                                                {"advhomeleft6","Trang chủ - bên trái - thứ 6"},
+                                                                                                {"advhomecenter","Trang chủ - ở giữa"},
+                                                                                                {"advhomeright","Trang chủ - bên phải"},
+                                                                                                {"advnews","Trang tin - bên phải"},
+                                                                                                {"advnewsdetail","Trang tin chi tiết - bên phải"},
+                                                                                                {"advorganization","Trang sơ đồ tổ chức - bên phải"},
+                                                                                                {"advlibrary","Trang thư viện file - bên phải"},
+                                                                                                {"advlibrarydetail","Trang thư viện chi tiết - bên phải"},
+                                                                                                {"advabout","Trang giới thiệu - bên phải"},
+                                                                                                {"advdocument","Trang văn bản - bên phải"},
+                                                                                                {"advstatistic","Trang thống kê - bên phải"}};
         /// <summary>
         /// BindMenu
         /// </summary>
