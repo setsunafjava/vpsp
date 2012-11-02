@@ -41,7 +41,22 @@
             <div class="authoringRegion1">
                 <span class="siteActionMenu">
                     <!-- Start Hide Ribbon for Anonymous Users - Only the editor if logged in would be able to see the ribbon -->
-		<Sharepoint:SPSecurityTrimmedControl ID="SPSecurityTrimmedControl1" runat="server" Permissions="AddAndCustomizePages"><!-- Start Ribbon Area --><SharePoint:SPNoScript ID="SPNoScript1" runat="server"/><div id="TurnOnAccessibility" style="display:none" class="s4-notdlg noindex"><a id="linkTurnOnAcc" href="#" class="ms-TurnOnAcc" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;"><SharePoint:EncodedLiteral ID="EncodedLiteral1" runat="server" text="<%$Resources:wss,master_turnonaccessibility%>" EncodeMethod="HtmlEncode"/></a></div><div id="TurnOffAccessibility" style="display:none" class="s4-notdlg noindex"><a id="linkTurnOffAcc" href="#" class="ms-TurnOffAcc" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;"><SharePoint:EncodedLiteral ID="EncodedLiteral2" runat="server" text="<%$Resources:wss,master_turnoffaccessibility%>" EncodeMethod="HtmlEncode"/></a></div><div class="s4-notdlg s4-skipribbonshortcut noindex"><a id="A1" href="javascript:;" onclick="javascript:this.href='#startNavigation';" class="ms-SkiptoNavigation" accesskey="<%$Resources:wss,skipribbon_accesskey%>" runat="server"><SharePoint:EncodedLiteral ID="EncodedLiteral3" runat="server" text="<%$Resources:wss,skipRibbonCommandsLink%>" EncodeMethod="HtmlEncode"/></a></div><div class="s4-notdlg noindex"><a id="A2" href="javascript:;" onclick="javascript:this.href='#mainContent';" class="ms-SkiptoMainContent" accesskey="<%$Resources:wss,maincontent_accesskey%>" runat="server"><SharePoint:EncodedLiteral ID="EncodedLiteral4" runat="server" text="<%$Resources:wss,mainContentLink%>" EncodeMethod="HtmlEncode"/></a></div><a href="javascript:;" id="HiddenAnchor" style="display:none;"></a><SharePoint:DelegateControl ID="DelegateControl1" runat="server" ControlId="GlobalNavigation"/><div id="s4-ribbonrow" class="s4-pr s4-ribbonrowhidetitle"><div id="s4-ribboncont"><!-- Start Main Ribbon Control --><SharePoint:SPRibbon ID="SPRibbon1" runat="server" PlaceholderElementId="RibbonContainer" CssFile=""><SharePoint:SPRibbonPeripheralContent ID="SPRibbonPeripheralContent1" runat="server" Location="TabRowLeft" CssClass="ms-siteactionscontainer s4-notdlg"><span class="ms-siteactionsmenu" id="siteactiontd"><SharePoint:SiteActions runat="server" accesskey="<%$Resources:wss,tb_SiteActions_AK%>" id="SiteActionsMenuMain" PrefixHtml="" SuffixHtml="" MenuNotVisibleHtml="&amp;nbsp;"><CustomTemplate>
+		<Sharepoint:SPSecurityTrimmedControl ID="SPSecurityTrimmedControl1" runat="server" Permissions="AddAndCustomizePages">
+        <!-- Start Ribbon Area -->
+        <SharePoint:SPNoScript ID="SPNoScript1" runat="server"/>
+        <div id="TurnOnAccessibility" style="display:none" class="s4-notdlg noindex">
+        <a id="linkTurnOnAcc" href="#" class="ms-TurnOnAcc" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
+        <SharePoint:EncodedLiteral ID="EncodedLiteral1" runat="server" text="<%$Resources:wss,master_turnonaccessibility%>" EncodeMethod="HtmlEncode"/></a></div>
+        <div id="TurnOffAccessibility" style="display:none" class="s4-notdlg noindex"><a id="linkTurnOffAcc" href="#" class="ms-TurnOffAcc" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
+        <SharePoint:EncodedLiteral ID="EncodedLiteral2" runat="server" text="<%$Resources:wss,master_turnoffaccessibility%>" EncodeMethod="HtmlEncode"/></a></div><div class="s4-notdlg s4-skipribbonshortcut noindex">
+        <a id="A1" href="javascript:;" onclick="javascript:this.href='#startNavigation';" class="ms-SkiptoNavigation" accesskey="<%$Resources:wss,skipribbon_accesskey%>" runat="server">
+        <SharePoint:EncodedLiteral ID="EncodedLiteral3" runat="server" text="<%$Resources:wss,skipRibbonCommandsLink%>" EncodeMethod="HtmlEncode"/></a></div><div class="s4-notdlg noindex">
+        <a id="A2" href="javascript:;" onclick="javascript:this.href='#mainContent';" class="ms-SkiptoMainContent" accesskey="<%$Resources:wss,maincontent_accesskey%>" runat="server">
+        <SharePoint:EncodedLiteral ID="EncodedLiteral4" runat="server" text="<%$Resources:wss,mainContentLink%>" EncodeMethod="HtmlEncode"/></a></div><a href="javascript:;" id="HiddenAnchor" style="display:none;"></a>
+        <SharePoint:DelegateControl ID="DelegateControl1" runat="server" ControlId="GlobalNavigation"/><div id="s4-ribbonrow" class="s4-pr s4-ribbonrowhidetitle"><div id="s4-ribboncont"><!-- Start Main Ribbon Control -->
+        <SharePoint:SPRibbon ID="SPRibbon1" runat="server" PlaceholderElementId="RibbonContainer" CssFile="">
+        <SharePoint:SPRibbonPeripheralContent ID="SPRibbonPeripheralContent1" runat="server" Location="TabRowLeft" CssClass="ms-siteactionscontainer s4-notdlg"><span class="ms-siteactionsmenu" id="siteactiontd">
+        <SharePoint:SiteActions runat="server" accesskey="<%$Resources:wss,tb_SiteActions_AK%>" id="SiteActionsMenuMain" PrefixHtml="" SuffixHtml="" MenuNotVisibleHtml="&amp;nbsp;"><CustomTemplate>
 						<SharePoint:FeatureMenuTemplate ID="FeatureMenuTemplate1" runat="server" FeatureScope="Site" Location="Microsoft.SharePoint.StandardMenu" GroupId="SiteActions" UseShortId="true">
 							<SharePoint:MenuItemTemplate runat="server" id="MenuItem_EditPage"
 								Text="<%$Resources:wss,siteactions_editpage%>"
@@ -152,7 +167,9 @@
 								ShowOnlyIfUIVersionConfigurationEnabled="true" />
 						</SharePoint:FeatureMenuTemplate>
 						</CustomTemplate>
-					  </SharePoint:SiteActions></span><!-- Start Global Navigation DHTML Popout Menu --><asp:ContentPlaceHolder id="PlaceHolderGlobalNavigation" runat="server"><SharePoint:PopoutMenu
+					  </SharePoint:SiteActions></span>
+                      <!-- Start Global Navigation DHTML Popout Menu --><asp:ContentPlaceHolder id="PlaceHolderGlobalNavigation" runat="server">
+                      <SharePoint:PopoutMenu
 									runat="server"
 									ID="GlobalBreadCrumbNavPopout"
 									IconUrl="/_layouts/images/fgimg.png"
@@ -184,7 +201,34 @@
 											RTLNodeImageHeight=16
 											RTLNodeImageUrl="/_layouts/images/fgimg.png"
 											HideInteriorRootNodes="true"
-											SkipLinkText="" /></asp:ContentPlaceHolder></SharePoint:PopoutMenu><div class="s4-die"><asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" runat="server" Visible="false"></asp:ContentPlaceHolder></div></asp:ContentPlaceHolder><!-- End Global Navigation DHTML Popout Menu --><!-- Save Button at top of ribbon --><SharePoint:PageStateActionButton id="PageStateActionButton" runat="server" Visible="false" /></SharePoint:SPRibbonPeripheralContent><!-- Start Ribbon Right Side Content--><SharePoint:SPRibbonPeripheralContent runat="server" Location="TabRowRight" ID="RibbonTabRowRight" CssClass="s4-trc-container s4-notdlg"><!-- GlobalSiteLink0 delegate default shows nothing --><SharePoint:DelegateControl runat="server" ID="GlobalDelegate0" ControlId="GlobalSiteLink0" /><a href="#" tabindex="-1" style="display:none"></a><a href="#" tabindex="-1" style="display:none"></a><!-- Start Welcome/Login Control --><div class="s4-trc-container-menu"><div><wssuc:Welcome id="IdWelcome" runat="server" EnableViewState="false"></wssuc:Welcome><!-- MultiLingual UI Menu --><wssuc:MUISelector ID="IdMuiSelector" runat="server"/></div></div><!-- End Welcome/Login Control --><!-- GlobalSiteLink2 delegate default shows nothing --><SharePoint:DelegateControl ControlId="GlobalSiteLink2" ID="GlobalDelegate2" Scope="Farm" runat="server" /><!-- Link to launch developer dashboard if it is activated by admin --><span><span class="s4-devdashboard"><Sharepoint:DeveloperDashboardLauncher ID="DeveloperDashboardLauncher" NavigateUrl="javascript:ToggleDeveloperDashboard()" runat="server" ImageUrl="/_layouts/images/fgimg.png" Text="<%$Resources:wss,multipages_launchdevdashalt_text%>" OffsetX=0 OffsetY=222 Height=16 Width=16 /></span></span></SharePoint:SPRibbonPeripheralContent><!-- End Ribbon Right Side Content--></SharePoint:SPRibbon><!-- End Main Ribbon Control --></div><!-- Dynamic notification area --><div id="notificationArea" class="s4-noti"></div><!-- Start Old Navigation Delegate --><asp:ContentPlaceHolder ID="SPNavigation" runat="server"><SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" Id="PublishingConsoleDelegate"></SharePoint:DelegateControl></asp:ContentPlaceHolder><!-- End Old Navigation Delegate --><!-- Start Top Webpart Panel --><div id="WebPartAdderUpdatePanelContainer"><asp:UpdatePanel ID="WebPartAdderUpdatePanel" UpdateMode="Conditional" ChildrenAsTriggers="false" runat="server"><ContentTemplate><WebPartPages:WebPartAdder ID="WebPartAdder" runat="server" />
+											SkipLinkText="" /></asp:ContentPlaceHolder></SharePoint:PopoutMenu>
+                                            <div class="s4-die"><asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" runat="server" Visible="false">
+                                            </asp:ContentPlaceHolder></div></asp:ContentPlaceHolder><!-- End Global Navigation DHTML Popout Menu -->
+                                            <!-- Save Button at top of ribbon -->
+                                            <SharePoint:PageStateActionButton id="PageStateActionButton" runat="server" Visible="false" />
+                                            </SharePoint:SPRibbonPeripheralContent>
+                                            <!-- Start Ribbon Right Side Content-->
+                                            <SharePoint:SPRibbonPeripheralContent runat="server" Location="TabRowRight" ID="RibbonTabRowRight" CssClass="s4-trc-container s4-notdlg">
+                                            <!-- GlobalSiteLink0 delegate default shows nothing -->
+                                            <SharePoint:DelegateControl runat="server" ID="GlobalDelegate0" ControlId="GlobalSiteLink0" />
+                                            <a href="#" tabindex="-1" style="display:none"></a><a href="#" tabindex="-1" style="display:none"></a>
+                                            <!-- Start Welcome/Login Control -->
+                                            <div class="s4-trc-container-menu"><div><wssuc:Welcome id="IdWelcome" runat="server" EnableViewState="false"></wssuc:Welcome>
+                                            <!-- MultiLingual UI Menu --><wssuc:MUISelector ID="IdMuiSelector" runat="server"/></div></div>
+                                            <!-- End Welcome/Login Control --><!-- GlobalSiteLink2 delegate default shows nothing -->
+                                            <SharePoint:DelegateControl ControlId="GlobalSiteLink2" ID="GlobalDelegate2" Scope="Farm" runat="server" />
+                                            <!-- Link to launch developer dashboard if it is activated by admin -->
+                                            <span><span class="s4-devdashboard"><Sharepoint:DeveloperDashboardLauncher ID="DeveloperDashboardLauncher" NavigateUrl="javascript:ToggleDeveloperDashboard()" runat="server" ImageUrl="/_layouts/images/fgimg.png" Text="<%$Resources:wss,multipages_launchdevdashalt_text%>" OffsetX=0 OffsetY=222 Height=16 Width=16 /></span></span>
+                                            </SharePoint:SPRibbonPeripheralContent><!-- End Ribbon Right Side Content-->
+                                            </SharePoint:SPRibbon><!-- End Main Ribbon Control --></div><!-- Dynamic notification area -->
+                                            <div id="notificationArea" class="s4-noti"></div><!-- Start Old Navigation Delegate -->
+                                            <asp:ContentPlaceHolder ID="SPNavigation" runat="server">
+                                            <SharePoint:DelegateControl runat="server" ControlId="PublishingConsole" Id="PublishingConsoleDelegate"></SharePoint:DelegateControl>
+                                            </asp:ContentPlaceHolder><!-- End Old Navigation Delegate -->
+                                            <!-- Start Top Webpart Panel -->
+                                            <div id="WebPartAdderUpdatePanelContainer">
+                                            <asp:UpdatePanel ID="WebPartAdderUpdatePanel" UpdateMode="Conditional" ChildrenAsTriggers="false" runat="server"><ContentTemplate>
+                                            <WebPartPages:WebPartAdder ID="WebPartAdder" runat="server" />
 					</ContentTemplate><Triggers>
 						<asp:PostBackTrigger ControlID="WebPartAdder" />
 					</Triggers>
@@ -227,6 +271,11 @@ those that are overridden by your page layouts. --%>
         <asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" runat ="server"/>
         <asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" runat="server"/>
     </asp:Panel>
+    <asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server">
+	  <SharePoint:FormDigest runat="server"/>
+  </asp:ContentPlaceHolder>
+   <input type="text" name="__spText1" title="text" style="display:none;" />
+   <input type="text" name="__spText2" title="text" style="display:none;" />
   </form>
   <asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server"/>
 	<SharePoint:WarnOnUnsupportedBrowsers runat="server"/>
