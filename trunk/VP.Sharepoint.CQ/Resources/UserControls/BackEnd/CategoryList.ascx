@@ -54,6 +54,15 @@
                 <SharePoint:RadioButtonChoiceField runat="server" ID="txtStatus" FieldName="Status"/>
             </td>
         </tr>
+         <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblNewsPossition" runat="server" FieldName="NewsPossition" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:DropDownChoiceField runat="server" ID="ddlNewsPossition" FieldName="NewsPossition"/>
+            </td>
+        </tr>
+
         <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblCatOrder" runat="server" FieldName="Order" />

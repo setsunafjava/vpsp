@@ -67,7 +67,7 @@ namespace VP.Sharepoint.CQ.UserControls
             CurrentItem[FieldsName.CategoryList.InternalName.ParentName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList,
                 FieldsName.CategoryList.InternalName.CategoryID, ddlCategory.SelectedValue, "Text", FieldsName.CategoryList.InternalName.Title);
             //update category level for all children
-            var newLevel = Convert.ToInt32(Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList,
+            var newLevel = Utilities.ConvertToInt(Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList,
                 FieldsName.CategoryList.InternalName.CategoryID, ddlCategory.SelectedValue, "Text", FieldsName.CategoryList.InternalName.CategoryLevel)) + 1;
 
             if (CurrentMode.Equals(SPControlMode.Edit) && !newLevel.ToString().Equals(hidLevel.Value))

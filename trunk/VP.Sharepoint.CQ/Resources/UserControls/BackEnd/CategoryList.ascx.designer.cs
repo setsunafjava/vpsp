@@ -112,6 +112,24 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::Microsoft.SharePoint.WebControls.RadioButtonChoiceField txtStatus;
         
         /// <summary>
+        /// lblNewsPossition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.FieldLabel lblNewsPossition;
+        
+        /// <summary>
+        /// ddlNewsPossition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.DropDownChoiceField ddlNewsPossition;
+        
+        /// <summary>
         /// lblCatOrder control.
         /// </summary>
         /// <remarks>

@@ -1439,6 +1439,15 @@ namespace VP.Sharepoint.CQ.Common
             return Regex.Replace
               (inputString, HTML_TAG_PATTERN, string.Empty);
         }
+        public static int ConvertToInt(string strVal)
+        {
+            if (string.IsNullOrEmpty(strVal))
+            {
+                return 0;
+            }
+            return Convert.ToInt32(strVal);
+        }
+
         #endregion
     }
 }
