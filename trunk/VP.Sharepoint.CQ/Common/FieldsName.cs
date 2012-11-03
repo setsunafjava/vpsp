@@ -381,5 +381,39 @@
             }
         }
         #endregion
+
+        #region Adv list
+        public class AdvList
+        {
+            // Nested Adv list
+            public class InternalName
+            {
+                public const string Title = "Title";
+                public const string Description = "Description";
+                public const string AdvID = "AdvID";
+                public const string AdvType = "AdvType";
+                public const string AdvFile = "AdvType";
+                public const string AdvClick = "AdvClick";
+                public const string AdvOpenType = "AdvOpenType";
+                public const string AdvUrl = "AdvUrl";
+                public const string AdvWidth = "AdvWidth";
+                public const string AdvHeight = "AdvHeight";
+                public const string AdvUrl = "AdvUrl";
+                public const string CustomerName = "CustomerName";
+                public const string CustomerAddress = "CustomerName";
+                public const string CustomerPhone = "CustomerPhone";
+                public const string CustomerMobile = "CustomerMobile";
+            }
+
+            public class DisplayName
+            {
+                public const string Title = "Tên quảng cáo";
+                public const string Description = "Mô tả";
+                public const string Type = "Loại album";
+                public const string Order = "Thứ tự";
+                public const string Status = "Trạng thái";
+            }
+        }
+        #endregion
     }
 }
