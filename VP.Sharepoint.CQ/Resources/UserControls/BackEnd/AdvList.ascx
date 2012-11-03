@@ -110,6 +110,14 @@
         </tr>
         <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="FieldLabel15" runat="server" FieldName="AdvOrder" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:NumberField runat="server" ID="txtAdvOrder" FieldName="AdvOrder"/>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="FieldLabel11" runat="server" FieldName="CustomerName" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">

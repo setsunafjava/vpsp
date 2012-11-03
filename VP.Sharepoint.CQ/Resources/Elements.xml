@@ -141,5 +141,6 @@
 <File Path="Resources\UserControls\BackEnd\ExternalNews.ascx" Url="ExternalNews.ascx" />
 <File Path="Resources\UserControls\BackEnd\AdvList.ascx" Url="AdvList.ascx" />
 <File Path="Resources\Css\player.swf" Url="Resources/Css/player.swf" />
+<File Path="Resources\Css\stylish_slim.swf" Url="Resources/Css/stylish_slim.swf" />
 </Module>
 </Elements>

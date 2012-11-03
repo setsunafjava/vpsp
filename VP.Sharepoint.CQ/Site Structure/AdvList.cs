@@ -45,6 +45,7 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.AdvList.InternalName.AdvUrl, FieldsName.AdvList.DisplayName.AdvUrl) { Required = true });
             helper.AddField(new NumberFieldCreator(FieldsName.AdvList.InternalName.AdvWidth, FieldsName.AdvList.DisplayName.AdvWidth) { Required = true });
             helper.AddField(new NumberFieldCreator(FieldsName.AdvList.InternalName.AdvHeight, FieldsName.AdvList.DisplayName.AdvHeight) { Required = true });
+            helper.AddField(new NumberFieldCreator(FieldsName.AdvList.InternalName.AdvOrder, FieldsName.AdvList.DisplayName.AdvOrder) { Required = true, DefaultValue = "0" });
             helper.AddField(new DateTimeFieldCreator(FieldsName.AdvList.InternalName.AdvStartDate, FieldsName.AdvList.DisplayName.AdvStartDate) { DisplayFormat = SPDateTimeFieldFormatType.DateTime, Required = true, DefaultValue = "[Today]" });
             helper.AddField(new DateTimeFieldCreator(FieldsName.AdvList.InternalName.AdvEndDate, FieldsName.AdvList.DisplayName.AdvEndDate) { DisplayFormat = SPDateTimeFieldFormatType.DateTime, Required = true, DefaultValue = "[Today]" });
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.AdvList.InternalName.CustomerName, FieldsName.AdvList.DisplayName.CustomerName));

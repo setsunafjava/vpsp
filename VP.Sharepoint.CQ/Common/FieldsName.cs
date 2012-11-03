@@ -410,6 +410,7 @@
                 public const string AdvDisplay = "AdvDisplay";
                 public const string AdvPosition = "AdvPosition";
                 public const string AdvStatus = "AdvStatus";
+                public const string AdvOrder = "AdvOrder";
             }
 
             public class DisplayName
@@ -434,6 +435,7 @@
                 public const string AdvDisplay = "Hiển thị theo";
                 public const string AdvPosition = "Vị trí hiển thị";
                 public const string AdvStatus = "Trạng thái";
+                public const string AdvOrder = "Thứ tự";
             }
         }
         #endregion
