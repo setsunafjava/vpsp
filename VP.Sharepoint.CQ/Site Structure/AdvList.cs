@@ -59,6 +59,27 @@ namespace VP.Sharepoint.CQ
             choiceField.Required = true;
             helper.AddField(choiceField);
 
+            choiceField = new ChoiceFieldCreator(FieldsName.AdvList.InternalName.AdvPosition, FieldsName.AdvList.DisplayName.AdvPosition);
+            choiceField.Choices.AddRange(new[] { "Trang chủ - bên trái - thứ nhất",
+                                                "Trang chủ - bên trái - thứ 2",
+                                                "Trang chủ - bên trái - thứ 3",
+                                                "Trang chủ - bên trái - thứ 4",
+                                                "Trang chủ - bên trái - thứ 5",
+                                                "Trang chủ - bên trái - thứ 6",
+                                                "Trang chủ - ở giữa",
+                                                "Trang chủ - bên phải",
+                                                "Trang tin - bên phải",
+                                                "Trang tin chi tiết - bên phải",
+                                                "Trang sơ đồ tổ chức - bên phải",
+                                                "Trang thư viện file - bên phải",
+                                                "Trang thư viện chi tiết - bên phải",
+                                                "Trang giới thiệu - bên phải",
+                                                "Trang văn bản - bên phải",
+                                                "Trang thống kê - bên phải" });
+            choiceField.DefaultValue = "Trang chủ - bên trái - thứ nhất";
+            choiceField.Required = true;
+            helper.AddField(choiceField);
+
             SPList list = helper.Apply();
             SPField fieldTitle = list.Fields.GetField(FieldsName.AdvList.InternalName.Title);
             if (fieldTitle!=null)
