@@ -78,7 +78,7 @@ namespace VP.Sharepoint.CQ.UserControls
             CurrentItem[FieldsName.MenuList.InternalName.ParentName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.MenuList, 
                 FieldsName.MenuList.InternalName.MenuID, ddlParentName.SelectedValue, "Text", FieldsName.MenuList.InternalName.Title);
             //update menulevel for all children
-            var newLevel = Convert.ToInt32(Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.MenuList,
+            var newLevel = Utilities.ConvertToInt(Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.MenuList,
                 FieldsName.MenuList.InternalName.MenuID, ddlParentName.SelectedValue, "Text", FieldsName.MenuList.InternalName.MenuLevel)) + 1;
             if (CurrentMode.Equals(SPControlMode.Edit) && !newLevel.ToString().Equals(hidMenuLevel.Value))
             {
