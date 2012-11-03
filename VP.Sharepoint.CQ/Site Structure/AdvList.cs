@@ -80,6 +80,12 @@ namespace VP.Sharepoint.CQ
             choiceField.Required = true;
             helper.AddField(choiceField);
 
+            choiceField = new ChoiceFieldCreator(FieldsName.AdvList.InternalName.AdvStatus, FieldsName.AdvList.DisplayName.AdvStatus);
+            choiceField.Choices.AddRange(new[] { "Ẩn", "Hiện" });
+            choiceField.DefaultValue = "Hiện";
+            choiceField.Required = true;
+            helper.AddField(choiceField);
+
             SPList list = helper.Apply();
             SPField fieldTitle = list.Fields.GetField(FieldsName.AdvList.InternalName.Title);
             if (fieldTitle!=null)
