@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="VP.Sharepoint.CQ.Common" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -13,12 +14,16 @@
 <div class="mod_content_News_1">
     <div class="bg_title_ModNews">
         <div class="cate_News_Mod1">
-            <div>
-                Tin Giáo dục</div>
-            <div>
-                Dành cho Giáo viên</div>
-            <div>
-                Dành cho học sinh</div>
+            <asp:Repeater ID="rptCate" runat="server" OnItemDataBound="rptCate_ItemDataBound">
+                <ItemTemplate>
+                    <div>
+                        <%#Eval(FieldsName.CategoryList.InternalName.Title) %></div>
+                    <%--<div>
+                        Dành cho Giáo viên</div>
+                    <div>
+                        Dành cho học sinh</div>--%>
+                </ItemTemplate>
+            </asp:Repeater>
             <div class="cleaner">
             </div>
         </div>
@@ -31,11 +36,15 @@
                 </div>
                 <div class="list_other_news">
                     <ul>
+                        <asp:Repeater ID="rptNews1" runat="server">
+                            <ItemTemplate>
+                                <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <%--<li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
                         <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
                         <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>--%>
                     </ul>
                 </div>
             </div>
@@ -47,11 +56,15 @@
                 </div>
                 <div class="list_other_news">
                     <ul>
+                        <asp:Repeater ID="rptNews2" runat="server">
+                            <ItemTemplate>
+                                <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <%--<li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
                         <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
                         <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>--%>
                     </ul>
                 </div>
             </div>
@@ -63,11 +76,15 @@
                 </div>
                 <div class="list_other_news">
                     <ul>
+                        <asp:Repeater ID="rptNews3" runat="server">
+                            <ItemTemplate>
+                                <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                        <%--<li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
                         <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
                         <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>--%>
                     </ul>
                 </div>
             </div>

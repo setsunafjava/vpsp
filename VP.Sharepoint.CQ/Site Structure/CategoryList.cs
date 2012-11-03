@@ -28,11 +28,11 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.CategoryLevel, FieldsName.CategoryList.DisplayName.CategoryLevel));
             helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.Type, FieldsName.CategoryList.DisplayName.Type)
             {
-                Choices = { "Menu", "Tin tức", "Văn bản", "Thư viện ảnh", "Thư viện video", "Tài nguyên" },
-                DefaultValue = "Menu"
+                Choices = {"Tin tức", "Văn bản", "Thư viện ảnh", "Thư viện video", "Tài nguyên" },
+                DefaultValue = "Tin tức"
             });
             helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.Status, FieldsName.CategoryList.DisplayName.Status) { Choices = { "Ẩn", "Hiển thị" }, DefaultValue = "Hiển thị" });
-            helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.NewsPossition, FieldsName.CategoryList.DisplayName.NewsPossition) { Choices = { "Trang chủ - box tin to 1", "Trang chủ - box tin to 2", "Trang chủ - box tin nhỏ 1", "Trang chủ - box tin nhỏ 2", "Trang chủ - box tin nhỏ 3" } });
+            helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.NewsPossition, FieldsName.CategoryList.DisplayName.NewsPossition) { Choices = { "--Chọn vị trí--","Trang chủ - box tin to 1", "Trang chủ - box tin to 2", "Trang chủ - box tin nhỏ 1", "Trang chủ - box tin nhỏ 2", "Trang chủ - box tin nhỏ 3" }, DefaultValue="--Chọn vị trí--" });
 
             helper.AddField(new NumberFieldCreator(FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.DisplayName.Order));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ImageDesc, FieldsName.CategoryList.DisplayName.ImageDesc));

@@ -39,10 +39,10 @@
         
         <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblType" runat="server" FieldName="Type" />
+                <SharePoint:FieldLabel ID="lblType" runat="server" FieldName="CategoryType" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:DropDownChoiceField runat="server" ID="ddlType" FieldName="Type"/>
+                <SharePoint:DropDownChoiceField runat="server" ID="ddlType" FieldName="CategoryType"/>
             </td>
         </tr>
                

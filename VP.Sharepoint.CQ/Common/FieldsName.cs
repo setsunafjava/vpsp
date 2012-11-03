@@ -312,7 +312,7 @@
                 public const string ParentID = "ParentID";
                 public const string ParentName = "ParentName";
                 public const string CategoryLevel = "CategoryLevel";
-                public const string Type = "Type";
+                public const string Type = "CategoryType";
                 public const string Status = "Status";
                 public const string NewsPossition = "NewsPossition";
                 public const string Order = "Order";
