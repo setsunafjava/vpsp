@@ -15,20 +15,20 @@ namespace VP.Sharepoint.CQ
 
             var helper = new ListHelper(web)
                         {
-                            Title = ListsName.DisplayName.AdvList,
-                            Name = ListsName.InternalName.AdvList,
+                            Title = ListsName.DisplayName.AdvStatisticList,
+                            Name = ListsName.InternalName.AdvStatisticList,
                             OnQuickLaunch = false,
                             EnableAttachments = true
                         };
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.AlbumList.InternalName.Description, FieldsName.AlbumList.DisplayName.Description));
-            helper.AddField(new NumberFieldCreator(FieldsName.AlbumList.InternalName.Type, FieldsName.AlbumList.DisplayName.Type));
-            helper.AddField(new NumberFieldCreator(FieldsName.AlbumList.InternalName.Status, FieldsName.AlbumList.DisplayName.Status));
-            helper.AddField(new NumberFieldCreator(FieldsName.AlbumList.InternalName.Order, FieldsName.AlbumList.DisplayName.Order));            
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.AdvStatisticList.InternalName.AdvID, FieldsName.AdvStatisticList.DisplayName.AdvID));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.AdvStatisticList.InternalName.UserBrowser, FieldsName.AdvStatisticList.DisplayName.UserBrowser));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.AdvStatisticList.InternalName.UserIP, FieldsName.AdvStatisticList.DisplayName.UserIP));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.AdvStatisticList.InternalName.UserUrl, FieldsName.AdvStatisticList.DisplayName.UserUrl));            
             SPList list = helper.Apply();
-            SPField fieldTitle = list.Fields.GetField(FieldsName.AlbumList.InternalName.Title);
+            SPField fieldTitle = list.Fields.GetField(FieldsName.AdvStatisticList.InternalName.Title);
             if (fieldTitle!=null)
             {
-                fieldTitle.Title = FieldsName.AlbumList.DisplayName.Title;
+                fieldTitle.Title = FieldsName.AdvStatisticList.DisplayName.Title;
                 fieldTitle.Update();
             }
             list.Update();
