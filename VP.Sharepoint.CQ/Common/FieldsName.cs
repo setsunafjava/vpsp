@@ -394,7 +394,7 @@
                 public const string Description = "Description";
                 public const string AdvID = "AdvID";
                 public const string AdvType = "AdvType";
-                public const string AdvFile = "AdvType";
+                public const string AdvFile = "AdvFile";
                 public const string AdvClick = "AdvClick";
                 public const string AdvOpenType = "AdvOpenType";
                 public const string AdvUrl = "AdvUrl";
