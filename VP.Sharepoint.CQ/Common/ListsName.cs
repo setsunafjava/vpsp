@@ -28,6 +28,8 @@
             public const string CategoryImagesList = "CategoryImagesList";
             public const string GalleryImagesList = "GalleryImagesList";
             public const string IconLinkList = "IconLinkList";
+            public const string AdvList = "AdvList";
+            public const string AdvStatisticList = "AdvStatisticList";
         }
 
         // Display Name of list
@@ -56,6 +58,8 @@
             public const string CategoryImagesList = "Ảnh trích dẫn chuyên mục";
             public const string GalleryImagesList = "Thư viện ảnh files";
             public const string IconLinkList = "Liên kết icon";
+            public const string AdvList = "Quảng cáo";
+            public const string AdvStatisticList = "Thống kê quảng cáo";
         }
     }
 }
