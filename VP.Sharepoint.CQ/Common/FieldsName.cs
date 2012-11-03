@@ -403,7 +403,7 @@
                 public const string AdvStartDate = "AdvStartDate";
                 public const string AdvEndDate = "AdvEndDate";
                 public const string CustomerName = "CustomerName";
-                public const string CustomerAddress = "CustomerName";
+                public const string CustomerAddress = "CustomerAddress";
                 public const string CustomerPhone = "CustomerPhone";
                 public const string CustomerMobile = "CustomerMobile";
                 public const string AdvCat = "AdvCat";
@@ -428,7 +428,7 @@
                 public const string AdvEndDate = "Ngày kết thúc";
                 public const string CustomerName = "Tên khách hàng";
                 public const string CustomerAddress = "Địa chỉ khách hàng";
-                public const string CustomerPhone = "Số điện thọa";
+                public const string CustomerPhone = "Số điện thọai";
                 public const string CustomerMobile = "Số di động";
                 public const string AdvCat = "Chuyên mục";
                 public const string AdvDisplay = "Hiển thị theo";

@@ -23,7 +23,7 @@
                 <SharePoint:FieldLabel ID="lblDescription" runat="server" FieldName="Description" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:RichTextField runat="server" ID="txtDescription" FieldName="Description"/>
+                <SharePoint:NoteField runat="server" ID="txtDescription" FieldName="Description"/>
             </td>
         </tr>
         <tr>
@@ -40,6 +40,8 @@
             </td>
             <td class="ms-formbody" style="font-size: 11px;">                
                 <asp:FileUpload ID="fuFile" runat="server" />
+                <asp:Literal ID="ltrBr" runat="server"></asp:Literal>
+                <asp:HyperLink ID="linkFile" runat="server"></asp:HyperLink>
             </td>
         </tr>
         <tr>

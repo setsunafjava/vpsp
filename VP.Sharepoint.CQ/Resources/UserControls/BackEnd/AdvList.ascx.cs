@@ -24,7 +24,29 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (!Page.IsPostBack)
             {
-                
+                if (CurrentMode.Equals(Constants.DisplayForm))
+                {
+                    fuFile.Visible = false;
+                    linkFile.Visible = true;
+                    linkFile.Text = Convert.ToString(CurrentItem[FieldsName.AdvList.InternalName.AdvFile]);
+                    linkFile.NavigateUrl = WebUrl + "/" + Convert.ToString(CurrentItem[FieldsName.AdvList.InternalName.AdvFile]);
+                    linkFile.Target = "_blank";
+                    ltrBr.Text = "<br /><br />";
+                }
+                else if (CurrentMode.Equals(Constants.NewForm))
+                {
+                    fuFile.Visible = true;
+                    linkFile.Visible = false;
+                }
+                else if (CurrentMode.Equals(Constants.EditForm))
+                {
+                    fuFile.Visible = true;
+                    linkFile.Visible = true;
+                    linkFile.Text = Convert.ToString(CurrentItem[FieldsName.AdvList.InternalName.AdvFile]);
+                    linkFile.NavigateUrl = WebUrl + "/" + Convert.ToString(CurrentItem[FieldsName.AdvList.InternalName.AdvFile]);
+                    linkFile.Target = "_blank";
+                    ltrBr.Text = "<br /><br />";
+                }
             }
         }
 
