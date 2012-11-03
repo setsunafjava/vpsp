@@ -79,7 +79,7 @@ namespace VP.Sharepoint.CQ.UserControls
             }
             if (CurrentMode.Equals(Constants.NewForm))
             {
-                CurrentItem[FieldsName.AdvList.InternalName.AdvID] = new Guid();
+                CurrentItem[FieldsName.AdvList.InternalName.AdvID] = Guid.NewGuid();
             }
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
