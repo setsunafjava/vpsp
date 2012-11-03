@@ -27,6 +27,7 @@
             public const string AlbumImagesList = "AlbumImagesList";
             public const string CategoryImagesList = "CategoryImagesList";
             public const string GalleryImagesList = "GalleryImagesList";
+            public const string IconLinkList = "IconLinkList";
         }
 
         // Display Name of list
@@ -54,6 +55,7 @@
             public const string AlbumImagesList = "Ảnh trích dẫn Album";
             public const string CategoryImagesList = "Ảnh trích dẫn chuyên mục";
             public const string GalleryImagesList = "Thư viện ảnh files";
+            public const string IconLinkList = "Liên kết icon";
         }
     }
 }
