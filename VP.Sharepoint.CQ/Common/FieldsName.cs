@@ -400,7 +400,8 @@
                 public const string AdvUrl = "AdvUrl";
                 public const string AdvWidth = "AdvWidth";
                 public const string AdvHeight = "AdvHeight";
-                public const string AdvUrl = "AdvUrl";
+                public const string AdvStartDate = "AdvStartDate";
+                public const string AdvEndDate = "AdvEndDate";
                 public const string CustomerName = "CustomerName";
                 public const string CustomerAddress = "CustomerName";
                 public const string CustomerPhone = "CustomerPhone";
@@ -411,9 +412,20 @@
             {
                 public const string Title = "Tên quảng cáo";
                 public const string Description = "Mô tả";
-                public const string Type = "Loại album";
-                public const string Order = "Thứ tự";
-                public const string Status = "Trạng thái";
+                public const string AdvID = "AdvID";
+                public const string AdvType = "Loại file";
+                public const string AdvFile = "Đường dẫn file";
+                public const string AdvClick = "Số lần click";
+                public const string AdvOpenType = "Kiểu mở link";
+                public const string AdvUrl = "Đường link";
+                public const string AdvWidth = "Chiều rộng";
+                public const string AdvHeight = "Chiều cao";
+                public const string AdvStartDate = "AdvStartDate";
+                public const string AdvEndDate = "AdvEndDate";
+                public const string CustomerName = "CustomerName";
+                public const string CustomerAddress = "CustomerName";
+                public const string CustomerPhone = "CustomerPhone";
+                public const string CustomerMobile = "CustomerMobile";
             }
         }
         #endregion
