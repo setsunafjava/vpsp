@@ -443,8 +443,8 @@
                 public const string Title = "Title";
                 public const string AdvID = "AdvID";
                 public const string UserBrowser = "UserBrowser";
-                public const string UserIP = "AdvType";
-                public const string UserUrl = "AdvClick";
+                public const string UserIP = "UserIP";
+                public const string UserUrl = "UserUrl";
             }
 
             public class DisplayName

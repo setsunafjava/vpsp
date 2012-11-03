@@ -171,6 +171,13 @@
     <Compile Include="Resources\UserControls\BackEnd\CategoryList.ascx.designer.cs">
       <DependentUpon>CategoryList.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\AdvList.ascx.cs">
+      <DependentUpon>AdvList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\AdvList.ascx.designer.cs">
+      <DependentUpon>AdvList.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\BackEnd\ExternalNews.ascx.cs">
       <DependentUpon>ExternalNews.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -520,6 +527,7 @@
     <Content Include="Resources\Css\CommonStyleSheet.css" />
     <Content Include="Resources\Css\COREV4.CSS" />
     <Content Include="Resources\Css\ie7.css" />
+    <Content Include="Resources\Css\player.swf" />
     <Content Include="Resources\Css\simpletree.css" />
     <Content Include="Resources\Css\styles.css" />
     <Content Include="Resources\Css\tabcontent.css" />
@@ -619,6 +627,9 @@
     <Content Include="Resources\Javascript\slide_news.js" />
     <Content Include="Resources\Javascript\tabcontent.js" />
     <Content Include="Resources\UserControls\BackEnd\CategoryList.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\BackEnd\AdvList.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\ExternalNews.ascx">
