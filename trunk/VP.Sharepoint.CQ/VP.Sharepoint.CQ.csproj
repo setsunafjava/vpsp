@@ -473,6 +473,8 @@
     </Compile>
     <Compile Include="Site Structure\CategoryList.cs" />
     <Compile Include="Site Structure\AlbumList.cs" />
+    <Compile Include="Site Structure\AdvList.cs" />
+    <Compile Include="Site Structure\AdvStatisticList.cs" />
     <Compile Include="Site Structure\IconLinkList.cs" />
     <Compile Include="Site Structure\CreateDocLibs.cs" />
     <Compile Include="Site Structure\MenuList.cs" />
