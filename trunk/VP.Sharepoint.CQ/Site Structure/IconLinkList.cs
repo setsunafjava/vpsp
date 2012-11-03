@@ -11,7 +11,7 @@ namespace VP.Sharepoint.CQ
     class IconLinkList
     {
         public static void CreateListStructure(SPWeb web)
-        {
+        { 
             var helper = new ListHelper(web)
                         {
                             Title = ListsName.DisplayName.IconLinkList,
