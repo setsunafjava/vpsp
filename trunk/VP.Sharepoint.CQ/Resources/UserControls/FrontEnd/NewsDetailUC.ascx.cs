@@ -17,12 +17,39 @@ namespace VP.Sharepoint.CQ.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        int itemId = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                
+                if (Request.QueryString["ID"]!=null&&Request.QueryString["ID"]!=string.Empty)
+                {
+                    itemId = Convert.ToInt32(Request.QueryString["ID"]);
+                }
+
+                // Bind data
+                SPListItem item = GetItemByID(itemId);
+                if (item!=null)
+                {
+                    ltrTitle.Text = Convert.ToString(item[FieldsName.NewsList.InternalName.Title]);
+                    ltrPostedDate.Text = string.Format("( Ngày {0} )", Convert.ToDateTime(item[FieldsName.NewsList.InternalName.PostedDate]).ToString("dd-MM-yyyy"));
+                    ltrContent.Text = Convert.ToString(item[FieldsName.NewsList.InternalName.Content]);
+                }
             }
+        }
+        #endregion
+
+        #region Get item by id
+        protected SPListItem GetItemByID(int id)
+        {
+            SPList newsList = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.NewsList);
+            if (newsList!=null)
+            {
+                SPListItem item = newsList.GetItemById(id);
+                return item;
+            }
+            return null;
         }
         #endregion
     }
