@@ -16,12 +16,7 @@
         <div class="cate_News_Mod1">
             <asp:Repeater ID="rptCate" runat="server" OnItemDataBound="rptCate_ItemDataBound">
                 <ItemTemplate>
-                    <div>
-                        <%#Eval(FieldsName.CategoryList.InternalName.Title) %></div>
-                    <%--<div>
-                        Dành cho Giáo viên</div>
-                    <div>
-                        Dành cho học sinh</div>--%>
+                    <div><%#Eval(FieldsName.CategoryList.InternalName.Title) %></div>                
                 </ItemTemplate>
             </asp:Repeater>
             <div class="cleaner">
@@ -29,66 +24,57 @@
         </div>
         <div class="inner_content_ModNews1">
             <div class="cont_News">
-                <div class="img_thumb_News">
+                <asp:Literal ID="ltrFirstNews" runat="server"></asp:Literal>
+                <%--<div class="img_thumb_News">
                     <img src="<%=DocLibUrl%>/images.jpg" /></div>
                 <div class="intro_short_content_News">
                     <a href="#">Hội nghị xúc tiến thương mại...</a>
-                </div>
+                </div>--%>
                 <div class="list_other_news">
                     <ul>
-                        <asp:Repeater ID="rptNews1" runat="server">
+                        <asp:Repeater ID="rptNews1" runat="server" OnItemDataBound="rptNews1_ItemDataBound">
                             <ItemTemplate>
-                                <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                                <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a></li>
                             </ItemTemplate>
-                        </asp:Repeater>
-                        <%--<li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>--%>
+                        </asp:Repeater>                       
                     </ul>
                 </div>
             </div>
             <div class="cont_News">
-                <div class="img_thumb_News">
+               <%-- <div class="img_thumb_News">
                     <img src="<%=DocLibUrl%>/images.jpg" /></div>
                 <div class="intro_short_content_News">
                     <a href="#">Hội nghị xúc tiến thương mại...</a>
-                </div>
+                </div>--%>
+                <asp:Literal ID="ltrSecondNews" runat="server"></asp:Literal>
                 <div class="list_other_news">
                     <ul>
-                        <asp:Repeater ID="rptNews2" runat="server">
+                        <asp:Repeater ID="rptNews2" runat="server" OnItemDataBound="rptNews2_ItemDataBound">
                             <ItemTemplate>
-                                <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                                <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a></li>
                             </ItemTemplate>
-                        </asp:Repeater>
-                        <%--<li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>--%>
+                        </asp:Repeater>                        
                     </ul>
                 </div>
             </div>
             <div class="cont_News">
-                <div class="img_thumb_News">
+                <%--<div class="img_thumb_News">
                     <img src="<%=DocLibUrl%>/images.jpg" /></div>
                 <div class="intro_short_content_News">
                     <a href="#">Hội nghị xúc tiến thương mại...</a>
-                </div>
+                </div>--%>
+                <asp:Literal ID="ltrThirdNews" runat="server"></asp:Literal>
                 <div class="list_other_news">
                     <ul>
-                        <asp:Repeater ID="rptNews3" runat="server">
+                        <asp:Repeater ID="rptNews3" runat="server" OnItemDataBound="rptNews3_ItemDataBound">
                             <ItemTemplate>
-                                <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
+                                <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a></li>
                             </ItemTemplate>
                         </asp:Repeater>
-                        <%--<li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>
-                        <li><a href="#">Công tác chuẩn bị hội nghị xúc tiến đầu tư</a></li>--%>
                     </ul>
                 </div>
             </div>
-            <div class="cleaner">
+            <div class="cleaner" style="clear:both;">
             </div>
         </div>
     </div>

@@ -94,7 +94,8 @@ namespace VP.Sharepoint.CQ.UserControls
                 fileNames.Add(fuImageHot.FileName);
             }
             CurrentItem[FieldsName.NewsList.InternalName.NewsGroup] = ddlCategory.SelectedValue;
-            CurrentItem[FieldsName.NewsList.InternalName.NewsGroupName] = ddlCategory.SelectedValue;
+            CurrentItem[FieldsName.NewsList.InternalName.NewsGroupName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList,
+                FieldsName.CategoryList.InternalName.CategoryID, ddlCategory.SelectedValue, "Text", FieldsName.CategoryList.InternalName.Title);
 
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);

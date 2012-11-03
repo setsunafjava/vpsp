@@ -1448,6 +1448,17 @@ namespace VP.Sharepoint.CQ.Common
             return Convert.ToInt32(strVal);
         }
 
+        public static DataTable GetNewsWithRowLimit(DataTable dt, int rowLimit)
+        {
+            if (dt == null) return null;
+            DataTable dtResult = dt.Clone();
+            for (int i = 0; i < dt.Rows.Count && i<rowLimit; i++)
+            {
+                dtResult.ImportRow(dt.Rows[i]);
+            }
+            return dtResult;
+        }
+
         #endregion
     }
 }
