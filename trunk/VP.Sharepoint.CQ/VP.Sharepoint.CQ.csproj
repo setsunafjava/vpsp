@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Common\ListsName.cs" />
     <Compile Include="Common\MenuBO.cs" />
+    <Compile Include="Common\NewsBO.cs" />
     <Compile Include="Core\Helpers\JavaScriptBuilderExtension.cs" />
     <Compile Include="Core\Helpers\LocalizationHelper.cs" />
     <Compile Include="Core\Helpers\PredicateBuilderExtensions.cs" />
