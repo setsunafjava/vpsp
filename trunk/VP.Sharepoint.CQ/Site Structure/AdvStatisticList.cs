@@ -18,7 +18,7 @@ namespace VP.Sharepoint.CQ
                             Title = ListsName.DisplayName.AdvStatisticList,
                             Name = ListsName.InternalName.AdvStatisticList,
                             OnQuickLaunch = false,
-                            EnableAttachments = true
+                            EnableAttachments = false
                         };
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.AdvStatisticList.InternalName.AdvID, FieldsName.AdvStatisticList.DisplayName.AdvID));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.AdvStatisticList.InternalName.UserBrowser, FieldsName.AdvStatisticList.DisplayName.UserBrowser));

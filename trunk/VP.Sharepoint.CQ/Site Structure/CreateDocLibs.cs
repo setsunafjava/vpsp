@@ -81,6 +81,16 @@ namespace VP.Sharepoint.CQ
                 ListTemplateType = SPListTemplateType.DocumentLibrary
             };
             helper.Apply();
+
+            helper = new ListHelper(web)
+            {
+                Title = ListsName.DisplayName.AdvFileList,
+                Name = ListsName.InternalName.AdvFileList,
+                OnQuickLaunch = false,
+                EnableAttachments = true,
+                ListTemplateType = SPListTemplateType.DocumentLibrary
+            };
+            helper.Apply();
         }
     }
 }

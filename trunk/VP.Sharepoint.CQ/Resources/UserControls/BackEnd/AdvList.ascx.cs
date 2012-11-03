@@ -24,17 +24,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (!Page.IsPostBack)
             {
-                if (CurrentMode == Constants.EditForm || CurrentMode == Constants.NewForm)
-                {
-                    lblCatDisplay.Visible = false;
-                    ddlCategory.Visible = true;
-                }
-                else
-                {
-                    lblCatDisplay.Visible = true;
-                    ddlCategory.Visible = false;
-                }
-                BindData();
+                
             }
         }
 
@@ -58,91 +48,19 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         private void CustomSaveHandler(object sender, EventArgs e)
         {
-            List<string> fileNames = new List<string>();
-            if (fuThumb.HasFile)
+            if (fuFile.HasFile)
             {
-                var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuThumb.FileName);
-                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuThumbName));
-                CurrentItem[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
-                fileNames.Add(fuThumb.FileName);
-
-                SPFieldUrlValue imgDsp = new SPFieldUrlValue();
-                imgDsp.Description = CurrentItem.Title;
-                var webUrl = CurrentWeb.ServerRelativeUrl;
-                if (webUrl.Equals("/"))
-                {
-                    webUrl = "";
-                }
-                imgDsp.Url = webUrl + "/" + file.Url;
-                CurrentItem[FieldsName.NewsList.InternalName.ImageDsp] = imgDsp;
+                var fuFileName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuFile.FileName);
+                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuFile.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
+                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.AdvFileList, fuFileName));
+                CurrentItem[FieldsName.AdvList.InternalName.AdvFile] = file.Url;
             }
-            if (fuSmallThumb.HasFile)
+            if (CurrentMode.Equals(Constants.NewForm))
             {
-                var fuSmallThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuSmallThumb.FileName);
-                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuSmallThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuSmallThumbName));
-                CurrentItem[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
-                fileNames.Add(fuSmallThumb.FileName);
+                CurrentItem[FieldsName.AdvList.InternalName.AdvID] = new Guid();
             }
-            if (fuSmallThumb.HasFile)
-            {
-                var fuImageHotName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuImageHot.FileName);
-                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuImageHot.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuImageHotName));
-                CurrentItem[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
-                fileNames.Add(fuImageHot.FileName);
-            }
-            CurrentItem[FieldsName.NewsList.InternalName.NewsGroup] = ddlCategory.SelectedValue;
-            CurrentItem[FieldsName.NewsList.InternalName.NewsGroupName] = ddlCategory.SelectedValue;
-
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
-            if (fileNames.Count > 0)
-            {
-                foreach (var fileName in fileNames)
-                {
-                    try
-                    {
-                        CurrentWeb.AllowUnsafeUpdates = true;
-                        CurrentItem.Attachments.Delete(fileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        Utilities.LogToULS(ex);
-                    }
-                }
-                CurrentWeb.AllowUnsafeUpdates = true;
-                CurrentItem.SystemUpdate(false);
-            }
-        }
-
-        private void BindData()
-        {           
-            //Bind ddlCategory
-            try
-            {               
-                if (CurrentMode.Equals(SPControlMode.New) || CurrentMode.Equals(SPControlMode.Edit))
-                {                    
-                }
-                Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
-                        FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.InternalName.CategoryLevel);
-
-                if (CurrentMode.Equals(SPControlMode.Edit) || CurrentMode.Equals(SPControlMode.Display))
-                {
-                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.NewsList.InternalName.NewsGroup]);
-                }
-                if (CurrentMode.Equals(SPControlMode.Display))
-                {                    
-                    ddlCategory.Visible = false;
-                    lblCatDisplay.Visible = true;
-                    lblCatDisplay.Text = Convert.ToString(CurrentItem[FieldsName.NewsList.InternalName.NewsGroupName]);
-                }
-            }
-            catch (Exception ex)
-            {
-                Utilities.LogToULS(ex);
-            }
         }
 
         #region Properties

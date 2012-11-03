@@ -30,6 +30,7 @@
             public const string IconLinkList = "IconLinkList";
             public const string AdvList = "AdvList";
             public const string AdvStatisticList = "AdvStatisticList";
+            public const string AdvFileList = "AdvFileList";
         }
 
         // Display Name of list
@@ -60,6 +61,7 @@
             public const string IconLinkList = "Liên kết icon";
             public const string AdvList = "Quảng cáo";
             public const string AdvStatisticList = "Thống kê quảng cáo";
+            public const string AdvFileList = "File quảng cáo";
         }
     }
 }
