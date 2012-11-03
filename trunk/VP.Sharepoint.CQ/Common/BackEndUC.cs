@@ -27,5 +27,17 @@ namespace VP.Sharepoint.CQ.Common
             Utilities.LoadJS(SPContext.Current.Web, this.Page, "jquery-1.7.1.js");
             base.OnPreRender(e);
         }
+        public string WebUrl
+        {
+            get
+            {
+                var webUrl = SPContext.Current.Web.ServerRelativeUrl;
+                if (webUrl.Equals("/"))
+                {
+                    webUrl = "";
+                }
+                return webUrl;
+            }
+        }
     }
 }

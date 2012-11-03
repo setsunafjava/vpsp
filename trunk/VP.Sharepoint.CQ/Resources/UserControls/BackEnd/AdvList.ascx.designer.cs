@@ -46,7 +46,7 @@ namespace VP.Sharepoint.CQ.UserControls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.RichTextField txtDescription;
+        protected global::Microsoft.SharePoint.WebControls.NoteField txtDescription;
         
         /// <summary>
         /// FieldLabel1 control.
@@ -83,6 +83,24 @@ namespace VP.Sharepoint.CQ.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fuFile;
+        
+        /// <summary>
+        /// ltrBr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrBr;
+        
+        /// <summary>
+        /// linkFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink linkFile;
         
         /// <summary>
         /// FieldLabel3 control.
