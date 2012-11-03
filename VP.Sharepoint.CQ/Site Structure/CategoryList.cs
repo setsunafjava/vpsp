@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.SharePoint;
 using VP.Sharepoint.CQ.Core.Helpers;
 using VP.Sharepoint.CQ.Common;
+using System.Collections.Specialized;
 
 namespace VP.Sharepoint.CQ
 {
@@ -30,7 +31,9 @@ namespace VP.Sharepoint.CQ
                 Choices = { "Menu", "Tin tức", "Văn bản", "Thư viện ảnh", "Thư viện video", "Tài nguyên" },
                 DefaultValue = "Menu"
             });
-            helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.Status, FieldsName.CategoryList.DisplayName.Status) { Choices = { "Ẩn", "Hiển thị" }, DefaultValue = "Hiển thị", EditFormat = SPChoiceFormatType.RadioButtons });
+            helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.Status, FieldsName.CategoryList.DisplayName.Status) { Choices = { "Ẩn", "Hiển thị" }, DefaultValue = "Hiển thị" });
+            helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.NewsPossition, FieldsName.CategoryList.DisplayName.NewsPossition) { Choices = { "Trang chủ - box tin to 1", "Trang chủ - box tin to 2", "Trang chủ - box tin nhỏ 1", "Trang chủ - box tin nhỏ 2", "Trang chủ - box tin nhỏ 3" } });
+
             helper.AddField(new NumberFieldCreator(FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.DisplayName.Order));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ImageDesc, FieldsName.CategoryList.DisplayName.ImageDesc));
             SPList list = helper.Apply();
