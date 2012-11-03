@@ -314,6 +314,7 @@
                 public const string CategoryLevel = "CategoryLevel";
                 public const string Type = "Type";
                 public const string Status = "Status";
+                public const string NewsPossition = "NewsPossition";
                 public const string Order = "Order";
                 public const string ImageDesc = "ImageDesc";
             }
@@ -328,6 +329,7 @@
                 public const string CategoryLevel = "Mức chuyên mục";
                 public const string Type = "Loại chuyên mục";
                 public const string Status = "Trạng thái";
+                public const string NewsPossition = "Vị trí";
                 public const string Order = "Thứ tự";
                 public const string ImageDesc = "Ảnh trích dẫn";
             }
