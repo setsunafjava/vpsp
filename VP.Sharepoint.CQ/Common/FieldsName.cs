@@ -406,6 +406,8 @@
                 public const string CustomerAddress = "CustomerName";
                 public const string CustomerPhone = "CustomerPhone";
                 public const string CustomerMobile = "CustomerMobile";
+                public const string AdvCat = "AdvCat";
+                public const string AdvDisplay = "AdvDisplay";
             }
 
             public class DisplayName
@@ -420,12 +422,38 @@
                 public const string AdvUrl = "Đường link";
                 public const string AdvWidth = "Chiều rộng";
                 public const string AdvHeight = "Chiều cao";
-                public const string AdvStartDate = "AdvStartDate";
-                public const string AdvEndDate = "AdvEndDate";
-                public const string CustomerName = "CustomerName";
-                public const string CustomerAddress = "CustomerName";
-                public const string CustomerPhone = "CustomerPhone";
-                public const string CustomerMobile = "CustomerMobile";
+                public const string AdvStartDate = "Ngày hiệu lực";
+                public const string AdvEndDate = "Ngày kết thúc";
+                public const string CustomerName = "Tên khách hàng";
+                public const string CustomerAddress = "Địa chỉ khách hàng";
+                public const string CustomerPhone = "Số điện thọa";
+                public const string CustomerMobile = "Số di động";
+                public const string AdvCat = "Chuyên mục";
+                public const string AdvDisplay = "Hiển thị theo";
+            }
+        }
+        #endregion
+
+        #region AdvStatistic List
+        public class AdvStatisticList
+        {
+            // Nested AdvStatistic List
+            public class InternalName
+            {
+                public const string Title = "Title";
+                public const string AdvID = "AdvID";
+                public const string UserBrowser = "UserBrowser";
+                public const string UserIP = "AdvType";
+                public const string UserUrl = "AdvClick";
+            }
+
+            public class DisplayName
+            {
+                public const string Title = "Tên quảng cáo";
+                public const string AdvID = "AdvID";
+                public const string UserBrowser = "Trình duyệt";
+                public const string UserIP = "Địa chỉ IP";
+                public const string UserUrl = "Trang hiển thị quảng cáo";
             }
         }
         #endregion
