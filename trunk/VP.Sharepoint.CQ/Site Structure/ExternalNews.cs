@@ -18,7 +18,8 @@ namespace VP.Sharepoint.CQ
 
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNews.InternalName.Description, FieldsName.ExternalNews.DisplayName.Description));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNews.InternalName.NewsGroup, FieldsName.ExternalNews.DisplayName.NewsGroup));
-            helper.AddField(new ChoiceFieldCreator(FieldsName.ExternalNews.InternalName.Status, FieldsName.ExternalNews.DisplayName.Status) { Choices = { "Nổi bật", "Bình thường" }, DefaultValue = "Bình thường", EditFormat = SPChoiceFormatType.Dropdown });
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNews.InternalName.LinkPath, FieldsName.ExternalNews.DisplayName.LinkPath));
+            helper.AddField(new ChoiceFieldCreator(FieldsName.ExternalNews.InternalName.Status, FieldsName.ExternalNews.DisplayName.Status) { Choices = { "Hiển thị" } });
             helper.AddField(new NumberFieldCreator(FieldsName.ExternalNews.InternalName.Order, FieldsName.ExternalNews.DisplayName.Order));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNews.InternalName.ImageThumb, FieldsName.ExternalNews.DisplayName.ImageThumb));
             helper.AddField(new UrlFieldCreator(FieldsName.ExternalNews.InternalName.ImageDsp, FieldsName.ExternalNews.DisplayName.ImageDsp) { DisplayFormat = SPUrlFieldFormatType.Image });

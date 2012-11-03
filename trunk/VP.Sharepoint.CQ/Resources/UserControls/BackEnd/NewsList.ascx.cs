@@ -93,7 +93,8 @@ namespace VP.Sharepoint.CQ.UserControls
                 CurrentItem[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
                 fileNames.Add(fuImageHot.FileName);
             }
-            CurrentItem[FieldsName.ExternalNews.InternalName.NewsGroup] = ddlCategory.SelectedValue;
+            CurrentItem[FieldsName.NewsList.InternalName.NewsGroup] = ddlCategory.SelectedValue;
+            CurrentItem[FieldsName.NewsList.InternalName.NewsGroupName] = ddlCategory.SelectedValue;
 
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
@@ -135,7 +136,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 {                    
                     ddlCategory.Visible = false;
                     lblCatDisplay.Visible = true;
-                    lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
+                    lblCatDisplay.Text = Convert.ToString(CurrentItem[FieldsName.NewsList.InternalName.NewsGroupName]);
                 }
             }
             catch (Exception ex)
