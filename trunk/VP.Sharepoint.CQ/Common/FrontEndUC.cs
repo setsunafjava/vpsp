@@ -28,5 +28,18 @@ namespace VP.Sharepoint.CQ.Common
         {
             get { return SPContext.Current.Web; }
         }
+
+        public string WebUrl
+        {
+            get
+            {
+                var webUrl = SPContext.Current.Web.ServerRelativeUrl;
+                if (webUrl.Equals("/"))
+                {
+                    webUrl = "";
+                }
+                return webUrl;
+            }
+        }
     }
 }

@@ -34,12 +34,12 @@ namespace VP.Sharepoint.CQ
             //left-left-home
             //System.Diagnostics.Debugger.Launch();
             AddUserControlToPage(web, Constants.DefaultPage, "advhomeleft3", "HomeNewsLeftUC", 0, "AdvUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "boxnewshomesmall1", "HomeNewsLeftUC", 1, "ListNewsHomeUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "advhomeleft4", "HomeNewsLeftUC", 2, "AdvUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "boxnewshomesmall2", "HomeNewsLeftUC", 3, "ListNewsHomeUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "advhomeleft5", "HomeNewsLeftUC", 4, "AdvUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "boxnewshomesmall3", "HomeNewsLeftUC", 5, "ListNewsHomeUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "advhomeleft6", "HomeNewsLeftUC", 6, "AdvUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "boxnewshomesmall1", "HomeNewsLeftUC", 11, "ListNewsHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "advhomeleft4", "HomeNewsLeftUC", 22, "AdvUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "boxnewshomesmall2", "HomeNewsLeftUC", 33, "ListNewsHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "advhomeleft5", "HomeNewsLeftUC", 44, "AdvUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "boxnewshomesmall3", "HomeNewsLeftUC", 55, "ListNewsHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "advhomeleft6", "HomeNewsLeftUC", 66, "AdvUC");
             //right-left-home
             AddUserControlToPage(web, Constants.DefaultPage, "knowledgehome", "HomeNewsRightUC", 0, "KnowledgeHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "linksitehome", "HomeNewsRightUC", 1, "LinkSiteUC");

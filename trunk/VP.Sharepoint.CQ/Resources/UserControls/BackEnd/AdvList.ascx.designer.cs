@@ -247,6 +247,24 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::Microsoft.SharePoint.WebControls.DropDownChoiceField ddlAdvStatus;
         
         /// <summary>
+        /// FieldLabel15 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.FieldLabel FieldLabel15;
+        
+        /// <summary>
+        /// txtAdvOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.SharePoint.WebControls.NumberField txtAdvOrder;
+        
+        /// <summary>
         /// FieldLabel11 control.
         /// </summary>
         /// <remarks>

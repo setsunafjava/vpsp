@@ -530,6 +530,7 @@
     <Content Include="Resources\Css\player.swf" />
     <Content Include="Resources\Css\simpletree.css" />
     <Content Include="Resources\Css\styles.css" />
+    <Content Include="Resources\Css\stylish_slim.swf" />
     <Content Include="Resources\Css\tabcontent.css" />
     <Content Include="Resources\Images\17_7_1345027592_43_nu1.jpg" />
     <Content Include="Resources\Images\94f88e03b7d2f6.jpg" />
