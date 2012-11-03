@@ -11,6 +11,7 @@
             {
                 public const string Title = "Title";
                 public const string NewsGroup = "NewsGroup";
+                public const string NewsGroupName = "NewsGroupName";
                 public const string Poster = "Poster";
                 public const string PostedDate = "PostedDate";
                 public const string Description = "Description";
@@ -28,7 +29,8 @@
             public static class DisplayName
             {
                 public const string Title = "Tiêu đề bài viết";
-                public const string NewsGroup = "Nhóm tin";
+                public const string NewsGroup = "Chuyên mục";
+                public const string NewsGroupName = "Tên chuyên mục";
                 public const string Poster = "Người đăng";
                 public const string Description = "Mô tả";
                 public const string Content = "Nội dung";
@@ -201,6 +203,7 @@
                 public const string Order = "Order";
                 public const string ImageThumb = "ImageThumb";
                 public const string ImageDsp = "ImageDsp";
+                public const string LinkPath = "LinkPath";
             }
 
             public class DisplayName
@@ -212,6 +215,7 @@
                 public const string Order = "Thứ tự";
                 public const string ImageThumb = "Ảnh trích dẫn";
                 public const string ImageDsp = "Ảnh hiển thị";
+                public const string LinkPath = "Đường link";
             }
         }
         #endregion

@@ -17,6 +17,7 @@ namespace VP.Sharepoint.CQ
                         };
 
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.NewsGroup, FieldsName.NewsList.DisplayName.NewsGroup));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.NewsGroupName, FieldsName.NewsList.DisplayName.NewsGroupName));
 
             helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.NewsList.InternalName.Description, FieldsName.NewsList.DisplayName.Description) 
             { 
