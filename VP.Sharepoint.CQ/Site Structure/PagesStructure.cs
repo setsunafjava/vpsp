@@ -174,7 +174,7 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.DocumentDetailPage, "VanBanDetailUC", "LeftUC", 0, "VanBanDetailUC");
 
             AddUserControlToPage(web, Constants.DocumentDetailPage, "HomeHotNewsUC", "RightUC", 0, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.DocumentDetailPage, "AdvUC", "RightUC", 1, "AdvUC");
+            AddUserControlToPage(web, Constants.DocumentDetailPage, "advlibrarydetail", "RightUC", 1, "AdvUC");
             AddUserControlToPage(web, Constants.DocumentDetailPage, "HitCountUC", "RightUC", 2, "HitCountUC");
 
             AddUserControlToPage(web, Constants.DocumentDetailPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
