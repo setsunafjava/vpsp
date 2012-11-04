@@ -55,7 +55,7 @@ namespace VP.Sharepoint.CQ.UserControls
                         ltrFirstNews.Text = string.Format("<div class='img_thumb_News'>" +
                                                            "<img src='{0}' /></div>" +
                                                             "<div class='intro_short_content_News'>" +
-                                                            "<a href='{1}'>{2}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], "newsdetail.aspx?ID=" + dr["ID"], dr[FieldsName.NewsList.InternalName.Title]);
+                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], dr["ID"],dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
                     }
 
                     if (dt != null && dt.Rows.Count > 1)
@@ -78,7 +78,7 @@ namespace VP.Sharepoint.CQ.UserControls
                         ltrSecondNews.Text = string.Format("<div class='img_thumb_News'>" +
                                                            "<img src='{0}' /></div>" +
                                                             "<div class='intro_short_content_News'>" +
-                                                            "<a href='{1}'>{2}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], "newsdetail.aspx?ID=" + dr["ID"], dr[FieldsName.NewsList.InternalName.Title]);
+                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
                     }
 
                     if (dt != null && dt.Rows.Count > 1)
@@ -101,7 +101,7 @@ namespace VP.Sharepoint.CQ.UserControls
                         ltrThirdNews.Text = string.Format("<div class='img_thumb_News'>" +
                                                            "<img src='{0}' /></div>" +
                                                             "<div class='intro_short_content_News'>" +
-                                                            "<a href='{1}'>{2}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], "newsdetail.aspx?ID=" + dr["ID"], dr[FieldsName.NewsList.InternalName.Title]);
+                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
                     }
 
                     if (dt != null && dt.Rows.Count > 1)
