@@ -120,7 +120,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = e.Item.FindControl("aLink") as HtmlAnchor;
-                aLink.HRef = "../newsdetail.aspx?ID=" + drv["ID"];
+                aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }
         protected void rptNews2_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -129,7 +129,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = e.Item.FindControl("aLink") as HtmlAnchor;
-                aLink.HRef = "../newsdetail.aspx?ID=" + drv["ID"];
+                aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }
         protected void rptNews3_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -138,7 +138,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = e.Item.FindControl("aLink") as HtmlAnchor;
-                aLink.HRef = "../newsdetail.aspx?ID=" + drv["ID"];
+                aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }
     }
