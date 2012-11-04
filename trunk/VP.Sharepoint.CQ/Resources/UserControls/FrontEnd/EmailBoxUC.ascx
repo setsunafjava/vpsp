@@ -15,7 +15,7 @@
         <div class="mailbox">
             <a href="#">Hộp thư điện tử</a>
             <div class="email_contact">
-                <a>@moet.edu.vn</a><a>@moet.edu.vn</a>
+                <a href="http://mail.moet.edu.vn">@moet.edu.vn</a><a>@moet.edu.vn</a>
             </div>
         </div>
     </div>

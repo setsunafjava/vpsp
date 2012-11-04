@@ -27,7 +27,7 @@
                         <div class="name_news">
                             <a id="aLink" runat="server">
                                 <%#Eval(FieldsName.NewsList.InternalName.Title) %></a> <span class="time_update">(Ngày
-                                    <%#Eval(FieldsName.NewsList.InternalName.PostedDate) %>)</span>
+                                    <%#Convert.ToDateTime(Eval(FieldsName.NewsList.InternalName.PostedDate)).ToString("dd-MM-yyyy") %>)</span>
                         </div>
                         <div class="cleaner">
                         </div>
