@@ -45,6 +45,7 @@ namespace VP.Sharepoint.CQ
             CreateDocLibs.CreateListStructure(web);
             AdvList.CreateListStructure(web);
             AdvStatisticList.CreateListStructure(web);
+            IconLinkList.CreateListStructure(web);
 
             // Add QuichLaunch
             Console.WriteLine("Process CreateQuichLaunch..");

@@ -52,6 +52,38 @@ namespace VP.Sharepoint.CQ.Common
                 }
             });
         }
+
+
+        public static void GetCategoryByPosition(SPWeb web,string newsPosition, UInt32 rowLimit)
+        {
+            var newPos = BoxNewsPosition[newsPosition];
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            string caml = @"<Where><And><Eq><FieldRef Name='{0}' /><Value Type='Choice'>{1}</Value></Eq><Eq><FieldRef Name='{2}' /><Value Type='Choice'>{3}</Value></Eq></And></Where><OrderBy><FieldRef Name='{4}' /><FieldRef Name='{5}' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, FieldsName.CategoryList.InternalName.NewsPossition, newPos, FieldsName.CategoryList.InternalName.Type, "Tin tức", FieldsName.CategoryList.InternalName.CategoryLevel, FieldsName.CategoryList.InternalName.Order),
+                                RowLimit = rowLimit
+                            };
+                            var list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.CategoryList);
+                            var items = list.GetItems(query);                            
+                        }
+                        catch (SPException ex)
+                        {                            
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
+
         #endregion
 
         #region Bussiness for News
