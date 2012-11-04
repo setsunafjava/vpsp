@@ -16,7 +16,7 @@
         <div class="cate_News_Mod1">
             <asp:Repeater ID="rptCate" runat="server" OnItemDataBound="rptCate_ItemDataBound">
                 <ItemTemplate>
-                    <div><%#Eval(FieldsName.CategoryList.InternalName.Title) %></div>                
+                    <div><a id="aLink" runat="server"><%#Eval(FieldsName.CategoryList.InternalName.Title) %></a></div>
                 </ItemTemplate>
             </asp:Repeater>
             <div class="cleaner">
@@ -24,12 +24,7 @@
         </div>
         <div class="inner_content_ModNews1">
             <div class="cont_News">
-                <asp:Literal ID="ltrFirstNews" runat="server"></asp:Literal>
-                <%--<div class="img_thumb_News">
-                    <img src="<%=DocLibUrl%>/images.jpg" /></div>
-                <div class="intro_short_content_News">
-                    <a href="#">Hội nghị xúc tiến thương mại...</a>
-                </div>--%>
+                <asp:Literal ID="ltrFirstNews" runat="server"></asp:Literal>             
                 <div class="list_other_news">
                     <ul>
                         <asp:Repeater ID="rptNews1" runat="server" OnItemDataBound="rptNews1_ItemDataBound">
@@ -40,12 +35,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="cont_News">
-               <%-- <div class="img_thumb_News">
-                    <img src="<%=DocLibUrl%>/images.jpg" /></div>
-                <div class="intro_short_content_News">
-                    <a href="#">Hội nghị xúc tiến thương mại...</a>
-                </div>--%>
+            <div class="cont_News">          
                 <asp:Literal ID="ltrSecondNews" runat="server"></asp:Literal>
                 <div class="list_other_news">
                     <ul>
@@ -57,12 +47,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="cont_News">
-                <%--<div class="img_thumb_News">
-                    <img src="<%=DocLibUrl%>/images.jpg" /></div>
-                <div class="intro_short_content_News">
-                    <a href="#">Hội nghị xúc tiến thương mại...</a>
-                </div>--%>
+            <div class="cont_News">              
                 <asp:Literal ID="ltrThirdNews" runat="server"></asp:Literal>
                 <div class="list_other_news">
                     <ul>
