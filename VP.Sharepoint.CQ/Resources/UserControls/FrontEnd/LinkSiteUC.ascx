@@ -15,9 +15,23 @@
         Liên kết website</div>
     <div class="inner_pos_Mod">
         <div class="link_website">
-            <select class="txt_s" style="width: 190px;">
+            <asp:DropDownList ID="ddlWebURL" runat="server" CssClass="txt_s" style="width:190px" onchange="RedirectURL()"></asp:DropDownList>
+            <%--<select class="txt_s" style="width: 190px;">
                 <option value="1">Địa chỉ website</option>
-            </select>
+            </select>--%>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function RedirectURL() {
+        try {
+            var ddl = document.getElementById('<%=ddlWebURL.ClientID %>');
+            var url = ddl.options[ddl.selectedIndex].value;
+            window.open(url, "", "width=1002,height=700,location=1,menubar=1,scrollbars=1,status=1,resizable=1")
+        } catch (e) {
+            location.target = "_blank";
+            location.href = url;
+        }
+    }
+</script>
+<asp:Literal ID="ltrScript" runat="server"></asp:Literal>
