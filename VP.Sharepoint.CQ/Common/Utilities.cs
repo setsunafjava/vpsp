@@ -1418,8 +1418,8 @@ namespace VP.Sharepoint.CQ.Common
                 if (list != null)
                 {
                     SPQuery query = new SPQuery();
-                    query.Query = string.Empty;
-                    //query.Query = string.Format("<Where><Contains><FieldRef Name='{0}'/><Value Type='Text'>{1}</Value></Contains></Where>", FieldsName.NewsList.InternalName.Status, strStatus);
+                    //query.Query = string.Empty;
+                    query.Query = string.Format("<Where><Contains><FieldRef Name='{0}'/><Value Type='MultiChoice'>{1}</Value></Contains></Where>", FieldsName.NewsList.InternalName.Status, strStatus);
                     SPListItemCollection listItemCollection = list.GetItems(query);
                     return listItemCollection.GetDataTable();
                 }

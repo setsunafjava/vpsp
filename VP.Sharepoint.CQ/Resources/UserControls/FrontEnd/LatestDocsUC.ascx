@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="VP.Sharepoint.CQ.Common" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -18,22 +19,18 @@
         </div>
         <div class="content_F_Right">
             <marquee direction="up" scrolldelay="50" scrollamount="1" truespeed="true" onmouseover="this.stop()"
-                onmouseout="this.start()" height="200px">						
-						<ul>
-							<li>
-							<a href="#">Ý kiến kết luận của UBNDTP tại cuộc họp...</a>
-							<span class="time_update">(Ngày 20 - 03 - 2012)</span>
-							</li>
-							<li>
-							<a href="#">Ý kiến kết luận của UBNDTP tại cuộc họp...</a>
-							<span class="time_update">(Ngày 20 - 03 - 2012)</span>
-							</li>
-							<li>
-							<a href="#">Ý kiến kết luận của UBNDTP tại cuộc họp...</a>
-							<span class="time_update">(Ngày 20 - 03 - 2012)</span>
-							</li>
-						</ul>
-						</marquee>
+                onmouseout="this.start()" height="200px">
+				<ul>
+                <asp:Repeater ID="rptDocument" runat="server" OnItemDataBound="rptDocument_ItemDataBound">
+                    <ItemTemplate>
+					<li>
+					    <a href="#"><%#Eval(FieldsName.DocumentsList.InternalName.Title) %></a>
+					    <span class="time_update" runat="server" id="spDate"></span>
+					</li>
+                    </ItemTemplate>
+                </asp:Repeater>		
+				</ul>
+			</marquee>
         </div>
     </div>
 </div>
