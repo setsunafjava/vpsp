@@ -75,7 +75,7 @@ namespace VP.Sharepoint.CQ.UserControls
             if (dt!=null&& dt.Rows.Count > 0)
             {
                 DataRow dr = dt.Rows[0];
-                aImg.HRef = string.Format("newsdetail?ID={0}&CatId={1}", dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup]);
+                aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup]);
                 aLink.HRef = aImg.HRef;
                 aLink.InnerText = Convert.ToString(dr[FieldsName.NewsList.InternalName.Title]);
                 imgNews.Src = "../" + dr[FieldsName.NewsList.InternalName.ImageThumb];
@@ -96,7 +96,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                aLink.HRef = string.Format("newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }
     }

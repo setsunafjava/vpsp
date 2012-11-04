@@ -61,7 +61,7 @@ namespace VP.Sharepoint.CQ.UserControls
                     imgNewsHome.Src = "../" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);                    
                     imgNewsHome.Attributes.Remove("rel");
                     imgNewsHome.Attributes.Add("rel", string.Format("<h3>{0}</h3>{1}", drv[FieldsName.NewsList.InternalName.Title], Utilities.StripHTML(Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]))));
-                    aImg.HRef = string.Format("../{0}?ID={1}", "newsdetail", drv["ID"]);
+                    aImg.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
                 }
             }
             catch (Exception ex)
