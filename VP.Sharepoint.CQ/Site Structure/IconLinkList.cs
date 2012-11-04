@@ -21,7 +21,8 @@ namespace VP.Sharepoint.CQ
                         };
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.IconLinkList.InternalName.Description, FieldsName.IconLinkList.DisplayName.Description));            
             helper.AddField(new NumberFieldCreator(FieldsName.IconLinkList.InternalName.Status, FieldsName.IconLinkList.DisplayName.Status));
-            helper.AddField(new NumberFieldCreator(FieldsName.IconLinkList.InternalName.Order, FieldsName.IconLinkList.DisplayName.Order));            
+            helper.AddField(new NumberFieldCreator(FieldsName.IconLinkList.InternalName.Order, FieldsName.IconLinkList.DisplayName.Order));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.IconLinkList.InternalName.LinkURL, FieldsName.IconLinkList.DisplayName.LinkURL));
             SPList list = helper.Apply();
             SPField fieldTitle = list.Fields.GetField(FieldsName.IconLinkList.InternalName.Title);
             if (fieldTitle!=null)
