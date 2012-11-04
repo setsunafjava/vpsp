@@ -61,7 +61,7 @@ namespace VP.Sharepoint.CQ.UserControls
                     imgNewsHome.Src = "../" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);                    
                     imgNewsHome.Attributes.Remove("rel");
                     imgNewsHome.Attributes.Add("rel", string.Format("<h3>{0}</h3>{1}", drv[FieldsName.NewsList.InternalName.Title], Utilities.StripHTML(Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]))));
-                    aImg.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
+                    aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
                 }
             }
             catch (Exception ex)
@@ -76,7 +76,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                aLink.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
+                aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }
 
@@ -86,7 +86,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                aLink.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
+                aLink.HRef = string.Format("../newsdetail.aspx?ID={1}&CatId={1}", "newsdetail.aspx", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }
     }
