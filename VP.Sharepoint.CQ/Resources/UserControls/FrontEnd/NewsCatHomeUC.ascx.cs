@@ -42,6 +42,8 @@ namespace VP.Sharepoint.CQ.UserControls
             if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
                 DataRowView drv = e.Item.DataItem as DataRowView;
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                aLink.HRef = string.Format("../news.aspx?CatId={0}", drv[FieldsName.CategoryList.InternalName.CategoryID]);
 
                 //Bind rptNews1
                 if (e.Item.ItemIndex == 0)
