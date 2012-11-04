@@ -75,6 +75,12 @@ namespace VP.Sharepoint.CQ
 
             //Add custom usercontrol to form
             Utilities.AddForms(web, list, "../../UserControls/NewsList.ascx");
+
+            //Create view
+            var viewFields=new []{
+                    FieldsName.NewsList.InternalName.Title                   
+                };
+            Utilities.AddStandardView(Utilities.GetCustomListByUrl(web, ListsName.InternalName.NewsList), "AllItems", viewFields, "'<GroupBy Collapse='TRUE'><FieldRef Name='NewsGroupName' /></GroupBy>'", 100, true);
         }
     }
 }

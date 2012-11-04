@@ -8,13 +8,10 @@ namespace VP.Sharepoint.CQ
         public static void CreateQuickLaunch(SPWeb web)
         {
             web.AllowUnsafeUpdates = true;
-            //var quickLaunch = new QuickLaunchHelper(web, true);
+            var quickLaunch = new QuickLaunchHelper(web, true);
             //var groups = string.Empty;
             //var urlList = web.Url + "/Lists/" + ListsName.English.CreateAccountRequest;
-            //var createAccountRequest = web.GetList(urlList);
-
-            //var Heading = quickLaunch.AddHeading(HttpUtility.HtmlEncode(Constants.ForSubmitterHeader), string.Empty, groups);
-
+            //var createAccountRequest = web.GetList(urlList);                        
             ////Add view to quicklaunch
             //var view = createAccountRequest.Views[Constants.CreateAccountRequestView1];
             //if (view != null)
