@@ -113,7 +113,36 @@ namespace VP.Sharepoint.CQ.Common
                 }
             });
             return dtTemp;
-        }        
+        }
+
+        public static DataTable GetNewsOtherByCatId(SPWeb web, string catId,int newsId)
+        {
+            DataTable dtTemp = null;
+
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            SPList newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
+                            SPList catList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.CategoryList);
+                            //GetOtherNewsByCatId(newsList, catId, newsId, ref dtTemp);
+                            GetOtherNewsByCatId(newsList, catId, newsId, ref dtTemp);
+                            GetNewsByCatId(catList, newsList, catId, ref dtTemp);
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+            return dtTemp;
+        }
         public static void GetNewsByCatId(SPList list,string catId,ref DataTable dt)
         {
             try
@@ -129,6 +158,36 @@ namespace VP.Sharepoint.CQ.Common
                 if (items!=null&&items.Count>0)
                 {
                     if (dt==null)
+                    {
+                        dt = items.GetDataTable().Clone();
+                    }
+                    foreach (DataRow dr in items.GetDataTable().Rows)
+                    {
+                        dt.ImportRow(dr);
+                    }
+                }
+            }
+            catch (SPException ex)
+            {
+                Utilities.LogToULS(ex);
+            }
+        }
+
+        public static void GetOtherNewsByCatId(SPList list, string catId,int newsId, ref DataTable dt)
+        {
+            try
+            {
+
+                //Get News
+                string caml = @"<Where><And><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq><Neq><FieldRef Name='{2}' /><Value Type='Text'>{3}</Value></Neq></And></Where><OrderBy><FieldRef Name='ID' Ascending='TRUE' /></OrderBy>";
+                var query = new SPQuery()
+                {
+                    Query = string.Format(CultureInfo.InvariantCulture, caml, FieldsName.NewsList.InternalName.NewsGroup, catId,"ID",newsId)
+                };
+                var items = list.GetItems(query);
+                if (items != null && items.Count > 0)
+                {
+                    if (dt == null)
                     {
                         dt = items.GetDataTable().Clone();
                     }
