@@ -48,7 +48,15 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 HtmlImage imgThumb = (HtmlImage)e.Item.FindControl("imgThumb");
-                imgThumb.Src = "../" + drv[FieldsName.NewsList.InternalName.ImageThumb];
+                var imgUrl = Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                if (imgUrl.Contains("http://"))
+                {
+                    imgThumb.Src = imgUrl;
+                }
+                else
+                {
+                    imgThumb.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                }
                 aLink.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
             }
         }

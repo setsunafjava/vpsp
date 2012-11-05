@@ -1202,6 +1202,56 @@ namespace VP.Sharepoint.CQ.Common
         /// <summary>
         /// BindToDropDown
         /// </summary>
+        /// <param name="web"></param>
+        /// <param name="ddl"></param>
+        /// <param name="listName"></param>
+        /// <param name="fieldID"></param>
+        /// <param name="parentField"></param>
+        /// <param name="orderField"></param>
+        /// <param name="levelField"></param>
+        /// <param name="currentValue"></param>
+        public static void BindToDropDown(SPWeb web, ListControl ddl, string listName, string fieldID, string parentField, string orderField, string levelField, string currentValue)
+        {
+            ddl.Items.Clear();
+            ddl.Items.Add(new ListItem("Root", ""));
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            string caml = @"<Where><And><IsNull><FieldRef Name='{0}' /></IsNull><Neq><FieldRef Name='{1}' /><Value Type='Text'>{2}</Value></Neq></And></Where><OrderBy><FieldRef Name='{3}' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, fieldID, currentValue, orderField)
+                            };
+                            var list = Utilities.GetCustomListByUrl(adminWeb, listName);
+                            var items = list.GetItems(query);
+                            if (items != null && items.Count > 0)
+                            {
+                                foreach (SPListItem item in items)
+                                {
+                                    ddl.Items.Add(new ListItem(Utilities.GetPreValue(Convert.ToInt32(item[levelField])) + Convert.ToString(item[FieldsName.MenuList.InternalName.Title]), Convert.ToString(item[fieldID])));
+                                    Utilities.BindToDropDown(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField, currentValue);
+                                }
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+            ddl.SelectedValue = currentValue;
+        }
+
+        /// <summary>
+        /// BindToDropDown
+        /// </summary>
         /// <param name="ddl"></param>
         /// <param name="list"></param>
         /// <param name="fieldID"></param>
