@@ -91,6 +91,16 @@ namespace VP.Sharepoint.CQ
                 ListTemplateType = SPListTemplateType.DocumentLibrary
             };
             helper.Apply();
+
+            helper = new ListHelper(web)
+            {
+                Title = ListsName.DisplayName.WeatherList,
+                Name = ListsName.InternalName.WeatherList,
+                OnQuickLaunch = false,
+                EnableAttachments = true,
+                ListTemplateType = SPListTemplateType.DocumentLibrary
+            };
+            helper.Apply();
         }
     }
 }
