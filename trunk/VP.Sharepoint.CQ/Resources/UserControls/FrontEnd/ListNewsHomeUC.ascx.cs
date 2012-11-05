@@ -85,7 +85,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 }
                 else
                 {
-                    imgNews.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                    imgNews.Src = WebUrl + "/" + Convert.ToString(dr[FieldsName.NewsList.InternalName.ImageThumb]);
                 }
                 spDesc.InnerText = Utilities.StripHTML(Convert.ToString(dr[FieldsName.NewsList.InternalName.Description]));
             }

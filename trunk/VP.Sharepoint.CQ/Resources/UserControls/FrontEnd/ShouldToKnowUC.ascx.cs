@@ -67,7 +67,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlAnchor aDesc = (HtmlAnchor)e.Item.FindControl("aDesc");
                 HtmlAnchor aImg= (HtmlAnchor)e.Item.FindControl("aImg");
                 HtmlImage imgNews = (HtmlImage)e.Item.FindControl("imgNews");
-                var imgUrl = Convert.ToString(dr[FieldsName.NewsList.InternalName.ImageThumb]);
+                var imgUrl = Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 if (imgUrl.Contains("http://"))
                 {
                     imgNews.Src = imgUrl;
