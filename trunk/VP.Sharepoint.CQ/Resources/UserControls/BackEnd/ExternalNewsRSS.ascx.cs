@@ -22,20 +22,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                if (CurrentMode == Constants.EditForm || CurrentMode == Constants.NewForm)
-                {
-                    lblCatDisplay.Visible = false;
-                    ddlCategory.Visible = true;
-                }
-                else
-                {
-                    lblCatDisplay.Visible = true;
-                    ddlCategory.Visible = false;
-                }
-                BindData();
-            }
+            
         }
 
         /// <summary>
@@ -58,74 +45,9 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         private void CustomSaveHandler(object sender, EventArgs e)
         {
-            List<string> fileNames = new List<string>();
-            if (fuThumb.HasFile)
-            {
-                var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuThumb.FileName);
-                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuThumbName));
-                CurrentItem[FieldsName.ExternalNews.InternalName.ImageThumb] = file.Url;
-                fileNames.Add(fuThumb.FileName);
-
-                SPFieldUrlValue imgDsp = new SPFieldUrlValue();
-                imgDsp.Description = CurrentItem.Title;
-                var webUrl = CurrentWeb.ServerRelativeUrl;
-                if (webUrl.Equals("/"))
-                {
-                    webUrl = "";
-                }
-                imgDsp.Url = webUrl + "/" + file.Url;
-                CurrentItem[FieldsName.ExternalNews.InternalName.ImageDsp] = imgDsp;
-            }
-            CurrentItem[FieldsName.ExternalNews.InternalName.NewsGroup] = ddlCategory.SelectedValue;
             CurrentWeb.AllowUnsafeUpdates = true;
+            CurrentItem[FieldsName.ExternalNewsLink.InternalName.NewsGroup] = Request.QueryString["CatID"];
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
-            if (fileNames.Count > 0)
-            {
-                foreach (var fileName in fileNames)
-                {
-                    try
-                    {
-                        CurrentWeb.AllowUnsafeUpdates = true;
-                        CurrentItem.Attachments.Delete(fileName);
-                    }
-                    catch (Exception ex)
-                    {
-                        Utilities.LogToULS(ex);
-                    }
-                }
-                CurrentWeb.AllowUnsafeUpdates = true;
-                CurrentItem.SystemUpdate(false);
-            }
-        }
-
-        private void BindData()
-        {           
-            //Bind ddlCategory
-            try
-            {               
-                //if (CurrentMode.Equals(SPControlMode.New) || CurrentMode.Equals(SPControlMode.Edit))
-                //{
-                    
-                //}
-                Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
-                        FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.InternalName.CategoryLevel);
-                if (CurrentMode.Equals(SPControlMode.Edit))
-                {
-                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.ExternalNews.InternalName.NewsGroup]);
-                }
-                if (CurrentMode.Equals(SPControlMode.Display))
-                {
-                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.ExternalNews.InternalName.NewsGroup]);
-                    lblCatDisplay.Text = ddlCategory.SelectedItem.Text;
-                    ddlCategory.Visible = false;
-                    lblCatDisplay.Visible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                Utilities.LogToULS(ex);
-            }
         }
 
         #region Properties

@@ -385,7 +385,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             #region Context Menu
 
-            contextMenuTemplate = new MenuTemplate { ID = "contextMenuTemplate", CompactMode = true };
+            contextMenuTemplate = new MenuTemplate { ID = "contextMenuTemplate" + this.ID, CompactMode = true };
             Controls.Add(contextMenuTemplate);
 
             var viewItem = new MenuItemTemplate
@@ -398,7 +398,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             var editItem = new MenuItemTemplate
             {
-                ID = "EditItem",
+                ID = "EditItem" + this.ID,
                 Text = SPResource.GetString(Strings.ButtonTextEditItem),
                 ImageUrl = "~/_layouts/images/edititem.gif",
                 //ClientOnClickNavigateUrl = "%WEBURL%/_layouts/listform.aspx?PageType=6&ListId=%LISTID%&ID=%ITEMID%",
@@ -410,7 +410,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             var deleteItem = new MenuItemTemplate
             {
-                ID = "DeleteItem",
+                ID = "DeleteItem" + this.ID,
                 Text = SPResource.GetString(Strings.ButtonTextDeleteItem),
                 ImageUrl = "~/_layouts/images/delitem.gif",
                 ClientOnClickNavigateUrl = string.Concat("javascript:if(confirm(L_STSRecycleConfirm_Text))", Page.ClientScript.GetPostBackEventReference(this, "_ITEMDELETE;%ITEMID%;%LISTID%"))
@@ -834,12 +834,12 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             if (!EnableEditItem)
             {
-                hiddenMenuItemIds.Add("EditItem");
+                hiddenMenuItemIds.Add("EditItem" + this.ID);
             }
 
             if (!EnableDeleteItem)
             {
-                hiddenMenuItemIds.Add("DeleteItem");
+                hiddenMenuItemIds.Add("DeleteItem" + this.ID);
             }
 
             foreach (DataRow item in DataSource.Rows)
@@ -848,7 +848,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 {
                     SuppressBubbleIfPostback = false,
                     UseMaximumWidth = true,
-                    TemplateId = "contextMenuTemplate",
+                    TemplateId = "contextMenuTemplate" + this.ID,
                     ID = string.Format("itemContextMenu_{0}_{1}_{2}", item["ListId"], item["ID"], item["RowIndex"]).Replace("-", "")
                 };
 
