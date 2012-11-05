@@ -12,7 +12,7 @@
 <cl:RecursiveDataView ID="viewMenu" runat="server" ListName="CategoryList" ShowRibbonTabs="false" ShowTotalItems="True" MenuField="Title" 
     FieldIDName="CategoryID" FieldParentName="ParentID" FieldOrderName="Order" FieldLevelName="CategoryLevel" FieldRecursiveName="Title">
     <ViewFields>
-	    <cl:TextFieldRef ID="fName" FieldName="Title" HeaderText="Tên menu" runat="server"/>
+	    <cl:TextFieldRef ID="fName" FieldName="Title" HeaderText="Tên chuyên mục" runat="server"/>
         <cl:TextFieldRef ID="TextFieldRef1" FieldName="CategoryID" runat="server" IsHidden="true" />
         <cl:TextFieldRef ID="TextFieldRef2" FieldName="ParentID" runat="server" IsHidden="true" />
         <cl:TextFieldRef ID="TextFieldRef3" FieldName="Order" runat="server" IsHidden="true" />
