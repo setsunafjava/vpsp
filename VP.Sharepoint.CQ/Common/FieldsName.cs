@@ -199,6 +199,9 @@
                 public const string Title = "Title";
                 public const string Description = "Description";
                 public const string NewsGroup = "NewsGroup";
+                public const string NewsGroupName = "NewsGroupName";
+                public const string RSSName = "RSSName";
+                public const string RSSLink = "RSSLink";
                 public const string Status = "Status";
                 public const string Order = "Order";
                 public const string ImageThumb = "ImageThumb";
@@ -211,6 +214,9 @@
                 public const string Title = "Tiêu đề";                
                 public const string Description = "Mô tả";
                 public const string NewsGroup = "Nhóm tin";
+                public const string NewsGroupName = "Tên nhóm tin";
+                public const string RSSName = "Tên RSS";
+                public const string RSSLink = "Link RSS";
                 public const string Status = "Trạng thái";
                 public const string Order = "Thứ tự";
                 public const string ImageThumb = "Ảnh trích dẫn";

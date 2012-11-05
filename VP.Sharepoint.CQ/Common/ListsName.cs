@@ -14,6 +14,7 @@
             public const string SignaturePerson = "SignaturePerson";
             public const string DocumentsList = "DocumentsList";
             public const string ExternalNewsList = "ExternalNewsList";
+            public const string ExternalNewsLinkList = "ExternalNewsLinkList";
             public const string ImageLibrary = "ImageLibrary";
             public const string VideoLibrary = "VideoLibrary";
             public const string CategoryList = "CategoryList";
@@ -46,6 +47,7 @@
             public const string SignaturePerson = "Người ký";
             public const string DocumentsList = "Văn bản";
             public const string ExternalNewsList = "Tin ngoài";
+            public const string ExternalNewsLinkList = "Link RSS cho tin ngoài";
             public const string ImageLibrary = "Thư viện ảnh";
             public const string VideoLibrary = "Thư viện video";
             public const string CategoryList = "Chuyên mục";

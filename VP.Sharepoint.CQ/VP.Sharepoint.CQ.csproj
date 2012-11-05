@@ -178,6 +178,27 @@
     <Compile Include="Resources\UserControls\BackEnd\AdvList.ascx.designer.cs">
       <DependentUpon>AdvList.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\CategoryView.ascx.cs">
+      <DependentUpon>CategoryView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\CategoryView.ascx.designer.cs">
+      <DependentUpon>CategoryView.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx.cs">
+      <DependentUpon>ExternalNewsRSS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx.designer.cs">
+      <DependentUpon>ExternalNewsRSS.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ExternalNewsView.ascx.cs">
+      <DependentUpon>ExternalNewsView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ExternalNewsView.ascx.designer.cs">
+      <DependentUpon>ExternalNewsView.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\BackEnd\ExternalNews.ascx.cs">
       <DependentUpon>ExternalNews.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -631,6 +652,15 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\AdvList.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\BackEnd\CategoryView.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\BackEnd\ExternalNewsView.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\ExternalNews.ascx">

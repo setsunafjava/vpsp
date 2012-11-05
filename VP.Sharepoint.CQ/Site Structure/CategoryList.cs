@@ -47,6 +47,8 @@ namespace VP.Sharepoint.CQ
 
             //Add custom usercontrol to form
             Utilities.AddForms(web, list, "../../UserControls/CategoryList.ascx");
+            //add view
+            Utilities.AddStandardView(web, list, "AllCategory", "../../UserControls/CategoryView.ascx", "", 100, true);
         }
     }
 }
