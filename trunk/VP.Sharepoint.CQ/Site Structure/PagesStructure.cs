@@ -53,7 +53,7 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.DefaultPage, "HomeHotNewsUC", "RightHomeUC", 4, "HomeHotNewsUC");
             AddUserControlToPage(web, Constants.DefaultPage, "advhomeright", "RightHomeUC", 5, "AdvUC");
             AddUserControlToPage(web, Constants.DefaultPage, "GalleryHomeUC", "RightHomeUC", 6, "GalleryHomeUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "ListCatsHomeUC", "RightHomeUC", 7, "ListCatsHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "boxgiaitri", "RightHomeUC", 7, "ListCatsHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "HitCountUC", "RightHomeUC", 8, "HitCountUC");
             //footer
             AddUserControlToPage(web, Constants.DefaultPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
