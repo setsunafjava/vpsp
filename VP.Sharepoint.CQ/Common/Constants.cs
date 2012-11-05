@@ -32,5 +32,19 @@ namespace VP.Sharepoint.CQ.Common
             public const string SlideNews = "Tin slide show";
         }
         #endregion
+
+        #region Category type
+        public class CategoryStatus
+        {
+            public const string News = "Tin tức";
+            public const string Intro = "Giới thiệu";
+            public const string Documents = "Văn bản";
+            public const string ImagesGalery = "Thư viện ảnh";
+            public const string VideoGalery = "Thư viện video";
+            public const string Resource = "Tài nguyên";
+            public const string NeedToKnow = "Thông tin cần biết";
+            public const string Resources = "Tài nguyên";
+        }
+        #endregion
     }
 }
