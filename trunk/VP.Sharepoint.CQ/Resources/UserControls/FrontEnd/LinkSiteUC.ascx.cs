@@ -7,6 +7,7 @@ using System.Globalization;
 using Constants = VP.Sharepoint.CQ.Common.Constants;
 using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
 using System.Data;
+using System.Web.UI.WebControls;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -52,6 +53,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                 ddlWebURL.DataValueField = FieldsName.WebsiteLink.InternalName.WebURL;
                                 ddlWebURL.DataBind();
                             }
+                            ddlWebURL.Items.Insert(0, new ListItem("--Liên kết website--", string.Empty));
                         }
                         catch (SPException ex)
                         {

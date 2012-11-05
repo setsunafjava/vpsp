@@ -22,6 +22,7 @@
                 public const string ImageHot = "ImageHot";
                 public const string ImageDsp = "ImageDsp";
                 public const string NewsCount = "NewsCount";
+                public const string NewsUrl = "NewsUrl";
             }
             #endregion
             //Display Name
@@ -41,6 +42,7 @@
                 public const string ImageHot = "Ảnh nổi bật";
                 public const string ImageDsp = "Ảnh mô tả";
                 public const string NewsCount = "Số lần đọc";
+                public const string NewsUrl = "URL (link ngoài)";
             }
             #endregion
         }

@@ -89,6 +89,15 @@
                 <asp:FileUpload ID="fuImageHot" runat="server" />
             </td>
         </tr>
+
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblUrl" runat="server" FieldName="NewsUrl" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">                
+                <SharePoint:TextField ID="txtUrl" runat="server" FieldName="NewsUrl" />
+            </td>
+        </tr>
         
         <tr id="idAttachmentsRow">
             <td style="width: 190px; vertical-align: top; font-weight: normal;" class="ms-formlabel"
