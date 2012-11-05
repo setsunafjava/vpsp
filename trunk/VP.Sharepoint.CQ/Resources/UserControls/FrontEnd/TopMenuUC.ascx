@@ -12,7 +12,7 @@
 <div class="top_menu">
     <div class="menu">
         <ul id="nav">
-            <li><a href="<%=WebUrl%>" style="background: url(<%=DocLibUrl%>/bg_menu_hover.gif) top left repeat-x;">Trang chủ</a></li>
+            <li><a href='<%=WebUrl%>' style="background: url(<%=DocLibUrl%>/bg_menu_hover.gif) top left repeat-x;">Trang chủ</a></li>
             <asp:Repeater ID="rptMenu" runat="server" 
                 onitemdatabound="rptMenu_ItemDataBound">
                 <ItemTemplate>
