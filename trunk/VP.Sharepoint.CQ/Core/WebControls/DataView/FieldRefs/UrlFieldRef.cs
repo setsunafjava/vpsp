@@ -37,9 +37,9 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             var split = value.Split(new [] {", "}, StringSplitOptions.None);
             if (split.Length == 2)
             {
-                writer.AddAttribute(HtmlTextWriterAttribute.Href, split[0]);
-                writer.RenderBeginTag(HtmlTextWriterTag.A);
-                writer.Write(SPEncode.HtmlEncode(split[1]));
+                writer.AddAttribute(HtmlTextWriterAttribute.Src, split[0]);
+                writer.RenderBeginTag(HtmlTextWriterTag.Img);
+                //writer.Write(SPEncode.HtmlEncode(split[1]));
                 writer.RenderEndTag(); // a    
             }
             else
