@@ -13,17 +13,17 @@
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <table class="ms-formtable" style="width: 100%">
     <tr>
-        <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+        <td style="vertical-align: top; width:120px; font-weight: normal;" class="ms-formlabel" valign="top">
             Chọn chuyên mục
         </td>
         <td class="ms-formbody" style="font-size: 11px;">
-            <asp:DropDownList ID="ddlCategory" runat="server" 
+            <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="true"
                 onselectedindexchanged="ddlCategory_SelectedIndexChanged"></asp:DropDownList>
         </td>
     </tr>
 </table>
 <div>
-    <input id="btnRSS" type="button" value="Thêm mới link RSS" />
+    <input id="btnRSS" type="button" value="Thêm mới link RSS" onclick="OpenAddNewRSS()" />
 </div>
 <cl:FlatDataView ID="viewRSS" runat="server" ListName="ExternalNewsLinkList" ShowRibbonTabs="false"
     ShowTotalItems="True" MenuField="Title">
@@ -55,9 +55,16 @@
 <script type="text/javascript">
     function OpenAddNewRSS() {
         var options = SP.UI.$create_DialogOptions();
-        options.url = '../../CloseTickets.aspx?CatID=' + document.getElementById('<%=ddlCategory.ClientID%>').value;
+        options.url = '../../Lists/ExternalNewsLinkList/NewForm.aspx?CatID=' + document.getElementById('<%=ddlCategory.ClientID%>').value;
         options.title = 'Thêm mới link RSS';
-        options.dialogReturnValueCallback = Function.createDelegate(null, APR0146CIBOPSAdminSupport_CallbackRefreshPage);
+        options.dialogReturnValueCallback = Function.createDelegate(null, VP_CallbackRefreshPage);
         SP.UI.ModalDialog.showModalDialog(options);
+    }
+
+    function VP_CallbackRefreshPage(dialogResult, returnValue) {
+        if (dialogResult == SP.UI.DialogResult.OK) {
+            SP.UI.Notify.addNotification('Đã thực hiện thành công!');
+            SP.UI.ModalDialog.RefreshPage(SP.UI.DialogResult.OK);
+        }
     }
 </script>

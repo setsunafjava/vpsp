@@ -18,50 +18,15 @@
                 <SharePoint:TextField runat="server" ID="txtTitle" FieldName="Title"/>
             </td>
         </tr>
-         <tr>
-            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblNewsGroup" runat="server" FieldName="NewsGroup" />
-            </td>
-            <td class="ms-formbody" style="font-size: 11px;">                
-                <asp:Label ID="lblCatDisplay" runat="server"></asp:Label>
-                <asp:DropDownList ID="ddlCategory" runat="server"></asp:DropDownList>
-            </td>
-        </tr>
-
+         
         <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblDescription" runat="server" FieldName="Description" />
+                <SharePoint:FieldLabel ID="lblDescription" runat="server" FieldName="LinkPath" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtDescription" FieldName="Description"/>
+                <SharePoint:TextField runat="server" ID="txtLinkPath" FieldName="LinkPath"/>
             </td>
         </tr>      
-         <tr>
-            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblStatus" runat="server" FieldName="Status" />
-            </td>
-            <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:DropDownChoiceField runat="server" ID="txtStatus" FieldName="Status"/>
-            </td>
-        </tr>
-
-         <tr>
-            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
-                <SharePoint:FieldLabel ID="lblImageThumb" runat="server" FieldName="ImageThumb" />
-            </td>
-            <td class="ms-formbody" style="font-size: 11px;">
-                <asp:FileUpload ID="fuThumb" runat="server" />
-            </td>
-        </tr>
-        
-        <tr id="idAttachmentsRow">
-            <td style="width: 190px; vertical-align: top; font-weight: normal;" class="ms-formlabel"
-                valign="top">
-                <SharePoint:FieldLabel ID="labelAttachments" runat="server" FieldName="Attachments" />
-            </td>
-            <td class="ms-formbody" id="tdAttachments" style="font-size: 11px;">
-            </td>
-        </tr>
         <tr>
             <td align="right" colspan="2" style="vertical-align: top; font-weight: normal;" class="ms-formlabel"
                 valign="top">
@@ -82,13 +47,3 @@
         </tr>
     </table>
 </div>
-<div id="divAttachments">
-</div>
-
-<input type="hidden" runat="server" id="hidMenuLevel" />
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#partAttachment").appendTo("#divAttachments");
-        $("#idAttachmentsTable").appendTo("#tdAttachments");
-    });
-</script>

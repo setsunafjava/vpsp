@@ -18,7 +18,7 @@ namespace VP.Sharepoint.CQ
 
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNewsLink.InternalName.NewsGroup, FieldsName.ExternalNewsLink.DisplayName.NewsGroup));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNewsLink.InternalName.NewsGroupName, FieldsName.ExternalNewsLink.DisplayName.NewsGroupName));
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNewsLink.InternalName.LinkPath, FieldsName.ExternalNewsLink.DisplayName.LinkPath));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNewsLink.InternalName.LinkPath, FieldsName.ExternalNewsLink.DisplayName.LinkPath) { EnforceUniqueValues = true });
 
             var list = helper.Apply();
             SPField fieldTitle = list.Fields.GetField(FieldsName.ExternalNewsLink.InternalName.Title);
