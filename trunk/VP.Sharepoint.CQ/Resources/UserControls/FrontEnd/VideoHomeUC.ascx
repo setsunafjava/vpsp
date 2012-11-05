@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="VP.Sharepoint.CQ.Common" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -19,12 +20,21 @@
             </div>
         </div>
         <div class="content_F_Right">
-            <img src="<%=DocLibUrl%>/video.jpg" style="width: 285px;" />
+            <%--<img src="<%=DocLibUrl%>/video.jpg" style="width: 285px;" />--%>
+
+            <asp:Literal ID="ltrVideo" runat="server"></asp:Literal>
+
             <div class="list_video">
                 <ul>
+                    <asp:Repeater ID="rptVideo" runat="server" OnItemDataBound="rptVideo_ItemDataBound">
+                        <ItemTemplate>
+                        
+                        <li><a id="aLink" runat="server"><%#Eval(FieldsName.VideoLibrary.InternalName.Title) %></a></li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <%--<li><a href="#">Đêm hội Canarval Hạ Long</a></li>
                     <li><a href="#">Đêm hội Canarval Hạ Long</a></li>
-                    <li><a href="#">Đêm hội Canarval Hạ Long</a></li>
-                    <li><a href="#">Đêm hội Canarval Hạ Long</a></li>
+                    <li><a href="#">Đêm hội Canarval Hạ Long</a></li>--%>
                 </ul>
             </div>
         </div>
