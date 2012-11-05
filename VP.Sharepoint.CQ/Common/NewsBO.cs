@@ -15,7 +15,8 @@ namespace VP.Sharepoint.CQ.Common
                                                                                                     {"boxnewshomebig2","Trang chủ - box tin to 2"},
                                                                                                     {"boxnewshomesmall1","Trang chủ - box tin nhỏ 1"},
                                                                                                     {"boxnewshomesmall2","Trang chủ - box tin nhỏ 2"},
-                                                                                                    {"boxnewshomesmall3","Trang chủ - box tin nhỏ 3"}};
+                                                                                                    {"boxnewshomesmall3","Trang chủ - box tin nhỏ 3"},
+                                                                                                    {"boxgiaitri","Trang chủ - Chuyên mục giải trí"}};
 
         #region Bussiness for Category
         public static void BindRepeaterCat(SPWeb web,Repeater rpt,string listName, string newsPosition)

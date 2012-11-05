@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="VP.Sharepoint.CQ.Common" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -17,7 +18,7 @@
             <ul>
                 <asp:Repeater ID="rptCat" runat="server" OnItemDataBound="rptCat_ItemDataBound">
                     <ItemTemplate>
-                        <li><a href="#" id="aLink" runat="server">Văn học </a></li>
+                        <li><a href="#" id="aLink" runat="server"><%#Eval(FieldsName.CategoryList.InternalName.Title) %></a></li>
                     </ItemTemplate>
                 </asp:Repeater>                
                 <%--<li><a href="#">Văn học </a></li>
