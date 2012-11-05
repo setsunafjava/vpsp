@@ -67,6 +67,33 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::System.Web.UI.WebControls.Button btnStatus;
         
         /// <summary>
+        /// ddlCat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCat;
+        
+        /// <summary>
+        /// txtRSS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRSS;
+        
+        /// <summary>
+        /// btnGetNews control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGetNews;
+        
+        /// <summary>
         /// viewNews control.
         /// </summary>
         /// <remarks>

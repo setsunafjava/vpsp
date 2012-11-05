@@ -46,7 +46,10 @@ namespace VP.Sharepoint.CQ.UserControls
         private void CustomSaveHandler(object sender, EventArgs e)
         {
             CurrentWeb.AllowUnsafeUpdates = true;
-            CurrentItem[FieldsName.ExternalNewsLink.InternalName.NewsGroup] = Request.QueryString["CatID"];
+            if (CurrentMode.Equals(Constants.NewForm))
+            {
+                CurrentItem[FieldsName.ExternalNewsLink.InternalName.NewsGroup] = Request.QueryString["CatID"];
+            }
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
         }
 

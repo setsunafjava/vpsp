@@ -32,13 +32,16 @@
         <cl:TextFieldRef ID="fRSS" FieldName="LinkPath" HeaderText="Link RSS" runat="server" />
     </ViewFields>
 </cl:FlatDataView>
-
 <br />
 <div>
     <asp:Button ID="btnUpdate" runat="server" Text="Lấy tin tức mới nhất" 
         onclick="btnUpdate_Click" />
     <asp:Button ID="btnStatus" runat="server" Text="Cập nhật trạng thái" 
-        onclick="btnStatus_Click" />
+        onclick="btnStatus_Click" /><br />
+    &nbsp;<asp:DropDownList ID="ddlCat" runat="server"></asp:DropDownList>&nbsp;
+    <asp:TextBox ID="txtRSS" runat="server"></asp:TextBox>&nbsp;
+    <asp:Button ID="btnGetNews" runat="server" Text="Lấy tin tức cho tin chính" 
+        onclick="btnGetNews_Click" />
 </div>
 <br />
 
