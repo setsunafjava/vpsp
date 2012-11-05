@@ -13,10 +13,14 @@ namespace VP.Sharepoint.CQ
                         {
                             Title = ListsName.DisplayName.ExternalNewsList,
                             Name = ListsName.InternalName.ExternalNewsList,
-                            OnQuickLaunch = false, EnableAttachments = true
+                            OnQuickLaunch = false, EnableAttachments = false
                         };
 
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNews.InternalName.Description, FieldsName.ExternalNews.DisplayName.Description));
+            helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.ExternalNews.InternalName.Description, FieldsName.ExternalNews.DisplayName.Description)
+            {
+                RichText = true,
+                RichTextMode = SPRichTextMode.FullHtml
+            });
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNews.InternalName.NewsGroup, FieldsName.ExternalNews.DisplayName.NewsGroup));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNews.InternalName.NewsGroupName, FieldsName.ExternalNews.DisplayName.NewsGroupName));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ExternalNews.InternalName.RSSName, FieldsName.ExternalNews.DisplayName.RSSName));
