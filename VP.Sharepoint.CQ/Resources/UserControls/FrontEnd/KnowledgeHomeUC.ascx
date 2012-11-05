@@ -258,7 +258,7 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
 
 <div class="pos_MOD">
     <div class="bg_title_mod">
-        <%=ParentWP.NeedToKnowTitle %></div>
+        Thông tin cần biết</div>
     <div class="inner_pos_Mod">
         <div class="wheather">
             <div class="area">
@@ -284,7 +284,7 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
 
             </div>
             <div class="gold_rate">
-                <%=ParentWP.RateTitle %>
+                Tỷ giá
             </div>
             <div>
 
@@ -295,13 +295,13 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
                 <table width="100%" style="margin: 0;" cellpadding="4" cellspacing="0" class="tbl-tygia">
                     <tr>
                         <th align='left'>
-                            <%=ParentWP.GoldTitle %>
+                            Vàng
                         </th>
                         <th>
-                            <%=ParentWP.BuyTitle %>
+                            Mua
                         </th>
                         <th>
-                            <%=ParentWP.SaleTitle %>
+                            Bán
                         </th>
                     </tr>
                     <tr>
@@ -336,13 +336,13 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
                     </tr>
                     <tr>
                         <th>
-                            <%=ParentWP.CurrencyTitle %>
+                            Ngoại tệ
                         </th>
                         <th>
-                            <%=ParentWP.BuyTitle %>
+                            Mua
                         </th>
                         <th>
-                            <%=ParentWP.SaleTitle %>
+                            Bán
                         </th>
                     </tr>
                     <asp:Repeater ID="rptTiGia" runat="server">
@@ -363,10 +363,10 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
                 </table>
             </div>
             <div class="ball">
-                <asp:LinkButton ID="lbBD" runat="server"><%=ParentWP.FootballTitle %></asp:LinkButton>
+                <asp:LinkButton ID="lbBD" runat="server">Bóng đá</asp:LinkButton>
             </div>
             <div class="resul">
-                <asp:LinkButton ID="lbKQXS" runat="server"><%=ParentWP.LotoTitle %></asp:LinkButton>
+                <asp:LinkButton ID="lbKQXS" runat="server">Kết quả xố số</asp:LinkButton>
             </div>
         </div>
     </div>
