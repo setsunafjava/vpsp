@@ -42,7 +42,6 @@ namespace VP.Sharepoint.CQ
 
             //add view
             Utilities.AddStandardView(web, list, "AllExternalNews", "../../UserControls/ExternalNewsView.ascx", "", 100, true);
-            Utilities.AddStandardView(web, list, "ExternalNewsByCat", "../../UserControls/ExternalNews.ascx", "", 100, false);
             Utilities.AddStandardView(web, list, "ExternalNewsRSS", "../../UserControls/ExternalNewsRSS.ascx", "", 100, false);
         }
     }

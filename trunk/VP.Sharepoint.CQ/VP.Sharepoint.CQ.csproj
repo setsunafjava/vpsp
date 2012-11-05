@@ -112,6 +112,8 @@
     <Compile Include="Core\WebControls\DataView\Common\GenericComparer.cs" />
     <Compile Include="Core\WebControls\DataView\Common\GenericEqualityComparer.cs" />
     <Compile Include="Core\WebControls\DataView\Common\ViewFieldRefEqualityComparer.cs" />
+    <Compile Include="Core\WebControls\DataView\FieldRefs\ChoiceFieldRef.cs" />
+    <Compile Include="Core\WebControls\DataView\FieldRefs\UrlFieldRef.cs" />
     <Compile Include="Core\WebControls\DataView\FlatDataView.cs" />
     <Compile Include="Core\WebControls\DataView\RecursiveDataView.cs" />
     <Compile Include="Core\WebControls\DataView\FieldRefs\BaseFieldRef.cs" />
@@ -198,13 +200,6 @@
     </Compile>
     <Compile Include="Resources\UserControls\BackEnd\ExternalNewsView.ascx.designer.cs">
       <DependentUpon>ExternalNewsView.ascx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\UserControls\BackEnd\ExternalNews.ascx.cs">
-      <DependentUpon>ExternalNews.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Resources\UserControls\BackEnd\ExternalNews.ascx.designer.cs">
-      <DependentUpon>ExternalNews.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Resources\UserControls\BackEnd\MenuView.ascx.cs">
       <DependentUpon>MenuView.ascx</DependentUpon>
@@ -503,6 +498,7 @@
     <Compile Include="Site Structure\AlbumList.cs" />
     <Compile Include="Site Structure\AdvList.cs" />
     <Compile Include="Site Structure\AdvStatisticList.cs" />
+    <Compile Include="Site Structure\ExternalNewsLink.cs" />
     <Compile Include="Site Structure\IconLinkList.cs" />
     <Compile Include="Site Structure\CreateDocLibs.cs" />
     <Compile Include="Site Structure\MenuList.cs" />
@@ -661,9 +657,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\ExternalNewsView.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
-    <Content Include="Resources\UserControls\BackEnd\ExternalNews.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\MenuView.ascx">

@@ -226,6 +226,28 @@
         }
         #endregion
 
+        #region ExternalNewsLink list
+        public class ExternalNewsLink
+        {
+            // Nested ExternalNewsLink list
+            public class InternalName
+            {
+                public const string Title = "Title";
+                public const string NewsGroup = "NewsGroup";
+                public const string NewsGroupName = "NewsGroupName";
+                public const string LinkPath = "LinkPath";
+            }
+
+            public class DisplayName
+            {
+                public const string Title = "Tiêu đề";
+                public const string NewsGroup = "Nhóm tin";
+                public const string NewsGroupName = "Tên nhóm tin";
+                public const string LinkPath = "Đường link";
+            }
+        }
+        #endregion
+
         #region Album list
         public class AlbumList
         {

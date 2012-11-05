@@ -141,7 +141,6 @@
     <ProjectItemFile Source="UserControls\FrontEnd\AboutUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\VanBanDetailUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\InitUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
-    <ProjectItemFile Source="UserControls\BackEnd\ExternalNews.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\AdvList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="Css\player.swf" Target="Resources\Css\" Type="ElementFile" />
     <ProjectItemFile Source="Css\stylish_slim.swf" Target="Resources\Css\" Type="ElementFile" />
