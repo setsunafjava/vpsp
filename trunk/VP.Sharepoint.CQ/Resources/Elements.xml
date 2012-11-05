@@ -142,5 +142,8 @@
 <File Path="Resources\UserControls\BackEnd\AdvList.ascx" Url="AdvList.ascx" />
 <File Path="Resources\Css\player.swf" Url="Resources/Css/player.swf" />
 <File Path="Resources\Css\stylish_slim.swf" Url="Resources/Css/stylish_slim.swf" />
+<File Path="Resources\UserControls\BackEnd\ExternalNewsView.ascx" Url="ExternalNewsView.ascx" />
+<File Path="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx" Url="ExternalNewsRSS.ascx" />
+<File Path="Resources\UserControls\BackEnd\CategoryView.ascx" Url="CategoryView.ascx" />
 </Module>
 </Elements>
