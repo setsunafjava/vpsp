@@ -25,7 +25,7 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.DisplayName.ParentID));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ParentName, FieldsName.CategoryList.DisplayName.ParentName));
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.CategoryLevel, FieldsName.CategoryList.DisplayName.CategoryLevel));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.CategoryLevel, FieldsName.CategoryList.DisplayName.CategoryLevel) { DefaultValue = "1" });
             helper.AddField(new ChoiceFieldCreator(FieldsName.CategoryList.InternalName.Type, FieldsName.CategoryList.DisplayName.Type)
             {
                 Choices = {"Tin tức", "Văn bản", "Thư viện ảnh", "Thư viện video", "Tài nguyên" },
