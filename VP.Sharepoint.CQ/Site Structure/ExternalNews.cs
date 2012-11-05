@@ -36,13 +36,6 @@ namespace VP.Sharepoint.CQ
             }
             list.Update();
 
-
-            //Set menu link
-            //Utilities.SetMenuLink(list, FieldsName.ExternalNews.InternalName.Status);
-            
-
-            //Add custom usercontrol to form
-            Utilities.AddForms(web, list, "../../UserControls/ExternalNews.ascx");
             //add view
             Utilities.AddStandardView(web, list, "AllExternalNews", "../../UserControls/ExternalNewsView.ascx", "", 100, true);
             Utilities.AddStandardView(web, list, "ExternalNewsByCat", "../../UserControls/ExternalNews.ascx", "", 100, false);
