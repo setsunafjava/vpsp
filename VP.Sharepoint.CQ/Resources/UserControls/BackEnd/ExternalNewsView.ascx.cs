@@ -235,6 +235,8 @@ namespace VP.Sharepoint.CQ.UserControls
                 if (!string.IsNullOrEmpty(imgUrl))
                 {
                     item[FieldsName.NewsList.InternalName.ImageThumb] = imgUrl;
+                    item[FieldsName.NewsList.InternalName.ImageSmallThumb] = imgUrl;
+                    item[FieldsName.NewsList.InternalName.ImageHot] = imgUrl;
                     SPFieldUrlValue imgDsp = new SPFieldUrlValue();
                     imgDsp.Description = item.Title;
                     imgDsp.Url = imgUrl;
