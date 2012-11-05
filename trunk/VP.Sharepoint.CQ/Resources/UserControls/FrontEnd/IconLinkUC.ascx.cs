@@ -54,21 +54,25 @@ namespace VP.Sharepoint.CQ.UserControls
                             query.Query = "<OrderBy><FieldRef Name='IConOrder' Ascending='True' /></OrderBy>";
 
                             SPListItemCollection items = iconLink.GetItems(query);
-                            DataTable dt = items.GetDataTable();
-                            dt.Columns.Add("FileUrl");
-                            int i = 0;
-                            foreach (SPListItem item in items)
+                            if (items !=null && items.Count > 0)
                             {
-                                SPAttachmentCollection attachs = item.Attachments;
-                                string fileName = attachs[0];
-                                dt.Rows[i]["FileUrl"] = fileName;
-                                i++;
-                            }                            
-                            if (dt!=null&&dt.Rows.Count>0)
-                            {
-                                rptLinkIcon.DataSource = dt;
-                                rptLinkIcon.DataBind();
+                                DataTable dt = items.GetDataTable();
+                                dt.Columns.Add("FileUrl");
+                                int i = 0;
+                                foreach (SPListItem item in items)
+                                {
+                                    SPAttachmentCollection attachs = item.Attachments;
+                                    string fileName = attachs[0];
+                                    dt.Rows[i]["FileUrl"] = fileName;
+                                    i++;
+                                }
+                                if (dt != null && dt.Rows.Count > 0)
+                                {
+                                    rptLinkIcon.DataSource = dt;
+                                    rptLinkIcon.DataBind();
+                                }
                             }
+                            
                         }
                         catch (SPException ex)
                         {
