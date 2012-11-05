@@ -27,7 +27,8 @@
                     <li><a href="#">Mua bán</a></li>--%>
                     <asp:Repeater ID="rptCat" runat="server" OnItemDataBound="rptCat_ItemDataBound">
                         <ItemTemplate>
-                            <li><a id="aLink"><%#Eval(FieldsName.CategoryList.InternalName.Title) %></a></li>
+                            <li><a id="aLink" runat="server"><%#Eval(FieldsName.CategoryList.InternalName.Title) %></a></li>
+                            <asp:Literal ID="ltrAdd" runat="server"></asp:Literal>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>
@@ -40,15 +41,16 @@
                 <ItemTemplate>
                     <div class="P1">
                         <div class="name_P">
-                            <a href="#">Tủ lạnh Hitachi</a>
+                            <a id="aTitle" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a>
                             <div class="link_web_P">
-                                <a href="#">Mediamart.vn</a></div>
+                                <a id="aDesc" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Description) %></a></div>
                         </div>
                         <div class="img_short_content">
                             <div class="img_thumb">
-                                <img src="<%=DocLibUrl%>/tulanh_ex.jpg"></div>
-                            <div class="short_info">
-                                Chỉ với <b>7.200 triệu </b>sở hữu tủ lạnh cao cấp cảu Hitachi...</div>
+                                <a id="aImg" runat="server"><img src="<%=DocLibUrl%>/tulanh_ex.jpg"></a></div>
+                            <div class="short_info" id="dvContent" runat="server">
+                                <%#Eval(FieldsName.NewsList.InternalName.Content) %>
+                            </div>
                             <div class="cleaner">
                             </div>
                         </div>

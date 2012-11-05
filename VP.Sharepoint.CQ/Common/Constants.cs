@@ -30,6 +30,7 @@ namespace VP.Sharepoint.CQ.Common
             public const string HomeNews = "Tin trang nhất";
             public const string HotNews = "Tin nổi bật";
             public const string SlideNews = "Tin slide show";
+            public const string ShouldKnowNews = "Tin cần biết";
         }
         #endregion
 
@@ -40,10 +41,11 @@ namespace VP.Sharepoint.CQ.Common
             public const string Intro = "Giới thiệu";
             public const string Documents = "Văn bản";
             public const string ImagesGalery = "Thư viện ảnh";
-            public const string VideoGalery = "Thư viện video";
-            public const string Resource = "Tài nguyên";
+            public const string VideoGalery = "Thư viện video";            
             public const string NeedToKnow = "Thông tin cần biết";
             public const string Resources = "Tài nguyên";
+            public const string Statistic = "Thống kê";
+            public const string Organization = "Sơ đồ tổ chức";
         }
         #endregion
     }

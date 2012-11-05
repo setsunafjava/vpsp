@@ -29,6 +29,8 @@ namespace VP.Sharepoint.CQ.UserControls
                 if (Page.Request.QueryString["CatId"]!=null&&Page.Request.QueryString["CatId"]!=string.Empty)
                 {
                     catId=Convert.ToString((Page.Request.QueryString["CatId"]));
+                    dvCatTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", "Title");
+
                     BindRepeater();
                 }
             }

@@ -38,7 +38,7 @@ namespace VP.Sharepoint.CQ
                 );
             helper.AddField(new MultipleChoiceFieldCreator(FieldsName.NewsList.InternalName.Status, FieldsName.NewsList.DisplayName.Status) 
             { 
-                Choices = { Constants.NewsStatus.HomeNews, Constants.NewsStatus.HotNews, Constants.NewsStatus.SlideNews }, 
+                Choices = { Constants.NewsStatus.HomeNews, Constants.NewsStatus.HotNews, Constants.NewsStatus.SlideNews,Constants.NewsStatus.ShouldKnowNews }, 
                 DefaultValue = Constants.NewsStatus.HomeNews                
             });
             helper.AddField(new DateTimeFieldCreator(FieldsName.NewsList.InternalName.PostedDate, FieldsName.NewsList.DisplayName.PostedDate)
