@@ -21,7 +21,11 @@ namespace VP.Sharepoint.CQ.Common
         #region Bussiness for Category
         public static void BindRepeaterCat(SPWeb web,Repeater rpt,string listName, string newsPosition)
         {
-            var newPos = BoxNewsPosition[newsPosition];
+            var newPos = newsPosition;
+            if (BoxNewsPosition.ContainsKey(newsPosition))
+            {
+                newPos = BoxNewsPosition[newsPosition];
+            }
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
                 using (var adminSite = new SPSite(web.Site.ID))
