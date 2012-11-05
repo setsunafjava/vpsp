@@ -58,7 +58,16 @@ namespace VP.Sharepoint.CQ.UserControls
                     HtmlImage imgNewsHome = (HtmlImage)e.Item.FindControl("imgNewsHome");
                     HtmlAnchor aImg = (HtmlAnchor)e.Item.FindControl("aImg");
                     // Todo: Need to reset Src property
-                    imgNewsHome.Src = "../" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);                    
+
+                    var imgUrl = Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                    if (imgUrl.Contains("http://"))
+                    {
+                        imgNewsHome.Src = imgUrl;
+                    }
+                    else
+                    {
+                        imgNewsHome.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                    }
                     imgNewsHome.Attributes.Remove("rel");
                     imgNewsHome.Attributes.Add("rel", string.Format("<h3>{0}</h3>{1}", drv[FieldsName.NewsList.InternalName.Title], Utilities.StripHTML(Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]))));
                     aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);

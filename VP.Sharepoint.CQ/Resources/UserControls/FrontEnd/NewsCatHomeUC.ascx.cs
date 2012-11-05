@@ -54,10 +54,15 @@ namespace VP.Sharepoint.CQ.UserControls
                     if (dt!=null&&dt.Rows.Count > 0)
                     {
                         DataRow dr = dt.Rows[0];
+                        var imgUrl = Convert.ToString(dr[FieldsName.NewsList.InternalName.ImageThumb]);
+                        if (!imgUrl.Contains("http://"))
+                        {
+                            imgUrl = WebUrl + "/" + imgUrl;
+                        }
                         ltrFirstNews.Text = string.Format("<div class='img_thumb_News'>" +
                                                            "<img src='{0}' /></div>" +
                                                             "<div class='intro_short_content_News'>" +
-                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], dr["ID"],dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
+                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", imgUrl, dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
                     }
 
                     if (dt != null && dt.Rows.Count > 1)
@@ -77,10 +82,15 @@ namespace VP.Sharepoint.CQ.UserControls
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         DataRow dr = dt.Rows[0];
+                        var imgUrl = Convert.ToString(dr[FieldsName.NewsList.InternalName.ImageThumb]);
+                        if (!imgUrl.Contains("http://"))
+                        {
+                            imgUrl = WebUrl + "/" + imgUrl;
+                        }
                         ltrSecondNews.Text = string.Format("<div class='img_thumb_News'>" +
                                                            "<img src='{0}' /></div>" +
                                                             "<div class='intro_short_content_News'>" +
-                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
+                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", imgUrl, dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
                     }
 
                     if (dt != null && dt.Rows.Count > 1)
@@ -100,10 +110,16 @@ namespace VP.Sharepoint.CQ.UserControls
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         DataRow dr = dt.Rows[0];
+                        var imgUrl = Convert.ToString(dr[FieldsName.NewsList.InternalName.ImageThumb]);
+                        if (!imgUrl.Contains("http://"))
+                        {
+                            imgUrl = WebUrl + "/" + imgUrl;
+                        }
+
                         ltrThirdNews.Text = string.Format("<div class='img_thumb_News'>" +
                                                            "<img src='{0}' /></div>" +
                                                             "<div class='intro_short_content_News'>" +
-                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", dr[FieldsName.NewsList.InternalName.ImageThumb], dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
+                                                            "<a href='newsdetail.aspx?ID={1}&CatId={2}'>{3}</a></div>", imgUrl, dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup], dr[FieldsName.NewsList.InternalName.Title]);
                     }
 
                     if (dt != null && dt.Rows.Count > 1)

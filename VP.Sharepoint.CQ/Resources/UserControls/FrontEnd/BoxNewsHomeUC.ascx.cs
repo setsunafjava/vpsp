@@ -51,7 +51,16 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlImage imgNews = (HtmlImage)e.Item.FindControl("imgNews");
                 aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
                 aLink.HRef = aImg.HRef;
-                imgNews.Src = "../" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                var imgUrl = Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                if (imgUrl.Contains("http://"))
+                {
+                    imgNews.Src = imgUrl;
+                }
+                else
+                {
+                    imgNews.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
+                }
+                
                 i++;
 
             }
