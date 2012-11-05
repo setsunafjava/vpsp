@@ -11,17 +11,21 @@
     Inherits="VP.Sharepoint.CQ.UserControls.ListCatsHomeUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <div class="pos_MOD">
-    <div class="bg_title_mod">
-        Chuyên mục giải trí</div>
+    <div class="bg_title_mod">Chuyên mục giải trí</div>
     <div class="inner_pos_Mod">
         <div class="inner_list_company_adv">
             <ul>
-                <li><a href="#">Văn học </a></li>
+                <asp:Repeater ID="rptCat" runat="server" OnItemDataBound="rptCat_ItemDataBound">
+                    <ItemTemplate>
+                        <li><a href="#" id="aLink" runat="server">Văn học </a></li>
+                    </ItemTemplate>
+                </asp:Repeater>                
+                <%--<li><a href="#">Văn học </a></li>
                 <li><a href="#">Câu lạc bộ thơ</a></li>
                 <li><a href="#">Câu lạc bộ âm nhạc</a></li>
                 <li><a href="#">Câu lạc bộ ngoại ngữ</a></li>
                 <li><a href="#">truyện cười</a></li>
-                <li><a href="#">Câu lạc bộ thời trang</a></li>
+                <li><a href="#">Câu lạc bộ thời trang</a></li>--%>
             </ul>
         </div>
     </div>
