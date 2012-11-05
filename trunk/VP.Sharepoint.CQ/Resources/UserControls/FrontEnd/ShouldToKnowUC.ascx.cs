@@ -51,7 +51,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 Literal ltrAdd = (Literal)e.Item.FindControl("ltrAdd");
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.HRef = string.Format("../news?CatId={0}", drv[FieldsName.CategoryList.InternalName.CategoryID]);
-                if (e.Item.ItemIndex!=rptCat.Items.Count-2)                
+                if (e.Item.ItemIndex!=rptCat.Items.Count-2)
                 {
                     ltrAdd.Text = "|";
                 }
@@ -66,8 +66,11 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlAnchor aTitle = (HtmlAnchor)e.Item.FindControl("aTitle");
                 HtmlAnchor aDesc = (HtmlAnchor)e.Item.FindControl("aDesc");
                 HtmlAnchor aImg= (HtmlAnchor)e.Item.FindControl("aImg");
+                HtmlImage imgNews = (HtmlImage)e.Item.FindControl("imgNews");
+                imgNews.Src = WebUrl + "/" + drv[FieldsName.NewsList.InternalName.ImageThumb];
 
-                if (Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]) != string.Empty)
+
+                if (Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]) == string.Empty)
                 {
                     aTitle.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
                     aImg.HRef = aTitle.HRef;
@@ -76,8 +79,11 @@ namespace VP.Sharepoint.CQ.UserControls
                 else
                 {
                     aTitle.HRef = Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]);
+                    aTitle.Target = "_blank";
                     aImg.HRef = aTitle.HRef;
+                    aImg.Target = aTitle.Target;
                     aDesc.HRef = aTitle.HRef;
+                    aDesc.Target = aTitle.Target;
                 }
             }
         }

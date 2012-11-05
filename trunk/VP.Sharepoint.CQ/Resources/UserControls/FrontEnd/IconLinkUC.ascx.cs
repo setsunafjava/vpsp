@@ -75,8 +75,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (e.Item.ItemType.Equals(ListItemType.Item)||e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
-                DataRowView drv = e.Item.DataItem as DataRowView;
-                SPListItem item = (SPListItem)e.Item.DataItem;
+                DataRowView drv = e.Item.DataItem as DataRowView;                
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 HtmlImage imgLink = (HtmlImage)e.Item.FindControl("imgLink");
                 aLink.HRef = Convert.ToString(drv[FieldsName.IconLinkList.InternalName.LinkURL]);                

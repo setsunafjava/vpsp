@@ -56,6 +56,7 @@ namespace VP.Sharepoint.CQ
 
             helper.AddField(new UrlFieldCreator(FieldsName.NewsList.InternalName.ImageDsp, FieldsName.NewsList.DisplayName.ImageDsp) { DisplayFormat = SPUrlFieldFormatType.Image });
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.NewsCount, FieldsName.NewsList.DisplayName.NewsCount));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.NewsUrl, FieldsName.NewsList.DisplayName.NewsUrl));
 
             var list = helper.Apply();
             

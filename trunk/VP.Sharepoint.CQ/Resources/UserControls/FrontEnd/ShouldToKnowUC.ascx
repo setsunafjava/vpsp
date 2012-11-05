@@ -47,7 +47,7 @@
                         </div>
                         <div class="img_short_content">
                             <div class="img_thumb">
-                                <a id="aImg" runat="server"><img src="<%=DocLibUrl%>/tulanh_ex.jpg"></a></div>
+                                <a id="aImg" runat="server"><img id="imgNews" runat="server" src="<%=DocLibUrl%>/tulanh_ex.jpg"></a></div>
                             <div class="short_info" id="dvContent" runat="server">
                                 <%#Eval(FieldsName.NewsList.InternalName.Content) %>
                             </div>
