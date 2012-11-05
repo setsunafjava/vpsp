@@ -13,13 +13,22 @@ namespace VP.Sharepoint.CQ.UserControls {
     public partial class ExternalNewsView {
         
         /// <summary>
-        /// viewCat control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::VP.Sharepoint.CQ.Core.WebControls.RecursiveDataView viewCat;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        
+        /// <summary>
+        /// viewRSS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VP.Sharepoint.CQ.Core.WebControls.FlatDataView viewRSS;
         
         /// <summary>
         /// fName control.
@@ -29,6 +38,51 @@ namespace VP.Sharepoint.CQ.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef fName;
+        
+        /// <summary>
+        /// fRSS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef fRSS;
+        
+        /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
+        
+        /// <summary>
+        /// btnStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnStatus;
+        
+        /// <summary>
+        /// viewNews control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VP.Sharepoint.CQ.Core.WebControls.FlatDataView viewNews;
+        
+        /// <summary>
+        /// TextFieldRef3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VP.Sharepoint.CQ.Core.WebControls.UrlFieldRef TextFieldRef3;
         
         /// <summary>
         /// TextFieldRef1 control.
@@ -49,21 +103,12 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef2;
         
         /// <summary>
-        /// TextFieldRef3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef3;
-        
-        /// <summary>
         /// TextFieldRef4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef4;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.ChoiceFieldRef TextFieldRef4;
     }
 }

@@ -53,6 +53,7 @@ namespace VP.Sharepoint.CQ
             QuickLaunchStructure.CreateQuickLaunch(web);
 
             ExternalNews.CreateListStructure(web);
+            ExternalNewsLink.CreateListStructure(web);
             
             Console.WriteLine("Deploy Successful!");
         }
