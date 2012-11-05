@@ -25,6 +25,9 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     Utilities.BindToDropDown(CurrentWeb, ddlParentName, ListsName.InternalName.MenuList, FieldsName.MenuList.InternalName.MenuID, 
                         FieldsName.MenuList.InternalName.ParentID, FieldsName.MenuList.InternalName.MenuOrder, FieldsName.MenuList.InternalName.MenuLevel);
+
+                    Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
+                        FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.InternalName.CategoryLevel);
                 }
                 if (CurrentMode.Equals(SPControlMode.Edit))
                 {
@@ -32,6 +35,14 @@ namespace VP.Sharepoint.CQ.UserControls
                         FieldsName.MenuList.InternalName.ParentID, FieldsName.MenuList.InternalName.MenuOrder,
                         FieldsName.MenuList.InternalName.MenuLevel, Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.MenuID])
                         , Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.ParentID]));
+
+
+                    Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
+                        FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.Order,
+                        FieldsName.CategoryList.InternalName.CategoryLevel, Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.CategoryID])
+                        , Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.ParentID]));
+
+
                     hidMenuLevel.Value = Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.MenuLevel]);
                 }
                 if (CurrentMode.Equals(SPControlMode.Display))
@@ -86,6 +97,8 @@ namespace VP.Sharepoint.CQ.UserControls
                     FieldsName.MenuList.InternalName.ParentID, Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.MenuID]), newLevel + 1,
                     FieldsName.MenuList.InternalName.MenuLevel);
             }
+            CurrentItem[FieldsName.MenuList.InternalName.CatID] = ddlCategory.SelectedValue;
+            CurrentItem[FieldsName.MenuList.InternalName.CatName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, ddlCategory.SelectedValue, "Text", "Title");
             //Save item to list
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);

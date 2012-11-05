@@ -65,8 +65,38 @@ namespace VP.Sharepoint.CQ.UserControls
 
                 //Bind data to URL
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                string catId = Convert.ToString(drv[FieldsName.MenuList.InternalName.CatID]);
+                string catType = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", FieldsName.CategoryList.InternalName.Type);
+                string pageName = string.Empty;
+
+                switch (catType)
+                {
+                    case Constants.CategoryStatus.News:
+                    case Constants.CategoryStatus.NeedToKnow:                    
+                        pageName = Constants.NewsPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Documents:
+                        pageName = Constants.DocumentPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Intro:
+                        pageName = Constants.AboutPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Resources:
+                        pageName = Constants.LibraryPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Statistic:
+                        pageName = Constants.StatisticPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Organization:
+                        pageName = Constants.OrganizationPage + ".aspx";
+                        break;
+                    default:
+                        break;
+                }
+
                 aLink.Title = Convert.ToString(drv["Title"]);
                 aLink.InnerText = Convert.ToString(drv["Title"]);
+                aLink.HRef = WebUrl + "/" + pageName + "?CatId=" + catId;
 
                 //if (string.IsNullOrEmpty(Convert.ToString(drv["MenuType"])))
                 //{
@@ -145,8 +175,38 @@ namespace VP.Sharepoint.CQ.UserControls
 
                 //Bind data to URL
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                string catId = Convert.ToString(drv[FieldsName.MenuList.InternalName.CatID]);
+                string catType = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", FieldsName.CategoryList.InternalName.Type);
+                string pageName = string.Empty;
+
+                switch (catType)
+                {
+                    case Constants.CategoryStatus.News:
+                    case Constants.CategoryStatus.NeedToKnow:
+                        pageName = Constants.NewsPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Documents:
+                        pageName = Constants.DocumentPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Intro:
+                        pageName = Constants.AboutPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Resources:
+                        pageName = Constants.LibraryPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Statistic:
+                        pageName = Constants.StatisticPage + ".aspx";
+                        break;
+                    case Constants.CategoryStatus.Organization:
+                        pageName = Constants.OrganizationPage + ".aspx";
+                        break;
+                    default:
+                        break;
+                }
+
                 aLink.Title = Convert.ToString(drv["Title"]);
                 aLink.InnerText = Convert.ToString(drv["Title"]);
+                aLink.HRef = WebUrl + "/" + pageName + "?CatId=" + catId;
 
                 //if (string.IsNullOrEmpty(Convert.ToString(drv["MenuType"])))
                 //{

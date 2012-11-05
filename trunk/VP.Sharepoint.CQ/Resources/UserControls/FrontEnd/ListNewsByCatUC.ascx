@@ -12,7 +12,7 @@
     Inherits="VP.Sharepoint.CQ.UserControls.ListNewsByCatUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <div class="sub_page">
-    <div class="title_name_content">
+    <div class="title_name_content" runat="server" id="dvCatTitle">
         Thông tin du học</div>
     <div class="content_follow">
         <asp:Repeater ID="rptListNews" runat="server" OnItemDataBound="rptListNews_ItemDataBound">
