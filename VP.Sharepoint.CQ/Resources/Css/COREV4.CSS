@@ -1058,11 +1058,6 @@ font-family:verdana,arial,helvetica,sans-serif;
 {
 font-size:1em;
 }
-.ms-WPBody a:link
-{
-/* [ReplaceColor(themeColor:"Hyperlink")] */ color:#0072bc;
-text-decoration:none;
-}
 .ms-WPBody a:visited{
 /* [ReplaceColor(themeColor:"FollowedHyperlink")] */ color:#b10069;
 text-decoration:none;
@@ -2162,14 +2157,6 @@ overflow:hidden;
 }
 body #aspnetForm{
 height:100%;
-}
-a:link{
-/* [ReplaceColor(themeColor:"Hyperlink")] */ color:#0072BC;
-text-decoration:none;
-}
-a:visited{
-/* [ReplaceColor(themeColor:"FollowedHyperlink")] */ color:#b10069;
-text-decoration:none;
 }
 .s4-floatleft{
 float:left;
