@@ -74,7 +74,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 var fuFileName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuFile.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuFile.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.AdvFileList, fuFileName));
+                    "{0}/{1}/{2}", WebUrl, ListsName.InternalName.AdvFileList, fuFileName));
                 CurrentItem[FieldsName.AdvList.InternalName.AdvFile] = file.Url;
             }
             if (CurrentMode.Equals(Constants.NewForm))
