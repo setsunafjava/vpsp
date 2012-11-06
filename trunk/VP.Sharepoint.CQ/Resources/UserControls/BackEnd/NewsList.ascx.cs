@@ -63,7 +63,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuThumb.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuThumbName));
+                    "{0}/{1}/{2}", WebUrl, ListsName.InternalName.NewsImagesList, fuThumbName));
                 CurrentItem[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
                 fileNames.Add(fuThumb.FileName);
 
@@ -81,7 +81,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 var fuSmallThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuSmallThumb.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuSmallThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuSmallThumbName));
+                    "{0}/{1}/{2}", WebUrl, ListsName.InternalName.NewsImagesList, fuSmallThumbName));
                 CurrentItem[FieldsName.NewsList.InternalName.ImageSmallThumb] = file.Url;
                 fileNames.Add(fuSmallThumb.FileName);
             }
@@ -89,7 +89,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 var fuImageHotName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now.AddSeconds(1)), fuImageHot.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuImageHot.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", CurrentWeb.Url, ListsName.InternalName.NewsImagesList, fuImageHotName));
+                    "{0}/{1}/{2}", WebUrl, ListsName.InternalName.NewsImagesList, fuImageHotName));
                 CurrentItem[FieldsName.NewsList.InternalName.ImageHot] = file.Url;
                 fileNames.Add(fuImageHot.FileName);
             }
