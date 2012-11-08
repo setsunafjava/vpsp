@@ -54,7 +54,8 @@ namespace VP.Sharepoint.CQ.UserControls
                             var items = list.GetItems(query);
                             if (items != null && items.Count > 0)
                             {
-                                dvCatTitle.InnerText = Convert.ToString(items[0][FieldsName.CategoryList.InternalName.Title]);
+                                aTitle.InnerText = Convert.ToString(items[0][FieldsName.CategoryList.InternalName.Title]);
+                                aTitle.HRef = string.Format("../news.aspx?CatId={0}", items[0][FieldsName.CategoryList.InternalName.CategoryID]);
                                 BindRepeaterNews(items[0][FieldsName.CategoryList.InternalName.CategoryID].ToString());
                             }
                         }

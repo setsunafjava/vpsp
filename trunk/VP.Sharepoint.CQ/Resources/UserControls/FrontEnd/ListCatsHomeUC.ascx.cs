@@ -66,7 +66,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                aLink.HRef = string.Format("../news.aspx?CatId={0}", drv["ID"], drv[FieldsName.CategoryList.InternalName.CategoryID]);
+                aLink.HRef = string.Format("../news.aspx?CatId={0}",drv[FieldsName.CategoryList.InternalName.CategoryID]);
             }
         }
     }
