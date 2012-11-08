@@ -14,8 +14,8 @@
 <div class="mod_News_external">
     <div class="bg_title_ModNews">
         <div class="title_cate_News">
-            <div class="name_title_typ_News" runat="server" id="dvCatTitle">
-                Thông tin du học
+            <div class="name_title_typ_News">
+                <a runat="server" id="aTitle"> Thông tin du học</a>
             </div>
         </div>
     </div>

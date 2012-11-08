@@ -13,13 +13,13 @@ namespace VP.Sharepoint.CQ.UserControls {
     public partial class ListNewsHomeUC {
         
         /// <summary>
-        /// dvCatTitle control.
+        /// aTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCatTitle;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aTitle;
         
         /// <summary>
         /// aImg control.

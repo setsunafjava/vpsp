@@ -17,12 +17,10 @@
     </div>
     <div class="inner_pos_Mod">
         <div class="form_login">
-            <label>
-                Tên đăng nhập</label>
-            <input type="text" value="" />
-            <label class="pass">
-                Mật khẩu</label>
-            <input type="text" value="" />
+            <div style="margin-top:5px; float:left">Tên đăng nhập</div><input type="text" value="" style="float:right" />
+            <div style="clear:both"></div>
+            <div style="margin-top:5px; float:left">Mật khẩu</div><input type="password" value="" style="float:right" />
+            <div style="clear:both"></div>
         </div>
         <input type="checkbox" class="styled" id="chkbox_remember" value="" name="chkbox_remember"><span>Tự
             dộng đăng nhập</span>
