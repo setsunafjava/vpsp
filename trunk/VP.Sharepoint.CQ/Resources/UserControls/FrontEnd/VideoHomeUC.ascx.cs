@@ -86,13 +86,16 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     ltrVideo.Text =
                        @"<embed
-                                  flashvars='file=" + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + @"/stylish_slim.swf&autostart=true'
-                                  allowfullscreen='true'
-                                  allowscripaccess='always'
-                                  id='" + this.ID + "-Video-" + Convert.ToString(drv["ID"]) + @"'
-                                  name='" + this.ID + "-Video-" + Convert.ToString(drv["ID"]) + @"'
-                                  src= '" + fileUrl + @"'
-                                  width='285' height='197' />";
+                                  flashvars='file=" + fileUrl + @"&autostart=falsee&dock=true' 
+                                  allowfullscreen='true' 
+                                  allowscripaccess='always' 
+                                    quality='high'
+                                  id='player' name='player' type='application/x-shockwave-flash' src= '" + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + "/player.swf" + @"' width='285' height='197' wmode='transparent' />";
+                    //player_slim.swf
+
+                    //ltrVideo.Text = "<embed id=\"player\" height=\"197\" width=\"285\" flashvars=\"file=" 
+                    //    + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + 
+                    //    "&autostart=false&dock=true\" allowscriptaccess=\"always\" allowfullscreen=\"true\" quality=\"high\" name=\"player\" src=\"player.swf\" type=\"application/x-shockwave-flash\" wmode=\"transparent\"/>";
                 }
             }
         }
