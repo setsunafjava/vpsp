@@ -33,6 +33,7 @@
             public const string AdvStatisticList = "AdvStatisticList";
             public const string AdvFileList = "AdvFileList";
             public const string WeatherList = "WeatherList";
+            public const string ResourceLibrary = "ResourceLibrary";
         }
 
         // Display Name of list
@@ -66,6 +67,7 @@
             public const string AdvStatisticList = "Thống kê quảng cáo";
             public const string AdvFileList = "File quảng cáo";
             public const string WeatherList = "Thông tin thời tiết";
+            public const string ResourceLibrary = "Tài nguyên";
         }
     }
 }

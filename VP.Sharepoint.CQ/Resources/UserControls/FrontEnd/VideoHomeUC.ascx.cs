@@ -90,7 +90,12 @@ namespace VP.Sharepoint.CQ.UserControls
                                   allowfullscreen='true' 
                                   allowscripaccess='always' 
                                     quality='high'
-                                  id='player' name='player' type='application/x-shockwave-flash' src= '" + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + "/player.swf" + @"' width='285' height='197' wmode='transparent' />";                    
+                                  id='player' name='player' type='application/x-shockwave-flash' src= '" + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + "/player.swf" + @"' width='285' height='197' wmode='transparent' />";
+                    //player_slim.swf
+
+                    //ltrVideo.Text = "<embed id=\"player\" height=\"197\" width=\"285\" flashvars=\"file=" 
+                    //    + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + 
+                    //    "&autostart=false&dock=true\" allowscriptaccess=\"always\" allowfullscreen=\"true\" quality=\"high\" name=\"player\" src=\"player.swf\" type=\"application/x-shockwave-flash\" wmode=\"transparent\"/>";
                 }
             }
         }

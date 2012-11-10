@@ -144,5 +144,6 @@
 <File Path="Resources\UserControls\BackEnd\ExternalNewsView.ascx" Url="ExternalNewsView.ascx" />
 <File Path="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx" Url="ExternalNewsRSS.ascx" />
 <File Path="Resources\UserControls\BackEnd\CategoryView.ascx" Url="CategoryView.ascx" />
+<File Path="Resources\UserControls\BackEnd\ResourceLibrary.ascx" Url="ResourceLibrary.ascx" />
 </Module>
 </Elements>
