@@ -66,8 +66,8 @@
 
                 //ddtreemenu.createTree(treeid, enablepersist, opt_persist_in_days (default is 1))
 
-                ddtreemenu.createTree("treemenu1", true)
-                ddtreemenu.createTree("treemenu2", false)
+                ddtreemenu.createTree("treemenu1", true);
+//                ddtreemenu.createTree("treemenu2", false)
 						
             </script>
         </div>

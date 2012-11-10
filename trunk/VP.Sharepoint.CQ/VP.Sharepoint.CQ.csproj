@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\AdvBO.cs" />
+    <Compile Include="Common\ResourceLibraryBO.cs" />
     <Compile Include="Common\FieldsName.cs" />
     <Compile Include="Common\FrontEndUC.cs">
       <SubType>ASPXCodeBehind</SubType>

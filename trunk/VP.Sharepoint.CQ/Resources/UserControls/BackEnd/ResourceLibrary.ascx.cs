@@ -61,8 +61,7 @@ namespace VP.Sharepoint.CQ.UserControls
             List<string> fileNames = new List<string>();            
             CurrentItem[FieldsName.ResourceLibrary.InternalName.CategoryId] = ddlCategory.SelectedValue;
             CurrentItem[FieldsName.ResourceLibrary.InternalName.CategoryName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList,
-                FieldsName.CategoryList.InternalName.CategoryID, ddlCategory.SelectedValue, "Text", FieldsName.CategoryList.InternalName.Title);
-
+                FieldsName.CategoryList.InternalName.CategoryID, ddlCategory.SelectedValue, "Text", FieldsName.CategoryList.InternalName.Title);            
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
             if (fileNames.Count > 0)
