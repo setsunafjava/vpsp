@@ -148,7 +148,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", i));
+                aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="VP.Sharepoint.CQ.Common" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -14,217 +15,30 @@
     <div class="title_name_content">
         <a href="#">Tài Nguyên</a> &raquo; <a href="#">Tài liệu tham khảo</a></div>
     <div class="content_follow">
-        <table style="margin: 0 auto; width: 683px">
-            <tr>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-                <td>
-                    <div class="ico_book">
-                        <img src="<%=DocLibUrl%>/ico_book1.gif" />
-                    </div>
-                    <div class="name_document">
-                        <a href="#">Bộ sách về Quản trị mạng</a>
-                    </div>
-                </td>
-            </tr>
+        <table style="margin: 0 auto; width: 655px">
+            <asp:Repeater ID="rptResources" runat="server" OnItemDataBound="rptResources_ItemDataBound">
+                <ItemTemplate>
+                    <% if (i % 5 == 0)
+                       { %>
+                    <tr>
+                        <% } %>
+                        <td>
+                            <div class="ico_book">                                
+                                <a id="aImg" runat="server">
+                                    <img src="<%=DocLibUrl%>/ico_book1.gif" /></a>
+                            </div>
+                            <div class="name_document">
+                                <a id="aLink" runat="server">
+                                    <%#Eval(FieldsName.ResourceLibrary.InternalName.Title) %></a>
+                            </div>
+                        </td>
+                        <% if (i>0&&i % 5 == 0)
+                           { %>
+                    </tr>
+                    <%  } %>
+                    <%i++; %>
+                </ItemTemplate>
+            </asp:Repeater>
         </table>
     </div>
     <table>

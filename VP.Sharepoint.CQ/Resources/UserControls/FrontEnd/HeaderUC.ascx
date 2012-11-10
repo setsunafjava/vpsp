@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/COREV4.CSS" />
 <link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/styles.css" />
 <link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/tabcontent.css" />
+<link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/simpletree.css" />
 <!--[if lte IE 6]>
 <link rel="stylesheet" type="text/css" href="<%=DocLibUrl%>/ie6.css">
 <![endif]-->
@@ -19,6 +20,7 @@
 <script type="text/javascript" src="<%=DocLibUrl%>/jquery-1.7.1.js"></script>
 <script type="text/javascript" src="<%=DocLibUrl%>/tabcontent.js"></script>
 <script type="text/javascript" src="<%=DocLibUrl%>/script.js"></script>
+<script type="text/javascript" src="<%=DocLibUrl%>/simpletreemenu.js"></script>
 
 <div id="header">
 	<div class="banner">

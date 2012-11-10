@@ -84,7 +84,8 @@
                             <td valign="top">
                                 <%#Eval(FieldsName.DocumentsList.InternalName.EffectedDate)%><br/>
                             </td>
-                        </tr>                        
+                        </tr>
+                        <%i++; %>
                     </ItemTemplate>
                 </asp:Repeater>
         </tbody>
