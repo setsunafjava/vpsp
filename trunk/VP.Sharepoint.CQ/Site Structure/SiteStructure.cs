@@ -54,6 +54,8 @@ namespace VP.Sharepoint.CQ
 
             ExternalNews.CreateListStructure(web);
             ExternalNewsLink.CreateListStructure(web);
+
+            ResourceLibrary.CreateListStructure(web);
             
             Console.WriteLine("Deploy Successful!");
         }

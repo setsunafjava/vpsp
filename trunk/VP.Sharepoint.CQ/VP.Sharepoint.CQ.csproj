@@ -187,6 +187,13 @@
     <Compile Include="Resources\UserControls\BackEnd\CategoryView.ascx.designer.cs">
       <DependentUpon>CategoryView.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx.cs">
+      <DependentUpon>ResourceLibrary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx.designer.cs">
+      <DependentUpon>ResourceLibrary.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx.cs">
       <DependentUpon>ExternalNewsRSS.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -498,6 +505,7 @@
     <Compile Include="Site Structure\AlbumList.cs" />
     <Compile Include="Site Structure\AdvList.cs" />
     <Compile Include="Site Structure\AdvStatisticList.cs" />
+    <Compile Include="Site Structure\ResourceLibrary.cs" />
     <Compile Include="Site Structure\ExternalNewsLink.cs" />
     <Compile Include="Site Structure\IconLinkList.cs" />
     <Compile Include="Site Structure\CreateDocLibs.cs" />
@@ -653,6 +661,9 @@
     <Content Include="Resources\UserControls\BackEnd\CategoryView.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -743,9 +754,7 @@
     <Content Include="Resources\UserControls\FrontEnd\ListNewsHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\FrontEnd\VideoHomeUC.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\VideoHomeUC.ascx" />
     <Content Include="Resources\UserControls\FrontEnd\ImagesHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
