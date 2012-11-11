@@ -82,9 +82,9 @@ namespace VP.Sharepoint.CQ.Core.Helpers
                     listTemplateType == SPListTemplateType.DocumentLibrary ||
                     listTemplateType == SPListTemplateType.WebPageLibrary ||
                     listTemplateType == SPListTemplateType.XMLForm)
-                    url = web.Url + "/" + name;
+                    url = Utilities.GetWebUrl(web.Url) + "/" + name;
                 else
-                    url = web.Url + "/Lists/" + name;
+                    url = Utilities.GetWebUrl(web.Url) + "/Lists/" + name;
 
                 list = web.GetList(url);
             }
