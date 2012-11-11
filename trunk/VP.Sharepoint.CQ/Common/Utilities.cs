@@ -1520,6 +1520,28 @@ namespace VP.Sharepoint.CQ.Common
             }
             return null;
         }
+
+        public static DataTable GetNewsByStatus(SPWeb web, string strStatus,UInt32 rowLimit)
+        {
+            try
+            {
+                SPList list = Utilities.GetCustomListByUrl(web, ListsName.InternalName.NewsList);
+                if (list != null)
+                {
+                    SPQuery query = new SPQuery();
+                    //query.Query = string.Empty;
+                    query.Query = string.Format("<Where><Contains><FieldRef Name='{0}'/><Value Type='MultiChoice'>{1}</Value></Contains></Where>", FieldsName.NewsList.InternalName.Status, strStatus);
+                    query.RowLimit = rowLimit;
+                    SPListItemCollection listItemCollection = list.GetItems(query);
+                    return listItemCollection.GetDataTable();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogToULS(ex);
+            }
+            return null;
+        }
         #endregion
 
         #region Common        

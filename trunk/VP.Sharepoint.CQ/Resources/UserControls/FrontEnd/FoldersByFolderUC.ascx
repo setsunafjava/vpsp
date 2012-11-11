@@ -1,6 +1,7 @@
 ﻿<%@ Assembly Name="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Import Namespace="Microsoft.SharePoint" %>
+<%@ Import Namespace="VP.Sharepoint.CQ.Common" %>
 <%@ Register TagPrefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
@@ -19,7 +20,26 @@
         </div>
         <div class="content_F_Right">
             <ul id="treemenu1" class="treeview">
-                <li>Tài liệu tham khảo
+                <asp:Repeater ID="rptTree" runat="server" OnItemDataBound="rptTree_ItemDataBound">
+                    <ItemTemplate>
+                        <li><%#Eval(FieldsName.CategoryList.InternalName.Title) %>
+                            <%--<ul>
+                                <li class="submenu">THPT
+                                    <ul style="margin-top: 7px;">
+                                        <li class="submenu">Khối 10
+                                            <ul style="margin-top: 7px;">
+                                                <li><a href="#">Toán</a> </li>
+                                                <li><a href="#">Lý</a> </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>--%>
+                            <asp:Literal ID="ltrSubMenu" runat="server"></asp:Literal>
+                        </li>
+                    </ItemTemplate>
+                </asp:Repeater>
+                <%--<li>Tài liệu tham khảo
                     <ul>
                         <li class="submenu">THPT
                             <ul style="margin-top: 7px;">
@@ -32,42 +52,14 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
-                <li>Tài liệu tham khảo
-                    <ul>
-                        <li class="submenu">THPT
-                            <ul style="margin-top: 7px;">
-                                <li class="submenu">Khối 10
-                                    <ul style="margin-top: 7px;">
-                                        <li><a href="#">Toán</a> </li>
-                                        <li><a href="#">Lý</a> </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>Tài liệu tham khảo
-                    <ul>
-                        <li class="submenu">THPT
-                            <ul style="margin-top: 7px;">
-                                <li class="submenu">Khối 10
-                                    <ul style="margin-top: 7px;">
-                                        <li><a href="#">Toán</a> </li>
-                                        <li><a href="#">Lý</a> </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                </li>--%>
             </ul>
             <script type="text/javascript">
 
                 //ddtreemenu.createTree(treeid, enablepersist, opt_persist_in_days (default is 1))
 
                 ddtreemenu.createTree("treemenu1", true);
-//                ddtreemenu.createTree("treemenu2", false)
+                //                ddtreemenu.createTree("treemenu2", false)
 						
             </script>
         </div>

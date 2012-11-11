@@ -89,6 +89,39 @@ namespace VP.Sharepoint.CQ.Common
                 }
             });
             return dt;
+        }
+
+
+        public static DataTable GetCategoryByParent(SPWeb web, string parentId)
+        {
+            DataTable dt = null;
+            //var newPos = BoxNewsPosition[newsPosition];\
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='{2}' /><FieldRef Name='{3}' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, FieldsName.CategoryList.InternalName.ParentID, parentId, FieldsName.CategoryList.InternalName.CategoryLevel, FieldsName.CategoryList.InternalName.Order),                                
+                            };
+                            var list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.CategoryList);
+                            var items = list.GetItems(query);
+                            dt = items.GetDataTable();
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+            return dt;
         }       
 
         #endregion
