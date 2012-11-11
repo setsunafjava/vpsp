@@ -47,7 +47,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             DataTable dt = NewsBO.GetNewsOtherByCatId(CurrentWeb, catid, newsid);
             DataTable dtResult = Utilities.GetNewsWithRowLimit(dt, 5);
-            rptOtherNews.DataSource = dt;
+            rptOtherNews.DataSource = dtResult;
             rptOtherNews.DataBind();
         }
         #endregion

@@ -33,7 +33,7 @@ namespace VP.Sharepoint.CQ.UserControls
         #region BindRepeater
         private void BindRepeater(SPWeb spWeb)
         {
-            DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews);            
+            DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews, 8);
             rptHotNews.DataSource = dt;
             rptHotNews.DataBind();
         }

@@ -36,7 +36,7 @@ namespace VP.Sharepoint.CQ.UserControls
         }
         #endregion
 
-        #region GetItemById
+        #region GetFileUrlOfItem
         protected string GetFileUrlOfItem(string itemId)
         {
             string fileUrl=string.Empty;
@@ -56,7 +56,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                 SPAttachmentCollection attachs = item.Attachments;
                                 if (attachs.Count>0)
                                 {
-                                    fileUrl = attachs.UrlPrefix + "/" + attachs[0];
+                                    fileUrl = attachs.UrlPrefix + attachs[0];
                                 }                                
                             }
                         }
