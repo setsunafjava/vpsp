@@ -755,7 +755,9 @@
     <Content Include="Resources\UserControls\FrontEnd\ListNewsHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\FrontEnd\VideoHomeUC.ascx" />
+    <Content Include="Resources\UserControls\FrontEnd\VideoHomeUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\FrontEnd\ImagesHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
