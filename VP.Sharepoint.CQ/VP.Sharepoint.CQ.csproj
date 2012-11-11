@@ -506,6 +506,7 @@
     <Compile Include="Site Structure\AlbumList.cs" />
     <Compile Include="Site Structure\AdvList.cs" />
     <Compile Include="Site Structure\AdvStatisticList.cs" />
+    <Compile Include="Site Structure\StatisticsList.cs" />
     <Compile Include="Site Structure\ResourceLibrary.cs" />
     <Compile Include="Site Structure\ExternalNewsLink.cs" />
     <Compile Include="Site Structure\IconLinkList.cs" />

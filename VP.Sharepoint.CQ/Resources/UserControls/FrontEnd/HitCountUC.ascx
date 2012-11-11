@@ -17,7 +17,10 @@
                 Số lượt truy cập:
             </td>
             <td>
-                <img src="<%=DocLibUrl%>/statistic.jpg">
+                <div style="background-image: url('<%=DocLibUrl%>/statistic.jpg'); width: 118px; height: 35px;">
+                <div style="color: #ffffff; text-align: center; position: relative; top: 9px;">
+                    <%=HitCountNumber%></div>
+            </div>
             </td>
         </tr>
     </table>

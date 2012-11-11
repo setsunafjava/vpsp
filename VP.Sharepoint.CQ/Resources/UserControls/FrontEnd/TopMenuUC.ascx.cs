@@ -15,6 +15,7 @@ namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class TopMenuUC : FrontEndUC
     {
+        protected string HomeUrl;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -23,6 +24,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            HomeUrl = CurrentWeb.Url;
             if (!Page.IsPostBack)
             {
                 MenuBO.BindMenu(CurrentWeb, ListsName.InternalName.MenuList, rptMenu, "Top menu");

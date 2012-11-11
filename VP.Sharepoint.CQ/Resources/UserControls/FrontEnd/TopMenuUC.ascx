@@ -12,7 +12,7 @@
 <div class="top_menu">
     <div class="menu">
         <ul id="nav">
-            <li><a href='/' style="background: url(<%=DocLibUrl%>/bg_menu_hover.gif) top left repeat-x;">Trang chủ</a></li>
+            <li><a href='<%=HomeUrl%>' style="background: url(<%=DocLibUrl%>/bg_menu_hover.gif) top left repeat-x;">Trang chủ</a></li>
             <asp:Repeater ID="rptMenu" runat="server" 
                 onitemdatabound="rptMenu_ItemDataBound">
                 <ItemTemplate>
@@ -33,10 +33,10 @@
         <input type="text" id="txtData" name="q" onkeypress="return BBEnterPress();" style="border: 0px;" />
         <a href="#">Tìm kiếm</a>
     </div>
-    <div class="language">
+    <%--<div class="language">
         <span>
             <img src="<%=DocLibUrl%>/english.jpg" /></span><span><a href="#">English</a></span>
-    </div>
+    </div>--%>
     <div class="cleaner">
     </div>
 </div>

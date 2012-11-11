@@ -518,5 +518,27 @@
             }
         }
         #endregion
+
+        #region StatisticsList List
+        public class StatisticsList
+        {
+            // Nested StatisticsList List
+            public class InternalName
+            {
+                public const string Title = "Title";
+                public const string UserBrowser = "UserBrowser";
+                public const string UserIP = "UserIP";
+                public const string UserUrl = "UserUrl";
+            }
+
+            public class DisplayName
+            {
+                public const string Title = "Người truy cập";
+                public const string UserBrowser = "Trình duyệt";
+                public const string UserIP = "Địa chỉ IP";
+                public const string UserUrl = "Trang truy cập";
+            }
+        }
+        #endregion
     }
 }

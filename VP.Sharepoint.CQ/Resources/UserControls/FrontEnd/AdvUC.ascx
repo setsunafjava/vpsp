@@ -10,10 +10,13 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AdvUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.AdvUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <asp:Repeater ID="rptAdv" runat="server" onitemdatabound="rptAdv_ItemDataBound">
+    <HeaderTemplate><asp:Literal ID="ltrHeader" runat="server"></asp:Literal></HeaderTemplate>
     <ItemTemplate>
         <div>
             <asp:LinkButton ID="aLink" runat="server" OnClick="aLink_OnClick">
                 <asp:Literal ID="ltrQC" runat="server"></asp:Literal></asp:LinkButton>
         </div>
     </ItemTemplate>
+    <SeparatorTemplate><div style="height:5px; width:100%">&nbsp;</div></SeparatorTemplate>
+    <FooterTemplate><asp:Literal ID="ltrFooter" runat="server"></asp:Literal></FooterTemplate>
 </asp:Repeater>

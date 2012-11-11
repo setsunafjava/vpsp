@@ -1059,7 +1059,7 @@ font-family:verdana,arial,helvetica,sans-serif;
 font-size:1em;
 }
 .ms-WPBody a:visited{
-/* [ReplaceColor(themeColor:"FollowedHyperlink")] */ color:#b10069;
+
 text-decoration:none;
 }
 .ms-WPBody a:hover
@@ -1114,7 +1114,7 @@ border-style:solid;
 .ms-PartSpacingVertical
 {
 font-size:1pt;
-margin-top:12px;
+margin-top:0px;
 }
 .ms-PartSpacingHorizontal
 {
