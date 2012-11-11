@@ -41,6 +41,7 @@ namespace VP.Sharepoint.CQ.UserControls
         protected void BindRepeater()
         {
             DataTable dt = NewsBO.GetNewsByCatId(CurrentWeb, catId);
+            dt = Utilities.GetNewsWithRowLimit(dt, 10);
             rptListNews.DataSource = dt;
             rptListNews.DataBind();
         }
@@ -69,7 +70,7 @@ namespace VP.Sharepoint.CQ.UserControls
                     imgNews.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 }
                 dvDesc.InnerText = Utilities.StripHTML(Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]));
-                spDate.InnerText = string.Format("(Ngày {0} )", Convert.ToDateTime(drv[FieldsName.NewsList.InternalName.PostedDate]).ToString("dd-MM-yyyy"));
+                //spDate.InnerText = string.Format("(Ngày {0} )", Convert.ToDateTime(drv[FieldsName.NewsList.InternalName.PostedDate]).ToString("dd-MM-yyyy"));
             }
         }
     }
