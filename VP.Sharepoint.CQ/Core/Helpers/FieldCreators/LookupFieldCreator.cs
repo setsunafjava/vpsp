@@ -49,7 +49,7 @@ namespace VP.Sharepoint.CQ.Core.Helpers
             var targetList = list.ParentWeb.Lists.TryGetList(this.LookupList);
             if (targetList == null)
             {
-                string urlTargetList = list.ParentWeb.Url + "/Lists/" + this.LookupList;
+                string urlTargetList = Utilities.GetWebUrl(list.ParentWeb.Url) + "/Lists/" + this.LookupList;
                 try
                 {
                     targetList = list.ParentWeb.GetList(urlTargetList);
@@ -58,7 +58,7 @@ namespace VP.Sharepoint.CQ.Core.Helpers
 
                 if (targetList == null)
                 {
-                    urlTargetList = list.ParentWeb.Url + "/" + this.LookupList;
+                    urlTargetList = Utilities.GetWebUrl(list.ParentWeb.Url) + "/" + this.LookupList;
 
                     targetList = list.ParentWeb.GetList(urlTargetList);
                 }

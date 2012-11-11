@@ -13,6 +13,7 @@ using VP.Sharepoint.CQ.Core.Helpers;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 using Microsoft.SharePoint.Utilities;
+using VP.Sharepoint.CQ.Common;
 
 namespace VP.Sharepoint.CQ.Core.WebControls
 {
@@ -779,7 +780,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
         protected override void RenderAddNewLink(HtmlTextWriter writer)
         {
-            var href = string.Format("{0}/_layouts/listform.aspx?PageType=8&ListId={1}&RootFolder={2}", SPContext.Current.Web.Url, List.ID, SPEncode.UrlEncode(Page.Request.QueryString["RootFolder"]));
+            var href = string.Format("{0}/_layouts/listform.aspx?PageType=8&ListId={1}&RootFolder={2}", Utilities.GetWebUrl(SPContext.Current.Web.Url), List.ID, SPEncode.UrlEncode(Page.Request.QueryString["RootFolder"]));
 
             var handlerStatement = new StringBuilder();
             handlerStatement.Append("var options = SP.UI.$create_DialogOptions();");
@@ -1161,7 +1162,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             handlerStatement = new StringBuilder();
             handlerStatement.AppendFormat("window.location = '{0}/_layouts/listfeed.aspx?List={1}';",
-                                          SPContext.Current.Web.Url, List.ID);
+                                          Utilities.GetWebUrl(SPContext.Current.Web.Url), List.ID);
 
             var btnViewRssFeed =
                 new RibbonButton(
@@ -1236,7 +1237,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 };
             actionsGroup.Controls.Add(btnConnectToClient);
 
-            var exportToSpreadsheetCommand = string.Format("window.location='{0}/_vti_bin/owssvr.dll?CS=65001&Using=_layouts/query.iqy&List={1}&View={2}&RootFolder={3}&CacheControl=1';", SPContext.Current.Web.Url, List.ID, SPContext.Current.ViewContext.ViewId, List.RootFolder.Url);
+            var exportToSpreadsheetCommand = string.Format("window.location='{0}/_vti_bin/owssvr.dll?CS=65001&Using=_layouts/query.iqy&List={1}&View={2}&RootFolder={3}&CacheControl=1';", Utilities.GetWebUrl(SPContext.Current.Web.Url), List.ID, SPContext.Current.ViewContext.ViewId, List.RootFolder.Url);
 
             var btnExportToSpreadsheet =
                 new RibbonButton(
@@ -1280,7 +1281,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
             handlerStatement = new StringBuilder();
             handlerStatement.AppendFormat("window.location = '{0}/_layouts/listedit.aspx?List={1}';",
-                                          SPContext.Current.Web.Url, List.ID);
+                                          Utilities.GetWebUrl(SPContext.Current.Web.Url), List.ID);
 
             var btnListSettings =
                 new RibbonButton(
@@ -1402,7 +1403,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 command.Append("var options = SP.UI.$create_DialogOptions();");
                 command.AppendFormat(
                     "options.url = '{0}/_layouts/listform.aspx?&Type=1&PageType=8&ListId={1}&RootFolder={2}';",
-                    SPContext.Current.Web.Url, List.ID, SPEncode.UrlEncode(Page.Request.QueryString["RootFolder"]));
+                    Utilities.GetWebUrl(SPContext.Current.Web.Url), List.ID, SPEncode.UrlEncode(Page.Request.QueryString["RootFolder"]));
                 command.Append("options.dialogReturnValueCallback = Function.createDelegate(null, function(result, target){if(result == SP.UI.DialogResult.OK){");
                 command.AppendFormat("$('#{0}').val('True');", hdfAddNewItem.ClientID);
                 command.Append("SP.UI.ModalDialog.RefreshPage(SP.UI.DialogResult.OK);");
@@ -1443,7 +1444,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             handlerStatement.Append("var options = SP.UI.$create_DialogOptions();");
             handlerStatement.AppendFormat(
                 "options.url = '{0}/_layouts/listform.aspx?PageType=4&ListId=' + item.refListId + '&ID=' + item.refId;",
-                SPContext.Current.Web.Url);
+                Utilities.GetWebUrl(SPContext.Current.Web.Url));
             handlerStatement.Append(
                 "options.dialogReturnValueCallback = Function.createDelegate(null, function(result, target){if(result == SP.UI.DialogResult.OK){SP.UI.ModalDialog.RefreshPage(SP.UI.DialogResult.OK);}});");
             handlerStatement.Append("SP.UI.ModalDialog.showModalDialog(options);");
@@ -1499,7 +1500,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 handlerStatement.Append("var options = SP.UI.$create_DialogOptions();");
                 handlerStatement.AppendFormat(
                     "options.url = '{0}/_layouts/listform.aspx?PageType=6&ListId=' + item.refListId + '&ID=' + item.refId;",
-                    SPContext.Current.Web.Url);
+                    Utilities.GetWebUrl(SPContext.Current.Web.Url));
                 handlerStatement.Append(
                     "options.dialogReturnValueCallback = Function.createDelegate(null, function(result, target){if(result == SP.UI.DialogResult.OK){SP.UI.ModalDialog.RefreshPage(SP.UI.DialogResult.OK);}});");
                 handlerStatement.Append("SP.UI.ModalDialog.showModalDialog(options);");
@@ -1718,7 +1719,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
                 handlerStatement.Append("var options = SP.UI.$create_DialogOptions();");
                 handlerStatement.AppendFormat(
                     "options.url = '{0}/_layouts/listform.aspx?PageType=8&ListId={1}&RootFolder={2}';",
-                    SPContext.Current.Web.Url, List.ID, SPEncode.UrlEncode(Page.Request.QueryString["RootFolder"]));
+                    Utilities.GetWebUrl(SPContext.Current.Web.Url), List.ID, SPEncode.UrlEncode(Page.Request.QueryString["RootFolder"]));
                 handlerStatement.Append("options.dialogReturnValueCallback = Function.createDelegate(null, function(result, target){if(result == SP.UI.DialogResult.OK){");
                 handlerStatement.AppendFormat("$('#{0}').val('True');", hdfAddNewItem.ClientID);
                 handlerStatement.Append("SP.UI.ModalDialog.RefreshPage(SP.UI.DialogResult.OK);");

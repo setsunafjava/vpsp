@@ -933,7 +933,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             if (isFilter)
             {
                 // Load drop down list filter
-                var urlBuilder = new UrlBuilder(SPContext.Current.Web.Url + "/_layouts/filter.aspx");
+                var urlBuilder = new UrlBuilder(Utilities.GetWebUrl(SPContext.Current.Web.Url) + "/_layouts/filter.aspx");
                 urlBuilder.AddQueryString("RootFolder", Page.Request.QueryString["RootFolder"]);
                 urlBuilder.AddQueryString("ListId", SPContext.Current.ListId.ToString());
                 urlBuilder.AddQueryString("ViewId", SPContext.Current.ViewContext.ViewId.ToString());
@@ -1032,7 +1032,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
 
                 if (fieldRef.Filterable)
                 {
-                    var urlBuilder = new UrlBuilder(SPContext.Current.Web.Url + "/_layouts/filter.aspx");
+                    var urlBuilder = new UrlBuilder(Utilities.GetWebUrl(SPContext.Current.Web.Url) + "/_layouts/filter.aspx");
                     urlBuilder.AddQueryString("RootFolder", Page.Request.QueryString["RootFolder"]);
                     urlBuilder.AddQueryString("ListId", SPContext.Current.ListId.ToString());
                     urlBuilder.AddQueryString("ViewId", SPContext.Current.ViewContext.ViewId.ToString());

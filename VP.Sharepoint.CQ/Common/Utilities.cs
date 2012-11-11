@@ -172,7 +172,7 @@ namespace VP.Sharepoint.CQ.Common
                 sitePages = web.Lists[listId];
             }
 
-            string pageUrl = web.Url + "/" + listName + "/" + pageName;
+            string pageUrl = GetWebUrl(web.Url) + "/" + listName + "/" + pageName;
 
             SPFile newAspxPage = web.GetFile(pageUrl);
 
@@ -740,7 +740,7 @@ namespace VP.Sharepoint.CQ.Common
         /// <param name="page"></param>
         public static void CloseForm(Page page)
         {
-            var defaultView = string.Concat(SPContext.Current.Web.Url, "/", SPContext.Current.List.DefaultView.Url);
+            var defaultView = string.Concat(GetWebUrl(SPContext.Current.Web.Url), "/", SPContext.Current.List.DefaultView.Url);
             try
             {
                 var IsDlg = Convert.ToString(page.Request.Params["IsDlg"]);
@@ -791,7 +791,7 @@ namespace VP.Sharepoint.CQ.Common
         public static SPList GetCustomListByUrl(SPWeb web, string listUrl)
         {
             SPList list = null;
-            string url = web.Url + "/Lists/" + listUrl;
+            string url = GetWebUrl(web.Url) + "/Lists/" + listUrl;
 
             try
             {
@@ -813,7 +813,7 @@ namespace VP.Sharepoint.CQ.Common
         public static SPList GetLibraryListByUrl(SPWeb web, string listUrl)
         {
             SPList list = null;
-            string url = web.Url + "/" + listUrl;
+            string url = GetWebUrl(web.Url) + "/" + listUrl;
 
             try
             {
@@ -1013,9 +1013,49 @@ namespace VP.Sharepoint.CQ.Common
 
             if (js != null)
             {
-                string jsUrl = web.Url + "/" + js.Url;
+                string jsUrl = GetWebUrl(web.Url) + "/" + js.Url;
                 page.ClientScript.RegisterClientScriptInclude(js.ID + "js", jsUrl);
             }
+        }
+
+        /// <summary>
+        /// LoadCSS
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="page"></param>
+        /// <param name="name"></param>
+        public static void LoadCSS(SPWeb web, Page page, string name)
+        {
+            // Load Css
+            SPListItem css = Utilities.GetResource(web, name);
+            if (css != null)
+            {
+                string cssUrl = GetWebUrl(web.Url) + "/" + css.Url;
+
+                HtmlLink styleSheet = new HtmlLink
+                {
+                    Href = cssUrl,
+                    ID = css.ID + "_Css",
+                };
+                styleSheet.Attributes["rel"] = "stylesheet";
+                styleSheet.Attributes["type"] = "text/css";
+                styleSheet.Attributes["media"] = "all";
+                page.Header.Controls.Add(styleSheet);
+            }
+        }
+
+        /// <summary>
+        /// GetWebUrl
+        /// </summary>
+        /// <param name="webUrl"></param>
+        /// <returns></returns>
+        public static string GetWebUrl(string webUrl)
+        {
+            if (webUrl.Equals("/"))
+            {
+                webUrl = "";
+            }
+            return webUrl;
         }
 
         /// <summary>
@@ -1032,7 +1072,7 @@ namespace VP.Sharepoint.CQ.Common
 
             try
             {
-                var listUrl = web.Url + "/" + ListsName.InternalName.ResourcesList;
+                var listUrl = GetWebUrl(web.Url) + "/" + ListsName.InternalName.ResourcesList;
                 var resource = web.GetList(listUrl);
 
                 if (resource != null)

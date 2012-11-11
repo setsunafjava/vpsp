@@ -19,10 +19,17 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                
-            }
+            Utilities.LoadCSS(CurrentWeb, this.Page, "COREV4.CSS");
+            Utilities.LoadCSS(CurrentWeb, this.Page, "styles.CSS");
+            Utilities.LoadCSS(CurrentWeb, this.Page, "tabcontent.CSS");
+            Utilities.LoadCSS(CurrentWeb, this.Page, "simpletree.CSS");
+            Utilities.LoadCSS(CurrentWeb, this.Page, "COREV4.CSS");
+            Utilities.LoadCSS(CurrentWeb, this.Page, "COREV4.CSS");
+            Utilities.LoadCSS(CurrentWeb, this.Page, "COREV4.CSS");
+            Utilities.LoadJS(CurrentWeb, this.Page, "jquery-1.7.1.js");
+            Utilities.LoadJS(CurrentWeb, this.Page, "tabcontent.js");
+            Utilities.LoadJS(CurrentWeb, this.Page, "script.js");
+            Utilities.LoadJS(CurrentWeb, this.Page, "simpletreemenu.js");
         }
         #endregion
     }
