@@ -12,11 +12,11 @@
 <div class="top_menu">
     <div class="menu">
         <ul id="nav">
-            <li><a href='<%=HomeUrl%>' style="background: url(<%=DocLibUrl%>/bg_menu_hover.gif) top left repeat-x;">Trang chủ</a></li>
+            <li><a href='<%=HomeUrl%>' <%=CurrentStyle%>>Trang chủ</a></li>
             <asp:Repeater ID="rptMenu" runat="server" 
                 onitemdatabound="rptMenu_ItemDataBound">
                 <ItemTemplate>
-                    <li><a runat="server" id="aLink"></a>
+                    <li <asp:Literal ID="ltrStyle" runat="server"></asp:Literal>><a runat="server" id="aLink"></a>
                         <asp:Repeater ID="rptSubMenu" runat="server">
                             <HeaderTemplate><ul></HeaderTemplate>
                             <ItemTemplate>
@@ -53,3 +53,92 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $('#nav > li').hover(onOver, onOut);
+    function onOver() {
+        $('#nav > li.current').each(function (index) {
+            $(this).removeClass('current').addClass('current-temp');
+        });
+    };
+
+    function onOut() {
+        $('#nav > li.current-temp').each(function (index) {
+            $(this).removeClass('current-temp').addClass('current');
+        });
+    };
+
+    function urlencode(str) {
+
+
+
+        var ret = str;
+
+
+
+        ret = ret.toString();
+
+
+
+        ret = encodeURIComponent(ret);
+
+
+
+        ret = ret.replace(/%20/g, '+');
+
+
+
+        ret = ret.replace(/%22/g, "");
+
+        ret = ret.replace(/\'/g, "");
+
+        ret = ret.replace(/%2F/g, "");
+
+        ret = ret.replace(/%3C/g, "");
+
+        ret = ret.replace(/%3E/g, "");
+
+        ret = ret.replace(/%3F/g, "");
+
+        ret = ret.replace(/%25/g, "");
+
+        ret = ret.replace(/\*/g, "");
+
+        ret = ret.replace(/%7C/g, "");
+
+
+
+        return ret;
+
+    }
+
+
+
+    function timkiem() {
+
+        var link;
+
+        var tk = document.getElementById("txtData").value;
+
+        if (tk == "") {
+
+            link = "TimKiem.aspx?KeyWord=" + urlencode(tk);
+        }
+
+        else {
+
+            link = "TimKiem.aspx?KeyWord=" + urlencode(tk);
+        }
+
+        //alert(link);
+
+        location.href = link;
+
+    }
+
+    function ganValue(t) {
+
+        document.getElementById("txtData").value = t;
+
+    }
+</script>

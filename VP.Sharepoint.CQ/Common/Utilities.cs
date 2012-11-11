@@ -1263,7 +1263,7 @@ namespace VP.Sharepoint.CQ.Common
                         try
                         {
                             adminWeb.AllowUnsafeUpdates = true;
-                            string caml = @"<Where><And><IsNull><FieldRef Name='{0}' /></IsNull><Neq><FieldRef Name='{1}' /><Value Type='Text'>{2}</Value></Neq></And></Where><OrderBy><FieldRef Name='{3}' /></OrderBy>";
+                            string caml = @"<Where><IsNull><FieldRef Name='{0}' /></IsNull></Where><OrderBy><FieldRef Name='{3}' /></OrderBy>";
                             var query = new SPQuery()
                             {
                                 Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, fieldID, currentValue, orderField)
@@ -1275,7 +1275,7 @@ namespace VP.Sharepoint.CQ.Common
                                 foreach (SPListItem item in items)
                                 {
                                     ddl.Items.Add(new ListItem(Utilities.GetPreValue(Convert.ToInt32(item[levelField])) + Convert.ToString(item[FieldsName.MenuList.InternalName.Title]), Convert.ToString(item[fieldID])));
-                                    Utilities.BindToDropDown(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField, currentValue);
+                                    Utilities.BindToDropDownAll(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField);
                                 }
                             }
                         }
@@ -1342,6 +1342,24 @@ namespace VP.Sharepoint.CQ.Common
                 {
                     ddl.Items.Add(new ListItem(Utilities.GetPreValue(Convert.ToInt32(item[levelField])) + Convert.ToString(item[FieldsName.MenuList.InternalName.Title]), Convert.ToString(item[fieldID])));
                     Utilities.BindToDropDown(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField, currentValue);
+                }
+            }
+        }
+
+        private static void BindToDropDownAll(ListControl ddl, SPList list, string fieldID, string parentField, string parentFieldValue, string orderField, string levelField)
+        {
+            string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='{2}' /></OrderBy>";
+            var query = new SPQuery()
+            {
+                Query = string.Format(CultureInfo.InvariantCulture, caml, parentField, parentFieldValue, orderField)
+            };
+            var items = list.GetItems(query);
+            if (items != null && items.Count > 0)
+            {
+                foreach (SPListItem item in items)
+                {
+                    ddl.Items.Add(new ListItem(Utilities.GetPreValue(Convert.ToInt32(item[levelField])) + Convert.ToString(item[FieldsName.MenuList.InternalName.Title]), Convert.ToString(item[fieldID])));
+                    Utilities.BindToDropDownAll(ddl, list, fieldID, parentField, Convert.ToString(item[fieldID]), orderField, levelField);
                 }
             }
         }
@@ -1551,6 +1569,7 @@ namespace VP.Sharepoint.CQ.Common
             return Regex.Replace
               (inputString, HTML_TAG_PATTERN, string.Empty);
         }
+
         public static int ConvertToInt(string strVal)
         {
             if (string.IsNullOrEmpty(strVal))
@@ -1571,6 +1590,117 @@ namespace VP.Sharepoint.CQ.Common
             return dtResult;
         }
 
+        public static string GetPageName(string catType)
+        {
+            var pageName = string.Empty;
+            switch (catType)
+            {
+                case Constants.CategoryStatus.News:
+                case Constants.CategoryStatus.NeedToKnow:
+                    pageName = Constants.NewsPage + ".aspx";
+                    break;
+                case Constants.CategoryStatus.Documents:
+                    pageName = Constants.DocumentPage + ".aspx";
+                    break;
+                case Constants.CategoryStatus.Intro:
+                    pageName = Constants.AboutPage + ".aspx";
+                    break;
+                case Constants.CategoryStatus.Resources:
+                    pageName = Constants.LibraryPage + ".aspx";
+                    break;
+                case Constants.CategoryStatus.Statistic:
+                    pageName = Constants.StatisticPage + ".aspx";
+                    break;
+                case Constants.CategoryStatus.Organization:
+                    pageName = Constants.OrganizationPage + ".aspx";
+                    break;
+                default:
+                    break;
+            }
+            return pageName;
+        }
+
+        public static void SetLinkMenu(SPWeb web, string webUrl, DataRowView drv, HtmlAnchor aLink)
+        {
+            string catId = Convert.ToString(drv[FieldsName.MenuList.InternalName.CatID]);
+            string pageType = Convert.ToString(drv[FieldsName.MenuList.InternalName.MenuType]);
+            string catType = Utilities.GetValueByField(web, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", FieldsName.CategoryList.InternalName.Type);
+            string pageName = Convert.ToString(drv[FieldsName.MenuList.InternalName.MenuUrl]);
+            if ("Link tới chuyên mục".Equals(pageType))
+            {
+                pageName = webUrl + "/" + Utilities.GetPageName(catType) + "?CatId=" + catId;
+            }
+            if ("Mở cửa sổ mới".Equals(Convert.ToString(drv[FieldsName.MenuList.InternalName.OpenType])))
+            {
+                aLink.Target = "_blank";
+            }
+            aLink.Title = Convert.ToString(drv["Title"]);
+            aLink.InnerText = Convert.ToString(drv["Title"]);
+            aLink.HRef = pageName;
+        }
+        public static void SetLinkMenu(SPWeb web, HttpContext ctx, string webUrl, DataRowView drv, HtmlAnchor aLink, Literal ltrStyle, bool isSub)
+        {
+            SetLinkMenu(web, webUrl, drv, aLink);
+            string currentCatId = ctx.Request.QueryString["CatId"];
+            string catId = Convert.ToString(drv[FieldsName.MenuList.InternalName.CatID]);
+            string pageType = Convert.ToString(drv[FieldsName.MenuList.InternalName.MenuType]);
+            var currentUrl = ctx.Request.Url.AbsolutePath;
+            if ("Đường link xác định".Equals(pageType))
+            {
+                if (aLink.HRef.Contains(currentUrl))
+                {
+                    ltrStyle.Text = " class='current'";
+                    if (isSub)
+                    {
+                        aLink.Attributes.Add("style", "color: #FF6600;");
+                    }
+                }
+            }
+            else
+            {
+                if (!isSub)
+                {
+                    if (catId.Equals(currentCatId))
+                    {
+                        ltrStyle.Text = " class='current'";
+                    }
+                    else
+                    {
+                        string parrentCat = Utilities.GetValueByField(web, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
+                                            currentCatId, "Text", FieldsName.CategoryList.InternalName.ParentID);
+                        if (!string.IsNullOrEmpty(parrentCat) && parrentCat.Equals(catId))
+                        {
+                            ltrStyle.Text = " class='current'";
+                        }
+                        else if (!string.IsNullOrEmpty(parrentCat))
+                        {
+                            parrentCat = Utilities.GetValueByField(web, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
+                                         parrentCat, "Text", FieldsName.CategoryList.InternalName.ParentID);
+                            if (!string.IsNullOrEmpty(parrentCat) && parrentCat.Equals(catId))
+                            {
+                                ltrStyle.Text = " class='current'";
+                            }
+                            else if (!string.IsNullOrEmpty(parrentCat))
+                            {
+                                parrentCat = Utilities.GetValueByField(web, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
+                                             parrentCat, "Text", FieldsName.CategoryList.InternalName.ParentID);
+                                if (!string.IsNullOrEmpty(parrentCat) && parrentCat.Equals(catId))
+                                {
+                                    ltrStyle.Text = " class='current'";
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (catId.Equals(currentCatId))
+                    {
+                        aLink.Attributes.Add("style", "color: #FF6600;");
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

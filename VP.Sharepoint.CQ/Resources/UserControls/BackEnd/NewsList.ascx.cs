@@ -124,12 +124,12 @@ namespace VP.Sharepoint.CQ.UserControls
             try
             {               
                 if (CurrentMode.Equals(SPControlMode.New) || CurrentMode.Equals(SPControlMode.Edit))
-                {                    
-                }
-                Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
+                {
+                    Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
                         FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.Order, FieldsName.CategoryList.InternalName.CategoryLevel);
+                }
 
-                if (CurrentMode.Equals(SPControlMode.Edit) || CurrentMode.Equals(SPControlMode.Display))
+                if (CurrentMode.Equals(SPControlMode.Edit))
                 {
                     ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.NewsList.InternalName.NewsGroup]);
                 }
