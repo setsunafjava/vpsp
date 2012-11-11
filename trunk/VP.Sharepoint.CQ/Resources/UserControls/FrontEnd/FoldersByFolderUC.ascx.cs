@@ -22,15 +22,25 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         /// 
         string catId = string.Empty;
+        string ParentId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
                 if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
                 {
-                    catId = Convert.ToString((Page.Request.QueryString["CatId"]));
-                    BindRepeater();
+                    catId = Convert.ToString((Page.Request.QueryString["CatId"]));                    
                 }
+
+                if (Page.Request.QueryString["ParentId"] != null && Page.Request.QueryString["ParentId"] != string.Empty)
+                {
+                    ParentId = Convert.ToString((Page.Request.QueryString["ParentId"]));                    
+                }
+                if (ParentId==string.Empty)
+                {
+                    ParentId = catId;
+                }
+                BindRepeater();
             }
         }
         #endregion
@@ -38,7 +48,15 @@ namespace VP.Sharepoint.CQ.UserControls
         #region Bind repeater
         protected void BindRepeater()
         {
-            DataTable dt = NewsBO.GetCategoryByParent(CurrentWeb, catId);
+            DataTable dt;
+            if (ParentId != string.Empty)
+            {
+                dt = NewsBO.GetCategoryByParent(CurrentWeb, ParentId);
+            }
+            else
+            {
+                dt = NewsBO.GetCategoryByParent(CurrentWeb, catId);
+            }                        
             rptTree.DataSource = dt;
             rptTree.DataBind();
         }
@@ -50,15 +68,16 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 int catLevel = 0;
                 DataRowView drv = e.Item.DataItem as DataRowView;
-                //HtmlAnchor aImg = (HtmlAnchor)e.Item.FindControl("aImg");
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 Literal ltrSubMenu = (Literal)e.Item.FindControl("ltrSubMenu");
+                aLink.HRef = "../library.aspx?CatId=" + drv[FieldsName.CategoryList.InternalName.CategoryID] + "&ParentId=" + ParentId;
                 //Get child data table
                 DataTable dt = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]));
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        GetSubMenu(dt, ltrSubMenu, ref catLevel);
+                        GetSubMenu(dt, ltrSubMenu, ref catLevel, ParentId);
                     }
                     string strEnd = "</li></ul>";
                     catLevel = catLevel - (Convert.ToInt32(drv[FieldsName.CategoryList.InternalName.CategoryLevel]));
@@ -71,16 +90,16 @@ namespace VP.Sharepoint.CQ.UserControls
         }
 
         #region Get sub menu
-        protected void GetSubMenu(DataTable dt, Literal ltr, ref int catLevel)
+        protected void GetSubMenu(DataTable dt, Literal ltr, ref int catLevel, string parentId)
         {            
             if (dt != null && dt.Rows.Count > 0)
             {
                 catLevel = Convert.ToInt32(dt.Rows[0][FieldsName.CategoryList.InternalName.CategoryLevel]);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    ltr.Text += string.Format("<ul><li class=\"submenu\">{0}", dt.Rows[i][FieldsName.CategoryList.InternalName.Title]);
+                    ltr.Text += string.Format("<ul><li class=\"submenu\"><a href='library.aspx?CatId={0}&ParentId=" + parentId + "'>{1}", dt.Rows[i][FieldsName.CategoryList.InternalName.CategoryID], dt.Rows[i][FieldsName.CategoryList.InternalName.Title]);
                     DataTable dtChild = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(dt.Rows[i][FieldsName.CategoryList.InternalName.CategoryID]));
-                    GetSubMenu(dtChild, ltr, ref catLevel);
+                    GetSubMenu(dtChild, ltr, ref catLevel,parentId);
                 }
             }
         }

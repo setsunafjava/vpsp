@@ -22,7 +22,7 @@
             <ul id="treemenu1" class="treeview">
                 <asp:Repeater ID="rptTree" runat="server" OnItemDataBound="rptTree_ItemDataBound">
                     <ItemTemplate>
-                        <li><%#Eval(FieldsName.CategoryList.InternalName.Title) %>
+                        <li><a id="aLink" runat="server"><%#Eval(FieldsName.CategoryList.InternalName.Title) %></a>
                             <%--<ul>
                                 <li class="submenu">THPT
                                     <ul style="margin-top: 7px;">
