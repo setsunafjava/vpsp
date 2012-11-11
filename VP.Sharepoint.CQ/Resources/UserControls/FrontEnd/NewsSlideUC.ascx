@@ -43,7 +43,7 @@
                 <ul>
                     <asp:Repeater ID="rptMoiNhat" runat="server" OnItemDataBound="rptMoiNhat_ItemDataBound">
                         <ItemTemplate>
-                            <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a><span>(ngày <%#Convert.ToDateTime(Eval(FieldsName.NewsList.InternalName.PostedDate)).ToString("dd-MM-yyyy") %>)</span></li>
+                            <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a></li>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>
@@ -52,7 +52,7 @@
                 <ul>
                      <asp:Repeater ID="rptDocNhieu" runat="server" OnItemDataBound="rptDocNhieu_ItemDataBound">
                         <ItemTemplate>
-                            <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title)%></a><span>(ngày <%#Convert.ToDateTime(Eval(FieldsName.NewsList.InternalName.PostedDate)).ToString("dd-MM-yyyy") %>)</span></li>                    
+                            <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title)%></a></li>                    
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>

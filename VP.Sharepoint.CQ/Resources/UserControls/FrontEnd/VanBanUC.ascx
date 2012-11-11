@@ -77,12 +77,12 @@
                                     <b>Loại văn bản:</b> <%#Eval(FieldsName.DocumentsList.InternalName.DocumentType)%><br/>
                                     <b>Lĩnh vực:</b> <%#Eval(FieldsName.DocumentsList.InternalName.DocumentSubject)%><br/>
                                     <b>Người ký:</b> <%#Eval(FieldsName.DocumentsList.InternalName.SignaturePerson)%><br/>
-                                    <b>Ngày hiệu lực:</b> <%#Eval(FieldsName.DocumentsList.InternalName.EffectedDate)%><br/>
-                                    <b>Người hết hiệu lực:</b> <%#Eval(FieldsName.DocumentsList.InternalName.ExpiredDate)%><br/>
+                                    <b>Ngày hiệu lực:</b> <%#Convert.ToDateTime(Eval(FieldsName.DocumentsList.InternalName.EffectedDate)).ToString("dd/MM/yyyy")%><br/>
+                                    <b>Người hết hiệu lực:</b> <%#Convert.ToDateTime(Eval(FieldsName.DocumentsList.InternalName.ExpiredDate)).ToString("dd/MM/yyyy")%><br/>
                                 </div>
                             </td>
                             <td valign="top">
-                                <%#Eval(FieldsName.DocumentsList.InternalName.EffectedDate)%><br/>
+                                <%#Convert.ToDateTime(Eval(FieldsName.DocumentsList.InternalName.EffectedDate)).ToString("dd/MM/yyyy")%><br/>
                             </td>
                         </tr>
                         <%i++; %>

@@ -26,8 +26,7 @@
                             <img id="imgThumb" runat="server" alt="" width="100" height="78" /></div>
                         <div class="name_news">
                             <a id="aLink" runat="server">
-                                <%#Eval(FieldsName.NewsList.InternalName.Title) %></a> <span class="time_update">(Ngày
-                                    <%#Convert.ToDateTime(Eval(FieldsName.NewsList.InternalName.PostedDate)).ToString("dd-MM-yyyy") %>)</span>
+                                <%#Eval(FieldsName.NewsList.InternalName.Title) %></a> <span class="time_update"></span>
                         </div>
                         <div class="cleaner">
                         </div>

@@ -40,7 +40,7 @@ namespace VP.Sharepoint.CQ.UserControls
             rptNewsHome.DataSource = dt;
             rptNewsHome.DataBind();
 
-            // Bind repeater new news
+            // Bind repeater new news            
             rptMoiNhat.DataSource = dt;
             rptMoiNhat.DataBind();
             // Bind repeater most read

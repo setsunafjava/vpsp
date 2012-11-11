@@ -69,8 +69,8 @@ namespace VP.Sharepoint.CQ.UserControls
             if (e.Item.ItemType.Equals(ListItemType.Item)||e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
-                HtmlGenericControl spDate = (HtmlGenericControl)e.Item.FindControl("spDate");
-                spDate.InnerText = string.Format("(Ngày {0})", Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd-MM-yyyy"));
+                //HtmlGenericControl spDate = (HtmlGenericControl)e.Item.FindControl("spDate");
+                //spDate.InnerText = string.Format("(Ngày {0})", Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd-MM-yyyy"));
 
             }
         }

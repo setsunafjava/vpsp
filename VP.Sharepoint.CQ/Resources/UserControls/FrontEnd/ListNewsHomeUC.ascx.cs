@@ -73,6 +73,7 @@ namespace VP.Sharepoint.CQ.UserControls
         protected void BindRepeaterNews(string catId)
         {
             DataTable dt = NewsBO.GetNewsByCatId(CurrentWeb,catId);
+            dt = Utilities.GetNewsWithRowLimit(dt, 6);
             if (dt!=null&& dt.Rows.Count > 0)
             {
                 DataRow dr = dt.Rows[0];
