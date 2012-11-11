@@ -11,32 +11,37 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="VideoHomeUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.VideoHomeUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+
 <div class="mod_Corner_Right">
     <div class="bg_title_ModNews">
         <div class="title_cate_News">
             <div class="name_F_Right">
                 <div class="video_R">
-                    Video Clip</div>
+                    <a href="javascript:void(0);">Video Clip</a></div>
             </div>
         </div>
-        <div class="content_F_Right">
-            <%--<img src="<%=DocLibUrl%>/video.jpg" style="width: 285px;" />--%>
-
-            <asp:Literal ID="ltrVideo" runat="server"></asp:Literal>
-
-            <div class="list_video">
-                <ul>
-                    <asp:Repeater ID="rptVideo" runat="server" OnItemDataBound="rptVideo_ItemDataBound">
-                        <ItemTemplate>
-                        
-                        <li><a id="aLink" runat="server"><%#Eval(FieldsName.VideoLibrary.InternalName.Title) %></a></li>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                    <%--<li><a href="#">Đêm hội Canarval Hạ Long</a></li>
-                    <li><a href="#">Đêm hội Canarval Hạ Long</a></li>
-                    <li><a href="#">Đêm hội Canarval Hạ Long</a></li>--%>
-                </ul>
-            </div>
+        <div class="content_F_Right" style="padding-left:6px;">
+            <div id='qn-video-div'>
+                <embed
+                  flashvars="file=<%=VideoUrl%>&image=<%=ImageUrl%>&autostart=false"
+                  allowfullscreen="true"
+                  allowscripaccess="always"
+                  id="qn-video-div-player"
+                  name="qn-video-div-player"
+                  src="<%=WebUrl%>/ResourcesList/player.swf"
+                  width="286">
+                </embed>
+           </div>
+           <asp:Repeater ID="rptVideo" runat="server" OnItemDataBound="rptVideo_OnItemDataBound">
+                <HeaderTemplate><div class="list_video"><ul></HeaderTemplate>
+                <ItemTemplate><li><a runat="server" id="aLink"><%#Eval("Title") %></a></li></ItemTemplate>
+				<FooterTemplate></ul></div></FooterTemplate>
+			</asp:Repeater>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function setVideoPlay(strID, value) {
+        document.getElementById("qn-video-div").innerHTML = value;
+    }
+</script>

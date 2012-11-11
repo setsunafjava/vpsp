@@ -4,8 +4,6 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 using VP.Sharepoint.CQ.Common;
 using System.Globalization;
-using Constants = VP.Sharepoint.CQ.Common.Constants;
-using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
 
 namespace VP.Sharepoint.CQ.UserControls
 {

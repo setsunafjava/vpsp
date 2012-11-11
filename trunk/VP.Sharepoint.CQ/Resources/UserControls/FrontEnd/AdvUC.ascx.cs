@@ -15,6 +15,7 @@ namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class AdvUC : FrontEndUC
     {
+        private string wpTitle = string.Empty;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -23,10 +24,10 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            wpTitle = ((ContainerWebPart)this.Parent).Title;
             if (!Page.IsPostBack)
             {
-                var parentWP = (ContainerWebPart)this.Parent;
-                AdvBO.BindAdv(CurrentWeb, ListsName.InternalName.AdvList, rptAdv, parentWP.Title);
+                AdvBO.BindAdv(CurrentWeb, ListsName.InternalName.AdvList, rptAdv, wpTitle);
             }
         }
         #endregion
@@ -72,6 +73,40 @@ namespace VP.Sharepoint.CQ.UserControls
                 else
                 {
                     aLink.Visible = false;
+                }
+            }
+            else if (e.Item.ItemType == ListItemType.Header)
+            {
+                if ("advhomecenter".Equals(wpTitle) ||
+                    "advhomeright".Equals(wpTitle) ||
+                    "advnews".Equals(wpTitle) ||
+                    "advnewsdetail".Equals(wpTitle) ||
+                    "advorganization".Equals(wpTitle) ||
+                    "advlibrary".Equals(wpTitle) ||
+                    "advlibrarydetail".Equals(wpTitle) ||
+                    "advabout".Equals(wpTitle) ||
+                    "advdocument".Equals(wpTitle) ||
+                    "advstatistic".Equals(wpTitle))
+                {
+                    var ltrHeader = (Literal)e.Item.FindControl("ltrHeader");
+                    ltrHeader.Text = "<div class='pos_MOD'><div class='bg_title_mod'>Quảng cáo</div><div style='text-align:center; padding: 7px 0px;'>";
+                }
+            }
+            else if (e.Item.ItemType == ListItemType.Footer)
+            {
+                if ("advhomecenter".Equals(wpTitle) ||
+                    "advhomeright".Equals(wpTitle) ||
+                    "advnews".Equals(wpTitle) ||
+                    "advnewsdetail".Equals(wpTitle) ||
+                    "advorganization".Equals(wpTitle) ||
+                    "advlibrary".Equals(wpTitle) ||
+                    "advlibrarydetail".Equals(wpTitle) ||
+                    "advabout".Equals(wpTitle) ||
+                    "advdocument".Equals(wpTitle) ||
+                    "advstatistic".Equals(wpTitle))
+                {
+                    var ltrFooter = (Literal)e.Item.FindControl("ltrFooter");
+                    ltrFooter.Text = "</div></div>";
                 }
             }
         }

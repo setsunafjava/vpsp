@@ -14,6 +14,8 @@ namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class VideoHomeUC : FrontEndUC
     {
+        protected string VideoUrl;
+        protected string ImageUrl;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -43,21 +45,36 @@ namespace VP.Sharepoint.CQ.UserControls
                             adminWeb.AllowUnsafeUpdates = true;                            
                             var query = new SPQuery()
                             {
-                                Query = string.Empty
+                                Query = "<OrderBy><FieldRef Name='" + FieldsName.VideoLibrary.InternalName.Order + "' Ascending='TRUE' /></OrderBy>",
+                                RowLimit = 10
                             };
                             var list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.VideoLibrary);
                             var items = list.GetItems(query);
                             if (items != null && items.Count > 0)
                             {
-                                DataTable dt = items.GetDataTable();
+                                DataTable dt = new DataTable();
                                 dt.Columns.Add("FileUrl");
-                                int i = 0;
+                                dt.Columns.Add("ImageUrl");
+                                dt.Columns.Add("ID");
+                                dt.Columns.Add("Title");
                                 foreach (SPListItem item in items)
                                 {
                                     SPAttachmentCollection attachs = item.Attachments;
-                                    string fileName = attachs[0];
-                                    dt.Rows[i]["FileUrl"] = fileName;
-                                    i++;
+                                    if (attachs.Count > 1)
+                                    {
+                                        DataRow dr = dt.NewRow();
+                                        dr["ID"] = item.ID;
+                                        dr["Title"] = item.Title;
+                                        dr["ImageUrl"] = WebUrl + "/Lists/" + ListsName.InternalName.VideoLibrary + "/Attachments/" + item.ID + "/" + attachs[0];
+                                        dr["FileUrl"] = WebUrl + "/Lists/" + ListsName.InternalName.VideoLibrary + "/Attachments/" + item.ID + "/" + attachs[1];
+                                        dt.Rows.Add(dr);
+                                    }
+                                }
+
+                                if (dt.Rows.Count > 0)
+                                {
+                                    VideoUrl = dt.Rows[0]["FileUrl"].ToString();
+                                    ImageUrl = dt.Rows[0]["ImageUrl"].ToString();
                                 }
 
                                 rptVideo.DataSource = dt;
@@ -73,30 +90,20 @@ namespace VP.Sharepoint.CQ.UserControls
             });
         }
         #endregion
-        protected void rptVideo_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptVideo_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
-                DataRowView drv = e.Item.DataItem as DataRowView;
-                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");                                
-                string fileUrl = WebUrl + "/Lists/" + ListsName.InternalName.VideoLibrary + "/Attachments/" + drv["ID"] + "/" + drv["FileUrl"].ToString();
-                aLink.Attributes.Add("onclick", string.Format("PlayVideo('{0}')", fileUrl));
-
-                if (e.Item.ItemIndex==0)
-                {
-                    ltrVideo.Text =
-                       @"<embed
-                                  flashvars='file=" + fileUrl + @"&autostart=falsee&dock=true' 
-                                  allowfullscreen='true' 
-                                  allowscripaccess='always' 
-                                    quality='high'
-                                  id='player' name='player' type='application/x-shockwave-flash' src= '" + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + "/player.swf" + @"' width='285' height='197' wmode='transparent' />";
-                    //player_slim.swf
-
-                    //ltrVideo.Text = "<embed id=\"player\" height=\"197\" width=\"285\" flashvars=\"file=" 
-                    //    + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + 
-                    //    "&autostart=false&dock=true\" allowscriptaccess=\"always\" allowfullscreen=\"true\" quality=\"high\" name=\"player\" src=\"player.swf\" type=\"application/x-shockwave-flash\" wmode=\"transparent\"/>";
-                }
+                DataRowView drv = (DataRowView)e.Item.DataItem;
+                var aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                aLink.HRef = "javascript:void(0)";
+                aLink.Title = Convert.ToString(drv["Title"]);
+                var tvCode = "<embed flashvars=\"file=" + Convert.ToString(drv["FileUrl"]) + "&image=" + Convert.ToString(drv["ImageUrl"]) + "&autostart=false\" allowfullscreen=\"true\" allowscripaccess=\"always\" id=\"qn-video-div-player\" name=\"qn-video-div-player\" src=\"" + WebUrl + "/ResourcesList/player.swf\" width=\"286\" />";
+                tvCode = tvCode.Replace("\r\n", "");
+                tvCode = tvCode.Replace("\n", "");
+                tvCode = tvCode.Replace("\r", "");
+                tvCode = tvCode.Replace("'", "\\'");
+                aLink.Attributes.Add("onclick", string.Format("javascript:setVideoPlay('{0}','{1}');return false;", Convert.ToString(drv["ID"]), tvCode));
             }
         }
     }

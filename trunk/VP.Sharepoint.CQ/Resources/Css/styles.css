@@ -1,5 +1,5 @@
 /*RESET SETTINGS*/
-html, body, div, span, h1, h2, h3, h4, a, em, font, img, small, strike, strong, form, table, tr, td, th{
+html, body, div, span, h1, h2, h3, h4, a, em, font, img, small, strike, strong, form{
 margin: 0;
 padding: 0;
 border: 0;
@@ -1284,3 +1284,4 @@ ul.fdtablePaginater li {
     padding-right: 4px;
     text-align: center;
 }
+#qn-video-div{text-align: center;}
