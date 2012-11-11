@@ -99,7 +99,7 @@ namespace VP.Sharepoint.CQ.Core.WebControls
             writer.AddAttribute(HtmlTextWriterAttribute.Style, "position: relative; width: 11px; display: inline-block; height: 11px; overflow: hidden;");
             writer.RenderBeginTag(HtmlTextWriterTag.Span);
 
-            writer.AddAttribute(HtmlTextWriterAttribute.Style, "position: absolute; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; top: -531px !important; left: 0px !important;");
+            writer.AddAttribute(HtmlTextWriterAttribute.Style, "position: absolute; border-right-width: 0px; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px; top: -585px !important; left: 0px !important;");
             writer.AddAttribute(HtmlTextWriterAttribute.Alt, ":");
             writer.AddAttribute(HtmlTextWriterAttribute.Src, "/_layouts/images/fgimg.png");
             writer.RenderBeginTag(HtmlTextWriterTag.Img);
