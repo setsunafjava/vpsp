@@ -48,6 +48,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
+                int catLevel = 0;
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 //HtmlAnchor aImg = (HtmlAnchor)e.Item.FindControl("aImg");
                 Literal ltrSubMenu = (Literal)e.Item.FindControl("ltrSubMenu");
@@ -57,21 +58,30 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
-                        ltrSubMenu.Text += string.Format("<ul><li class=\"submenu\">{0}", dt.Rows[i][FieldsName.CategoryList.InternalName.Title]);
-                        DataTable dtChild = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(dt.Rows[i][FieldsName.CategoryList.InternalName.CategoryID]));
-
+                        GetSubMenu(dt, ltrSubMenu, ref catLevel);
                     }
                     string strEnd = "</li></ul>";
+                    catLevel = catLevel - (Convert.ToInt32(drv[FieldsName.CategoryList.InternalName.CategoryLevel]));
+                    for (int i = 0; i < catLevel; i++)
+                    {
+                        ltrSubMenu.Text += strEnd;
+                    }
                 }
             }
         }
 
         #region Get sub menu
-        protected void GetSubMenu(DataTable dt, Literal ltr)
-        {
-            for (int i = 0; i < dt.Rows.Count; i++)
+        protected void GetSubMenu(DataTable dt, Literal ltr, ref int catLevel)
+        {            
+            if (dt != null && dt.Rows.Count > 0)
             {
-                //ltr.Text += string.Format("<ul><li class=\"submenu\">{0}</li></ul>", dt.Rows[i][FieldsName.CategoryList.InternalName.Title]);
+                catLevel = Convert.ToInt32(dt.Rows[0][FieldsName.CategoryList.InternalName.CategoryLevel]);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    ltr.Text += string.Format("<ul><li class=\"submenu\">{0}", dt.Rows[i][FieldsName.CategoryList.InternalName.Title]);
+                    DataTable dtChild = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(dt.Rows[i][FieldsName.CategoryList.InternalName.CategoryID]));
+                    GetSubMenu(dtChild, ltr, ref catLevel);
+                }
             }
         }
         #endregion
