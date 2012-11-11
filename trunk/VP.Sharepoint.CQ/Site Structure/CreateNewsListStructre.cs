@@ -81,7 +81,7 @@ namespace VP.Sharepoint.CQ
             var viewFields=new []{
                     FieldsName.NewsList.InternalName.Title                   
                 };
-            Utilities.AddStandardView(Utilities.GetCustomListByUrl(web, ListsName.InternalName.NewsList), "AllItems", viewFields, "'<GroupBy Collapse='TRUE'><FieldRef Name='NewsGroupName' /></GroupBy>'", 100, true);
+            Utilities.AddStandardView(list, "AllNews", viewFields, "'<GroupBy Collapse='TRUE'><FieldRef Name='NewsGroupName' /></GroupBy>'", 100, true);
         }
     }
 }

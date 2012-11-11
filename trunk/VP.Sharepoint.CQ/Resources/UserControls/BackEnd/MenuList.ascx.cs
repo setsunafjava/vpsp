@@ -49,6 +49,9 @@ namespace VP.Sharepoint.CQ.UserControls
                     ddlParentName.Visible = false;
                     lblParentNameDsp.Visible = true;
                     lblParentNameDsp.Text = Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.ParentName]);
+                    ddlCategory.Visible = false;
+                    lblCatDisplay.Visible = true;
+                    lblCatDisplay.Text = Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.CatName]);
                 }
             }
         }

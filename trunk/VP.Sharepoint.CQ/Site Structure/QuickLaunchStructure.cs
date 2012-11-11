@@ -9,21 +9,19 @@ namespace VP.Sharepoint.CQ
         {
             web.AllowUnsafeUpdates = true;
             var quickLaunch = new QuickLaunchHelper(web, true);
-            //var groups = string.Empty;
-            //var urlList = web.Url + "/Lists/" + ListsName.English.CreateAccountRequest;
-            //var createAccountRequest = web.GetList(urlList);                        
-            ////Add view to quicklaunch
-            //var view = createAccountRequest.Views[Constants.CreateAccountRequestView1];
-            //if (view != null)
-            //{
-            //    QuickLaunchHelper.AddNavigationLink(Heading, HttpUtility.HtmlEncode(Constants.CreateAccountRequestView1), web.Url + "/" + view.Url, groups);
-            //}
+            var groups = string.Empty;
 
-            //view = createAccountRequest.Views[Constants.CreateAccountRequestView2];
-            //if (view != null)
-            //{
-            //    QuickLaunchHelper.AddNavigationLink(Heading, HttpUtility.HtmlEncode(Constants.CreateAccountRequestView2), web.Url + "/" + view.Url, groups);
-            //}
+            #region Quản lý chuyên mục
+            var catList = Utilities.GetCustomListByUrl(web, ListsName.InternalName.CategoryList);
+            var catHead = quickLaunch.AddHeading("Quản lý chuyên mục", string.Empty, groups);
+            QuickLaunchHelper.AddNavigationLink(catHead, "Tất cả chuyên mục", catList.DefaultViewUrl, groups);
+            #endregion
+
+            #region Quản lý tin tức
+            var newsList = Utilities.GetCustomListByUrl(web, ListsName.InternalName.NewsList);
+            var catNews = quickLaunch.AddHeading("Quản lý tin tức", string.Empty, groups);
+            QuickLaunchHelper.AddNavigationLink(catNews, "Tất cả tin tức", newsList.DefaultViewUrl, groups);
+            #endregion
         }
     }
 }

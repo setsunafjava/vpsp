@@ -93,7 +93,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     Utilities.BindToDropDown(CurrentWeb, ddlCategory, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID,
                         FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.InternalName.CategoryLevel,
-                        FieldsName.CategoryList.InternalName.CategoryLevel, Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.CategoryLevel])
+                        FieldsName.CategoryList.InternalName.CategoryLevel, Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.CategoryID])
                         , Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.ParentID]));
                     hidLevel.Value = Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.CategoryLevel]);
                 }
