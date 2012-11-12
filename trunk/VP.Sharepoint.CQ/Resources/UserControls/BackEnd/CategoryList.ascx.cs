@@ -102,6 +102,7 @@ namespace VP.Sharepoint.CQ.UserControls
                     ddlCategory.Visible = false;
                     lblCatDisplay.Visible = true;
                     lblCatDisplay.Text = Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.ParentName]);
+                    hidType.Value = Convert.ToString(CurrentItem[FieldsName.CategoryList.InternalName.Type]);
                 }
 
             }
