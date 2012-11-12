@@ -192,6 +192,20 @@
     <Compile Include="Resources\UserControls\BackEnd\CategoryView.ascx.designer.cs">
       <DependentUpon>CategoryView.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ProfilesView.ascx.cs">
+      <DependentUpon>ProfilesView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ProfilesView.ascx.designer.cs">
+      <DependentUpon>ProfilesView.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ProfilesList.ascx.cs">
+      <DependentUpon>ProfilesList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\ProfilesList.ascx.designer.cs">
+      <DependentUpon>ProfilesList.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx.cs">
       <DependentUpon>ResourceLibrary.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -510,6 +524,7 @@
     <Compile Include="Site Structure\AlbumList.cs" />
     <Compile Include="Site Structure\AdvList.cs" />
     <Compile Include="Site Structure\AdvStatisticList.cs" />
+    <Compile Include="Site Structure\ProfilesList.cs" />
     <Compile Include="Site Structure\StatisticsList.cs" />
     <Compile Include="Site Structure\ResourceLibrary.cs" />
     <Compile Include="Site Structure\ExternalNewsLink.cs" />
@@ -667,9 +682,13 @@
     <Content Include="Resources\UserControls\BackEnd\CategoryView.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx">
+    <Content Include="Resources\UserControls\BackEnd\ProfilesView.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
+    <Content Include="Resources\UserControls\BackEnd\ProfilesList.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx" />
     <Content Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

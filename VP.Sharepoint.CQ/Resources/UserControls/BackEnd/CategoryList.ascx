@@ -33,7 +33,7 @@
                 <SharePoint:FieldLabel ID="lblDescription" runat="server" FieldName="Description" />
             </td>
             <td class="ms-formbody" style="font-size: 11px;">
-                <SharePoint:TextField runat="server" ID="txtDescription" FieldName="Description"/>
+                <SharePoint:RichTextField runat="server" ID="txtDescription" FieldName="Description"/>
             </td>
         </tr>       
         

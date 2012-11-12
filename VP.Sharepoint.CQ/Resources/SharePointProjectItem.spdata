@@ -148,5 +148,7 @@
     <ProjectItemFile Source="UserControls\BackEnd\ExternalNewsRSS.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\CategoryView.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\ResourceLibrary.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\BackEnd\ProfilesList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\BackEnd\ProfilesView.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
   </Files>
 </ProjectItem>

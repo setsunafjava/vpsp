@@ -22,7 +22,11 @@ namespace VP.Sharepoint.CQ
                             EnableAttachments = true
                         };
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.CategoryID, FieldsName.CategoryList.DisplayName.CategoryID));
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));
+            helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.CategoryList.InternalName.Description, FieldsName.CategoryList.DisplayName.Description)
+            {
+                RichText = true,
+                RichTextMode = SPRichTextMode.FullHtml
+            });
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ParentID, FieldsName.CategoryList.DisplayName.ParentID));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.ParentName, FieldsName.CategoryList.DisplayName.ParentName));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.CategoryList.InternalName.CategoryLevel, FieldsName.CategoryList.DisplayName.CategoryLevel) { DefaultValue = "1" });

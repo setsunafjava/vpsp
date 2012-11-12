@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
-    public partial class ResourceLibrary : BackEndUC, IValidator
+    public partial class ProfilesList : BackEndUC, IValidator
     {
         #region Form Events
         /// <summary>
@@ -58,8 +58,8 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         private void CustomSaveHandler(object sender, EventArgs e)
         {
-            CurrentItem[FieldsName.ResourceLibrary.InternalName.CategoryId] = ddlCategory.SelectedValue;
-            CurrentItem[FieldsName.ResourceLibrary.InternalName.CategoryName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList,
+            CurrentItem[FieldsName.ProfilesList.InternalName.CategoryId] = ddlCategory.SelectedValue;
+            CurrentItem[FieldsName.ProfilesList.InternalName.CategoryName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList,
                 FieldsName.CategoryList.InternalName.CategoryID, ddlCategory.SelectedValue, "Text", FieldsName.CategoryList.InternalName.Title);            
             CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
@@ -78,13 +78,13 @@ namespace VP.Sharepoint.CQ.UserControls
 
                 if (CurrentMode.Equals(SPControlMode.Edit) || CurrentMode.Equals(SPControlMode.Display))
                 {
-                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.ResourceLibrary.InternalName.CategoryId]);
+                    ddlCategory.SelectedValue = Convert.ToString(CurrentItem[FieldsName.ProfilesList.InternalName.CategoryId]);
                 }
                 if (CurrentMode.Equals(SPControlMode.Display))
                 {                    
                     ddlCategory.Visible = false;
                     lblCatDisplay.Visible = true;
-                    lblCatDisplay.Text = Convert.ToString(CurrentItem[FieldsName.ResourceLibrary.InternalName.CategoryName]);
+                    lblCatDisplay.Text = Convert.ToString(CurrentItem[FieldsName.ProfilesList.InternalName.CategoryName]);
                 }
             }
             catch (Exception ex)

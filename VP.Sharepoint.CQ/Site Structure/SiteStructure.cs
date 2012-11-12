@@ -57,6 +57,7 @@ namespace VP.Sharepoint.CQ
 
             ResourceLibrary.CreateListStructure(web);
             StatisticsList.CreateListStructure(web);
+            ProfilesList.CreateListStructure(web);
             
             Console.WriteLine("Deploy Successful!");
         }
