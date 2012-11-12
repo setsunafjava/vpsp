@@ -184,6 +184,15 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::Microsoft.SharePoint.WebControls.GoBackButton goBackButton;
         
         /// <summary>
+        /// hidType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidType;
+        
+        /// <summary>
         /// hidLevel control.
         /// </summary>
         /// <remarks>

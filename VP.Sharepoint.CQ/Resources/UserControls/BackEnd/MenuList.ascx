@@ -124,6 +124,7 @@
 <div id="divAttachments">
 </div>
 <input runat="server" type="hidden" id="hidMenuLevel" />
+<input type="hidden" runat="server" id="hidType" />
 <script type="text/javascript">
     $(document).ready(function () {
         $("#partAttachment").appendTo("#divAttachments");
@@ -133,6 +134,16 @@
             $("[id*='_ddlMenuType_']").change(function () {
                 SetShowHideControl();
             });
+        }
+        if (document.getElementById("<%=hidType.ClientID%>").value != '') {
+            if (document.getElementById("<%=hidType.ClientID%>").value == 'Link tới chuyên mục') {
+                $("#trCatName").show();
+                $("#trMenuUrl").hide();
+            }
+            else {
+                $("#trCatName").hide();
+                $("#trMenuUrl").show();
+            }
         }
     });
 

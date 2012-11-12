@@ -54,7 +54,7 @@
                 <SharePoint:RadioButtonChoiceField runat="server" ID="txtStatus" FieldName="Status"/>
             </td>
         </tr>
-         <tr>
+         <tr id="trNewsPossition">
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
                 <SharePoint:FieldLabel ID="lblNewsPossition" runat="server" FieldName="NewsPossition" />
             </td>
@@ -102,11 +102,38 @@
 </div>
 <div id="divAttachments">
 </div>
-
+<input type="hidden" runat="server" id="hidType" />
 <input type="hidden" runat="server" id="hidLevel" />
 <script type="text/javascript">
     $(document).ready(function () {
         $("#partAttachment").appendTo("#divAttachments");
         $("#idAttachmentsTable").appendTo("#tdAttachments");
+
+        if ($("[id*='_ddlType_']")) {
+            SetShowHideControl();
+            $("[id*='_ddlType_']").change(function () {
+                SetShowHideControl();
+            });
+        }
+        if (document.getElementById("<%=hidType.ClientID%>").value != '') {
+            if (document.getElementById("<%=hidType.ClientID%>").value == 'Tin tức') {
+                $("#trNewsPossition").show();
+            }
+            else {
+                $("#trNewsPossition").hide();
+            }
+        }
     });
+
+    function SetShowHideControl() {
+        if ($("[id*='_ddlType_']")) {
+            var selectedValue = $("[id*='_ddlType_']").val();
+            if (selectedValue == 'Tin tức') {
+                $("#trNewsPossition").show();
+            }
+            else{
+                $("#trNewsPossition").hide();
+            }
+        }
+    }
 </script>

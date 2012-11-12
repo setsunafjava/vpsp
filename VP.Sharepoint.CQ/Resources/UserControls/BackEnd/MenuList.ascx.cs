@@ -52,6 +52,7 @@ namespace VP.Sharepoint.CQ.UserControls
                     ddlCategory.Visible = false;
                     lblCatDisplay.Visible = true;
                     lblCatDisplay.Text = Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.CatName]);
+                    hidType.Value = Convert.ToString(CurrentItem[FieldsName.MenuList.InternalName.MenuType]);
                 }
             }
         }
