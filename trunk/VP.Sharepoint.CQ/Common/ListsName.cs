@@ -35,6 +35,7 @@
             public const string WeatherList = "WeatherList";
             public const string ResourceLibrary = "ResourceLibrary";
             public const string StatisticsList = "StatisticsList";
+            public const string ProfilesList = "ProfilesList";
         }
 
         // Display Name of list
@@ -70,6 +71,7 @@
             public const string WeatherList = "Thông tin thời tiết";
             public const string ResourceLibrary = "Tài nguyên";
             public const string StatisticsList = "Lượng truy cập";
+            public const string ProfilesList = "Sơ đồ tổ chức";
         }
     }
 }

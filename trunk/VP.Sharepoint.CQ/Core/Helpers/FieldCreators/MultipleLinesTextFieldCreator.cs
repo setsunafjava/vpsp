@@ -48,6 +48,15 @@ namespace VP.Sharepoint.CQ.Core.Helpers
             {
                 list.Fields.Add(InternalName, SPFieldType.Note, Required);
             }
+            else
+            {
+                var oldField = list.Fields.GetFieldByInternalName(InternalName);
+                if (!oldField.Type.Equals(SPFieldType.Note))
+                {
+                    oldField.Type = SPFieldType.Note;
+                    oldField.Update();
+                }
+            }
 
             var field = (SPFieldMultiLineText) list.Fields.GetFieldByInternalName(InternalName);
             field.Description = this.Description;

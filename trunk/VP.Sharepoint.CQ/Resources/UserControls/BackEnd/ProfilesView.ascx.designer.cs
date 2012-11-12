@@ -10,43 +10,7 @@
 namespace VP.Sharepoint.CQ.UserControls {
     
     
-    public partial class ResourceLibrary {
-        
-        /// <summary>
-        /// lblTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel lblTitle;
-        
-        /// <summary>
-        /// txtTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.TextField txtTitle;
-        
-        /// <summary>
-        /// lblCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel lblCategory;
-        
-        /// <summary>
-        /// lblCatDisplay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCatDisplay;
+    public partial class ProfilesView {
         
         /// <summary>
         /// ddlCategory control.
@@ -58,84 +22,102 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
-        /// lblDescription control.
+        /// viewProfiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel lblDescription;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.FlatDataView viewProfiles;
         
         /// <summary>
-        /// txtDescription control.
+        /// fName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.RichTextField txtDescription;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef fName;
         
         /// <summary>
-        /// lblStatus control.
+        /// fPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel lblStatus;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef fPosition;
         
         /// <summary>
-        /// txtStatus control.
+        /// TextFieldRef1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.DropDownChoiceField txtStatus;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef1;
         
         /// <summary>
-        /// labelAttachments control.
+        /// TextFieldRef2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FieldLabel labelAttachments;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef2;
         
         /// <summary>
-        /// CreatedModifiedInfo1 control.
+        /// TextFieldRef3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.CreatedModifiedInfo CreatedModifiedInfo1;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef3;
         
         /// <summary>
-        /// saveButton control.
+        /// TextFieldRef4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.SaveButton saveButton;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef4;
         
         /// <summary>
-        /// goBackButton control.
+        /// TextFieldRef5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.GoBackButton goBackButton;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef5;
         
         /// <summary>
-        /// hidMenuLevel control.
+        /// TextFieldRef6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidMenuLevel;
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef6;
+        
+        /// <summary>
+        /// TextFieldRef7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VP.Sharepoint.CQ.Core.WebControls.TextFieldRef TextFieldRef7;
+        
+        /// <summary>
+        /// sOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VP.Sharepoint.CQ.Core.WebControls.SortFieldRef sOrder;
     }
 }

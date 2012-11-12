@@ -20,7 +20,11 @@ namespace VP.Sharepoint.CQ
                             OnQuickLaunch = false,
                             EnableAttachments = true
                         };
-            helper.AddField(new SingleLineTextFieldCreator(FieldsName.ResourceLibrary.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));            
+            helper.AddField(new MultipleLinesTextFieldCreator(FieldsName.ResourceLibrary.InternalName.Description, FieldsName.ResourceLibrary.DisplayName.Description)
+            {
+                RichText = true,
+                RichTextMode = SPRichTextMode.FullHtml
+            });            
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ResourceLibrary.InternalName.CategoryId, FieldsName.ResourceLibrary.DisplayName.CategoryId));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ResourceLibrary.InternalName.CategoryName, FieldsName.ResourceLibrary.DisplayName.CategoryName));
             helper.AddField(new ChoiceFieldCreator(FieldsName.ResourceLibrary.InternalName.Status, FieldsName.ResourceLibrary.DisplayName.Status) { Choices = { "Ẩn", "Hiện" }, DefaultValue="Hiện" });
