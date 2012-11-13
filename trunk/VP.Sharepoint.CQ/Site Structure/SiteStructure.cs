@@ -47,17 +47,14 @@ namespace VP.Sharepoint.CQ
             AdvStatisticList.CreateListStructure(web);
             IconLinkList.CreateListStructure(web);
             WebsiteLink.CreateListStructure(web);
+            ExternalNewsLink.CreateListStructure(web);
+            ResourceLibrary.CreateListStructure(web);
+            StatisticsList.CreateListStructure(web);
+            ProfilesList.CreateListStructure(web);
 
             // Add QuichLaunch
             Console.WriteLine("Process CreateQuichLaunch..");
             QuickLaunchStructure.CreateQuickLaunch(web);
-
-            ExternalNews.CreateListStructure(web);
-            ExternalNewsLink.CreateListStructure(web);
-
-            ResourceLibrary.CreateListStructure(web);
-            StatisticsList.CreateListStructure(web);
-            ProfilesList.CreateListStructure(web);
             
             Console.WriteLine("Deploy Successful!");
         }

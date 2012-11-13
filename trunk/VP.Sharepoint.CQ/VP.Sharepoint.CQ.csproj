@@ -534,7 +534,6 @@
     <Compile Include="Site Structure\WebsiteLink.cs" />
     <Compile Include="Site Structure\VideoLibrary.cs" />
     <Compile Include="Site Structure\ImageLibrary.cs" />
-    <Compile Include="Site Structure\ExternalNews.cs" />
     <Compile Include="Site Structure\DocumentsList.cs" />
     <Compile Include="Site Structure\SignaturePerson.cs" />
     <Compile Include="Site Structure\DocumentSubject.cs" />

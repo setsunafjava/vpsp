@@ -8,7 +8,17 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CategoryView.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.CategoryView" %>
 <%@ Register Tagprefix="cl" Namespace="VP.Sharepoint.CQ.Core.WebControls" Assembly="$SharePoint.Project.AssemblyFullName$" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-
+<table class="ms-formtable" style="width: 100%">
+    <tr>
+        <td style="vertical-align: top; width:150px; font-weight: normal;" class="ms-formlabel" valign="top">
+            Chọn loại chuyên mục
+        </td>
+        <td class="ms-formbody" style="font-size: 11px;">
+            <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="true"
+                onselectedindexchanged="ddlCategory_SelectedIndexChanged"></asp:DropDownList>
+        </td>
+    </tr>
+</table>
 <cl:RecursiveDataView ID="viewMenu" runat="server" ListName="CategoryList" ShowRibbonTabs="false" ShowTotalItems="True" MenuField="Title" 
     FieldIDName="CategoryID" FieldParentName="ParentID" FieldOrderName="Order" FieldLevelName="CategoryLevel" FieldRecursiveName="Title">
     <ViewFields>
