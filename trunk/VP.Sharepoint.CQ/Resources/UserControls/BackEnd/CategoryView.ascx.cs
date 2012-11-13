@@ -22,7 +22,11 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (!Page.IsPostBack)
             {
-                
+                var catType = Request.QueryString["CatType"];
+                if (!string.IsNullOrEmpty(catType))
+                {
+                    viewMenu.WhereCondition = "<Where><Eq><FieldRef Name='" + FieldsName.CategoryList.InternalName.Type + "' /><Value Type='Choice'>" + catType + "</Value></Eq></Where>";
+                }
             }
         }
         #endregion

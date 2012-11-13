@@ -1,6 +1,6 @@
 ﻿using Microsoft.SharePoint;
 using VP.Sharepoint.CQ.Common;
-using Microsoft.SharePoint.Client.Utilities;
+using Microsoft.SharePoint.Utilities;
 namespace VP.Sharepoint.CQ
 {
     static class QuickLaunchStructure
@@ -15,6 +15,7 @@ namespace VP.Sharepoint.CQ
             var catList = Utilities.GetCustomListByUrl(web, ListsName.InternalName.CategoryList);
             var catHead = quickLaunch.AddHeading("Quản lý chuyên mục", string.Empty, groups);
             QuickLaunchHelper.AddNavigationLink(catHead, "Tất cả chuyên mục", catList.DefaultViewUrl, groups);
+            QuickLaunchHelper.AddNavigationLink(catHead, "Thêm mới chuyên mục", catList.Forms[PAGETYPE.PAGE_NEWFORM].Url, groups);
             #endregion
 
             #region Quản lý tin tức
