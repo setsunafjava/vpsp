@@ -6,6 +6,9 @@ using VP.Sharepoint.CQ.Common;
 using System.Globalization;
 using Constants = VP.Sharepoint.CQ.Common.Constants;
 using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
+using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+using System.Data;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -17,13 +20,38 @@ namespace VP.Sharepoint.CQ.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                
+                if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
+                {
+                    catId = Convert.ToString(Page.Request.QueryString["CatId"]);
+                }
+                dvCatTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", FieldsName.CategoryList.InternalName.Title);
+                BindRepeater();                           
             }
         }
         #endregion
+
+        #region Bind Repeater
+        protected void BindRepeater()
+        {
+            DataTable dt = NewsBO.GetNewsByCatId(CurrentWeb, catId);
+            rptNews.DataSource = dt;
+            rptNews.DataBind();
+
+        }
+        #endregion
+
+        protected void rptNews_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType.Equals(ListItemType.Item)||e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            {
+                DataRowView drv = (DataRowView)e.Item.DataItem;
+            }
+        }
     }
 }

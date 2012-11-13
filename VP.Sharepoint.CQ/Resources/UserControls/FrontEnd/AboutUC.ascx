@@ -10,9 +10,9 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AboutUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.AboutUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <div class="sub_page">
-    <div class="title_name_content">
+    <div class="title_name_content" id="dvCatTitle" runat="server" >
         Điều kiện hình thành</div>
-    <div class="content_follow">
+    <div class="content_follow" id="dvContent" runat="server" >
         <p>
             Hòa quyện trong dòng chảy lịch sử 4000 năm của dân tộc, Vĩnh Phúc là một trong những
             vùng đất cổ, nơi còn trầm tích bao dấu ấn lịch sử - văn hóa từ xa xưa cùng một truyền

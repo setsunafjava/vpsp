@@ -94,7 +94,10 @@ namespace VP.Sharepoint.CQ.UserControls
                 aLink.HRef = Convert.ToString(drv[FieldsName.IconLinkList.InternalName.LinkURL]);                
                 //SPFile file = (SPFile)drv["Attachments"];
                 //imgLink.Src = WebUrl + "/Lists/" + ListsName.InternalName.IconLinkList + "1.gif";
-                imgLink.Src = WebUrl + "/Lists/" + ListsName.InternalName.IconLinkList + "/Attachments/" + drv["ID"] + "/" + drv["FileUrl"].ToString();
+                if (drv["FileUrl"]!=null&&drv["FileUrl"]!=string.Empty)
+                {
+                    imgLink.Src = WebUrl + "/Lists/" + ListsName.InternalName.IconLinkList + "/Attachments/" + drv["ID"] + "/" + drv["FileUrl"].ToString();
+                }                
             }
         }
     }

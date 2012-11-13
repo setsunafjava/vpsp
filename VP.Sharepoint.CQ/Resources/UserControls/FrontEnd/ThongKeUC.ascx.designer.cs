@@ -8,9 +8,26 @@
 //------------------------------------------------------------------------------
 
 namespace VP.Sharepoint.CQ.UserControls {
-
-
-    public partial class ThongKeUC
-    {
+    
+    
+    public partial class ThongKeUC {
+        
+        /// <summary>
+        /// dvCatTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvCatTitle;
+        
+        /// <summary>
+        /// rptNews control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptNews;
     }
 }
