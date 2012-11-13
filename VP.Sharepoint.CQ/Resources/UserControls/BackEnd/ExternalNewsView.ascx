@@ -45,13 +45,13 @@
 </div>
 <br />
 
-<cl:FlatDataView ID="viewNews" runat="server" ListName="ExternalNewsList" ShowRibbonTabs="false"
+<cl:FlatDataView ID="viewNews" runat="server" ListName="NewsList" ShowRibbonTabs="false"
     ShowTotalItems="True" MenuField="Title">
     <ViewFields>
         <cl:UrlFieldRef ID="TextFieldRef3" FieldName="ImageDsp" HeaderText="Ảnh đại diện" runat="server" />
         <cl:TextFieldRef ID="TextFieldRef1" FieldName="Title" HeaderText="Tiêu đề" runat="server" />
-        <cl:TextFieldRef ID="TextFieldRef2" FieldName="LinkPath" HeaderText="Link bài viết" runat="server" />
-        <cl:ChoiceFieldRef ID="TextFieldRef4" FieldName="Status" HeaderText="Trạng thái" runat="server" />
+        <cl:TextFieldRef ID="TextFieldRef2" FieldName="NewsUrl" HeaderText="Link bài viết" runat="server" />
+        <cl:ChoiceFieldRef ID="TextFieldRef4" FieldName="ShowHide" HeaderText="Trạng thái" runat="server" />
     </ViewFields>
 </cl:FlatDataView>
 

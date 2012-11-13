@@ -57,6 +57,14 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new UrlFieldCreator(FieldsName.NewsList.InternalName.ImageDsp, FieldsName.NewsList.DisplayName.ImageDsp) { DisplayFormat = SPUrlFieldFormatType.Image });
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.NewsCount, FieldsName.NewsList.DisplayName.NewsCount));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.NewsUrl, FieldsName.NewsList.DisplayName.NewsUrl));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.RSSName, FieldsName.NewsList.DisplayName.RSSName));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.RSSLink, FieldsName.NewsList.DisplayName.RSSLink));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.NewsList.InternalName.SourceName, FieldsName.NewsList.DisplayName.SourceName));
+            helper.AddField(new ChoiceFieldCreator(FieldsName.NewsList.InternalName.ShowHide, FieldsName.NewsList.DisplayName.ShowHide)
+            {
+                Choices = { Constants.NewsShowHide.Show, Constants.NewsShowHide.Hide },
+                DefaultValue = Constants.NewsShowHide.Show
+            });
 
             var list = helper.Apply();
             

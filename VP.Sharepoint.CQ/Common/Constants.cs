@@ -32,6 +32,11 @@ namespace VP.Sharepoint.CQ.Common
             public const string SlideNews = "Tin slide show";
             public const string ShouldKnowNews = "Tin cần biết";
         }
+        public class NewsShowHide
+        {
+            public const string Show = "Hiện";
+            public const string Hide = "Ẩn";
+        }
         #endregion
 
         #region Category type

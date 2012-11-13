@@ -42,7 +42,7 @@ namespace VP.Sharepoint.CQ.UserControls
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             viewRSS.WhereCondition = @"<Where><Eq><FieldRef Name='" + FieldsName.ExternalNewsLink.InternalName.NewsGroup + "' /><Value Type='Text'>" + ddlCategory.SelectedValue + "</Value></Eq></Where>";
-            viewNews.WhereCondition = @"<Where><Eq><FieldRef Name='" + FieldsName.ExternalNews.InternalName.NewsGroup + "' /><Value Type='Text'>" + ddlCategory.SelectedValue + "</Value></Eq></Where>";
+            viewNews.WhereCondition = @"<Where><Eq><FieldRef Name='" + FieldsName.NewsList.InternalName.NewsGroup + "' /><Value Type='Text'>" + ddlCategory.SelectedValue + "</Value></Eq></Where>";
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace VP.Sharepoint.CQ.UserControls
                         {
                             adminWeb.AllowUnsafeUpdates = true;
                             var rssList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.ExternalNewsLinkList);
-                            var newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.ExternalNewsList);
+                            var newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
                             string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where>";
                             var query = new SPQuery()
                             {
@@ -115,11 +115,11 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 adminWeb.AllowUnsafeUpdates = true;
                 var item = list.AddItem();
-                item[FieldsName.ExternalNews.InternalName.Title] = rss["title"];
-                item[FieldsName.ExternalNews.InternalName.LinkPath] = rss["link"];
-                item[FieldsName.ExternalNews.InternalName.NewsGroup] = catID;
-                item[FieldsName.ExternalNews.InternalName.NewsGroupName] = catName;
-                item[FieldsName.ExternalNews.InternalName.RSSLink] = rssLink;
+                item[FieldsName.NewsList.InternalName.Title] = rss["title"];
+                item[FieldsName.NewsList.InternalName.NewsUrl] = rss["link"];
+                item[FieldsName.NewsList.InternalName.NewsGroup] = catID;
+                item[FieldsName.NewsList.InternalName.NewsGroupName] = catName;
+                item[FieldsName.NewsList.InternalName.RSSLink] = rssLink;
                 var desc = Convert.ToString(rss["description"]);
                 var imgUrl = string.Empty;
                 if (desc.Contains("<img"))
@@ -144,14 +144,14 @@ namespace VP.Sharepoint.CQ.UserControls
                         imgUrl = str1 + "." + str2;
                     }
                 }
-                item[FieldsName.ExternalNews.InternalName.Description] = desc;
+                item[FieldsName.NewsList.InternalName.Description] = desc;
                 if (!string.IsNullOrEmpty(imgUrl))
                 {
-                    item[FieldsName.ExternalNews.InternalName.ImageThumb] = imgUrl;
+                    item[FieldsName.NewsList.InternalName.ImageThumb] = imgUrl;
                     SPFieldUrlValue imgDsp = new SPFieldUrlValue();
                     imgDsp.Description = item.Title;
                     imgDsp.Url = imgUrl;
-                    item[FieldsName.ExternalNews.InternalName.ImageDsp] = imgDsp;
+                    item[FieldsName.NewsList.InternalName.ImageDsp] = imgDsp;
                 }
                 adminWeb.AllowUnsafeUpdates = true;
                 item.Update();
