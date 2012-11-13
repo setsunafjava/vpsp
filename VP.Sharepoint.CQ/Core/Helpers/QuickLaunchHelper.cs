@@ -101,6 +101,7 @@ namespace VP.Sharepoint.CQ.Common
 
         public static SPNavigationNode AddNavigationLink(SPNavigationNode parentNode, string title, string url, string group)
         {
+            System.Diagnostics.Debugger.Launch();
             var subNode = new SPNavigationNode(title, url);
             parentNode.Children.Add(subNode, parentNode);
             subNode.Properties.Add("Audience", ";;;;" + group);
