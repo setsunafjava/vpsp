@@ -90,6 +90,8 @@ namespace VP.Sharepoint.CQ
                     FieldsName.NewsList.InternalName.Title                   
                 };
             Utilities.AddStandardView(list, "AllNews", viewFields, "'<GroupBy Collapse='TRUE'><FieldRef Name='NewsGroupName' /></GroupBy>'", 100, true);
+            //add view
+            Utilities.AddStandardView(web, list, "ExternalNews", "../../UserControls/ExternalNewsView.ascx", "", 100, false);
         }
     }
 }
