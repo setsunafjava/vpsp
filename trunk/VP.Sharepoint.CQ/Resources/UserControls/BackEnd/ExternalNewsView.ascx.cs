@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Xml;
 using System.ServiceModel.Syndication;
 using System.Data;
+using System.Net;
+using System.IO;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -256,6 +258,100 @@ namespace VP.Sharepoint.CQ.UserControls
             var catID = ddlCat.SelectedValue;
             var catName = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catID, "Text", "Title");
             AddMainNews(CurrentWeb, catID, catName);
+        }
+
+        protected void btnCopyNews_Click(object sender, EventArgs e)
+        {
+            var catID = ddlCat.SelectedValue;
+            var catName = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catID, "Text", "Title");
+            var hostUrl = txtUrl.Text.Split(new string[] { "/ver2" }, 2, StringSplitOptions.None)[0];
+            var newsUrl = txtUrl.Text.Split(new string[] { "/portal" }, 2, StringSplitOptions.None)[0];
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(txtUrl.Text);
+            HttpWebResponse req = (HttpWebResponse)request.GetResponse();
+            string source;
+            using (StreamReader reader = new StreamReader(req.GetResponseStream()))
+            {
+                source = reader.ReadToEnd();
+            }
+            if (source.Contains("<table id=\"newslisttbl\""))
+            {
+                source = source.Split(new string[] { "<table id=\"newslisttbl\"" }, 2, StringSplitOptions.None)[1];
+                source = source.Split(new string[] { "</table>" }, 2, StringSplitOptions.None)[0];
+                var newsArr = source.Split(new string[] { "</tr>" }, StringSplitOptions.None);
+                for (int i = 0; i < newsArr.Length - 1; i++)
+                {
+                    CopyNews(CurrentWeb, catID, catName, source, hostUrl, newsUrl);
+                }
+            }
+        }
+
+        private void CopyNews(SPWeb web, string catID, string catName, string source, string hostUrl, string newsUrl)
+        {
+            var descValue = source.Split(new string[] { "<div class=\"new-desc\">" }, 2, StringSplitOptions.None)[1];
+            descValue = descValue.Split(new string[] { "</div>" }, 2, StringSplitOptions.None)[0];
+            var remainValue = source.Split(new string[] { "<div class=\"new-desc\">" }, 2, StringSplitOptions.None)[0];
+            var linkValue = remainValue.Split(new string[] { "href=" }, 2, StringSplitOptions.None)[1];
+            var imgValue = remainValue.Split(new string[] { "href=" }, 2, StringSplitOptions.None)[0];
+            var linkTitle = linkValue.Split(new string[] { ">" }, 2, StringSplitOptions.None)[1];
+            linkValue = linkValue.Split(new string[] { ">" }, 2, StringSplitOptions.None)[0];
+            linkValue = linkValue.Replace("\"", "").Replace("'", "");
+            linkValue = newsUrl + "/" + linkValue;
+            imgValue = imgValue.Split(new string[] { "src=" }, 2, StringSplitOptions.None)[1];
+            imgValue = imgValue.Split(new string[] { ">" }, 2, StringSplitOptions.None)[0];
+            imgValue = imgValue.Replace("\"", "").Replace("'", "").Replace("../", "");
+            imgValue = hostUrl + "/" + imgValue;
+            var newsID = linkValue.Split(new string[] { "&new=" }, 2, StringSplitOptions.None)[1];
+            var imgExt = imgValue.Split(new string[] { "." }, 2, StringSplitOptions.None)[1];
+            var fileName = newsID + "." + imgExt;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imgValue);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream receiveStream = response.GetResponseStream();
+
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var site = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = site.OpenWeb(web.ID))
+                    {
+                        var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fileName);
+                        SPFile file = Utilities.UploadFileToDocumentLibrary(web, receiveStream, string.Format(CultureInfo.InvariantCulture,
+                            "{0}/{1}/{2}", WebUrl, ListsName.InternalName.NewsImagesList, fuThumbName));
+                        var list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
+                        var item = list.AddItem();
+                        item[FieldsName.NewsList.InternalName.Title] = linkTitle;
+                        item[FieldsName.NewsList.InternalName.NewsGroup] = catID;
+                        item[FieldsName.NewsList.InternalName.NewsGroupName] = catName;
+                        item[FieldsName.NewsList.InternalName.Description] = descValue;
+                        item[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
+
+                        SPFieldUrlValue imgDsp = new SPFieldUrlValue();
+                        imgDsp.Description = item.Title;
+                        var webUrl = web.ServerRelativeUrl;
+                        if (webUrl.Equals("/"))
+                        {
+                            webUrl = "";
+                        }
+                        imgDsp.Url = webUrl + "/" + file.Url;
+                        item[FieldsName.NewsList.InternalName.ImageDsp] = imgDsp;
+
+                        request = (HttpWebRequest)WebRequest.Create(linkValue);
+                        response = (HttpWebResponse)request.GetResponse();
+                        string detail;
+                        using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                        {
+                            detail = reader.ReadToEnd();
+                        }
+                        detail = detail.Split(new string[] { "<div class=\"new-detail-content\">" }, 2, StringSplitOptions.None)[1];
+                        detail = detail.Split(new string[] { "<div id=\"new-reference\">" }, 2, StringSplitOptions.None)[0];
+                        detail = detail.Substring(0, detail.Length - 6);
+                        item[FieldsName.NewsList.InternalName.Content] = detail;
+
+                        adminWeb.AllowUnsafeUpdates = true;
+                        item.Update();
+                    }
+                }
+            });
         }
     }
 }

@@ -42,6 +42,10 @@
     <asp:TextBox ID="txtRSS" runat="server"></asp:TextBox>&nbsp;
     <asp:Button ID="btnGetNews" runat="server" Text="Lấy tin tức cho tin chính" 
         onclick="btnGetNews_Click" />
+        &nbsp;
+    <asp:TextBox ID="txtUrl" runat="server"></asp:TextBox>&nbsp;
+    <asp:Button ID="btnCopyNews" runat="server" Text="Copy tin từ site cũ" 
+        onclick="btnCopyNews_Click" />
 </div>
 <br />
 
