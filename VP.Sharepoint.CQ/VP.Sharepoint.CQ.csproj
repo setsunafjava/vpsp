@@ -568,6 +568,7 @@
   <ItemGroup>
     <Content Include="Features\VP.Sharepoint.CQ\VP.Sharepoint.CQ.Template.xml">
       <DependentUpon>VP.Sharepoint.CQ.feature</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\Css\CommonStyleSheet.css" />
     <Content Include="Resources\Css\COREV4.CSS" />
