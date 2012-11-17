@@ -28,6 +28,8 @@ namespace VP.Sharepoint.CQ.UserControls
                     itemId = Convert.ToInt32(Request.QueryString["ID"]);
                 }
 
+                //Update view count
+                NewsCount();
                 // Bind data
                 SPListItem item = GetItemByID(itemId);
                 if (item!=null)
@@ -35,7 +37,7 @@ namespace VP.Sharepoint.CQ.UserControls
                     ltrTitle.Text = Convert.ToString(item[FieldsName.NewsList.InternalName.Title]);
                     ltrPostedDate.Text = string.Format("( Ngày {0} )", Convert.ToDateTime(item[FieldsName.NewsList.InternalName.PostedDate]).ToString("dd-MM-yyyy"));
                     ltrContent.Text = Convert.ToString(item[FieldsName.NewsList.InternalName.Content]);
-                }
+                }                
             }
         }
         #endregion
@@ -50,6 +52,14 @@ namespace VP.Sharepoint.CQ.UserControls
                 return item;
             }
             return null;
+        }
+        #endregion
+
+        #region NewsCount
+        protected void NewsCount()
+        {
+            SPListItem item=GetItemByID(itemId);
+            NewsBO.UpdateViewCount(CurrentWeb, item);
         }
         #endregion
     }
