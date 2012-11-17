@@ -219,7 +219,7 @@ namespace VP.Sharepoint.CQ.Common
             {
 
                 //Get News
-                string caml = @"<Where><And><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq><Neq><FieldRef Name='{2}' /><Value Type='Text'>{3}</Value></Neq></And></Where><OrderBy><FieldRef Name='ID' Ascending='TRUE' /></OrderBy>";
+                string caml = @"<Where><And><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq><Neq><FieldRef Name='{2}' /><Value Type='Text'>{3}</Value></Neq></And></Where><OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>";
                 var query = new SPQuery()
                 {
                     Query = string.Format(CultureInfo.InvariantCulture, caml, FieldsName.NewsList.InternalName.NewsGroup, catId,"ID",newsId)
@@ -248,10 +248,10 @@ namespace VP.Sharepoint.CQ.Common
             try
             {
                 //Get Cat
-                string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='{2}' /></OrderBy>";
+                string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='{2}' /><FieldRef Name='{3}' /></OrderBy>";
                 var query = new SPQuery()
                 {
-                    Query = string.Format(CultureInfo.InvariantCulture, caml, FieldsName.CategoryList.InternalName.ParentID, catId, FieldsName.CategoryList.InternalName.Order)                    
+                    Query = string.Format(CultureInfo.InvariantCulture, caml, FieldsName.CategoryList.InternalName.ParentID, catId, FieldsName.CategoryList.InternalName.Order,"ID")
                 };
                 var items = catList.GetItems(query);
                 if (items != null && items.Count > 0)
@@ -267,6 +267,108 @@ namespace VP.Sharepoint.CQ.Common
             {
                 Utilities.LogToULS(ex);
             }
+        }
+        #endregion
+
+        #region Update view count
+        public static void UpdateViewCount(SPWeb web, SPListItem item)
+        {
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            SPList newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
+                            if (item!=null)
+                            {
+                                int viewCount = 0;
+                                if (Convert.ToString(item[FieldsName.NewsList.InternalName.NewsCount]) != string.Empty)
+                                {
+                                    viewCount = Convert.ToInt32(item[FieldsName.NewsList.InternalName.NewsCount]);
+                                }
+                                item[FieldsName.NewsList.InternalName.NewsCount] = viewCount + 1;
+                                item.Update();
+                            }                                                       
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
+        #endregion
+
+        #region GetLatestNews
+        public static DataTable GetLatestNews(SPWeb web)
+        {
+            DataTable dtTemp = null;
+
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            SPList newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
+                            //Get News
+                            string caml = @"<OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = caml,                                
+                            };
+                            dtTemp = newsList.GetItems(query).GetDataTable();
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+            return dtTemp;
+        }
+        #endregion
+
+        #region GetMostViewCount
+        public static DataTable GetMostViewCount(SPWeb web)
+        {
+            DataTable dtTemp = null;
+
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            SPList newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
+                            //Get News
+                            string caml = @"<OrderBy><FieldRef Name='{0}' Ascending='FALSE' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(caml,FieldsName.NewsList.InternalName.NewsCount)
+                            };
+                            dtTemp = newsList.GetItems(query).GetDataTable();
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+            return dtTemp;
         }
         #endregion
     }

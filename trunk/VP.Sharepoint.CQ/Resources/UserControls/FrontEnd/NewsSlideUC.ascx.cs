@@ -40,11 +40,17 @@ namespace VP.Sharepoint.CQ.UserControls
             rptNewsHome.DataSource = dt;
             rptNewsHome.DataBind();
 
-            // Bind repeater new news            
-            rptMoiNhat.DataSource = dt;
+            // Bind repeater new news
+            DataTable dtMoiNhat = NewsBO.GetLatestNews(CurrentWeb);
+            dtMoiNhat = Utilities.GetNewsWithRowLimit(dtMoiNhat, 8);
+            rptMoiNhat.DataSource = dtMoiNhat;
             rptMoiNhat.DataBind();
+
             // Bind repeater most read
-            rptDocNhieu.DataSource = dt;
+
+            DataTable dtMostRead = NewsBO.GetMostViewCount(CurrentWeb);
+            dtMostRead = Utilities.GetNewsWithRowLimit(dtMostRead, 8);
+            rptDocNhieu.DataSource = dtMostRead;
             rptDocNhieu.DataBind();
         }
         #endregion
