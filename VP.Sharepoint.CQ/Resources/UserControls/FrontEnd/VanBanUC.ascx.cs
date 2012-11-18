@@ -21,18 +21,22 @@ namespace VP.Sharepoint.CQ.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// 
-        SPWeb web;
+        ///         
         public int i = 0;
+        static DataTable dt;
+        string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
+                if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
+                {
+                    catId = Convert.ToString(Page.Request.QueryString["CatId"]);
+                }
                 if (!Page.IsPostBack)
                 {
-                    web = SPContext.Current.Web;
-                    BindDropDownList(web);
-                    BindRepeater(web);
+                    BindDropDownList(CurrentWeb);
+                    BindRepeater(CurrentWeb, catId);
                 }
             }
             catch (Exception ex)
@@ -120,14 +124,14 @@ namespace VP.Sharepoint.CQ.UserControls
         #endregion
 
         #region Bind source to rptVanBan
-        protected void BindRepeater(SPWeb spWeb)
+        protected void BindRepeater(SPWeb spWeb, string catId)
         {
             try
             {
                 SPList list = Utilities.GetCustomListByUrl(spWeb, ListsName.InternalName.DocumentsList);
                 if (list != null)
                 {
-                    DataTable dt = list.Items.GetDataTable();
+                    dt = ResourceLibraryBO.GetDocumentsByCatId(spWeb, catId);
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         rptVanBan.DataSource = dt;
@@ -139,19 +143,93 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 Utilities.LogToULS(ex);
             }
-        }        
+        }
         #endregion
 
         protected void rptVanBan_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            if (e.Item.ItemType.Equals(ListItemType.Item)||e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                HtmlAnchor aDownload = (HtmlAnchor)e.Item.FindControl("aDownload");                
+                HtmlAnchor aDownload = (HtmlAnchor)e.Item.FindControl("aDownload");
                 aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));
                 aDownload.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
             }
         }
+
+        #region SelectedIndexChange
+
+        protected void ddlCoQuanBanHanh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillDocument();
+        }
+
+        protected void ddlLoaiVanBan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillDocument();
+        }
+
+        protected void ddlLinhVuc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillDocument();
+        }
+
+        protected void ddlNguoiKy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FillDocument();
+        }
+        #endregion
+
+        #region FillDocument
+        protected void FillDocument()
+        {
+            string query = "<Where>";
+            if (ddlCoQuanBanHanh.SelectedValue != string.Empty)
+            {
+                query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.PublishPlace, HttpUtility.HtmlEncode(ddlCoQuanBanHanh.SelectedValue));
+                query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.PublishPlace);
+            }
+            if (ddlLinhVuc.SelectedValue != string.Empty)
+            {
+                if (ddlLinhVuc.SelectedValue != string.Empty)
+                {
+                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.DocumentSubject,  HttpUtility.HtmlEncode(ddlLinhVuc.SelectedValue));
+                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.DocumentSubject);
+                }                
+            }
+
+            if (ddlLoaiVanBan.SelectedValue != string.Empty)
+            {
+                if (ddlLoaiVanBan.SelectedValue != string.Empty)
+                {
+                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.DocumentType,  HttpUtility.HtmlEncode(ddlLoaiVanBan.SelectedValue));
+                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.DocumentType);
+                }
+                else
+                {                    
+                }
+            }
+
+            if (ddlNguoiKy.SelectedValue != string.Empty)
+            {
+                if (ddlNguoiKy.SelectedValue != string.Empty)
+                {
+                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.SignaturePerson,  HttpUtility.HtmlEncode(ddlNguoiKy.SelectedValue));
+                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.SignaturePerson);
+                }               
+            }
+
+            query += "</Where>";
+            SPQuery q = new SPQuery();
+            q.Query = query;
+            SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.DocumentsList);
+            DataTable dt = list.GetItems(q).GetDataTable();
+            rptVanBan.DataSource = dt;
+            rptVanBan.DataBind();
+        }
+        #endregion
+
+
     }
 }
