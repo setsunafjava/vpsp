@@ -1745,5 +1745,81 @@ namespace VP.Sharepoint.CQ.Common
                 }
             });
         }
+
+        /// <summary>
+        /// BindOrganizationDetailToRpt
+        /// </summary>
+        /// <param name="web"></param>
+        /// <param name="rpt"></param>
+        /// <param name="listName"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="fieldType"></param>
+        /// <param name="fieldValue"></param>
+        /// <param name="orderField"></param>
+        public static void BindOrganizationDetailToRpt(SPWeb web, Repeater rpt, string listName, string fieldName, string fieldType, string fieldValue, string orderField)
+        {
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            string caml = @"<Where><And><Eq><FieldRef Name='{0}' /><Value Type='{1}'>{2}</Value></Eq><Eq><FieldRef Name='{3}' /><Value Type='Choice'>{4}</Value></Eq></And></Where><OrderBy><FieldRef Name='{5}' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, fieldName, fieldType, fieldValue, FieldsName.ProfilesList.InternalName.Status, "Hiện", orderField)
+                            };
+                            var list = Utilities.GetCustomListByUrl(adminWeb, listName);
+                            var items = list.GetItems(query);
+                            if (items != null && items.Count > 0)
+                            {
+                                rpt.DataSource = items.GetDataTable();
+                                rpt.DataBind();
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
+
+        public static void BindDocumentToRpt(SPWeb web, Repeater rpt, string listName, string fieldName, string fieldType, string fieldValue, string orderField)
+        {
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            string caml = @"<Where><And><Eq><FieldRef Name='{0}' /><Value Type='{1}'>{2}</Value></Eq><Eq><FieldRef Name='{3}' /><Value Type='Choice'>{4}</Value></Eq></And></Where><OrderBy><FieldRef Name='{5}' /></OrderBy>";
+                            var query = new SPQuery()
+                            {
+                                Query = string.Format(CultureInfo.InvariantCulture, caml, fieldName, fieldType, fieldValue, FieldsName.ProfilesList.InternalName.Status, "Hiện", orderField)
+                            };
+                            var list = Utilities.GetCustomListByUrl(adminWeb, listName);
+                            var items = list.GetItems(query);
+                            if (items != null && items.Count > 0)
+                            {
+                                rpt.DataSource = items.GetDataTable();
+                                rpt.DataBind();
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
     }
 }
