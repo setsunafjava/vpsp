@@ -20,10 +20,17 @@ namespace VP.Sharepoint.CQ.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+
+        string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                if (Page.Request.QueryString["CatId"]!=null&&Page.Request.QueryString["CatId"]!=string.Empty)
+                {
+                    catId=Convert.ToString((Page.Request.QueryString["CatId"]));
+                }
                 SPWeb web = SPContext.Current.Web;
                 BindRepeater(web);
             }
@@ -33,8 +40,9 @@ namespace VP.Sharepoint.CQ.UserControls
         #region BindRepeater
         private void BindRepeater(SPWeb spWeb)
         {
-            DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews);
+            DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews, catId);
             //Bind repeater news slide
+            dt = Utilities.GetNewsWithRowLimit(dt, 20);
             rptHotNews.DataSource = dt;
             rptHotNews.DataBind();
         }
