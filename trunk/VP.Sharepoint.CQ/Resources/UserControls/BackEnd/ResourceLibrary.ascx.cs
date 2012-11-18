@@ -73,16 +73,34 @@ namespace VP.Sharepoint.CQ.UserControls
             }
             if (fuFileUrl.HasFile)
             {
-                var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuFileUrl.FileName);
+                var fileUrl = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuFileUrl.FileName);
                 SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuFileUrl.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
-                    "{0}/{1}/{2}", WebUrl, ListsName.InternalName.GalleryImagesList, fuFileUrl));
+                    "{0}/{1}/{2}", WebUrl, ListsName.InternalName.GalleryImagesList, fileUrl));
                 CurrentItem[FieldsName.ResourceLibrary.InternalName.FileUrl] = file.Url;
                 fileNames.Add(fuFileUrl.FileName);
             }
 
 
 
+            CurrentWeb.AllowUnsafeUpdates = true;
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
+            if (fileNames.Count > 0)
+            {
+                foreach (var fileName in fileNames)
+                {
+                    try
+                    {
+                        CurrentWeb.AllowUnsafeUpdates = true;
+                        CurrentItem.Attachments.Delete(fileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utilities.LogToULS(ex);
+                    }
+                }
+                CurrentWeb.AllowUnsafeUpdates = true;
+                CurrentItem.SystemUpdate(false);
+            }
         }
 
         private void BindData()
