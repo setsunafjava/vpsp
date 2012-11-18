@@ -282,6 +282,7 @@ namespace VP.Sharepoint.CQ.Common
                         try
                         {
                             adminWeb.AllowUnsafeUpdates = true;
+                            web.AllowUnsafeUpdates = true;
                             SPList newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
                             if (item!=null)
                             {
