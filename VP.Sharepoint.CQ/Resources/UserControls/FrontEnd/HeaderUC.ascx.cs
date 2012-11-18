@@ -21,9 +21,7 @@ namespace VP.Sharepoint.CQ.UserControls
             Utilities.LoadCSS(CurrentWeb, this.Page, "styles.CSS");
             Utilities.LoadCSS(CurrentWeb, this.Page, "tabcontent.CSS");
             Utilities.LoadCSS(CurrentWeb, this.Page, "simpletree.CSS");
-            Utilities.LoadCSS(CurrentWeb, this.Page, "COREV4.CSS");
-            Utilities.LoadCSS(CurrentWeb, this.Page, "COREV4.CSS");
-            Utilities.LoadCSS(CurrentWeb, this.Page, "COREV4.CSS");
+            Utilities.LoadCSS(CurrentWeb, this.Page, "slidedown-menu2.css");
             Utilities.LoadJS(CurrentWeb, this.Page, "jquery-1.7.1.js");
             Utilities.LoadJS(CurrentWeb, this.Page, "tabcontent.js");
             Utilities.LoadJS(CurrentWeb, this.Page, "script.js");

@@ -575,6 +575,7 @@
     <Content Include="Resources\Css\ie7.css" />
     <Content Include="Resources\Css\player.swf" />
     <Content Include="Resources\Css\simpletree.css" />
+    <Content Include="Resources\Css\slidedown-menu2.css" />
     <Content Include="Resources\Css\styles.css" />
     <Content Include="Resources\Css\stylish_slim.swf" />
     <Content Include="Resources\Css\tabcontent.css" />
