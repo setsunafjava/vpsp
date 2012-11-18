@@ -60,7 +60,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     ltrQC.Text =
                         @"<embed
-                                  flashvars='file=" + SPContext.Current.Web.Url + "/" + ListsName.InternalName.ResourcesList + @"/stylish_slim.swf&autostart=true'
+                                  flashvars='file=" + WebUrl + "/" + ListsName.InternalName.ResourcesList + @"/stylish_slim.swf&autostart=true'
                                   allowfullscreen='true'
                                   allowscripaccess='always'
                                   id='" + this.ID + "-quangcao-" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvID]) + @"'
@@ -68,7 +68,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                   src='" + qcFile + @"'
                                   width='" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvWidth]) + @"'
                                   height='" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvHeight]) + @"'
-                                />";
+                                ></embed>";
                 }
                 else
                 {

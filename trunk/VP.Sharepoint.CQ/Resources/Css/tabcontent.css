@@ -7,6 +7,7 @@
   /*  border-right: 1px solid #CCCCCC;*/
 	padding: 19px 10px 10px 10px;
 	height: 298px;
+	overflow-y:hidden;
 }
 .shadetabs{
 	font: bold 12px Verdana;
