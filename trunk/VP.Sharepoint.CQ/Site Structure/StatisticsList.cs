@@ -31,6 +31,16 @@ namespace VP.Sharepoint.CQ
                 fieldTitle.Update();
             }
             list.Update();
+
+            var defaultView = list.DefaultView;
+            defaultView.ViewFields.DeleteAll();
+            defaultView.RowLimit = 100;
+            defaultView.Query = "<OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>";
+            defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);
+            defaultView.ViewFields.Add(FieldsName.StatisticsList.InternalName.UserBrowser);
+            defaultView.ViewFields.Add(FieldsName.StatisticsList.InternalName.UserIP);
+            defaultView.ViewFields.Add(FieldsName.StatisticsList.InternalName.UserUrl);
+            defaultView.Update();
         }
     }
 }

@@ -67,6 +67,19 @@ namespace VP.Sharepoint.CQ
                 fieldTitle.Update();
             }
             list.Update();
+
+            var defaultView = list.DefaultView;
+            defaultView.ViewFields.DeleteAll();
+            defaultView.RowLimit = 100;
+            defaultView.Query = "<GroupBy Collapse='TRUE' GroupLimit='50'><FieldRef Name='" + FieldsName.DocumentsList.InternalName.DocumentType + "' /><FieldRef Name='" + FieldsName.DocumentsList.InternalName.DocumentSubject + "' /></GroupBy>";
+            defaultView.ViewFields.Add(Constants.EditColumn);
+            defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);
+            defaultView.ViewFields.Add(FieldsName.DocumentsList.InternalName.DocumentNo);
+            defaultView.ViewFields.Add(FieldsName.DocumentsList.InternalName.PublishPlace);
+            defaultView.ViewFields.Add(FieldsName.DocumentsList.InternalName.SignaturePerson);
+            defaultView.ViewFields.Add(FieldsName.DocumentsList.InternalName.EffectedDate);
+            defaultView.ViewFields.Add(FieldsName.DocumentsList.InternalName.ExpiredDate);
+            defaultView.Update();
         }
     }
 }

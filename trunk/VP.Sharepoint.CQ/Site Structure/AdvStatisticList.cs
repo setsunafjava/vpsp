@@ -32,6 +32,17 @@ namespace VP.Sharepoint.CQ
                 fieldTitle.Update();
             }
             list.Update();
+
+            var defaultView = list.DefaultView;
+            defaultView.ViewFields.DeleteAll();
+            defaultView.RowLimit = 100;
+            defaultView.Query = "<GroupBy Collapse='TRUE' GroupLimit='50'><FieldRef Name='" + FieldsName.AdvStatisticList.InternalName.Title + "' /></GroupBy>";
+            defaultView.ViewFields.Add(Constants.EditColumn);
+            defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);
+            defaultView.ViewFields.Add(FieldsName.AdvStatisticList.InternalName.UserBrowser);
+            defaultView.ViewFields.Add(FieldsName.AdvStatisticList.InternalName.UserIP);
+            defaultView.ViewFields.Add(FieldsName.AdvStatisticList.InternalName.UserUrl);
+            defaultView.Update();
         }
     }
 }

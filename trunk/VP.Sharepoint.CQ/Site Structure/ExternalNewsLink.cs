@@ -31,6 +31,15 @@ namespace VP.Sharepoint.CQ
 
             //Add custom usercontrol to form
             Utilities.AddForms(web, list, "../../UserControls/ExternalNewsRSS.ascx");
+
+            var defaultView = list.DefaultView;
+            defaultView.ViewFields.DeleteAll();
+            defaultView.Query = "<GroupBy Collapse='TRUE' GroupLimit='50'><FieldRef Name='" + FieldsName.ExternalNewsLink.InternalName.NewsGroupName + "' /></GroupBy>";
+            defaultView.RowLimit = 100;
+            defaultView.ViewFields.Add(Constants.EditColumn);
+            defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);
+            defaultView.ViewFields.Add(FieldsName.ExternalNewsLink.InternalName.LinkPath);
+            defaultView.Update();
         }
     }
 }
