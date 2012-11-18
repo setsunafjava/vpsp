@@ -13,6 +13,7 @@ using System.ServiceModel.Syndication;
 using System.Data;
 using System.Net;
 using System.IO;
+using System.Text;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -44,7 +45,7 @@ namespace VP.Sharepoint.CQ.UserControls
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             viewRSS.WhereCondition = @"<Where><Eq><FieldRef Name='" + FieldsName.ExternalNewsLink.InternalName.NewsGroup + "' /><Value Type='Text'>" + ddlCategory.SelectedValue + "</Value></Eq></Where>";
-            viewNews.WhereCondition = @"<Where><Eq><FieldRef Name='" + FieldsName.NewsList.InternalName.NewsGroup + "' /><Value Type='Text'>" + ddlCategory.SelectedValue + "</Value></Eq></Where>";
+            viewNews.WhereCondition = @"<Where><And><IsNotNull><FieldRef Name='" + FieldsName.NewsList.InternalName.NewsUrl + "' /></IsNotNull><Eq><FieldRef Name='" + FieldsName.NewsList.InternalName.NewsGroup + "' /><Value Type='Text'>" + ddlCategory.SelectedValue + "</Value></Eq></And></Where>";
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -264,15 +265,14 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             var catID = ddlCat.SelectedValue;
             var catName = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catID, "Text", "Title");
-            var hostUrl = txtUrl.Text.Split(new string[] { "/ver2" }, 2, StringSplitOptions.None)[0];
-            var newsUrl = txtUrl.Text.Split(new string[] { "/portal" }, 2, StringSplitOptions.None)[0];
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(txtUrl.Text);
-            HttpWebResponse req = (HttpWebResponse)request.GetResponse();
-            string source;
-            using (StreamReader reader = new StreamReader(req.GetResponseStream()))
-            {
-                source = reader.ReadToEnd();
-            }
+            var newsUrl = txtUrl.Text + "/sovp/news/topic" + txtNewCat.Text + "/xxx";
+
+            WebClient webClient = new WebClient();
+            byte[] reqHTML;
+            reqHTML = webClient.DownloadData(newsUrl);
+            UTF8Encoding objUTF8 = new UTF8Encoding();
+            string source = objUTF8.GetString(reqHTML);
+
             if (source.Contains("<table id=\"newslisttbl\""))
             {
                 source = source.Split(new string[] { "<table id=\"newslisttbl\"" }, 2, StringSplitOptions.None)[1];
@@ -280,12 +280,12 @@ namespace VP.Sharepoint.CQ.UserControls
                 var newsArr = source.Split(new string[] { "</tr>" }, StringSplitOptions.None);
                 for (int i = 0; i < newsArr.Length - 1; i++)
                 {
-                    CopyNews(CurrentWeb, catID, catName, source, hostUrl, newsUrl);
+                    CopyNews(CurrentWeb, catID, catName, newsArr[i]);
                 }
             }
         }
 
-        private void CopyNews(SPWeb web, string catID, string catName, string source, string hostUrl, string newsUrl)
+        private void CopyNews(SPWeb web, string catID, string catName, string source)
         {
             var descValue = source.Split(new string[] { "<div class=\"new-desc\">" }, 2, StringSplitOptions.None)[1];
             descValue = descValue.Split(new string[] { "</div>" }, 2, StringSplitOptions.None)[0];
@@ -293,15 +293,16 @@ namespace VP.Sharepoint.CQ.UserControls
             var linkValue = remainValue.Split(new string[] { "href=" }, 2, StringSplitOptions.None)[1];
             var imgValue = remainValue.Split(new string[] { "href=" }, 2, StringSplitOptions.None)[0];
             var linkTitle = linkValue.Split(new string[] { ">" }, 2, StringSplitOptions.None)[1];
+            linkTitle = linkTitle.Split(new string[] { "</a>" }, 2, StringSplitOptions.None)[0];
             linkValue = linkValue.Split(new string[] { ">" }, 2, StringSplitOptions.None)[0];
             linkValue = linkValue.Replace("\"", "").Replace("'", "");
-            linkValue = newsUrl + "/" + linkValue;
             imgValue = imgValue.Split(new string[] { "src=" }, 2, StringSplitOptions.None)[1];
             imgValue = imgValue.Split(new string[] { ">" }, 2, StringSplitOptions.None)[0];
             imgValue = imgValue.Replace("\"", "").Replace("'", "").Replace("../", "");
-            imgValue = hostUrl + "/" + imgValue;
+            imgValue = txtUrl.Text + "/" + imgValue;
             var newsID = linkValue.Split(new string[] { "&new=" }, 2, StringSplitOptions.None)[1];
-            var imgExt = imgValue.Split(new string[] { "." }, 2, StringSplitOptions.None)[1];
+            linkValue = txtUrl.Text + "/sovp/news/new" + newsID + "/xxx";
+            var imgExt = imgValue.Split(new string[] { "." }, StringSplitOptions.None)[imgValue.Split('.').Length - 1];
             var fileName = newsID + "." + imgExt;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(imgValue);
@@ -314,34 +315,59 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     using (var adminWeb = site.OpenWeb(web.ID))
                     {
-                        var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fileName);
-                        SPFile file = Utilities.UploadFileToDocumentLibrary(web, receiveStream, string.Format(CultureInfo.InvariantCulture,
-                            "{0}/{1}/{2}", WebUrl, ListsName.InternalName.NewsImagesList, fuThumbName));
+                        var imgUrl = string.Empty;
+                        using (MemoryStream stream = new MemoryStream())
+                        {
+                            // Create a 4K buffer to chunk the file
+
+                            byte[] MyBuffer = new byte[4096];
+
+                            int BytesRead;
+
+                            // Read the chunk of the web response into the buffer
+
+                            while (0 < (BytesRead = receiveStream.Read(MyBuffer, 0, MyBuffer.Length)))
+                            {
+
+                                // Write the chunk from the buffer to the file
+
+                                stream.Write(MyBuffer, 0, BytesRead);
+
+                            }
+                            var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fileName);
+                            SPFile file = Utilities.UploadFileToDocumentLibrary(web, stream, string.Format(CultureInfo.InvariantCulture,
+                                "{0}/{1}/{2}", WebUrl, ListsName.InternalName.NewsImagesList, fuThumbName));
+                            imgUrl = file.Url;
+                        }
+
+                        
                         var list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
                         var item = list.AddItem();
                         item[FieldsName.NewsList.InternalName.Title] = linkTitle;
                         item[FieldsName.NewsList.InternalName.NewsGroup] = catID;
                         item[FieldsName.NewsList.InternalName.NewsGroupName] = catName;
                         item[FieldsName.NewsList.InternalName.Description] = descValue;
-                        item[FieldsName.NewsList.InternalName.ImageThumb] = file.Url;
+                        item[FieldsName.NewsList.InternalName.ImageThumb] = imgUrl;
 
-                        SPFieldUrlValue imgDsp = new SPFieldUrlValue();
-                        imgDsp.Description = item.Title;
-                        var webUrl = web.ServerRelativeUrl;
-                        if (webUrl.Equals("/"))
+                        if (!string.IsNullOrEmpty(imgUrl))
                         {
-                            webUrl = "";
+                            SPFieldUrlValue imgDsp = new SPFieldUrlValue();
+                            imgDsp.Description = item.Title;
+                            var webUrl = web.ServerRelativeUrl;
+                            if (webUrl.Equals("/"))
+                            {
+                                webUrl = "";
+                            }
+                            imgDsp.Url = webUrl + "/" + imgUrl;
+                            item[FieldsName.NewsList.InternalName.ImageDsp] = imgDsp;
                         }
-                        imgDsp.Url = webUrl + "/" + file.Url;
-                        item[FieldsName.NewsList.InternalName.ImageDsp] = imgDsp;
 
-                        request = (HttpWebRequest)WebRequest.Create(linkValue);
-                        response = (HttpWebResponse)request.GetResponse();
-                        string detail;
-                        using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                        {
-                            detail = reader.ReadToEnd();
-                        }
+                        WebClient webClient = new WebClient();
+                        byte[] reqHTML;
+                        reqHTML = webClient.DownloadData(linkValue);
+                        UTF8Encoding objUTF8 = new UTF8Encoding();
+                        string detail = objUTF8.GetString(reqHTML);
+
                         detail = detail.Split(new string[] { "<div class=\"new-detail-content\">" }, 2, StringSplitOptions.None)[1];
                         detail = detail.Split(new string[] { "<div id=\"new-reference\">" }, 2, StringSplitOptions.None)[0];
                         detail = detail.Substring(0, detail.Length - 6);

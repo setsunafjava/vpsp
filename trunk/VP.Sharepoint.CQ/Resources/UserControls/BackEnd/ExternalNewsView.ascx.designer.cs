@@ -103,6 +103,15 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::System.Web.UI.WebControls.TextBox txtUrl;
         
         /// <summary>
+        /// txtNewCat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNewCat;
+        
+        /// <summary>
         /// btnCopyNews control.
         /// </summary>
         /// <remarks>
