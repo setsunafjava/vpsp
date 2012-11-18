@@ -660,6 +660,7 @@
     <Content Include="Resources\Images\quanlycongvan.gif" />
     <Content Include="Resources\Images\rightarrow.png" />
     <Content Include="Resources\Images\rightshadow.png" />
+    <Content Include="Resources\Images\save.png" />
     <Content Include="Resources\Images\shade.gif" />
     <Content Include="Resources\Images\shadeactive.gif" />
     <Content Include="Resources\Images\sodienthoaicanbiet.gif" />

@@ -148,7 +148,9 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                HtmlAnchor aDownload = (HtmlAnchor)e.Item.FindControl("aDownload");                
                 aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));
+                aDownload.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
             }
         }
     }

@@ -32,9 +32,7 @@
                         </div>
                     </div>
                 </ItemTemplate>
-            </asp:Repeater>
-            <div class="read_more">
-                <a href="#">&raquo; Xem thêm</a></div>
+            </asp:Repeater>            
         </div>
     </div>
 </div>

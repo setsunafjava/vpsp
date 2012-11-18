@@ -79,6 +79,7 @@
                                     <b>Người ký:</b> <%#Eval(FieldsName.DocumentsList.InternalName.SignaturePerson)%><br/>
                                     <b>Ngày hiệu lực:</b> <%#Convert.ToDateTime(Eval(FieldsName.DocumentsList.InternalName.EffectedDate)).ToString("dd/MM/yyyy")%><br/>
                                     <b>Người hết hiệu lực:</b> <%#Convert.ToDateTime(Eval(FieldsName.DocumentsList.InternalName.ExpiredDate)).ToString("dd/MM/yyyy")%><br/>
+                                    <b>Tải về:</b><a id="aDownload" runat="server" ><img alt="" title="" src="<%=DocLibUrl %>/save.png" /></a></<br/>
                                 </div>
                             </td>
                             <td valign="top">

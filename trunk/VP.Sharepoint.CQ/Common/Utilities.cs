@@ -1539,6 +1539,27 @@ namespace VP.Sharepoint.CQ.Common
             return null;
         }
 
+        public static DataTable GetNewsByStatus(SPWeb web, string strStatus,string catId)
+        {
+            try
+            {
+                SPList list = Utilities.GetCustomListByUrl(web, ListsName.InternalName.NewsList);
+                if (list != null)
+                {
+                    SPQuery query = new SPQuery();
+                    //query.Query = string.Empty;
+                    query.Query = string.Format("<Where><And><Contains><FieldRef Name='{0}'/><Value Type='MultiChoice'>{1}</Value></Contains><Eq><FieldRef Name='{2}'/><Value Type='Text'>{3}</Value></Eq></And></Where><OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>", FieldsName.NewsList.InternalName.Status, strStatus, FieldsName.NewsList.InternalName.NewsGroup, catId);
+                    SPListItemCollection listItemCollection = list.GetItems(query);
+                    return listItemCollection.GetDataTable();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogToULS(ex);
+            }
+            return null;
+        }
+
         public static DataTable GetNewsByStatus(SPWeb web, string strStatus,UInt32 rowLimit)
         {
             try
@@ -1548,7 +1569,7 @@ namespace VP.Sharepoint.CQ.Common
                 {
                     SPQuery query = new SPQuery();
                     //query.Query = string.Empty;
-                    query.Query = string.Format("<Where><Contains><FieldRef Name='{0}'/><Value Type='MultiChoice'>{1}</Value></Contains></Where>", FieldsName.NewsList.InternalName.Status, strStatus);
+                    query.Query = string.Format("<Where><Contains><FieldRef Name='{0}'/><Value Type='MultiChoice'>{1}</Value></Contains></Where><OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>", FieldsName.NewsList.InternalName.Status, strStatus);
                     query.RowLimit = rowLimit;
                     SPListItemCollection listItemCollection = list.GetItems(query);
                     return listItemCollection.GetDataTable();
