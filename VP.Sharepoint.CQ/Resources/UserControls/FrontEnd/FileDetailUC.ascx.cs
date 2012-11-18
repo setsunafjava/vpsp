@@ -62,7 +62,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                         downloadCount = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]);
                                     urlDownload = listItem[FieldsName.ResourceLibrary.InternalName.FileUrl].ToString();
                                     SPFile OriFile = CurrentWeb.GetFile(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl].ToString());
-                                    sizeOfFile = Convert.ToString(OriFile.Length);
+                                    sizeOfFile = string.Format("{0:0.00}",(decimal)OriFile.Length / 1048576);
                                     fileName = OriFile.Name;
                                     imgThumb = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl]);
                                 }
