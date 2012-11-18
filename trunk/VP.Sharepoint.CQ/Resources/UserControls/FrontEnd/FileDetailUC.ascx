@@ -25,7 +25,7 @@
                         Ngày gửi: 08/11/2012<br />
                         Lượt tải: 51<br />
                         Đường dẫn: <a href="#">617_1352360953_DE_DA_THPT_HSG12.rar</a><span><a href="#"><img
-                            src="<%=DocLibUrl%>/images_download.jpg" style="width: 100px;" /></a></span><br />
+                            src="<%=DocLibUrl%>/images_download.jpg" style="width: 100px;" style="border:1px border-color:#cfcfcf; padding:1px;" /></a></span><br />
                         Đánh giá:
                         <br />
                     </p>
