@@ -18,20 +18,19 @@
             <div>
                 <div class="content_detail_doccument">
                     <h2>
-                        Tài liệu ôn luyện môn Vật Lý lớp 12</h2>
+                        <%=title %></h2>
                     <p>
-                        Tác giả: Sở Giáo dục và Đào tạo<br />
-                        Kích thước: 0 MB<br />
-                        Ngày gửi: 08/11/2012<br />
-                        Lượt tải: 51<br />
-                        Đường dẫn: <a href="#">617_1352360953_DE_DA_THPT_HSG12.rar</a><span><a href="#"><img
-                            src="<%=DocLibUrl%>/images_download.jpg" style="width: 100px;" style="border:1px border-color:#cfcfcf; padding:1px;" /></a></span><br />
-                        Đánh giá:
+                        Tác giả: <%=author %><br />
+                        Kích thước: <%=sizeOfFile %> MB<br />
+                        Ngày gửi: <%=postedDate %><br />
+                        Lượt tải: <%=downloadCount %><br />
+                        Đường dẫn: <a href="#"><%=fileName %></a><span><a href="#">
+                        <img src="<%=DocLibUrl%>/images_download.jpg" style="width: 100px;border:1px border-color:#cfcfcf; padding:1px;" /></a></span><br />                        
                         <br />
                     </p>
                 </div>
                 <div class="img_doccument">
-                    <img src="<%=DocLibUrl%>/1348969944.nv.jpeg" /></div>
+                    <img src="<%=imgThumb%>" /></div>
                 <div class="cleaner">
                 </div>
             </div>

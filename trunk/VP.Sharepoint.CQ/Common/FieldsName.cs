@@ -481,6 +481,7 @@
                 public const string PostedDate = "PostedDate";
                 public const string ImgThumb = "ImgThumb";
                 public const string FileUrl = "FileUrl";
+                public const string DownloadCount = "DownloadCount";
             }
 
             public class DisplayName
@@ -495,6 +496,7 @@
                 public const string PostedDate = "Ngày gửi";
                 public const string ImgThumb = "Ảnh trích dẫn";
                 public const string FileUrl = "Đường dẫn file";
+                public const string DownloadCount = "Lượt tải";
             }
         }
         #endregion

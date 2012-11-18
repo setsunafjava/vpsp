@@ -26,12 +26,19 @@ namespace VP.Sharepoint.CQ.UserControls
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
-            {                
-                if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
+            {
+                try
                 {
-                    catId = Convert.ToString((Page.Request.QueryString["CatId"]));
-                    aTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", FieldsName.CategoryList.InternalName.Title);
-                    BindRepeater();
+                    if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
+                    {
+                        catId = Convert.ToString((Page.Request.QueryString["CatId"]));
+                        aTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", FieldsName.CategoryList.InternalName.Title);
+                        BindRepeater();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Utilities.LogToULS(ex);
                 }
             }
         }
@@ -89,9 +96,9 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlAnchor aImg = (HtmlAnchor)e.Item.FindControl("aImg");
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 HtmlImage imgThumb = (HtmlImage)e.Item.FindControl("imgThumb");
-                aImg.HRef = "../" + Convert.ToString(drv[FieldsName.ResourceLibrary.InternalName.FileUrl]);
+                aImg.HRef = string.Format("../librarydetail.aspx?ID={0}&CatId={1}", Convert.ToString(drv["ID"]), catId);
                 imgThumb.Src = "../" + Convert.ToString(drv[FieldsName.ResourceLibrary.InternalName.ImgThumb]);
-                aImg.Target = "_blank";
+                //aImg.Target = "_blank";
                 aLink.HRef = aImg.HRef;
                 aLink.Target = aImg.Target;                
             }
