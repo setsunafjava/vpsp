@@ -477,6 +477,10 @@
                 public const string Description = "Description";
                 public const string Status = "Status";
                 public const string Order = "Order";
+                public const string Author = "FileAuthor";
+                public const string PostedDate = "PostedDate";
+                public const string ImgThumb = "ImgThumb";
+                public const string FileUrl = "FileUrl";
             }
 
             public class DisplayName
@@ -487,6 +491,10 @@
                 public const string Description = "Mô tả";
                 public const string Status = "Trạng thái";
                 public const string Order = "Thứ tự";
+                public const string Author = "Tác giả";
+                public const string PostedDate = "Ngày gửi";
+                public const string ImgThumb = "Ảnh trích dẫn";
+                public const string FileUrl = "Đường dẫn file";
             }
         }
         #endregion

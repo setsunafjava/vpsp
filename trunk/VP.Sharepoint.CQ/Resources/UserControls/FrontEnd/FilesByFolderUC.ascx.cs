@@ -87,11 +87,10 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aImg = (HtmlAnchor)e.Item.FindControl("aImg");
-                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");                
-
-                // Get url of attach file                
-                string fileUrl = GetFileUrlOfItem(Convert.ToString(drv["ID"]));
-                aImg.HRef = fileUrl;
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                HtmlImage imgThumb = (HtmlImage)e.Item.FindControl("imgThumb");
+                aImg.HRef = "../" + Convert.ToString(drv[FieldsName.ResourceLibrary.InternalName.FileUrl]);
+                imgThumb.Src = "../" + Convert.ToString(drv[FieldsName.ResourceLibrary.InternalName.ImgThumb]);
                 aImg.Target = "_blank";
                 aLink.HRef = aImg.HRef;
                 aLink.Target = aImg.Target;                
