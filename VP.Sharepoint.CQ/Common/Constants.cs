@@ -3,6 +3,7 @@ namespace VP.Sharepoint.CQ.Common
 {
     public static class Constants
     {
+        public const string HomeTitle = "Sở giáo dục và đào tạo Vĩnh Phúc";
         public const string Title = "Title";
         public const string Modified = "Modified";
         public const string Created = "Created";
