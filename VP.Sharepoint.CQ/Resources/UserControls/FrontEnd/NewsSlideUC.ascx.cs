@@ -101,7 +101,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                aLink.HRef = string.Format("../newsdetail.aspx?ID={1}&CatId={1}", "newsdetail.aspx", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }
     }

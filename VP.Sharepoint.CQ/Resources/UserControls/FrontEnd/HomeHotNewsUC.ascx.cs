@@ -57,7 +57,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     imgThumb.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 }
-                aLink.HRef = string.Format("../{0}?ID={1}", "newsdetail.aspx", drv["ID"]);
+                aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }
         #endregion
