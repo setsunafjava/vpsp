@@ -24,7 +24,7 @@
                         Kích thước: <%=sizeOfFile %> MB<br />
                         Ngày gửi: <%=postedDate %><br />
                         Lượt tải: <%=downloadCount %><br />
-                        Đường dẫn: <a href="#"><%=fileName %></a><span><a href="#">
+                        Đường dẫn: <a href="#" onclick="DownloadFile()"><%=fileName %></a><span><a href="#" onclick="DownloadFile()">
                         <img src="<%=DocLibUrl%>/images_download.jpg" style="width: 100px;border:1px border-color:#cfcfcf; padding:1px;" /></a></span><br />                        
                         <br />
                     </p>
@@ -37,3 +37,10 @@
         </div>
     </div>
 </div>
+<asp:Literal ID="ltrScript" runat="server"></asp:Literal>
+<script type="text/javascript">
+    function DownloadFile() {
+        window.open('<%=urlDownload %>', '', 'width:300, height:300');
+        __doPostBack("", "UpdateDownloadCount");        
+    }
+</script>
