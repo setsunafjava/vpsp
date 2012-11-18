@@ -28,19 +28,19 @@
         <table>
             <tr>
                 <td>                   
-                    <asp:DropDownList ID="ddlCoQuanBanHanh" runat="server" CssClass="input">
+                    <asp:DropDownList ID="ddlCoQuanBanHanh" runat="server" CssClass="input" OnSelectedIndexChanged="ddlCoQuanBanHanh_SelectedIndexChanged" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
                 <td>                    
-                    <asp:DropDownList ID="ddlLoaiVanBan" runat="server" CssClass="input">
+                    <asp:DropDownList ID="ddlLoaiVanBan" runat="server" CssClass="input" OnSelectedIndexChanged="ddlLoaiVanBan_SelectedIndexChanged" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
                 <td>                    
-                    <asp:DropDownList ID="ddlLinhVuc" runat="server" CssClass="input">
+                    <asp:DropDownList ID="ddlLinhVuc" runat="server" CssClass="input" OnSelectedIndexChanged="ddlLinhVuc_SelectedIndexChanged" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
                 <td>                    
-                    <asp:DropDownList ID="ddlNguoiKy" runat="server" CssClass="input">
+                    <asp:DropDownList ID="ddlNguoiKy" runat="server" CssClass="input" OnSelectedIndexChanged="ddlNguoiKy_SelectedIndexChanged" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
             </tr>
