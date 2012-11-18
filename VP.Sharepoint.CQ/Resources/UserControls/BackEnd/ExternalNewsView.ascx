@@ -38,12 +38,13 @@
         onclick="btnUpdate_Click" />
     <asp:Button ID="btnStatus" runat="server" Text="Cập nhật trạng thái" 
         onclick="btnStatus_Click" /><br />
-    &nbsp;<asp:DropDownList ID="ddlCat" runat="server"></asp:DropDownList>&nbsp;
+    &nbsp;<asp:DropDownList ID="ddlCat" runat="server"></asp:DropDownList>&nbsp;Nhập link RSS
     <asp:TextBox ID="txtRSS" runat="server"></asp:TextBox>&nbsp;
     <asp:Button ID="btnGetNews" runat="server" Text="Lấy tin tức cho tin chính" 
         onclick="btnGetNews_Click" />
-        &nbsp;
-    <asp:TextBox ID="txtUrl" runat="server"></asp:TextBox>&nbsp;
+        &nbsp;Nhập url trang cũ
+    <asp:TextBox ID="txtUrl" runat="server"></asp:TextBox>&nbsp;Nhóm tin
+    <asp:TextBox ID="txtNewCat" runat="server" Width="50"></asp:TextBox>&nbsp;
     <asp:Button ID="btnCopyNews" runat="server" Text="Copy tin từ site cũ" 
         onclick="btnCopyNews_Click" />
 </div>
