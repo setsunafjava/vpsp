@@ -56,7 +56,7 @@ namespace VP.Sharepoint.CQ.UserControls
             else
             {
                 dt = NewsBO.GetCategoryByParent(CurrentWeb, catId);
-            }                        
+            }
             rptTree.DataSource = dt;
             rptTree.DataBind();
         }
@@ -69,23 +69,66 @@ namespace VP.Sharepoint.CQ.UserControls
                 int catLevel = 0;
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                Literal ltrSubMenu = (Literal)e.Item.FindControl("ltrSubMenu");
+                //Literal ltrSubMenu = (Literal)e.Item.FindControl("ltrSubMenu");
+                Repeater rptChild = (Repeater)e.Item.FindControl("rptChild1");
                 aLink.HRef = "../library.aspx?CatId=" + drv[FieldsName.CategoryList.InternalName.CategoryID] + "&ParentId=" + ParentId;
                 //Get child data table
                 DataTable dt = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]));
                 if (dt != null && dt.Rows.Count > 0)
-                {
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        GetSubMenu(dt, ltrSubMenu, ref catLevel, ParentId);
-                    }
-                    string strEnd = "</li></ul>";
-                    catLevel = catLevel - (Convert.ToInt32(drv[FieldsName.CategoryList.InternalName.CategoryLevel]));
-                    for (int i = 0; i < catLevel; i++)
-                    {
-                        ltrSubMenu.Text += strEnd;
-                    }
+                {                   
+                    rptChild.DataSource = dt;
+                    rptChild.DataBind();
                 }
+            }
+        }
+
+
+        protected void rptChild1_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            {
+                DataRowView drv = e.Item.DataItem as DataRowView;
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                Repeater rptChild = (Repeater)e.Item.FindControl("rptChild2");
+                aLink.HRef = "../library.aspx?CatId=" + drv[FieldsName.CategoryList.InternalName.CategoryID] + "&ParentId=" + ParentId;
+                aLink.InnerText = Convert.ToString(drv[FieldsName.CategoryList.InternalName.Title]);
+
+                DataTable dt = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]));
+                if (dt != null && dt.Rows.Count > 0)
+                {                     
+                    rptChild.DataSource = dt;
+                    rptChild.DataBind();
+                }
+            }
+        }
+
+        protected void rptChild2_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            {
+                DataRowView drv = e.Item.DataItem as DataRowView;
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                Repeater rptChild = (Repeater)e.Item.FindControl("rptChild3");
+                aLink.HRef = "../library.aspx?CatId=" + drv[FieldsName.CategoryList.InternalName.CategoryID] + "&ParentId=" + ParentId;
+                aLink.InnerText = Convert.ToString(drv[FieldsName.CategoryList.InternalName.Title]);
+
+                DataTable dt = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]));
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    rptChild.DataSource = dt;
+                    rptChild.DataBind();
+                }
+            }
+        }
+
+        protected void rptChild3_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            {
+                DataRowView drv = e.Item.DataItem as DataRowView;
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                aLink.HRef = "../library.aspx?CatId=" + drv[FieldsName.CategoryList.InternalName.CategoryID] + "&ParentId=" + ParentId;
+                aLink.InnerText = Convert.ToString(drv[FieldsName.CategoryList.InternalName.Title]);
             }
         }
 
@@ -97,7 +140,10 @@ namespace VP.Sharepoint.CQ.UserControls
                 catLevel = Convert.ToInt32(dt.Rows[0][FieldsName.CategoryList.InternalName.CategoryLevel]);
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    ltr.Text += string.Format("<ul><li class=\"submenu\"><a href='library.aspx?CatId={0}&ParentId=" + parentId + "'>{1}", dt.Rows[i][FieldsName.CategoryList.InternalName.CategoryID], dt.Rows[i][FieldsName.CategoryList.InternalName.Title]);
+                    if(i==0)
+                        ltr.Text += string.Format("<ul><li class=\"submenu\"><a href='library.aspx?CatId={0}&ParentId=" + parentId + "'>{1}</a>", dt.Rows[i][FieldsName.CategoryList.InternalName.CategoryID], dt.Rows[i][FieldsName.CategoryList.InternalName.Title]);
+                    else
+                        ltr.Text += string.Format("<li class=\"submenu\"><a href='library.aspx?CatId={0}&ParentId=" + parentId + "'>{1}</a>", dt.Rows[i][FieldsName.CategoryList.InternalName.CategoryID], dt.Rows[i][FieldsName.CategoryList.InternalName.Title]);
                     DataTable dtChild = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(dt.Rows[i][FieldsName.CategoryList.InternalName.CategoryID]));
                     GetSubMenu(dtChild, ltr, ref catLevel,parentId);
                 }
