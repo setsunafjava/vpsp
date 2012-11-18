@@ -27,54 +27,60 @@ namespace VP.Sharepoint.CQ.UserControls
         public string downloadCount = "0";
         public string fileName = string.Empty;
         public string imgThumb = string.Empty;
+        public string urlDownload = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
-                if (!Page.IsPostBack)
+                if (Page.Request.QueryString["ID"] != null && Page.Request.QueryString["ID"] != string.Empty)
                 {
-                    if (Page.Request.QueryString["ID"] != null && Page.Request.QueryString["ID"] != string.Empty)
-                    {
-                        itemId = Convert.ToString(Page.Request.QueryString["ID"]);
-                    }
+                    itemId = Convert.ToString(Page.Request.QueryString["ID"]);
+                }
 
-                    if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
-                    {
-                        catId = Convert.ToString(Page.Request.QueryString["CatId"]);
-                    }
+                if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
+                {
+                    catId = Convert.ToString(Page.Request.QueryString["CatId"]);
+                }
 
-                    SPSecurity.RunWithElevatedPrivileges(() =>
+                SPSecurity.RunWithElevatedPrivileges(() =>
+                {
+                    using (var adminSite = new SPSite(CurrentWeb.Site.ID))
                     {
-                        using (var adminSite = new SPSite(CurrentWeb.Site.ID))
+                        using (var adminWeb = adminSite.OpenWeb(CurrentWeb.ID))
                         {
-                            using (var adminWeb = adminSite.OpenWeb(CurrentWeb.ID))
+                            try
                             {
-                                try
+                                adminWeb.AllowUnsafeUpdates = true;
+                                SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.ResourceLibrary);
+                                SPListItem listItem = list.GetItemById(Convert.ToInt32(itemId));
+                                if (listItem != null)
                                 {
-                                    adminWeb.AllowUnsafeUpdates = true;
-                                    SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.ResourceLibrary);
-                                    SPListItem listItem = list.GetItemById(Convert.ToInt32(itemId));
-                                    if (listItem != null)
-                                    {
-                                        title = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.Title]);
-                                        author = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.Author]);
-                                        postedDate = Convert.ToDateTime(listItem[FieldsName.ResourceLibrary.InternalName.PostedDate]).ToString("dd/MM/yyyy");
-                                        if (listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != null && listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]!=string.Empty)
-                                            downloadCount = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]);
-                                        SPFile OriFile = CurrentWeb.GetFile(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl].ToString());
-                                        sizeOfFile = Convert.ToString(OriFile.Length);
-                                        fileName = OriFile.Name;
-                                        imgThumb = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl]);
-                                    }
-                                }
-                                catch (SPException ex)
-                                {
-                                    Utilities.LogToULS(ex);
+                                    title = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.Title]);
+                                    author = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.Author]);
+                                    postedDate = Convert.ToDateTime(listItem[FieldsName.ResourceLibrary.InternalName.PostedDate]).ToString("dd/MM/yyyy");
+                                    if (listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != null && listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != string.Empty)
+                                        downloadCount = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]);
+                                    urlDownload = listItem[FieldsName.ResourceLibrary.InternalName.FileUrl].ToString();
+                                    SPFile OriFile = CurrentWeb.GetFile(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl].ToString());
+                                    sizeOfFile = Convert.ToString(OriFile.Length);
+                                    fileName = OriFile.Name;
+                                    imgThumb = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl]);
                                 }
                             }
+                            catch (SPException ex)
+                            {
+                                Utilities.LogToULS(ex);
+                            }
                         }
-                    });
-                }
+                    }
+                });
+
+
+                if (Page.Request.Params["__EVENTARGUMENT"] != null)
+                    if (Convert.ToString(Page.Request.Params["__EVENTARGUMENT"]) == "UpdateDownloadCount")
+                    {
+                        UpdateDownloadCount();                        
+                    }
             }
             catch (Exception ex)
             {
@@ -82,6 +88,41 @@ namespace VP.Sharepoint.CQ.UserControls
             }
         }
         #endregion
+        protected void UpdateDownloadCount()
+        {
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(CurrentWeb.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(CurrentWeb.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            CurrentWeb.AllowUnsafeUpdates = true;
+                            SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.ResourceLibrary);
+                            SPListItem listItem = list.GetItemById(Convert.ToInt32(itemId));
 
+                            if (listItem != null)
+                            {
+                                int downloadcount = 0;
+                                if (listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != null && listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != string.Empty)
+                                {
+                                    downloadcount = Convert.ToInt32(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]);
+                                }
+                                listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] = downloadcount + 1;
+                                listItem.Update();
+
+                                //ltrScript.Text = "<script>location.href=" + urlDownload + "</script>";
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
     }
 }
