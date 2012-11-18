@@ -33,6 +33,7 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ResourceLibrary.InternalName.Author, FieldsName.ResourceLibrary.DisplayName.Author));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ResourceLibrary.InternalName.ImgThumb, FieldsName.ResourceLibrary.DisplayName.ImgThumb));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ResourceLibrary.InternalName.FileUrl, FieldsName.ResourceLibrary.DisplayName.FileUrl));
+            helper.AddField(new NumberFieldCreator(FieldsName.ResourceLibrary.InternalName.DownloadCount, FieldsName.ResourceLibrary.DisplayName.DownloadCount) { DefaultValue = "0" });
             SPList list = helper.Apply();
             SPField fieldTitle = list.Fields.GetField(FieldsName.ResourceLibrary.InternalName.Title);
             if (fieldTitle!=null)

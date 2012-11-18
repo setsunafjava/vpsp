@@ -17,13 +17,71 @@ namespace VP.Sharepoint.CQ.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        public string itemId = string.Empty;
+        public string catId = string.Empty;
+        public string title = string.Empty;
+        public string author = string.Empty;
+        public string sizeOfFile = string.Empty;
+        public string postedDate = string.Empty;
+        public string downloadCount = "0";
+        public string fileName = string.Empty;
+        public string imgThumb = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            try
             {
-                
+                if (!Page.IsPostBack)
+                {
+                    if (Page.Request.QueryString["ID"] != null && Page.Request.QueryString["ID"] != string.Empty)
+                    {
+                        itemId = Convert.ToString(Page.Request.QueryString["ID"]);
+                    }
+
+                    if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
+                    {
+                        catId = Convert.ToString(Page.Request.QueryString["CatId"]);
+                    }
+
+                    SPSecurity.RunWithElevatedPrivileges(() =>
+                    {
+                        using (var adminSite = new SPSite(CurrentWeb.Site.ID))
+                        {
+                            using (var adminWeb = adminSite.OpenWeb(CurrentWeb.ID))
+                            {
+                                try
+                                {
+                                    adminWeb.AllowUnsafeUpdates = true;
+                                    SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.ResourceLibrary);
+                                    SPListItem listItem = list.GetItemById(Convert.ToInt32(itemId));
+                                    if (listItem != null)
+                                    {
+                                        title = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.Title]);
+                                        author = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.Author]);
+                                        postedDate = Convert.ToDateTime(listItem[FieldsName.ResourceLibrary.InternalName.PostedDate]).ToString("dd/MM/yyyy");
+                                        if (listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != null && listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]!=string.Empty)
+                                            downloadCount = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]);
+                                        SPFile OriFile = CurrentWeb.GetFile(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl].ToString());
+                                        sizeOfFile = Convert.ToString(OriFile.Length);
+                                        fileName = OriFile.Name;
+                                        imgThumb = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl]);
+                                    }
+                                }
+                                catch (SPException ex)
+                                {
+                                    Utilities.LogToULS(ex);
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogToULS(ex);
             }
         }
         #endregion
+
     }
 }
