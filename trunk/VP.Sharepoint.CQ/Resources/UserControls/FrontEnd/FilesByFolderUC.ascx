@@ -13,7 +13,7 @@
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <div class="sub_page">
     <div class="title_name_content">
-        <a href="#">Tài Nguyên</a> &raquo; <a href="#">Tài liệu tham khảo</a></div>
+        <a href="#">Tài Nguyên</a> &raquo; <a href="#" runat="server" id="aTitle"></a></div>
     <div class="content_follow">
         <table style="margin: 0 auto; width: 655px">
             <asp:Repeater ID="rptResources" runat="server" OnItemDataBound="rptResources_ItemDataBound">

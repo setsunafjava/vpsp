@@ -22,20 +22,36 @@
             <ul id="treemenu1" class="treeview">
                 <asp:Repeater ID="rptTree" runat="server" OnItemDataBound="rptTree_ItemDataBound">
                     <ItemTemplate>
-                        <li><a id="aLink" runat="server"><%#Eval(FieldsName.CategoryList.InternalName.Title) %></a>
-                            <%--<ul>
-                                <li class="submenu">THPT
-                                    <ul style="margin-top: 7px;">
-                                        <li class="submenu">Khối 10
+                        <li><a id="aLink" runat="server">
+                            <%#Eval(FieldsName.CategoryList.InternalName.Title) %></a>
+                            <ul>
+                                <asp:Repeater ID="rptChild1" runat="server" OnItemDataBound="rptChild1_ItemDataBound">
+                                    <ItemTemplate>
+                                        <li class="submenu"><a id="aLink" runat="server">THPT</a>
                                             <ul style="margin-top: 7px;">
-                                                <li><a href="#">Toán</a> </li>
-                                                <li><a href="#">Lý</a> </li>
+                                                <asp:Repeater ID="rptChild2" runat="server" OnItemDataBound="rptChild2_ItemDataBound">
+                                                    <ItemTemplate>
+                                                        <li class="submenu"><a id="aLink" runat="server">Khối 10</a>
+                                                            <ul style="margin-top: 7px;">
+                                                                <asp:Repeater ID="rptChild3" runat="server" OnItemDataBound="rptChild3_ItemDataBound">
+                                                                    <ItemTemplate>
+                                                                        <li><a id="aLink" runat="server">Toán</a> </li>
+                                                                        <%--<ul style="margin-top: 7px;">
+                                                                                <li><a href="#">Toán</a> </li>
+                                                                                <li><a href="#">Lý</a> </li>
+                                                                            </ul>--%>
+                                                                    </ItemTemplate>
+                                                                </asp:Repeater>
+                                                            </ul>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
                                             </ul>
                                         </li>
-                                    </ul>
-                                </li>
-                            </ul>--%>
-                            <asp:Literal ID="ltrSubMenu" runat="server"></asp:Literal>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+                            <%--<asp:Literal ID="ltrSubMenu" runat="server"></asp:Literal>--%>
                         </li>
                     </ItemTemplate>
                 </asp:Repeater>
