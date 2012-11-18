@@ -176,19 +176,23 @@
             {
                 public const string DocumentNo = "DocumentNo";
                 public const string Title = "Title";
+                public const string CategoryId = "CategoryId";
+                public const string CategoryName = "CategoryName";
                 public const string PublishPlace = "PublishPlace";
                 public const string DocumentType = "DocumentType";
                 public const string DocumentSubject = "DocumentSubject";
                 public const string SignaturePerson = "SignaturePerson";
                 public const string EffectedDate = "EffectedDate";
                 public const string ExpiredDate = "ExpiredDate";
-                public const string FilePath = "LinkToFile";
+                public const string FilePath = "FilePath";
             }
 
             public class DisplayName
             {
                 public const string DocumentNo = "Số/Ký hiệu";
                 public const string Title = "Tiêu đề";
+                public const string CategoryId = "Chuyên mục Id";
+                public const string CategoryName = "Tên chuyên mục";
                 public const string PublishPlace = "Cơ quan ban hành";
                 public const string DocumentType = "Loại văn bản";
                 public const string DocumentSubject = "Lĩnh vực";

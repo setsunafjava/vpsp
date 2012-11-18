@@ -23,6 +23,9 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.DocumentsList.InternalName.DocumentNo, FieldsName.DocumentsList.DisplayName.DocumentNo)
             {
             });
+
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.DocumentsList.InternalName.CategoryId, FieldsName.DocumentsList.DisplayName.CategoryId));
+            helper.AddField(new SingleLineTextFieldCreator(FieldsName.DocumentsList.InternalName.CategoryName, FieldsName.DocumentsList.DisplayName.CategoryName));
             helper.AddField(new LookupFieldCreator(FieldsName.DocumentsList.InternalName.DocumentSubject, FieldsName.DocumentsList.DisplayName.DocumentSubject)
              {
                  LookupList = ListsName.InternalName.DocumentSubject,
@@ -58,6 +61,7 @@ namespace VP.Sharepoint.CQ
                DisplayFormat = SPDateTimeFieldFormatType.DateOnly
 
            });
+           helper.AddField(new SingleLineTextFieldCreator(FieldsName.DocumentsList.InternalName.FilePath, FieldsName.DocumentsList.DisplayName.FilePath));
 
             SPList list = helper.Apply();
             SPField fieldTitle = list.Fields.GetField(FieldsName.DocumentsList.InternalName.Title);
@@ -67,6 +71,9 @@ namespace VP.Sharepoint.CQ
                 fieldTitle.Update();
             }
             list.Update();
+
+            //Add custom usercontrol to form
+            Utilities.AddForms(web, list, "../../UserControls/DocumentsList.ascx");
 
             var defaultView = list.DefaultView;
             defaultView.ViewFields.DeleteAll();

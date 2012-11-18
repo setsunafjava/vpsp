@@ -153,5 +153,6 @@
     <ProjectItemFile Source="Images\images_download.jpg" Target="Resources\Images\" Type="ElementFile" />
     <ProjectItemFile Source="Images\1348969944.nv.jpeg" Target="Resources\Images\" Type="ElementFile" />
     <ProjectItemFile Source="Css\slidedown-menu2.css" Target="Resources\Css\" Type="ElementFile" />
+    <ProjectItemFile Source="UserControls\BackEnd\DocumentsList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
   </Files>
 </ProjectItem>

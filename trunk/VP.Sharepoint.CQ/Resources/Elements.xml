@@ -150,5 +150,6 @@
 <File Path="Resources\Images\images_download.jpg" Url="Resources/Images/images_download.jpg" />
 <File Path="Resources\Images\1348969944.nv.jpeg" Url="Resources/Images/1348969944.nv.jpeg" />
 <File Path="Resources\Css\slidedown-menu2.css" Url="Resources/Css/slidedown-menu2.css" />
+<File Path="Resources\UserControls\BackEnd\DocumentsList.ascx" Url="DocumentsList.ascx" />
 </Module>
 </Elements>
