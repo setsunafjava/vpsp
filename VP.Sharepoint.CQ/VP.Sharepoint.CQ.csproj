@@ -192,6 +192,13 @@
     <Compile Include="Resources\UserControls\BackEnd\CategoryView.ascx.designer.cs">
       <DependentUpon>CategoryView.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\DocumentsList.ascx.cs">
+      <DependentUpon>DocumentsList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Resources\UserControls\BackEnd\DocumentsList.ascx.designer.cs">
+      <DependentUpon>DocumentsList.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserControls\BackEnd\ProfilesView.ascx.cs">
       <DependentUpon>ProfilesView.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -683,6 +690,9 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\CategoryView.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\BackEnd\DocumentsList.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\ProfilesView.ascx">
