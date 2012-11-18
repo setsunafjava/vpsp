@@ -147,5 +147,7 @@
 <File Path="Resources\UserControls\BackEnd\ResourceLibrary.ascx" Url="ResourceLibrary.ascx" />
 <File Path="Resources\UserControls\BackEnd\ProfilesList.ascx" Url="ProfilesList.ascx" />
 <File Path="Resources\UserControls\BackEnd\ProfilesView.ascx" Url="ProfilesView.ascx" />
+<File Path="Resources\Images\images_download.jpg" Url="Resources/Images/images_download.jpg" />
+<File Path="Resources\Images\1348969944.nv.jpeg" Url="Resources/Images/1348969944.nv.jpeg" />
 </Module>
 </Elements>

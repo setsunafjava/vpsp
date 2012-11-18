@@ -578,6 +578,7 @@
     <Content Include="Resources\Css\styles.css" />
     <Content Include="Resources\Css\stylish_slim.swf" />
     <Content Include="Resources\Css\tabcontent.css" />
+    <Content Include="Resources\Images\1348969944.nv.jpeg" />
     <Content Include="Resources\Images\17_7_1345027592_43_nu1.jpg" />
     <Content Include="Resources\Images\94f88e03b7d2f6.jpg" />
     <Content Include="Resources\Images\adv1.jpg" />
@@ -640,6 +641,7 @@
     <Content Include="Resources\Images\ico_email.jpg" />
     <Content Include="Resources\Images\images.jpg" />
     <Content Include="Resources\Images\images769948_440002_2984_1924_EVE_1.jpg" />
+    <Content Include="Resources\Images\images_download.jpg" />
     <Content Include="Resources\Images\info_rate.jpg" />
     <Content Include="Resources\Images\leftarrow.png" />
     <Content Include="Resources\Images\leftshadow.png" />

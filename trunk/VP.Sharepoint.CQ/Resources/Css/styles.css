@@ -1314,3 +1314,11 @@ ul.fdtablePaginater li {
     text-align: center;
 }
 #qn-video-div{text-align: center;}
+.content_detail_doccument{float: left; width: 435px; padding-right: 15px;}
+.img_doccument img{float:left; width: 190px;}
+.short_content_establish{float: left; width: 80%; text-align:justify; line-height:1.5em; color: #666666;}
+.doccument_manager ul li{
+	line-height: 2em;
+	background: url(list.png) left top no-repeat;
+	padding-left: 25px;
+	}
