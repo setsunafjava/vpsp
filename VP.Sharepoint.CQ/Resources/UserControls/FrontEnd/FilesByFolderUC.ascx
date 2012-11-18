@@ -25,7 +25,7 @@
                         <td>
                             <div class="ico_book">                                
                                 <a id="aImg" runat="server">
-                                    <img src="<%=DocLibUrl%>/ico_book1.gif" /></a>
+                                    <img src="<%=DocLibUrl%>/ico_book1.gif" id="imgThumb" runat="server" /></a>
                             </div>
                             <div class="name_document">
                                 <a id="aLink" runat="server">

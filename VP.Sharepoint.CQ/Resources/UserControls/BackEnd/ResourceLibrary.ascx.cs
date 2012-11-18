@@ -62,6 +62,26 @@ namespace VP.Sharepoint.CQ.UserControls
             CurrentItem[FieldsName.ResourceLibrary.InternalName.CategoryName] = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList,
                 FieldsName.CategoryList.InternalName.CategoryID, ddlCategory.SelectedValue, "Text", FieldsName.CategoryList.InternalName.Title);            
             CurrentWeb.AllowUnsafeUpdates = true;
+            List<string> fileNames = new List<string>();
+            if (fuImgThumb.HasFile)
+            {
+                var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuImgThumb.FileName);
+                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuImgThumb.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
+                    "{0}/{1}/{2}", WebUrl, ListsName.InternalName.GalleryImagesList, fuThumbName));
+                CurrentItem[FieldsName.ResourceLibrary.InternalName.ImgThumb] = file.Url;
+                fileNames.Add(fuImgThumb.FileName);
+            }
+            if (fuFileUrl.HasFile)
+            {
+                var fuThumbName = string.Format(CultureInfo.InvariantCulture, "{0}_{1}", Utilities.GetPreByTime(DateTime.Now), fuFileUrl.FileName);
+                SPFile file = Utilities.UploadFileToDocumentLibrary(CurrentWeb, fuFileUrl.PostedFile.InputStream, string.Format(CultureInfo.InvariantCulture,
+                    "{0}/{1}/{2}", WebUrl, ListsName.InternalName.GalleryImagesList, fuFileUrl));
+                CurrentItem[FieldsName.ResourceLibrary.InternalName.FileUrl] = file.Url;
+                fileNames.Add(fuFileUrl.FileName);
+            }
+
+
+
             SaveButton.SaveItem(SPContext.Current, false, string.Empty);
         }
 

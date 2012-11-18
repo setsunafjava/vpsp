@@ -35,7 +35,7 @@
             <td class="ms-formbody" style="font-size: 11px;">
                 <SharePoint:RichTextField runat="server" ID="txtDescription" FieldName="Description"/>
             </td>
-        </tr>              
+        </tr>
 
          <tr>
             <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
@@ -45,6 +45,42 @@
                 <SharePoint:DropDownChoiceField runat="server" ID="txtStatus" FieldName="Status"/>
             </td>
         </tr>        
+
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblAuthor" runat="server" FieldName="FileAuthor" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:TextField runat="server" ID="txtAuthor" FieldName="FileAuthor"/>
+            </td>
+        </tr>     
+
+         <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblPostedDate" runat="server" FieldName="PostedDate" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <SharePoint:DateTimeField runat="server" ID="txtPostedDate" FieldName="PostedDate"/>
+            </td>
+        </tr>
+
+         <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblImgThumb" runat="server" FieldName="ImgThumb" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <asp:FileUpload ID="fuImgThumb" runat="server" />
+            </td>
+        </tr>
+
+        <tr>
+            <td style="vertical-align: top; font-weight: normal;" class="ms-formlabel" valign="top">
+                <SharePoint:FieldLabel ID="lblFileUrl" runat="server" FieldName="FileUrl" />
+            </td>
+            <td class="ms-formbody" style="font-size: 11px;">
+                <asp:FileUpload ID="fuFileUrl" runat="server" />
+            </td>
+        </tr>
         
         <tr id="idAttachmentsRow">
             <td style="width: 190px; vertical-align: top; font-weight: normal;" class="ms-formlabel"

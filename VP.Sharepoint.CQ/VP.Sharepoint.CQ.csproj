@@ -688,7 +688,9 @@
     <Content Include="Resources\UserControls\BackEnd\ProfilesList.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx" />
+    <Content Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
