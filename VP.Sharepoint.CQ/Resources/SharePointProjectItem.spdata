@@ -150,5 +150,7 @@
     <ProjectItemFile Source="UserControls\BackEnd\ResourceLibrary.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\ProfilesList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\ProfilesView.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\images_download.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\1348969944.nv.jpeg" Target="Resources\Images\" Type="ElementFile" />
   </Files>
 </ProjectItem>
