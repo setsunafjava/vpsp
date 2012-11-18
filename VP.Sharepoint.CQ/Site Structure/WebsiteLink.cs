@@ -31,6 +31,15 @@ namespace VP.Sharepoint.CQ
                 fieldTitle.Update();
             }
             list.Update();
+
+            var defaultView = list.DefaultView;
+            defaultView.ViewFields.DeleteAll();
+            defaultView.RowLimit = 100;
+            defaultView.ViewFields.Add(Constants.EditColumn);
+            defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);
+            defaultView.ViewFields.Add(FieldsName.WebsiteLink.InternalName.WebURL);
+            defaultView.ViewFields.Add(FieldsName.WebsiteLink.InternalName.Status);
+            defaultView.Update();
         }
     }
 }

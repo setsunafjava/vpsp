@@ -44,6 +44,14 @@ namespace VP.Sharepoint.CQ
 
             //Add custom usercontrol to form
             Utilities.AddForms(web, list, "../../UserControls/ResourceLibrary.ascx");
+
+            var defaultView = list.DefaultView;
+            defaultView.ViewFields.DeleteAll();
+            defaultView.RowLimit = 100;
+            defaultView.Query = "<GroupBy Collapse='TRUE' GroupLimit='50'><FieldRef Name='" + FieldsName.ResourceLibrary.InternalName.CategoryName + "' /></GroupBy>";
+            defaultView.ViewFields.Add(Constants.EditColumn);
+            defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);
+            defaultView.Update();
         }
     }
 }

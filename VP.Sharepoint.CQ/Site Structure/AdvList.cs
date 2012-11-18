@@ -98,6 +98,18 @@ namespace VP.Sharepoint.CQ
 
             //Add custom usercontrol to form
             Utilities.AddForms(web, list, "../../UserControls/AdvList.ascx");
+
+            var defaultView = list.DefaultView;
+            defaultView.ViewFields.DeleteAll();
+            defaultView.RowLimit = 100;
+            defaultView.Query = "<GroupBy Collapse='TRUE' GroupLimit='50'><FieldRef Name='" + FieldsName.AdvList.InternalName.AdvPosition + "' /></GroupBy>";
+            defaultView.ViewFields.Add(Constants.EditColumn);
+            defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);
+            defaultView.ViewFields.Add(FieldsName.AdvList.InternalName.CustomerName);
+            defaultView.ViewFields.Add(FieldsName.AdvList.InternalName.AdvUrl);
+            defaultView.ViewFields.Add(FieldsName.AdvList.InternalName.AdvStartDate);
+            defaultView.ViewFields.Add(FieldsName.AdvList.InternalName.AdvEndDate);
+            defaultView.Update();
         }
     }
 }

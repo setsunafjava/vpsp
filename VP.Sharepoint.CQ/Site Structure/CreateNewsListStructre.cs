@@ -75,21 +75,27 @@ namespace VP.Sharepoint.CQ
                 fieldTitle.Update();
             }
 
-            //Set menu link
-            Utilities.SetMenuLink(list, FieldsName.NewsList.InternalName.Status);
-
-            //Add event receiver
-            Utilities.CreateEventReceivers(list, "VP.Sharepoint.CQ.EventReceivers.NewsEventReceiver", SPEventReceiverType.ItemAdded);
-            Utilities.CreateEventReceivers(list, "VP.Sharepoint.CQ.EventReceivers.NewsEventReceiver", SPEventReceiverType.ItemUpdated);
+            ////Add event receiver
+            //Utilities.CreateEventReceivers(list, "VP.Sharepoint.CQ.EventReceivers.NewsEventReceiver", SPEventReceiverType.ItemAdded);
+            //Utilities.CreateEventReceivers(list, "VP.Sharepoint.CQ.EventReceivers.NewsEventReceiver", SPEventReceiverType.ItemUpdated);
 
             //Add custom usercontrol to form
             Utilities.AddForms(web, list, "../../UserControls/NewsList.ascx");
 
             //Create view
-            var viewFields=new []{
-                    FieldsName.NewsList.InternalName.Title                   
-                };
-            Utilities.AddStandardView(list, "AllNews", viewFields, "'<GroupBy Collapse='TRUE'><FieldRef Name='NewsGroupName' /></GroupBy>'", 100, true);
+            var defaultView = list.DefaultView;
+            defaultView.ViewFields.DeleteAll();
+            defaultView.RowLimit = 100;
+            defaultView.Query = "<GroupBy Collapse='TRUE' GroupLimit='50'><FieldRef Name='" + FieldsName.NewsList.InternalName.NewsGroupName + "' /></GroupBy>";
+            defaultView.ViewFields.Add(Constants.EditColumn);
+            defaultView.ViewFields.Add(FieldsName.NewsList.InternalName.ImageDsp);
+            defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);
+            defaultView.ViewFields.Add(FieldsName.NewsList.InternalName.Description);
+            defaultView.ViewFields.Add(FieldsName.NewsList.InternalName.Status);
+            defaultView.ViewFields.Add(FieldsName.NewsList.InternalName.Poster);
+            defaultView.ViewFields.Add(FieldsName.NewsList.InternalName.PostedDate);
+            defaultView.Update();
+
             //add view
             Utilities.AddStandardView(web, list, "ExternalNews", "../../UserControls/ExternalNewsView.ascx", "", 100, false);
         }
