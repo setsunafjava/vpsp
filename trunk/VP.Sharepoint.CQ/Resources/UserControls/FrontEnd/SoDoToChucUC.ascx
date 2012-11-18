@@ -19,44 +19,20 @@
         </div>
         <div class="content_F_Right">
             <div id="dhtmlgoodies_slidedown_menu">
-                <ul>
-                    <li><a href="#">Sở GD & ĐT Vĩnh Phúc</a>
-                        <ul class="sub_unit">
-                            <li><a href="#">Ban Giám đốc</a>
-                                <!--<ul>
-                                            <li id="initialExpandedMenuItem"><a href="slidedown-menu2.html">Download</a></li>
-                                            <li><a href="http://www.dhtmlgoodies.com">Demo</a></li>
-                            
-                                            <li><a href="#">Is it cross browser?</a>
-                                                <ul>
-                                                    <li><a href="http://www.dhtmlgoodies.com">yes it is</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>-->
-                            </li>
-                            <li><a href="#">Văn Phòng</a> </li>
-                            <li><a href="#">Thanh Tra</a> </li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Các Phòng Giáo dục</a>
-                        <ul class="sub_unit">
-                            <li><a href="#">Phòng GD&ĐT Yên Lạc</a>
-                                <!--<ul>
-                                            <li id="initialExpandedMenuItem"><a href="slidedown-menu2.html">Download</a></li>
-                                            <li><a href="http://www.dhtmlgoodies.com">Demo</a></li>
-                            
-                                            <li><a href="#">Is it cross browser?</a>
-                                                <ul>
-                                                    <li><a href="http://www.dhtmlgoodies.com">yes it is</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>-->
-                            </li>
-                            <li><a href="#">Phòng GD&ĐT Tam Đảo</a> </li>
-                            <li><a href="#">Phòng GD&ĐT Sông Lô</a> </li>
-                        </ul>
-                    </li>
-                </ul>
+                <asp:Repeater ID="rptToChuc" runat="server" 
+                    onitemdatabound="rptToChuc_ItemDataBound">
+                    <HeaderTemplate><ul></HeaderTemplate>
+                    <ItemTemplate>
+                        <li><a runat="server" id="aLink"></a>
+                            <asp:Repeater ID="rptSubToChuc" runat="server">
+                                <HeaderTemplate><ul class="sub_unit"></HeaderTemplate>
+                                <ItemTemplate><li <asp:Literal ID="ltrStyle" runat="server"></asp:Literal>><a runat="server" id="aLink"></a> </li></ItemTemplate>
+                                <FooterTemplate></ul></FooterTemplate>
+                            </asp:Repeater>
+                        </li>
+                    </ItemTemplate>
+                    <FooterTemplate></ul></FooterTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </div>
@@ -64,9 +40,9 @@
 
 <script type="text/javascript">
     var expandFirstItemAutomatically = false; // Expand first menu item automatically ?
-    var initMenuIdToExpand = false; // Id of menu item that should be initially expanded. the id is defined in the <li> tag.
-    var expandMenuItemByUrl = true; // Menu will automatically expand by url - i.e. if the href of the menu item is in the current location, it will expand
-    var initialMenuItemAlwaysExpanded = true; // NOT IMPLEMENTED YET
+    var initMenuIdToExpand = 'initialExpandedMenuItem'; // Id of menu item that should be initially expanded. the id is defined in the <li> tag.
+    var expandMenuItemByUrl = false; // Menu will automatically expand by url - i.e. if the href of the menu item is in the current location, it will expand
+    var initialMenuItemAlwaysExpanded = false; // NOT IMPLEMENTED YET
 
     var dhtmlgoodies_slmenuObj;
     var divToScroll = false;
@@ -335,4 +311,6 @@
         }
 
     }
+
+    initSlideDownMenu();
 </script>

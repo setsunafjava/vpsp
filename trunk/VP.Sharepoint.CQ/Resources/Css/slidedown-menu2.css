@@ -25,7 +25,7 @@
 	}
 	/* 	Layout CSS */
 	#dhtmlgoodies_slidedown_menu{
-		width:205px;
+		width:270px;
 	}
 
 	/* All A tags - i.e menu items. */
@@ -34,7 +34,7 @@
 		text-decoration:none;
 		display:block;
 		clear:both;
-		width:170px;
+		width:250px;
 		padding-left:2px;
 	}
 
@@ -53,7 +53,7 @@
 		padding-left: 8px;
 		font-weight:bold;
 		background: url(bg_list.gif) top left no-repeat;
-		width: 200px;
+		width: 265px;
 		height: 23px;
 		color: #333;
 	}
