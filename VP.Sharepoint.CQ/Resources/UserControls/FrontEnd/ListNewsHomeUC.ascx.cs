@@ -16,6 +16,7 @@ namespace VP.Sharepoint.CQ.UserControls
     public partial class ListNewsHomeUC : FrontEndUC
     {
         protected string CatName = "Thông tin du học";
+        protected string strHref = string.Empty;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -61,8 +62,9 @@ namespace VP.Sharepoint.CQ.UserControls
                                     try
                                     {
                                         CatName = item.Title;
-                                        CatName = Convert.ToString(items[0][FieldsName.CategoryList.InternalName.Title]);
-                                        aTitle.InnerText = CatName;
+                                        CatName = Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]);
+                                        strHref = string.Format("news.aspx?&CatId={0}", item[FieldsName.CategoryList.InternalName.CategoryID]);
+                                        //aTitle.InnerText = CatName;
                                     }
                                     catch (Exception ex)
                                     {
@@ -70,7 +72,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                     }
                                     try
                                     {
-                                        aTitle.HRef = string.Format("../news.aspx?CatId={0}", items[0][FieldsName.CategoryList.InternalName.CategoryID]);
+                                        //aTitle.HRef = string.Format("../news.aspx?CatId={0}", items[0][FieldsName.CategoryList.InternalName.CategoryID]);
                                     }
                                     catch (Exception ex)
                                     {
