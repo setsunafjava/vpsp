@@ -59,9 +59,9 @@ namespace VP.Sharepoint.CQ.UserControls
                                 BindRepeaterNews(items[0][FieldsName.CategoryList.InternalName.CategoryID].ToString());
                             }
                         }
-                        catch (SPException ex)
+                        catch (Exception ex)
                         {
-                            Utilities.LogToULS(ex);
+                            Utilities.LogToULS("GetCategoryByStatus-" + ex.ToString());
                         }
                     }
                 }

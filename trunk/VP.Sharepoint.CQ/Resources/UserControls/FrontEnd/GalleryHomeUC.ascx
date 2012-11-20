@@ -16,7 +16,7 @@
         Thư viện ảnh</div>
     <div class="inner_pos_Mod">
         <div class="img_adv_right_corner">
-            <img src="<%=DocLibUrl%>/images769948_440002_2984_1924_EVE_1.jpg" id="imgThumb" runat="server">
+            <img src="<%=DocLibUrl%>/images769948_440002_2984_1924_EVE_1.jpg" id="imgThumb" runat="server" width="289">
             <div style="text-align: center; padding-top: 5px; color: #0000FF;" id="dvTitle" runat="server">
                 Ảnh sân vận động thể thao</div>
 
