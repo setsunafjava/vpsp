@@ -296,7 +296,7 @@ namespace VP.Sharepoint.CQ.Common
                                 item.Update();
                             }                                                       
                         }
-                        catch (SPException ex)
+                        catch (Exception ex)
                         {
                             Utilities.LogToULS(ex);
                         }
