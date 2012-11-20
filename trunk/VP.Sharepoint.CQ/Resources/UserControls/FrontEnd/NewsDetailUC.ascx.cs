@@ -21,46 +21,45 @@ namespace VP.Sharepoint.CQ.UserControls
         int itemId = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            SPSecurity.RunWithElevatedPrivileges(() =>
             {
-                if (Request.QueryString["ID"]!=null&&Request.QueryString["ID"]!=string.Empty)
+                using (var adminSite = new SPSite(CurrentWeb.Site.ID))
                 {
-                    itemId = Convert.ToInt32(Request.QueryString["ID"]);
+                    using (var adminWeb = adminSite.OpenWeb(CurrentWeb.ID))
+                    {
+                        try
+                        {
+                            if (!Page.IsPostBack)
+                            {
+                                if (Request.QueryString["ID"] != null && Request.QueryString["ID"] != string.Empty)
+                                {
+                                    itemId = Convert.ToInt32(Request.QueryString["ID"]);
+                                }
+
+                                NewsBO.UpdateViewCount(CurrentWeb, Convert.ToInt32(itemId));
+
+                                // Bind data
+                                SPList newsList = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.NewsList);
+                                if (newsList != null)
+                                {
+                                    SPListItem item = newsList.GetItemById(itemId);
+                                    if (item != null)
+                                    {
+                                        ltrTitle.Text = Convert.ToString(item[FieldsName.NewsList.InternalName.Title]);
+                                        ltrPostedDate.Text = string.Format("( Ngày {0} )", Convert.ToDateTime(item[FieldsName.NewsList.InternalName.PostedDate]).ToString("dd-MM-yyyy"));
+                                        ltrContent.Text = Convert.ToString(item[FieldsName.NewsList.InternalName.Content]);
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Utilities.LogToULS(ex.ToString());
+                        }
+                    }
                 }
-
-                //Update view count
-                NewsCount();
-                // Bind data
-                SPListItem item = GetItemByID(itemId);
-                if (item!=null)
-                {
-                    ltrTitle.Text = Convert.ToString(item[FieldsName.NewsList.InternalName.Title]);
-                    ltrPostedDate.Text = string.Format("( Ngày {0} )", Convert.ToDateTime(item[FieldsName.NewsList.InternalName.PostedDate]).ToString("dd-MM-yyyy"));
-                    ltrContent.Text = Convert.ToString(item[FieldsName.NewsList.InternalName.Content]);
-                }                
-            }
+            });
         }
-        #endregion
-
-        #region Get item by id
-        protected SPListItem GetItemByID(int id)
-        {
-            SPList newsList = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.NewsList);
-            if (newsList!=null)
-            {
-                SPListItem item = newsList.GetItemById(id);
-                return item;
-            }
-            return null;
-        }
-        #endregion
-
-        #region NewsCount
-        protected void NewsCount()
-        {
-            SPListItem item=GetItemByID(itemId);
-            NewsBO.UpdateViewCount(CurrentWeb, item);
-        }
-        #endregion
+        #endregion         
     }
 }

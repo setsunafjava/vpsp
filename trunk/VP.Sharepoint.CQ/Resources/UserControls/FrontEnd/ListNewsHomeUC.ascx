@@ -15,7 +15,7 @@
     <div class="bg_title_ModNews">
         <div class="title_cate_News">
             <div class="name_title_typ_News">
-                <a runat="server" id="aTitle"><%=CatName%></a>
+                <a href="<%=strHref %>"><%=CatName%></a>
             </div>
         </div>
     </div>

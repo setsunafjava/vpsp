@@ -271,7 +271,7 @@ namespace VP.Sharepoint.CQ.Common
         #endregion
 
         #region Update view count
-        public static void UpdateViewCount(SPWeb web, SPListItem item)
+        public static void UpdateViewCount(SPWeb web, int itemId)
         {
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
@@ -284,6 +284,7 @@ namespace VP.Sharepoint.CQ.Common
                             adminWeb.AllowUnsafeUpdates = true;
                             web.AllowUnsafeUpdates = true;
                             SPList newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
+                            SPListItem item = newsList.GetItemById(itemId);
                             if (item!=null)
                             {
                                 int viewCount = 0;
