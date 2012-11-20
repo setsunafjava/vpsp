@@ -57,8 +57,10 @@ namespace VP.Sharepoint.CQ.UserControls
                                 var items = list.GetItems(query);
                                 if (items != null && items.Count > 0)
                                 {
+                                    SPListItem item = items[0];
                                     try
                                     {
+                                        CatName = item.Title;
                                         CatName = Convert.ToString(items[0][FieldsName.CategoryList.InternalName.Title]);
                                         aTitle.InnerText = CatName;
                                     }
