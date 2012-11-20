@@ -47,13 +47,13 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.DefaultPage, "advhomecenter", "HomeNewsRightUC", 3, "AdvUC");
             //right-home
             AddUserControlToPage(web, Constants.DefaultPage, "latestdocshome", "RightHomeUC", 0, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "EmailBoxUC", "RightHomeUC", 1, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "IconLinkUC", "RightHomeUC", 2, "IconLinkUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "VideoHomeUC", "RightHomeUC", 3, "VideoHomeUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "HomeHotNewsUC", "RightHomeUC", 4, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "advhomeright", "RightHomeUC", 5, "AdvUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "GalleryHomeUC", "RightHomeUC", 6, "GalleryHomeUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "boxgiaitri", "RightHomeUC", 7, "ListCatsHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "EmailBoxUC", "RightHomeUC", 11, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "IconLinkUC", "RightHomeUC", 22, "IconLinkUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "VideoHomeUC", "RightHomeUC", 33, "VideoHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "HomeHotNewsUC", "RightHomeUC", 44, "HomeHotNewsUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "advhomeright", "RightHomeUC", 55, "AdvUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "GalleryHomeUC", "RightHomeUC", 66, "GalleryHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "boxgiaitri", "RightHomeUC", 77, "ListCatsHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "HitCountUC", "RightHomeUC", 88, "HitCountUC");
             //footer
             AddUserControlToPage(web, Constants.DefaultPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
