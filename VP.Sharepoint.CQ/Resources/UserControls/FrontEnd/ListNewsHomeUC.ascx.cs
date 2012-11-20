@@ -15,6 +15,7 @@ namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class ListNewsHomeUC : FrontEndUC
     {
+        protected string CatName = "Thông tin du học";
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -56,8 +57,24 @@ namespace VP.Sharepoint.CQ.UserControls
                                 var items = list.GetItems(query);
                                 if (items != null && items.Count > 0)
                                 {
-                                    aTitle.InnerText = Convert.ToString(items[0][FieldsName.CategoryList.InternalName.Title]);
-                                    aTitle.HRef = string.Format("../news.aspx?CatId={0}", items[0][FieldsName.CategoryList.InternalName.CategoryID]);
+                                    try
+                                    {
+                                        CatName = Convert.ToString(items[0][FieldsName.CategoryList.InternalName.Title]);
+                                        aTitle.InnerText = CatName;
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Utilities.LogToULS("aTitle.InnerText-" + ex.ToString());
+                                    }
+                                    try
+                                    {
+                                        aTitle.HRef = string.Format("../news.aspx?CatId={0}", items[0][FieldsName.CategoryList.InternalName.CategoryID]);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Utilities.LogToULS("aTitle.HRef-" + ex.ToString());
+                                    }
+                                    
                                     BindRepeaterNews(items[0][FieldsName.CategoryList.InternalName.CategoryID].ToString());
                                 }
                             }                           
