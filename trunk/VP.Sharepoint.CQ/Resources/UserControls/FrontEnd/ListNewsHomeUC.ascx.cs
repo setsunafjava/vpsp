@@ -51,13 +51,16 @@ namespace VP.Sharepoint.CQ.UserControls
                                 RowLimit = 1
                             };
                             var list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.CategoryList);
-                            var items = list.GetItems(query);
-                            if (items != null && items.Count > 0)
+                            if (list!=null)
                             {
-                                aTitle.InnerText = Convert.ToString(items[0][FieldsName.CategoryList.InternalName.Title]);
-                                aTitle.HRef = string.Format("../news.aspx?CatId={0}", items[0][FieldsName.CategoryList.InternalName.CategoryID]);
-                                BindRepeaterNews(items[0][FieldsName.CategoryList.InternalName.CategoryID].ToString());
-                            }
+                                var items = list.GetItems(query);
+                                if (items != null && items.Count > 0)
+                                {
+                                    aTitle.InnerText = Convert.ToString(items[0][FieldsName.CategoryList.InternalName.Title]);
+                                    aTitle.HRef = string.Format("../news.aspx?CatId={0}", items[0][FieldsName.CategoryList.InternalName.CategoryID]);
+                                    BindRepeaterNews(items[0][FieldsName.CategoryList.InternalName.CategoryID].ToString());
+                                }
+                            }                           
                         }
                         catch (Exception ex)
                         {
