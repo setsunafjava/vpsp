@@ -24,7 +24,7 @@
                 <asp:Repeater ID="rptDocument" runat="server" OnItemDataBound="rptDocument_ItemDataBound">
                     <ItemTemplate>
 					<li>
-					    <a href="#"><%#Eval(FieldsName.DocumentsList.InternalName.Title) %></a>
+					    <a id="aLinkHref" runat="server"><%#Eval(FieldsName.DocumentsList.InternalName.Title) %></a>
 					    <span class="time_update" runat="server" id="spDate"></span>
 					</li>
                     </ItemTemplate>

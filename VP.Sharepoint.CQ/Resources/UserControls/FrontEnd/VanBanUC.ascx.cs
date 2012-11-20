@@ -184,49 +184,66 @@ namespace VP.Sharepoint.CQ.UserControls
         #region FillDocument
         protected void FillDocument()
         {
-            string query = "<Where>";
-            if (ddlCoQuanBanHanh.SelectedValue != string.Empty)
+            SPSecurity.RunWithElevatedPrivileges(() =>
             {
-                query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.PublishPlace, HttpUtility.HtmlEncode(ddlCoQuanBanHanh.SelectedValue));
-                query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.PublishPlace);
-            }
-            if (ddlLinhVuc.SelectedValue != string.Empty)
-            {
-                if (ddlLinhVuc.SelectedValue != string.Empty)
+                using (var adminSite = new SPSite(CurrentWeb.Site.ID))
                 {
-                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.DocumentSubject,  HttpUtility.HtmlEncode(ddlLinhVuc.SelectedValue));
-                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.DocumentSubject);
-                }                
-            }
+                    using (var adminWeb = adminSite.OpenWeb(CurrentWeb.ID))
+                    {
+                        try
+                        {
+                            string query = "<Where>";
+                            if (ddlCoQuanBanHanh.SelectedValue != string.Empty)
+                            {
+                                query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.PublishPlace, HttpUtility.HtmlEncode(ddlCoQuanBanHanh.SelectedValue));
+                                query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.PublishPlace);
+                            }
+                            if (ddlLinhVuc.SelectedValue != string.Empty)
+                            {
+                                if (ddlLinhVuc.SelectedValue != string.Empty)
+                                {
+                                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.DocumentSubject, HttpUtility.HtmlEncode(ddlLinhVuc.SelectedValue));
+                                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.DocumentSubject);
+                                }
+                            }
 
-            if (ddlLoaiVanBan.SelectedValue != string.Empty)
-            {
-                if (ddlLoaiVanBan.SelectedValue != string.Empty)
-                {
-                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.DocumentType,  HttpUtility.HtmlEncode(ddlLoaiVanBan.SelectedValue));
-                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.DocumentType);
+                            if (ddlLoaiVanBan.SelectedValue != string.Empty)
+                            {
+                                if (ddlLoaiVanBan.SelectedValue != string.Empty)
+                                {
+                                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.DocumentType, HttpUtility.HtmlEncode(ddlLoaiVanBan.SelectedValue));
+                                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.DocumentType);
+                                }
+                                else
+                                {
+                                }
+                            }
+
+                            if (ddlNguoiKy.SelectedValue != string.Empty)
+                            {
+                                if (ddlNguoiKy.SelectedValue != string.Empty)
+                                {
+                                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.SignaturePerson, HttpUtility.HtmlEncode(ddlNguoiKy.SelectedValue));
+                                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.SignaturePerson);
+                                }
+                            }
+
+                            query += "</Where>";
+                            SPQuery q = new SPQuery();
+                            q.Query = query;
+                            SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.DocumentsList);
+                            DataTable dt = list.GetItems(q).GetDataTable();
+                            rptVanBan.DataSource = dt;
+                            rptVanBan.DataBind();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
                 }
-                else
-                {                    
-                }
-            }
-
-            if (ddlNguoiKy.SelectedValue != string.Empty)
-            {
-                if (ddlNguoiKy.SelectedValue != string.Empty)
-                {
-                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.SignaturePerson,  HttpUtility.HtmlEncode(ddlNguoiKy.SelectedValue));
-                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.SignaturePerson);
-                }               
-            }
-
-            query += "</Where>";
-            SPQuery q = new SPQuery();
-            q.Query = query;
-            SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.DocumentsList);
-            DataTable dt = list.GetItems(q).GetDataTable();
-            rptVanBan.DataSource = dt;
-            rptVanBan.DataBind();
+            });
         }
         #endregion
 

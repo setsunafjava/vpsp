@@ -20,6 +20,8 @@ namespace VP.Sharepoint.CQ.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        string strHref = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -69,9 +71,8 @@ namespace VP.Sharepoint.CQ.UserControls
             if (e.Item.ItemType.Equals(ListItemType.Item)||e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
-                //HtmlGenericControl spDate = (HtmlGenericControl)e.Item.FindControl("spDate");
-                //spDate.InnerText = string.Format("(Ngày {0})", Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd-MM-yyyy"));
-
+                HtmlAnchor aLinkHref = (HtmlAnchor)e.Item.FindControl("aLinkHref");
+                aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
             }
         }
         #endregion
