@@ -30,6 +30,17 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 AdvBO.BindAdv(CurrentWeb, ListsName.InternalName.AdvList, rptAdv, wpTitle);
             }
+            else
+            {
+                var argValue1 = Request.Form["__EVENTTARGET"];
+                if (argValue1.Contains("aLink"))
+                {
+                    if (!string.IsNullOrEmpty(hdQC.Value))
+                    {
+                        SetQC(hdQC.Value);
+                    }
+                }
+            }
         }
         #endregion
 
@@ -40,6 +51,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView qcItem = (DataRowView)e.Item.DataItem;
                 var aLink = (LinkButton)e.Item.FindControl("aLink");
                 aLink.Click += new EventHandler(aLink_OnClick);
+                aLink.Attributes.Add("onclick", "SetValueAlink('" + hdQC.ClientID + "','" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvID]) + "')");
                 var ltrQC = (Literal)e.Item.FindControl("ltrQC");
                 aLink.CommandArgument = Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvID]);
                 var qcFile = WebUrl + "/" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvFile]);
@@ -131,6 +143,24 @@ namespace VP.Sharepoint.CQ.UserControls
                     {
                         HttpContext.Current.Response.Redirect(advUrl);
                     }
+                }
+            }
+        }
+
+        private void SetQC(string qcid)
+        {
+            var advUrl = string.Empty;
+            var advOpen = string.Empty;
+            AdvBO.UpdateAdv(CurrentWeb, ListsName.InternalName.AdvList, qcid, HttpContext.Current, ref advUrl, ref advOpen);
+            if (!string.IsNullOrEmpty(advUrl))
+            {
+                if (!string.IsNullOrEmpty(advOpen))
+                {
+                    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "qc-" + qcid, "window.open('" + advUrl + "');", true);
+                }
+                else
+                {
+                    HttpContext.Current.Response.Redirect(advUrl);
                 }
             }
         }

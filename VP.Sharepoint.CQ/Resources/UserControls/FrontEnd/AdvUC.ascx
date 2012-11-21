@@ -20,3 +20,9 @@
     <SeparatorTemplate><div style="height:5px; width:100%">&nbsp;</div></SeparatorTemplate>
     <FooterTemplate><asp:Literal ID="ltrFooter" runat="server"></asp:Literal></FooterTemplate>
 </asp:Repeater>
+<asp:HiddenField ID="hdQC" runat="server" />
+<script type="text/javascript">
+    function SetValueAlink(id, value) {
+        document.getElementById(id).value = value;
+    }
+</script>
