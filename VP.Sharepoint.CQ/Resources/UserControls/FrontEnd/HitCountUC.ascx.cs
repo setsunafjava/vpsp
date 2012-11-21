@@ -89,9 +89,12 @@ namespace VP.Sharepoint.CQ.UserControls
                                 RowLimit = 1
                             };
                             SPList list = Utilities.GetCustomListByUrl(web, ListsName.InternalName.StatisticsList);
+                            var itemCount = list.ItemCount;
+                            dvHitCount.InnerText = itemCount.ToString();
                             if (HitCountNumber == 0)
                             {
-                                HitCountNumber = list.ItemCount;
+                                HitCountNumber = itemCount;
+                                dvHitCount.InnerText = HitCountNumber.ToString();
                             }
                             if (list != null)
                             {
@@ -99,6 +102,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                 if (items == null || items.Count <= 0)
                                 {
                                     HitCountNumber++;
+                                    dvHitCount.InnerText = HitCountNumber.ToString();
                                     var item = list.AddItem();
                                     item[FieldsName.StatisticsList.InternalName.Title] = cLoginName;
                                     item[FieldsName.StatisticsList.InternalName.UserUrl] = cURL;
