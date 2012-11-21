@@ -28,6 +28,10 @@ namespace VP.Sharepoint.CQ.UserControls
             Utilities.LoadJS(CurrentWeb, this.Page, "tabcontent.js");
             Utilities.LoadJS(CurrentWeb, this.Page, "script.js");
             Utilities.LoadJS(CurrentWeb, this.Page, "simpletreemenu.js");
+            ltrIE6.Text = "<link rel=\"stylesheet\" type=\"text/css\" href='" + DocLibUrl + "/ie6.css' />";
+            ltrIE7.Text = "<link rel=\"stylesheet\" type=\"text/css\" href='" + DocLibUrl + "/ie7.css' />";
+            imgHeader.Src = DocLibUrl + "/header.jpg";
+            imgHeader.Alt = Constants.HomeTitle;
         }
         #endregion
 

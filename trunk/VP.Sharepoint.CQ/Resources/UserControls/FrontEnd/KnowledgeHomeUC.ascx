@@ -7,7 +7,7 @@
 <%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="KnowledgeHomeUC.ascx.cs"
+<%@ Control Language="C#" CodeBehind="KnowledgeHomeUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.KnowledgeHomeUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
@@ -24,7 +24,7 @@
         color: #1028A5;
     }
 </style>
-
+<asp:Literal ID="ltrRoot" runat="server"></asp:Literal>
 <script type="text/javascript">
     // ==================================================================
     // Author: Matt Kruse <matt@ajaxtoolbox.com>
@@ -196,7 +196,7 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
 
     function ShowWeatherBox(vId) {
         var sLink = '';
-        sLink = '<%=RootFileUrl%>';
+        sLink = document.getElementById("RootFileUrl").value;
         switch (parseInt(vId)) {
             case 1: sLink = sLink.concat('Sonla.xml'); break;
             case 2: sLink = sLink.concat('Viettri.xml'); break;
@@ -349,13 +349,13 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
                         <ItemTemplate>
                             <tr>
                                 <td>
-                                    <%#Eval("CurrencyCode") %>
+                                    <asp:Literal ID="ltrCurrencyCode" runat="server"></asp:Literal>
                                 </td>
                                 <td>
-                                    <%#Eval("Transfer")%>
+                                     <asp:Literal ID="ltrTransfer" runat="server"></asp:Literal>
                                 </td>
                                 <td>
-                                    <%#Eval("Sell")%>
+                                    <asp:Literal ID="ltrSell" runat="server"></asp:Literal>
                                 </td>
                             </tr>
                         </ItemTemplate>

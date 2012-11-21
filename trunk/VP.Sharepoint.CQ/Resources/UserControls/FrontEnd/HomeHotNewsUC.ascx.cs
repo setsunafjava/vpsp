@@ -22,6 +22,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptHotNews.ItemDataBound += new RepeaterItemEventHandler(rptHotNews_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 SPWeb web = SPContext.Current.Web;
@@ -57,6 +58,8 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     imgThumb.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 }
+                aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
+                aLink.Title = drv[FieldsName.NewsList.InternalName.Title].ToString();
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
             }
         }

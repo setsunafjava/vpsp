@@ -13,6 +13,15 @@ namespace VP.Sharepoint.CQ.UserControls {
     public partial class KnowledgeHomeUC {
         
         /// <summary>
+        /// ltrRoot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrRoot;
+        
+        /// <summary>
         /// rptTiGia control.
         /// </summary>
         /// <remarks>

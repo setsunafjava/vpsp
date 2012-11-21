@@ -25,6 +25,7 @@ namespace VP.Sharepoint.CQ.UserControls
         public int i = 0;        
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptResources.ItemDataBound += new RepeaterItemEventHandler(rptResources_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 try
@@ -100,7 +101,15 @@ namespace VP.Sharepoint.CQ.UserControls
                 imgThumb.Src = "../" + Convert.ToString(drv[FieldsName.ResourceLibrary.InternalName.ImgThumb]);
                 //aImg.Target = "_blank";
                 aLink.HRef = aImg.HRef;
-                aLink.Target = aImg.Target;                
+                aLink.Target = aImg.Target;
+                aLink.Title = Convert.ToString(drv[FieldsName.ResourceLibrary.InternalName.Title]);
+                if (e.Item.ItemIndex % 5 == 0)
+                {
+                    Literal ltrTrUP = (Literal)e.Item.FindControl("ltrTrUP");
+                    Literal ltrTrDown = (Literal)e.Item.FindControl("ltrTrDown");
+                    ltrTrUP.Text = "<tr>";
+                    ltrTrDown.Text = "</tr>";
+                }
             }
         }
     }

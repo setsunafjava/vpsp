@@ -58,6 +58,10 @@ namespace VP.Sharepoint.CQ.UserControls
                                 }
                             }
                         }
+                        catch (SPException sex)
+                        {
+                            Utilities.LogToULS(sex.ToString());
+                        }
                         catch (Exception ex)
                         {
                             Utilities.LogToULS(ex.ToString());

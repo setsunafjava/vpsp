@@ -14,7 +14,6 @@ namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class BottomMenuUC : FrontEndUC
     {
-        protected string HomeUrl;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -23,7 +22,8 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            HomeUrl = CurrentWeb.Url;
+            rptMenu.ItemDataBound += new RepeaterItemEventHandler(rptMenu_ItemDataBound);
+            aHome.HRef = CurrentWeb.Url;
             if (!Page.IsPostBack)
             {
                 MenuBO.BindMenu(CurrentWeb, ListsName.InternalName.MenuList, rptMenu, "Footer menu");
@@ -36,33 +36,7 @@ namespace VP.Sharepoint.CQ.UserControls
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
-                //Literal ltrStyle = (Literal)e.Item.FindControl("ltrStyle");
-                //var itemUrl = Convert.ToString(drv["MenuUrl"]);
-                //var currentUrl = HttpContext.Current.Request.Url.AbsoluteUri + "&";
-
-                //if (!string.IsNullOrEmpty(itemUrl) && currentUrl.Contains(itemUrl + "&"))
-                //{
-                //    ltrStyle.Text = " class='current'";
-                //}
-                //else
-                //{
-                //    var newsId = Request.QueryString[Constants.NewsId];
-                //    if (!string.IsNullOrEmpty(newsId))
-                //    {
-                //        var catValue = Utilities.GetCatsByNewsID(newsId);
-                //        foreach (SPFieldLookupValue value in catValue)
-                //        {
-                //            var catUrl = "/" + Constants.PageInWeb.SubPage + ".aspx?CategoryId=" + value.LookupId + "&";
-                //            if (!string.IsNullOrEmpty(itemUrl) && (itemUrl + "&").Contains(catUrl))
-                //            {
-                //                ltrStyle.Text = " class='current'";
-                //                break;
-                //            }
-                //        }
-                //    }
-                //}
-
-                //Bind data to URL
+                 //Bind data to URL
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 Utilities.SetLinkMenu(CurrentWeb, WebUrl, drv, aLink);
             }

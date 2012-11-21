@@ -24,6 +24,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptAdv.ItemDataBound += new RepeaterItemEventHandler(rptAdv_ItemDataBound);
             wpTitle = ((ContainerWebPart)this.Parent).Title;
             if (!Page.IsPostBack)
             {
@@ -38,6 +39,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView qcItem = (DataRowView)e.Item.DataItem;
                 var aLink = (LinkButton)e.Item.FindControl("aLink");
+                aLink.Click += new EventHandler(aLink_OnClick);
                 var ltrQC = (Literal)e.Item.FindControl("ltrQC");
                 aLink.CommandArgument = Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvID]);
                 var qcFile = WebUrl + "/" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvFile]);

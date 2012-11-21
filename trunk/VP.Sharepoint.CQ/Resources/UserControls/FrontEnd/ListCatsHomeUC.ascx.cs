@@ -17,6 +17,7 @@ namespace VP.Sharepoint.CQ.UserControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptCat.ItemDataBound += new RepeaterItemEventHandler(rptCat_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 BindRepeater();
@@ -67,6 +68,8 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.HRef = string.Format("../news.aspx?CatId={0}",drv[FieldsName.CategoryList.InternalName.CategoryID]);
+                aLink.Title = drv[FieldsName.CategoryList.InternalName.Title].ToString();
+                aLink.InnerText = drv[FieldsName.CategoryList.InternalName.Title].ToString();
             }
         }
     }

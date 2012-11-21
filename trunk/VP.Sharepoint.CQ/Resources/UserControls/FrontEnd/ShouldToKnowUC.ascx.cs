@@ -22,6 +22,8 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptCat.ItemDataBound += new RepeaterItemEventHandler(rptCat_ItemDataBound);
+            rptNews.ItemDataBound += new RepeaterItemEventHandler(rptNews_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 BindRepeater();   
@@ -51,6 +53,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 Literal ltrAdd = (Literal)e.Item.FindControl("ltrAdd");
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.HRef = string.Format("../news?CatId={0}", drv[FieldsName.CategoryList.InternalName.CategoryID]);
+                aLink.InnerText = Convert.ToString(drv[FieldsName.CategoryList.InternalName.Title]);
                 if (e.Item.ItemIndex!=rptCat.Items.Count-2)
                 {
                     ltrAdd.Text = "|";
@@ -67,6 +70,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlAnchor aDesc = (HtmlAnchor)e.Item.FindControl("aDesc");
                 HtmlAnchor aImg= (HtmlAnchor)e.Item.FindControl("aImg");
                 HtmlImage imgNews = (HtmlImage)e.Item.FindControl("imgNews");
+                HtmlGenericControl dvContent = (HtmlGenericControl)e.Item.FindControl("dvContent");
                 var imgUrl = Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 if (imgUrl.Contains("http://"))
                 {
@@ -76,11 +80,12 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     imgNews.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 }
-
-
+                aTitle.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Title]);
+                aDesc.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]);
+                dvContent.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Content]);
                 if (Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]) == string.Empty)
                 {
-                    aTitle.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                    aTitle.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);                    
                     aImg.HRef = aTitle.HRef;
                     aDesc.HRef = aTitle.HRef;
                 }

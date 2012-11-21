@@ -24,8 +24,14 @@ namespace VP.Sharepoint.CQ.UserControls
         SPWeb web;
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptNewsHome.ItemDataBound += new RepeaterItemEventHandler(rptNewsHome_ItemDataBound);
+            rptMoiNhat.ItemDataBound += new RepeaterItemEventHandler(rptMoiNhat_ItemDataBound);
+            rptDocNhieu.ItemDataBound += new RepeaterItemEventHandler(rptDocNhieu_ItemDataBound);
             if (!Page.IsPostBack)
             {
+                Utilities.LoadJS(CurrentWeb, this.Page, "slide_news.js");
+                Utilities.LoadJS(CurrentWeb, this.Page, "slider.js");
+
                 web = SPContext.Current.Web;
                 BindRepeater(web);
             }
@@ -92,6 +98,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Title]);
             }
         }
 
@@ -102,6 +109,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Title]);
             }
         }
     }

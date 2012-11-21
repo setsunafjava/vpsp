@@ -8,15 +8,15 @@
 <%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NewsCatHomeUC.ascx.cs"
+<%@ Control Language="C#" CodeBehind="NewsCatHomeUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.NewsCatHomeUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <div class="mod_content_News_1">
     <div class="bg_title_ModNews">
         <div class="cate_News_Mod1">
-            <asp:Repeater ID="rptCate" runat="server" OnItemDataBound="rptCate_ItemDataBound">
+            <asp:Repeater ID="rptCate" runat="server">
                 <ItemTemplate>
-                    <div><a id="aLink" runat="server"><%#Eval(FieldsName.CategoryList.InternalName.Title) %></a></div>
+                    <div><a id="aLink" runat="server"></a></div>
                 </ItemTemplate>
             </asp:Repeater>
             <div class="cleaner">
@@ -27,9 +27,9 @@
                 <asp:Literal ID="ltrFirstNews" runat="server"></asp:Literal>             
                 <div class="list_other_news">
                     <ul>
-                        <asp:Repeater ID="rptNews1" runat="server" OnItemDataBound="rptNews1_ItemDataBound">
+                        <asp:Repeater ID="rptNews1" runat="server">
                             <ItemTemplate>
-                                <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a></li>
+                                <li><a id="aLink" runat="server"></a></li>
                             </ItemTemplate>
                         </asp:Repeater>                       
                     </ul>
@@ -39,9 +39,9 @@
                 <asp:Literal ID="ltrSecondNews" runat="server"></asp:Literal>
                 <div class="list_other_news">
                     <ul>
-                        <asp:Repeater ID="rptNews2" runat="server" OnItemDataBound="rptNews2_ItemDataBound">
+                        <asp:Repeater ID="rptNews2" runat="server">
                             <ItemTemplate>
-                                <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a></li>
+                                <li><a id="aLink" runat="server"></a></li>
                             </ItemTemplate>
                         </asp:Repeater>                        
                     </ul>
@@ -51,9 +51,9 @@
                 <asp:Literal ID="ltrThirdNews" runat="server"></asp:Literal>
                 <div class="list_other_news">
                     <ul>
-                        <asp:Repeater ID="rptNews3" runat="server" OnItemDataBound="rptNews3_ItemDataBound">
+                        <asp:Repeater ID="rptNews3" runat="server">
                             <ItemTemplate>
-                                <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a></li>
+                                <li><a id="aLink" runat="server"></a></li>
                             </ItemTemplate>
                         </asp:Repeater>
                     </ul>

@@ -25,6 +25,7 @@ namespace VP.Sharepoint.CQ.UserControls
         string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptHotNews.ItemDataBound += new RepeaterItemEventHandler(rptHotNews_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 if (Page.Request.QueryString["CatId"]!=null&&Page.Request.QueryString["CatId"]!=string.Empty)
@@ -66,6 +67,8 @@ namespace VP.Sharepoint.CQ.UserControls
                     imgThumb.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 }
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
+                aLink.Title = drv[FieldsName.NewsList.InternalName.Title].ToString();
             }
         }
         #endregion

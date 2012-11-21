@@ -74,10 +74,14 @@ namespace VP.Sharepoint.CQ
             string resourcesPathJavascript = SPUtility.GetGenericSetupPath("TEMPLATE\\FEATURES\\VP.Sharepoint.CQ\\Resources\\Javascript");
             string resourcesPathImage = SPUtility.GetGenericSetupPath("TEMPLATE\\FEATURES\\VP.Sharepoint.CQ\\Resources\\Images");
             string resourcesPathMasterPages = SPUtility.GetGenericSetupPath("TEMPLATE\\FEATURES\\VP.Sharepoint.CQ\\Resources\\MasterPages");
+            string resourcesPathBackEndPages = SPUtility.GetGenericSetupPath("TEMPLATE\\FEATURES\\VP.Sharepoint.CQ\\Resources\\UserControls\\BackEnd");
+            string resourcesPathFrontEndPages = SPUtility.GetGenericSetupPath("TEMPLATE\\FEATURES\\VP.Sharepoint.CQ\\Resources\\UserControls\\FrontEnd");
             UploadFileToDocumentLibrary(resourcesPathCss, web);
             UploadFileToDocumentLibrary(resourcesPathJavascript, web);
             UploadFileToDocumentLibrary(resourcesPathImage, web);
             UploadFileToDocumentLibrary(resourcesPathMasterPages, web);
+            //UploadFileToDocumentLibrary(resourcesPathBackEndPages, web);
+            UploadFileToDocumentLibrary(resourcesPathFrontEndPages, web);
         }
         /// <summary>
         /// UploadFileToDocumentLibrary

@@ -24,6 +24,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptToChuc.ItemDataBound += new RepeaterItemEventHandler(rptToChuc_ItemDataBound);
             currentCatId = HttpContext.Current.Request.QueryString["CatId"];
             if (!Page.IsPostBack)
             {

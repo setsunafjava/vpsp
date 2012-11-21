@@ -258,22 +258,34 @@ namespace VP.Sharepoint.CQ
 
         private static void AddUserControlToPage(SPWeb web, string pageName, string pageTitle, string userControlName)
         {
+            var webUrl = web.ServerRelativeUrl;
+            if (webUrl.Equals("/"))
+            {
+                webUrl = "";
+            }
             ContainerWebPart containerWebPart = WebPartHelper.GetContainerWebPart(web);
             if (containerWebPart != null)
             {
                 containerWebPart.Title = pageTitle;
-                containerWebPart.UserControlPath = "UserControls/" + userControlName + ".ascx";
+                containerWebPart.UserControlPath = webUrl + "/" + ListsName.InternalName.ResourcesList + "/" + userControlName + ".ascx";
+                //containerWebPart.UserControlPath = "UserControls/" + userControlName + ".ascx";
                 WebPartHelper.AddWebPart(web, pageName + ".aspx", containerWebPart, "Main", 0);
             }
         }
 
         private static void AddUserControlToPage(SPWeb web, string pageName, string pageTitle, string positionName, int positionNumber, string userControlName)
         {
+            var webUrl = web.ServerRelativeUrl;
+            if (webUrl.Equals("/"))
+            {
+                webUrl = "";
+            }
             ContainerWebPart containerWebPart = WebPartHelper.GetContainerWebPart(web);
             if (containerWebPart != null)
             {
                 containerWebPart.Title = pageTitle;
-                containerWebPart.UserControlPath = "UserControls/" + userControlName + ".ascx";
+                //containerWebPart.UserControlPath = "UserControls/" + userControlName + ".ascx";
+                containerWebPart.UserControlPath = webUrl + "/" + ListsName.InternalName.ResourcesList + "/" + userControlName + ".ascx";
                 WebPartHelper.AddWebPart(web, pageName + ".aspx", containerWebPart, positionName, positionNumber);
             }
         }

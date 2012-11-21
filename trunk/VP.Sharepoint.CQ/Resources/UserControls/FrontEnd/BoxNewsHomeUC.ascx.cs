@@ -25,9 +25,12 @@ namespace VP.Sharepoint.CQ.UserControls
         protected int i = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptNewsSlide.ItemDataBound += new RepeaterItemEventHandler(rptNewsSlide_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 BindRepeater();
+                imgSlide.Src = DocLibUrl + "/leftarrow.png";
+                imgSlideR.Src = DocLibUrl + "/rightarrow.png";
             }
         }
         #endregion
@@ -49,8 +52,15 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlAnchor aImg = (HtmlAnchor)e.Item.FindControl("aImg");
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 HtmlImage imgNews = (HtmlImage)e.Item.FindControl("imgNews");
+                Literal ltrDivHead = (Literal)e.Item.FindControl("ltrDivHead");
+                Literal ltrDivBottom = (Literal)e.Item.FindControl("ltrDivBottom");
+
+                ltrDivHead.Text = "<div class=\"panel\" id='panel_"+e.Item.ItemIndex+"' >";
+                
                 aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
                 aLink.HRef = aImg.HRef;
+                aLink.Title = Convert.ToString(drv[FieldsName.NewsList.InternalName.Title]);
+                aLink.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Title]);
                 var imgUrl = Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 if (imgUrl.Contains("http://"))
                 {
@@ -60,9 +70,8 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     imgNews.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 }
-                
-                i++;
-
+                ltrDivBottom.Text = "</div>";
+                //
             }
         }
     }

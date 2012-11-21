@@ -26,6 +26,7 @@ namespace VP.Sharepoint.CQ.UserControls
         string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptOtherNews.ItemDataBound += new RepeaterItemEventHandler(rptOtherNews_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 if (Request.QueryString["ID"]!=null&&Request.QueryString["ID"]!=string.Empty)
