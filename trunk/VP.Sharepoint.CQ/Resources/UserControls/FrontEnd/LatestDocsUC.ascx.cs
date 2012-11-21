@@ -70,12 +70,19 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (e.Item.ItemType.Equals(ListItemType.Item)||e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
-                DataRowView drv = (DataRowView)e.Item.DataItem;
-                HtmlAnchor aLinkHref = (HtmlAnchor)e.Item.FindControl("aLinkHref");
-                if (aLinkHref!=null)
+                try
                 {
-                    aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
-                }                
+                    DataRowView drv = (DataRowView)e.Item.DataItem;
+                    HtmlAnchor aLinkHref = (HtmlAnchor)e.Item.FindControl("aLinkHref");
+                    if (aLinkHref != null)
+                    {
+                        aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
+                    }  
+                }
+                catch (Exception ex)
+                {
+                    Utilities.LogToULS(ex);
+                }         
             }
         }
         #endregion
