@@ -76,7 +76,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                     {
                                         CatName = item.Title;
                                         //CatName = Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]);
-                                        strHref = string.Format("news.aspx?&CatId={0}", item[FieldsName.CategoryList.InternalName.CategoryID]);
+                                        strHref = string.Format("../news.aspx?&CatId={0}", item[FieldsName.CategoryList.InternalName.CategoryID]);
                                         aTitle.InnerText = CatName;
                                         aTitle.HRef = strHref;
                                     }
