@@ -13,6 +13,15 @@ namespace VP.Sharepoint.CQ.UserControls {
     public partial class FileDetailUC {
         
         /// <summary>
+        /// aTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor aTitle;
+        
+        /// <summary>
         /// ltrTitle control.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,13 @@ namespace VP.Sharepoint.CQ.UserControls {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor aDownload;
         
         /// <summary>
-        /// imgDownload control.
+        /// ibDownloadFile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage imgDownload;
+        protected global::System.Web.UI.WebControls.ImageButton ibDownloadFile;
         
         /// <summary>
         /// imgAnh control.
@@ -92,14 +101,5 @@ namespace VP.Sharepoint.CQ.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage imgAnh;
-        
-        /// <summary>
-        /// ltrScript control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrScript;
     }
 }

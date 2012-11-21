@@ -74,8 +74,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                     SPListItem item = items[0];
                                     try
                                     {
-                                        CatName = item.Title;
-                                        //CatName = Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]);
+                                        CatName = item.Title;                                        
                                         strHref = string.Format("../news.aspx?&CatId={0}", item[FieldsName.CategoryList.InternalName.CategoryID]);
                                         aTitle.InnerText = CatName;
                                         aTitle.HRef = strHref;
@@ -115,7 +114,16 @@ namespace VP.Sharepoint.CQ.UserControls
             if (dt!=null&& dt.Rows.Count > 0)
             {
                 DataRow dr = dt.Rows[0];
-                aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup]);
+                if (Convert.ToString(dr[FieldsName.NewsList.InternalName.NewsUrl]) == string.Empty)
+                {
+                    aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", dr["ID"], dr[FieldsName.NewsList.InternalName.NewsGroup]);
+                }
+                else
+                {
+                    aImg.HRef = Convert.ToString(dr[FieldsName.NewsList.InternalName.NewsUrl]);
+                    aImg.Target = "_blank";
+                    aLink.Target = aImg.Target;
+                }
                 aLink.HRef = aImg.HRef;
                 aLink.InnerText = Convert.ToString(dr[FieldsName.NewsList.InternalName.Title]);
                 var imgUrl = Convert.ToString(dr[FieldsName.NewsList.InternalName.ImageThumb]);
@@ -144,7 +152,16 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                if (Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]) == string.Empty)
+                {
+                    aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);                    
+                }
+                else
+                {
+                    aLink.HRef = Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]);
+                    aLink.Target = "_blank";                    
+                }
+                //aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
                 aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
             }
         }

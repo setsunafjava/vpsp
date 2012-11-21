@@ -13,7 +13,7 @@
 <div class="left_content">
     <div class="sub_page">
         <div class="title_name_content">
-            <a href="#">Tài Nguyên</a> &raquo; <a href="#">Tài liệu tham khảo</a></div>
+            <a href="#">Tài Nguyên</a> &raquo; <a id="aTitle" runat="server"></a></div>
         <div class="content_follow">
             <div>
                 <div class="content_detail_doccument">
@@ -24,8 +24,8 @@
                         Kích thước: <asp:Literal ID="ltrSize" runat="server"></asp:Literal> MB<br />
                         Ngày gửi: <asp:Literal ID="ltrDate" runat="server"></asp:Literal><br />
                         Lượt tải: <asp:Literal ID="ltrDownloadCount" runat="server"></asp:Literal><br />
-                        Đường dẫn: <a href="#" onclick="DownloadFile()"><asp:Literal ID="ltrFileUrl" runat="server"></asp:Literal></a><span><a href="#" id="aDownload" runat="server">
-                        <img style="width: 100px;border:1px border-color:#cfcfcf; padding:1px;" runat="server" id="imgDownload" /></a></span><br />                        
+                        Tên file: <a href="#"><asp:Literal ID="ltrFileUrl" runat="server"></asp:Literal></a><span><a href="javascript:void(0)" id="aDownload" runat="server">
+                        <asp:ImageButton  runat="server" id="ibDownloadFile" Width="100" /></a></span><br />                        
                         <br />
                     </p>
                 </div>
@@ -37,10 +37,8 @@
         </div>
     </div>
 </div>
-<asp:Literal ID="ltrScript" runat="server"></asp:Literal>
 <script type="text/javascript">
-    function DownloadFile(fileUrl) {
-        window.open(fileUrl, '', 'width:300, height:300');
-        __doPostBack("", "UpdateDownloadCount");        
+    function FileDetailDownload(fileUrl) {
+        window.open(fileUrl, '', 'width:300, height:300');        
     }
 </script>

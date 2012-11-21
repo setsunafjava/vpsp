@@ -58,11 +58,25 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlImage imgNews = (HtmlImage)e.Item.FindControl("imgNews");
                 HtmlGenericControl dvDesc = (HtmlGenericControl)e.Item.FindControl("dvDesc");
                 HtmlGenericControl spDate = (HtmlGenericControl)e.Item.FindControl("spDate");                
+                
 
-                aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                if (Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]) == string.Empty)
+                {
+                    aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                    aLink.HRef = aImg.HRef;
+                }
+                else
+                {
+                    aImg.HRef = Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]);
+                    aImg.Target = "_blank";
+                    aLink.HRef = aImg.HRef;
+                    aLink.Target = aImg.Target;
+                }
+
+
                 aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
                 aLink.Title = drv[FieldsName.NewsList.InternalName.Title].ToString();
-                aLink.HRef = aImg.HRef;
+                //aLink.HRef = aImg.HRef;
                 var imgUrl = Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 if (imgUrl.Contains("http://"))
                 {
