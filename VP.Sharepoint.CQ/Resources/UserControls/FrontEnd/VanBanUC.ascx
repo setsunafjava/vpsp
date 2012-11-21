@@ -28,19 +28,19 @@
         <table>
             <tr>
                 <td>                   
-                    <asp:DropDownList ID="ddlCoQuanBanHanh" runat="server" CssClass="input" OnSelectedIndexChanged="ddlCoQuanBanHanh_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:DropDownList ID="ddlCoQuanBanHanh" runat="server" CssClass="input" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
                 <td>                    
-                    <asp:DropDownList ID="ddlLoaiVanBan" runat="server" CssClass="input" OnSelectedIndexChanged="ddlLoaiVanBan_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:DropDownList ID="ddlLoaiVanBan" runat="server" CssClass="input" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
                 <td>                    
-                    <asp:DropDownList ID="ddlLinhVuc" runat="server" CssClass="input" OnSelectedIndexChanged="ddlLinhVuc_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:DropDownList ID="ddlLinhVuc" runat="server" CssClass="input" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
                 <td>                    
-                    <asp:DropDownList ID="ddlNguoiKy" runat="server" CssClass="input" OnSelectedIndexChanged="ddlNguoiKy_SelectedIndexChanged" AutoPostBack="true">
+                    <asp:DropDownList ID="ddlNguoiKy" runat="server" CssClass="input" AutoPostBack="true">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -78,7 +78,7 @@
                                     <b>Người ký:</b> <asp:Literal ID="ltrNguoiKy" runat="server"></asp:Literal><br/>
                                     <b>Ngày hiệu lực:</b> <asp:Literal ID="ltrNgayHieuLuc" runat="server"></asp:Literal><br/>
                                     <b>Người hết hiệu lực:</b> <asp:Literal ID="lblNgayHetHieuLuc" runat="server"></asp:Literal><br/>
-                                    <b>Tải về:</b><a id="aDownload" runat="server" ><img alt="" title="" id="imgDownload" runat="server"  /></a></<br/>                               
+                                    <b>Tải về:</b><asp:ImageButton id="imgDownload" runat="server"  /></<br/>                               
                                 <asp:Literal ID="ltrDivBottom" runat="server"></asp:Literal>
                             </td>
                             <td valign="top">
@@ -106,3 +106,9 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function DownloadFile(fileUrl) {
+        window.open(fileUrl, '', 'width:300, height:300');
+    }
+</script>

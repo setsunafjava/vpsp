@@ -26,16 +26,20 @@ namespace VP.Sharepoint.CQ.UserControls
         static DataTable dt;
         string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
-        {
-            rptVanBan.ItemDataBound += new RepeaterItemEventHandler(rptVanBan_ItemDataBound);
+        {            
             try
-            {
+            {                
                 if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
                 {
                     catId = Convert.ToString(Page.Request.QueryString["CatId"]);
                 }
                 if (!Page.IsPostBack)
                 {
+                    rptVanBan.ItemDataBound += new RepeaterItemEventHandler(rptVanBan_ItemDataBound);
+                    ddlCoQuanBanHanh.SelectedIndexChanged += new EventHandler(ddlCoQuanBanHanh_SelectedIndexChanged);
+                    ddlLinhVuc.SelectedIndexChanged += new EventHandler(ddlLinhVuc_SelectedIndexChanged);
+                    ddlLoaiVanBan.SelectedIndexChanged += new EventHandler(ddlLoaiVanBan_SelectedIndexChanged);
+                    ddlNguoiKy.SelectedIndexChanged += new EventHandler(ddlNguoiKy_SelectedIndexChanged);
                     BindDropDownList(CurrentWeb);
                     BindRepeater(CurrentWeb, catId);
                 }
@@ -44,7 +48,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 Utilities.LogToULS(ex);
             }
-        }
+        }        
         #endregion
 
         #region Bind DropDownList
@@ -152,8 +156,7 @@ namespace VP.Sharepoint.CQ.UserControls
             if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
-                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                HtmlAnchor aDownload = (HtmlAnchor)e.Item.FindControl("aDownload");
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");                
                 Literal ltrDocumentNo = (Literal)e.Item.FindControl("ltrDocumentNo");
                 Literal ltrTitle = (Literal)e.Item.FindControl("ltrTitle");
                 Literal ltrDivHead = (Literal)e.Item.FindControl("ltrDivHead");
@@ -166,8 +169,14 @@ namespace VP.Sharepoint.CQ.UserControls
                 Literal ltrDivBottom = (Literal)e.Item.FindControl("ltrDivBottom");
                 Literal ltrNgayBanHanh = (Literal)e.Item.FindControl("ltrNgayBanHanh");
 
-                HtmlImage imgDownload = (HtmlImage)e.Item.FindControl("imgDownload");
-                imgDownload.Src = DocLibUrl + "/save.png";
+                ImageButton imgDownload = (ImageButton)e.Item.FindControl("imgDownload");
+                //imgDownload.Src = DocLibUrl + "/save.png";
+                imgDownload.ImageUrl = DocLibUrl + "/save.png";
+                imgDownload.Attributes.Add("onclick", "DownloadFile('" + drv[FieldsName.DocumentsList.InternalName.FilePath] + "')");
+        
+                //imgDownload.CommandArgument = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.FilePath]);
+                //imgDownload.CommandName = "DownloadFile";
+                //imgDownload.Command += new CommandEventHandler(imgDownload_Command);
 
                 ltrDocumentNo.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentNo]);
                 ltrTitle.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.Title]);
@@ -179,13 +188,17 @@ namespace VP.Sharepoint.CQ.UserControls
                 ltrNgayHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd/MM/yyyy");
                 lblNgayHetHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.ExpiredDate]).ToString("dd/MM/yyyy");
                 ltrDivBottom.Text = "</div>";
-                ltrNgayBanHanh.Text = ltrNgayHieuLuc.Text;
-               
-
-
-                aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));
-                aDownload.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
+                ltrNgayBanHanh.Text = ltrNgayHieuLuc.Text;               
+                aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));                
             }
+        }
+
+        protected void imgDownload_Command(object sender, CommandEventArgs e)
+        {
+            if (e.CommandName=="DownloadFile")
+            {
+                Utilities.DownloadFile(CurrentWeb, Convert.ToString(e.CommandArgument));
+            }            
         }
 
         #region SelectedIndexChange

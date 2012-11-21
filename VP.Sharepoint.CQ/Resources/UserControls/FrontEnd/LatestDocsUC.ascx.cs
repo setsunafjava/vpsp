@@ -77,7 +77,8 @@ namespace VP.Sharepoint.CQ.UserControls
                     HtmlAnchor aLinkHref = (HtmlAnchor)e.Item.FindControl("aLinkHref");
                     if (aLinkHref != null)
                     {
-                        aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
+                        //aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
+                        aLinkHref.Attributes.Add("onclick", "DownloadFile('" + drv[FieldsName.DocumentsList.InternalName.FilePath] + "')");
                         aLinkHref.InnerText = drv[FieldsName.DocumentsList.InternalName.Title].ToString();
                     }  
                 }
