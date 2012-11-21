@@ -69,7 +69,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                 }                                
                             }
                         }
-                        catch (SPException ex)
+                        catch (Exception ex)
                         {
                             Utilities.LogToULS(ex);
                         }
@@ -103,12 +103,16 @@ namespace VP.Sharepoint.CQ.UserControls
                 aLink.HRef = aImg.HRef;
                 aLink.Target = aImg.Target;
                 aLink.Title = Convert.ToString(drv[FieldsName.ResourceLibrary.InternalName.Title]);
+                aLink.InnerText = Convert.ToString(drv[FieldsName.ResourceLibrary.InternalName.Title]);
                 if (e.Item.ItemIndex % 5 == 0)
                 {
                     Literal ltrTrUP = (Literal)e.Item.FindControl("ltrTrUP");
-                    Literal ltrTrDown = (Literal)e.Item.FindControl("ltrTrDown");
+                    Literal ltrTrDown = (Literal)e.Item.FindControl("ltrTrDown");                    
                     ltrTrUP.Text = "<tr>";
-                    ltrTrDown.Text = "</tr>";
+                    if (e.Item.ItemIndex>0)
+                    {
+                        ltrTrDown.Text = "</tr>";
+                    }                    
                 }
             }
         }
