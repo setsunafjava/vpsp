@@ -21,7 +21,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// 
-        string strHref = string.Empty;
+        public string strHref = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -43,7 +43,7 @@ namespace VP.Sharepoint.CQ.UserControls
                         try
                         {
                             adminWeb.AllowUnsafeUpdates = true;
-                            SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.DocumentsList);
+                            SPList list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.DocumentsList);
                             SPQuery query = new SPQuery();
                             query.Query="<OrderBy><FieldRef Name='EffectedDate' Ascending='False' /></OrderBy>";
                             query.RowLimit = 10;
@@ -54,7 +54,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                 rptDocument.DataBind();
                             }
                         }
-                        catch (SPException ex)
+                        catch (Exception ex)
                         {
                             Utilities.LogToULS(ex);
                         }
@@ -72,7 +72,10 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLinkHref = (HtmlAnchor)e.Item.FindControl("aLinkHref");
-                aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
+                if (aLinkHref!=null)
+                {
+                    aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
+                }                
             }
         }
         #endregion
