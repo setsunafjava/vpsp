@@ -24,7 +24,7 @@
                 <asp:Repeater ID="rptDocument" runat="server">
                     <ItemTemplate>
 					<li>
-					    <a id="aLinkHref" runat="server"></a>
+					    <a id="aLinkHref" href="javascript:void(0)" runat="server"></a>
 					    <span class="time_update" runat="server" id="spDate"></span>
 					</li>
                     </ItemTemplate>
@@ -34,3 +34,9 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function DownloadFile(fileUrl) {
+        window.open(fileUrl, '', 'width:300, height:300');
+    }
+</script>

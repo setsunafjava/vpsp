@@ -1842,5 +1842,73 @@ namespace VP.Sharepoint.CQ.Common
                 }
             });
         }
+        public static void DownloadFile(SPWeb web,string filePath)
+        {
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            // The file path to download.
+                            // The file name used to save the file to the client's system..
+
+                            string filename = Path.GetFileName(filePath);
+                            System.IO.Stream stream = null;
+                            try
+                            {
+                                // Open the file into a stream. 
+                                stream = new FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read);
+                                // Total bytes to read: 
+                                long bytesToRead = stream.Length;
+                                HttpContext.Current.Response.ContentType = "application/octet-stream";
+                                HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=" + filename);
+                                // Read the bytes from the stream in small portions. 
+                                while (bytesToRead > 0)
+                                {
+                                    // Make sure the client is still connected. 
+                                    if (HttpContext.Current.Response.IsClientConnected)
+                                    {
+                                        // Read the data into the buffer and write into the 
+                                        // output stream. 
+                                        byte[] buffer = new Byte[10000];
+                                        int length = stream.Read(buffer, 0, 10000);
+                                        HttpContext.Current.Response.OutputStream.Write(buffer, 0, length);
+                                        HttpContext.Current.Response.Flush();
+                                        // We have already read some bytes.. need to read 
+                                        // only the remaining. 
+                                        bytesToRead = bytesToRead - length;
+                                    }
+                                    else
+                                    {
+                                        // Get out of the loop, if user is not connected anymore.. 
+                                        bytesToRead = -1;
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                LogToULS(ex.ToString());
+                                // An error occurred.. 
+                            }
+                            finally
+                            {
+                                if (stream != null)
+                                {
+                                    stream.Close();
+                                }
+                            }
+                        }
+                        catch (SPException ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
     }
 }
