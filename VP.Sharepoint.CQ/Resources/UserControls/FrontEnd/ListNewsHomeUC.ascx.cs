@@ -15,8 +15,8 @@ namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class ListNewsHomeUC : FrontEndUC
     {
-        protected string CatName = "Thông tin du học";
-        protected string strHref = string.Empty;
+        public string CatName = "Thông tin du học";
+        public string strHref = string.Empty;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -37,6 +37,18 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             var parentWebpart = this.Parent as ContainerWebPart;
             var newPos = NewsBO.BoxNewsPosition[parentWebpart.Title];
+            if (newPos.Equals("Trang chủ - box tin nhỏ 1"))
+            {
+                CatName = "Tin giáo dục cơ sở";
+            }
+            if (newPos.Equals("Trang chủ - box tin nhỏ 2"))
+            {
+                CatName = "Tin ngoài";
+            }
+            if (newPos.Equals("Trang chủ - box tin nhỏ 3"))
+            {
+                CatName = "Tin tức giáo dục";
+            }
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
                 using (var adminSite = new SPSite(CurrentWeb.Site.ID))
@@ -62,7 +74,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                     try
                                     {
                                         CatName = item.Title;
-                                        CatName = Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]);
+                                        //CatName = Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]);
                                         strHref = string.Format("news.aspx?&CatId={0}", item[FieldsName.CategoryList.InternalName.CategoryID]);
                                         //aTitle.InnerText = CatName;
                                     }

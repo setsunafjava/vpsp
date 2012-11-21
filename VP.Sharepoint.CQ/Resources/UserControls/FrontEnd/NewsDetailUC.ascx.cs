@@ -35,11 +35,17 @@ namespace VP.Sharepoint.CQ.UserControls
                                 {
                                     itemId = Convert.ToInt32(Request.QueryString["ID"]);
                                 }
-
-                                NewsBO.UpdateViewCount(CurrentWeb, Convert.ToInt32(itemId));
-
+                                try
+                                {
+                                    NewsBO.UpdateViewCount(adminWeb, Convert.ToInt32(itemId));
+                                }
+                                catch (Exception ex1)
+                                {
+                                    Utilities.LogToULS(ex1.ToString());
+                                }
+                                
                                 // Bind data
-                                SPList newsList = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.NewsList);
+                                SPList newsList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.NewsList);
                                 if (newsList != null)
                                 {
                                     SPListItem item = newsList.GetItemById(itemId);
