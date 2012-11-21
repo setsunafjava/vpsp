@@ -103,7 +103,6 @@
     <File Path="Resources\UserControls\FrontEnd\LatestDocsUC.ascx" Url="LatestDocsUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\EmailBoxUC.ascx" Url="EmailBoxUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\IconLinkUC.ascx" Url="IconLinkUC.ascx" />
-    <File Path="Resources\UserControls\FrontEnd\ImagesHomeUC.ascx" Url="ImagesHomeUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\VideoHomeUC.ascx" Url="VideoHomeUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\AdvUC.ascx" Url="AdvUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\BoxNewsHomeUC.ascx" Url="BoxNewsHomeUC.ascx" />

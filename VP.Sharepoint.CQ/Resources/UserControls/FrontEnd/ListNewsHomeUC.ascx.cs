@@ -25,6 +25,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptNews.ItemDataBound += new RepeaterItemEventHandler(rptNewsItemDataBound);
             if (!Page.IsPostBack)
             {
                 GetCategoryByStatus();
@@ -76,7 +77,8 @@ namespace VP.Sharepoint.CQ.UserControls
                                         CatName = item.Title;
                                         //CatName = Convert.ToString(item[FieldsName.CategoryList.InternalName.Title]);
                                         strHref = string.Format("news.aspx?&CatId={0}", item[FieldsName.CategoryList.InternalName.CategoryID]);
-                                        //aTitle.InnerText = CatName;
+                                        aTitle.InnerText = CatName;
+                                        aTitle.HRef = strHref;
                                     }
                                     catch (Exception ex)
                                     {
@@ -143,6 +145,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
             }
         }
     }

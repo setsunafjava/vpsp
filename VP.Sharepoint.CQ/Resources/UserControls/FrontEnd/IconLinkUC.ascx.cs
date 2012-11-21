@@ -23,6 +23,7 @@ namespace VP.Sharepoint.CQ.UserControls
         ///         
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptLinkIcon.ItemDataBound += new RepeaterItemEventHandler(rptLinkIcon_ItemDataBound);
             try
             {
                 if (!Page.IsPostBack)

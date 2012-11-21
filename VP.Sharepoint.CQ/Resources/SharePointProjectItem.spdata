@@ -106,7 +106,6 @@
     <ProjectItemFile Source="UserControls\FrontEnd\LatestDocsUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\EmailBoxUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\IconLinkUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
-    <ProjectItemFile Source="UserControls\FrontEnd\ImagesHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\VideoHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\AdvUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\FrontEnd\BoxNewsHomeUC.ascx" Target="Resources\UserControls\FrontEnd\" Type="ElementFile" />

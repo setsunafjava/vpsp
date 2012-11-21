@@ -65,6 +65,16 @@ namespace VP.Sharepoint.CQ.UserControls
                                     sizeOfFile = string.Format("{0:0.00}",(decimal)OriFile.Length / 1048576);
                                     fileName = OriFile.Name;
                                     imgThumb = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl]);
+
+                                    ltrTitle.Text = title;
+                                    ltrAuthor.Text = author;
+                                    ltrDate.Text = postedDate;
+                                    ltrDownloadCount.Text = downloadCount;
+                                    ltrFileUrl.Text = fileName;
+                                    ltrSize.Text = sizeOfFile;
+                                    imgDownload.Src = DocLibUrl + "/images_download.jpg";
+                                    imgAnh.Src = imgThumb;
+                                    aDownload.Attributes.Add("onclick", "DownloadFile('" + urlDownload + "')");
                                 }
                             }
                             catch (SPException ex)

@@ -23,6 +23,10 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptCate.ItemDataBound += new RepeaterItemEventHandler(rptCate_ItemDataBound);
+            rptNews1.ItemDataBound += new RepeaterItemEventHandler(rptNews1_ItemDataBound);
+            rptNews2.ItemDataBound += new RepeaterItemEventHandler(rptNews2_ItemDataBound);
+            rptNews3.ItemDataBound += new RepeaterItemEventHandler(rptNews3_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 BindRepeaterCategory();
@@ -44,6 +48,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.HRef = string.Format("../news.aspx?CatId={0}", drv[FieldsName.CategoryList.InternalName.CategoryID]);
+                aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
 
                 //Bind rptNews1
                 if (e.Item.ItemIndex == 0)
@@ -139,6 +144,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = e.Item.FindControl("aLink") as HtmlAnchor;
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
             }
         }
         protected void rptNews2_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -148,6 +154,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = e.Item.FindControl("aLink") as HtmlAnchor;
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
             }
         }
         protected void rptNews3_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -157,6 +164,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = e.Item.FindControl("aLink") as HtmlAnchor;
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
+                aLink.InnerText = drv[FieldsName.NewsList.InternalName.Title].ToString();
             }
         }
     }

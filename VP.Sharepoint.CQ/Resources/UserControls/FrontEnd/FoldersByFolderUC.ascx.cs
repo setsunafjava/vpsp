@@ -25,6 +25,7 @@ namespace VP.Sharepoint.CQ.UserControls
         string ParentId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptTree.ItemDataBound += new RepeaterItemEventHandler(rptTree_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
@@ -71,7 +72,9 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 //Literal ltrSubMenu = (Literal)e.Item.FindControl("ltrSubMenu");
                 Repeater rptChild = (Repeater)e.Item.FindControl("rptChild1");
+                rptChild.ItemDataBound += new RepeaterItemEventHandler(rptChild1_ItemDataBound);
                 aLink.HRef = "../library.aspx?CatId=" + drv[FieldsName.CategoryList.InternalName.CategoryID] + "&ParentId=" + ParentId;
+                aLink.InnerText = drv[FieldsName.CategoryList.InternalName.Title].ToString();
                 //Get child data table
                 DataTable dt = NewsBO.GetCategoryByParent(CurrentWeb, Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]));
                 if (dt != null && dt.Rows.Count > 0)
@@ -90,6 +93,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 Repeater rptChild = (Repeater)e.Item.FindControl("rptChild2");
+                rptChild.ItemDataBound += new RepeaterItemEventHandler(rptChild2_ItemDataBound);
                 aLink.HRef = "../library.aspx?CatId=" + drv[FieldsName.CategoryList.InternalName.CategoryID] + "&ParentId=" + ParentId;
                 aLink.InnerText = Convert.ToString(drv[FieldsName.CategoryList.InternalName.Title]);
 
@@ -109,6 +113,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = e.Item.DataItem as DataRowView;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 Repeater rptChild = (Repeater)e.Item.FindControl("rptChild3");
+                rptChild.ItemDataBound += new RepeaterItemEventHandler(rptChild3_ItemDataBound);
                 aLink.HRef = "../library.aspx?CatId=" + drv[FieldsName.CategoryList.InternalName.CategoryID] + "&ParentId=" + ParentId;
                 aLink.InnerText = Convert.ToString(drv[FieldsName.CategoryList.InternalName.Title]);
 

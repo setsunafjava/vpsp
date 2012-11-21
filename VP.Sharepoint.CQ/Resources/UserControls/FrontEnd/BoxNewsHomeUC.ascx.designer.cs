@@ -13,6 +13,15 @@ namespace VP.Sharepoint.CQ.UserControls {
     public partial class BoxNewsHomeUC {
         
         /// <summary>
+        /// imgSlide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgSlide;
+        
+        /// <summary>
         /// rptNewsSlide control.
         /// </summary>
         /// <remarks>
@@ -20,5 +29,14 @@ namespace VP.Sharepoint.CQ.UserControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptNewsSlide;
+        
+        /// <summary>
+        /// imgSlideR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgSlideR;
     }
 }

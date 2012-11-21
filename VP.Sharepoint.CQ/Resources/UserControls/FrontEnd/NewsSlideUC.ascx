@@ -8,19 +8,17 @@
 <%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NewsSlideUC.ascx.cs"
+<%@ Control Language="C#" CodeBehind="NewsSlideUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.NewsSlideUC" %>
-<%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<script type="text/javascript" src="<%=DocLibUrl%>/slide_news.js"></script>
-<script type="text/javascript" src="<%=DocLibUrl%>/slider.js" charset="utf-8"></script>
+<%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>    
 <div class="hot_news-content">
     <div class="artical_hottest">
         <!-------------Home News------------------------>
         <div id="gallery">
-            <asp:Repeater ID="rptNewsHome" runat="server" OnItemDataBound="rptNewsHome_ItemDataBound">
+            <asp:Repeater ID="rptNewsHome" runat="server">
                 <ItemTemplate>
                     <a href="#" class="show" runat="server" id="aImg">
-                        <img src="<%=DocLibUrl%>/flowing-rock.jpg" width="580" height="360" runat="server" id="imgNewsHome"
+                        <img  width="580" height="360" runat="server" id="imgNewsHome"
                             title="" alt="" rel="<h3>Hai nữ thủ khoa từng... trượt đại học</h3>Các bạn ấy cũng đã từng thi trượt đại học rồi sau đó quyết tâm thi lại vào năm sau và thi đậu với số điểm cao nhất. " /></a>                    
                 </ItemTemplate>
             </asp:Repeater>
@@ -41,18 +39,18 @@
         <div class="inner_content_tab">
             <div id="country1" class="tabcontent">
                 <ul>
-                    <asp:Repeater ID="rptMoiNhat" runat="server" OnItemDataBound="rptMoiNhat_ItemDataBound">
+                    <asp:Repeater ID="rptMoiNhat" runat="server">
                         <ItemTemplate>
-                            <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title) %></a></li>
+                            <li><a id="aLink" runat="server"></a></li>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>
             </div>
             <div id="country2" class="tabcontent">
                 <ul>
-                     <asp:Repeater ID="rptDocNhieu" runat="server" OnItemDataBound="rptDocNhieu_ItemDataBound">
+                     <asp:Repeater ID="rptDocNhieu" runat="server">
                         <ItemTemplate>
-                            <li><a id="aLink" runat="server"><%#Eval(FieldsName.NewsList.InternalName.Title)%></a></li>                    
+                            <li><a id="aLink" runat="server"></a></li>                    
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>

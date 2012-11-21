@@ -24,6 +24,7 @@ namespace VP.Sharepoint.CQ.UserControls
         public string strHref = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptDocument.ItemDataBound += new RepeaterItemEventHandler(rptDocument_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 BindRepeater();
@@ -77,6 +78,7 @@ namespace VP.Sharepoint.CQ.UserControls
                     if (aLinkHref != null)
                     {
                         aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
+                        aLinkHref.InnerText = drv[FieldsName.DocumentsList.InternalName.Title].ToString();
                     }  
                 }
                 catch (Exception ex)

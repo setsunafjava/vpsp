@@ -9,12 +9,12 @@ using FieldsName = VP.Sharepoint.CQ.Common.FieldsName;
 using System.Data;
 using System.Net;
 using System.IO;
+using System.Web.UI.WebControls;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class KnowledgeHomeUC : FrontEndUC
     {
-        protected string RootFileUrl = "";
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -23,12 +23,13 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptTiGia.ItemDataBound += new RepeaterItemEventHandler(rptTiGia_ItemDataBound);
             var webUrl = CurrentWeb.ServerRelativeUrl;
             if (webUrl.Equals("/"))
             {
                 webUrl = "";
             }
-            RootFileUrl = webUrl + "/" + ListsName.InternalName.WeatherList + "/";
+            ltrRoot.Text = "<input type='hidden' id='RootFileUrl' value='" + webUrl + "/" + ListsName.InternalName.WeatherList + "/" + "' />";
             if (!IsPostBack)
             {
                 lbKQXS.OnClientClick = "javascript:location.href='http://kqxs.vn';return false;";
@@ -152,5 +153,19 @@ namespace VP.Sharepoint.CQ.UserControls
             });
         }
         #endregion
+
+        protected void rptTiGia_ItemDataBound(object sender, System.Web.UI.WebControls.RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
+            {
+                DataRowView drv = (DataRowView)e.Item.DataItem;
+                Literal ltrCurrencyCode = (Literal)e.Item.FindControl("ltrCurrencyCode");
+                Literal ltrTransfer = (Literal)e.Item.FindControl("ltrTransfer");
+                Literal ltrSell = (Literal)e.Item.FindControl("ltrSell");
+                ltrCurrencyCode.Text = Convert.ToString(drv["CurrencyCode"]);
+                ltrTransfer.Text = Convert.ToString(drv["Transfer"]);
+                ltrSell.Text = Convert.ToString(drv["Sell"]);
+            }
+        }
     }
 }

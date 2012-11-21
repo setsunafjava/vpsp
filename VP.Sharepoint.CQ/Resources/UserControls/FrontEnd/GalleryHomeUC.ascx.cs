@@ -22,6 +22,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptImg.ItemDataBound += new RepeaterItemEventHandler(rptImg_ItemDataBound);
             if (!Page.IsPostBack)
             {
                 BindRepeater();
@@ -90,6 +91,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 var aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.Attributes.Add("onclick", "SwitchImage('" + drv["FileUrl"] + "')");
+                aLink.InnerText = drv[FieldsName.ImageLibrary.InternalName.Title].ToString();
             }
         }
     }

@@ -14,8 +14,6 @@ namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class VideoHomeUC : FrontEndUC
     {
-        protected string VideoUrl;
-        protected string ImageUrl;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -24,6 +22,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptVideo.ItemDataBound += new RepeaterItemEventHandler(rptVideo_OnItemDataBound);
             if (!Page.IsPostBack)
             {
                 BindRepeater();
@@ -73,8 +72,15 @@ namespace VP.Sharepoint.CQ.UserControls
 
                                 if (dt.Rows.Count > 0)
                                 {
-                                    VideoUrl = dt.Rows[0]["FileUrl"].ToString();
-                                    ImageUrl = dt.Rows[0]["ImageUrl"].ToString();
+                                    ltrVideo.Text = string.Format(@"<embed
+                                                          flashvars=""file={0}&image={1}&autostart=false""
+                                                          allowfullscreen=""true""
+                                                          allowscripaccess=""always""
+                                                          id=""qn-video-div-player""
+                                                          name=""qn-video-div-player""
+                                                          src=""{2}/ResourcesList/player.swf""
+                                                          width=""286"">
+                                                        </embed>", dt.Rows[0]["FileUrl"].ToString(), dt.Rows[0]["ImageUrl"].ToString(), WebUrl);
                                 }
 
                                 rptVideo.DataSource = dt;

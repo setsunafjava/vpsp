@@ -41,6 +41,8 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 MethodInvoker runHitCount = new MethodInvoker(UpdateHitCount);
                 runHitCount.BeginInvoke(CurrentWeb, HttpContext.Current, null, null);
+                dvBG.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
+                dvHitCount.InnerText = HitCountNumber.ToString();
             }
         }
         #endregion

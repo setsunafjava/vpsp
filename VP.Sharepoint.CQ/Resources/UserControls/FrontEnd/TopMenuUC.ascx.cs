@@ -15,8 +15,6 @@ namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class TopMenuUC : FrontEndUC
     {
-        protected string HomeUrl;
-        protected string CurrentStyle = string.Empty;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -25,11 +23,12 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            HomeUrl = CurrentWeb.Url;
+            rptMenu.ItemDataBound += new RepeaterItemEventHandler(rptMenu_ItemDataBound);
+            aHome.HRef = CurrentWeb.Url;
             var currentUrl = HttpContext.Current.Request.Url.AbsolutePath;
             if (!currentUrl.Contains(".aspx") || currentUrl.Contains("default.aspx"))
             {
-                CurrentStyle = " class='current'";
+                aHome.Attributes.Add("class", "current");
             }
             if (!Page.IsPostBack)
             {

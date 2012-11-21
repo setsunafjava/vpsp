@@ -5,6 +5,7 @@
       <SafeControls>
         <SafeControl Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="VP.Sharepoint.CQ.Core.WebParts" TypeName="*" />
         <SafeControl Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="VP.Sharepoint.CQ.Core.WebControls" TypeName="*" />
+        <SafeControl Assembly="$SharePoint.Project.AssemblyFullName$" Namespace="VP.Sharepoint.CQ.UserControls" TypeName="*" />
       </SafeControls>
     </Assembly>
   </Assemblies>

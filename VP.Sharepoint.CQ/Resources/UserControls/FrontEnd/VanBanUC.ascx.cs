@@ -27,6 +27,7 @@ namespace VP.Sharepoint.CQ.UserControls
         string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
+            rptVanBan.ItemDataBound += new RepeaterItemEventHandler(rptVanBan_ItemDataBound);
             try
             {
                 if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
@@ -153,6 +154,35 @@ namespace VP.Sharepoint.CQ.UserControls
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 HtmlAnchor aDownload = (HtmlAnchor)e.Item.FindControl("aDownload");
+                Literal ltrDocumentNo = (Literal)e.Item.FindControl("ltrDocumentNo");
+                Literal ltrTitle = (Literal)e.Item.FindControl("ltrTitle");
+                Literal ltrDivHead = (Literal)e.Item.FindControl("ltrDivHead");
+                Literal ltrCQ = (Literal)e.Item.FindControl("ltrCQ");
+                Literal ltrLoaiVB = (Literal)e.Item.FindControl("ltrLoaiVB");
+                Literal ltrLinhVuc = (Literal)e.Item.FindControl("ltrLinhVuc");
+                Literal ltrNguoiKy = (Literal)e.Item.FindControl("ltrNguoiKy");
+                Literal ltrNgayHieuLuc = (Literal)e.Item.FindControl("ltrNgayHieuLuc");
+                Literal lblNgayHetHieuLuc = (Literal)e.Item.FindControl("lblNgayHetHieuLuc");
+                Literal ltrDivBottom = (Literal)e.Item.FindControl("ltrDivBottom");
+                Literal ltrNgayBanHanh = (Literal)e.Item.FindControl("ltrNgayBanHanh");
+
+                HtmlImage imgDownload = (HtmlImage)e.Item.FindControl("imgDownload");
+                imgDownload.Src = DocLibUrl + "/save.png";
+
+                ltrDocumentNo.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentNo]);
+                ltrTitle.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.Title]);
+                ltrDivHead.Text = "<div style=\"display: none; border-top: 1px dashed #336666; margin-top: 10px\" class=\"vanban_details\" id='vbId_" + e.Item.ItemIndex + "' >";
+                ltrCQ.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.PublishPlace]);
+                ltrLoaiVB.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentType]);
+                ltrLinhVuc.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentSubject]);
+                ltrNguoiKy.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.SignaturePerson]);
+                ltrNgayHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd/MM/yyyy");
+                lblNgayHetHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.ExpiredDate]).ToString("dd/MM/yyyy");
+                ltrDivBottom.Text = "</div>";
+                ltrNgayBanHanh.Text = ltrNgayHieuLuc.Text;
+               
+
+
                 aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));
                 aDownload.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
             }
