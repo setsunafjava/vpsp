@@ -56,7 +56,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlGenericControl dvDesc = (HtmlGenericControl)e.Item.FindControl("dvDesc");
                 aLink.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
                 aLink.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Title]);
-                dvDesc.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]);
+                dvDesc.InnerHtml = Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]);
             }
         }
     }

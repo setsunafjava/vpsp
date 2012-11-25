@@ -41,23 +41,30 @@ namespace VP.Sharepoint.CQ.UserControls
         #region BindRepeater
         private void BindRepeater(SPWeb spWeb)
         {
-            DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews);
-            //Bind repeater news slide
-            rptNewsHome.DataSource = dt;
-            rptNewsHome.DataBind();
+            try
+            {
+                DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews);
+                //Bind repeater news slide
+                rptNewsHome.DataSource = dt;
+                rptNewsHome.DataBind();
 
-            // Bind repeater new news
-            DataTable dtMoiNhat = NewsBO.GetLatestNews(CurrentWeb);
-            dtMoiNhat = Utilities.GetNewsWithRowLimit(dtMoiNhat, 8);
-            rptMoiNhat.DataSource = dtMoiNhat;
-            rptMoiNhat.DataBind();
+                // Bind repeater new news
+                DataTable dtMoiNhat = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.NewNews);
+                dtMoiNhat = Utilities.GetNewsWithRowLimit(dtMoiNhat, 8);
+                rptMoiNhat.DataSource = dtMoiNhat;
+                rptMoiNhat.DataBind();
 
-            // Bind repeater most read
+                // Bind repeater most read
 
-            DataTable dtMostRead = NewsBO.GetMostViewCount(CurrentWeb);
-            dtMostRead = Utilities.GetNewsWithRowLimit(dtMostRead, 8);
-            rptDocNhieu.DataSource = dtMostRead;
-            rptDocNhieu.DataBind();
+                DataTable dtMostRead = NewsBO.GetMostViewCount(CurrentWeb);
+                dtMostRead = Utilities.GetNewsWithRowLimit(dtMostRead, 8);
+                rptDocNhieu.DataSource = dtMostRead;
+                rptDocNhieu.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogToULS(ex.ToString());
+            }
         }
         #endregion
         protected void rptNewsHome_ItemDataBound(object sender,RepeaterItemEventArgs e)
