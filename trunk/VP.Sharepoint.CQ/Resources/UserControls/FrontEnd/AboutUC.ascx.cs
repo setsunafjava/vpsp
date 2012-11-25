@@ -24,18 +24,25 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (!Page.IsPostBack)
             {
-                if (Page.Request.QueryString["CatId"]!=null&&Page.Request.QueryString["CatId"]!=string.Empty)
+                try
                 {
-                    catId = Convert.ToString(Page.Request.QueryString["CatId"]);
+                    if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
+                    {
+                        catId = Convert.ToString(Page.Request.QueryString["CatId"]);
+                    }
+
+                    DataTable dt = NewsBO.GetNewsByCatId(CurrentWeb, catId);
+                    dt = Utilities.GetNewsWithRowLimit(dt, 1);
+
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        dvCatTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, Convert.ToString(dt.Rows[0][FieldsName.NewsList.InternalName.NewsGroup]), "Text", FieldsName.CategoryList.InternalName.Title);
+                        dvContent.InnerHtml = Convert.ToString(dt.Rows[0][FieldsName.NewsList.InternalName.Content]);
+                    }
                 }
-
-                DataTable dt = NewsBO.GetNewsByCatId(CurrentWeb, catId);
-                dt = Utilities.GetNewsWithRowLimit(dt, 1);
-
-                if (dt!=null&&dt.Rows.Count>0)
+                catch (Exception ex)
                 {
-                    dvCatTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, Convert.ToString(dt.Rows[0][FieldsName.NewsList.InternalName.NewsGroup]), "Text", FieldsName.CategoryList.InternalName.Title);
-                    dvContent.InnerText = Convert.ToString(dt.Rows[0][FieldsName.NewsList.InternalName.Content]);
+                    Utilities.LogToULS(ex.ToString());
                 }
             }
         }

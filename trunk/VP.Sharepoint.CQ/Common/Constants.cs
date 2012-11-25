@@ -29,6 +29,7 @@ namespace VP.Sharepoint.CQ.Common
         #region NewsStatus
         public class NewsStatus{
             public const string HomeNews = "Tin trang nhất";
+            public const string NewNews = "Tin mới";
             public const string HotNews = "Tin nổi bật";
             public const string SlideNews = "Tin slide show";
             public const string ShouldKnowNews = "Tin cần biết";
