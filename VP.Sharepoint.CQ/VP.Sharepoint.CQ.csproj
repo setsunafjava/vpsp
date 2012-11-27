@@ -680,26 +680,36 @@
     <Content Include="Resources\UserControls\BackEnd\CategoryList.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\AdvList.ascx" />
+    <Content Include="Resources\UserControls\BackEnd\AdvList.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\BackEnd\CategoryView.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\DocumentsList.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\ProfilesView.ascx" />
+    <Content Include="Resources\UserControls\BackEnd\ProfilesView.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\BackEnd\ProfilesList.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\BackEnd\ResourceLibrary.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx" />
+    <Content Include="Resources\UserControls\BackEnd\ExternalNewsRSS.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\BackEnd\ExternalNewsView.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\MenuView.ascx" />
-    <Content Include="Resources\UserControls\BackEnd\MenuList.ascx" />
+    <Content Include="Resources\UserControls\BackEnd\MenuView.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="Resources\UserControls\BackEnd\MenuList.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\FrontEnd\AdvUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
@@ -799,7 +809,9 @@
     <Content Include="Resources\UserControls\FrontEnd\ListCatsHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\BackEnd\NewsList.ascx" />
+    <Content Include="Resources\UserControls\BackEnd\NewsList.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" />
