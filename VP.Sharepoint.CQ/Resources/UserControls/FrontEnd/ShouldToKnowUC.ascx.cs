@@ -22,11 +22,18 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            rptCat.ItemDataBound += new RepeaterItemEventHandler(rptCat_ItemDataBound);
-            rptNews.ItemDataBound += new RepeaterItemEventHandler(rptNews_ItemDataBound);
-            if (!Page.IsPostBack)
+            try
             {
-                BindRepeater();   
+                rptCat.ItemDataBound += new RepeaterItemEventHandler(rptCat_ItemDataBound);
+                rptNews.ItemDataBound += new RepeaterItemEventHandler(rptNews_ItemDataBound);
+                if (!Page.IsPostBack)
+                {
+                    BindRepeater();
+                }
+            }
+            catch (Exception ex)
+            {
+                Utilities.LogToULS(ex.ToString());
             }
         }
         #endregion

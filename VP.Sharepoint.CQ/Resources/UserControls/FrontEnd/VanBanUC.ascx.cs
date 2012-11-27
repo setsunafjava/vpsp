@@ -10,6 +10,8 @@ using System.Web;
 using System.Data;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Collections.Generic;
+using System.Text;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -26,20 +28,20 @@ namespace VP.Sharepoint.CQ.UserControls
         static DataTable dt;
         string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
-        {            
+        {
             try
-            {                
+            {
+                rptVanBan.ItemDataBound += new RepeaterItemEventHandler(rptVanBan_ItemDataBound);
+                ddlCoQuanBanHanh.SelectedIndexChanged += new EventHandler(ddlCoQuanBanHanh_SelectedIndexChanged);
+                ddlLinhVuc.SelectedIndexChanged += new EventHandler(ddlLinhVuc_SelectedIndexChanged);
+                ddlLoaiVanBan.SelectedIndexChanged += new EventHandler(ddlLoaiVanBan_SelectedIndexChanged);
+                ddlNguoiKy.SelectedIndexChanged += new EventHandler(ddlNguoiKy_SelectedIndexChanged);
                 if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
                 {
                     catId = Convert.ToString(Page.Request.QueryString["CatId"]);
                 }
                 if (!Page.IsPostBack)
                 {
-                    rptVanBan.ItemDataBound += new RepeaterItemEventHandler(rptVanBan_ItemDataBound);
-                    ddlCoQuanBanHanh.SelectedIndexChanged += new EventHandler(ddlCoQuanBanHanh_SelectedIndexChanged);
-                    ddlLinhVuc.SelectedIndexChanged += new EventHandler(ddlLinhVuc_SelectedIndexChanged);
-                    ddlLoaiVanBan.SelectedIndexChanged += new EventHandler(ddlLoaiVanBan_SelectedIndexChanged);
-                    ddlNguoiKy.SelectedIndexChanged += new EventHandler(ddlNguoiKy_SelectedIndexChanged);
                     BindDropDownList(CurrentWeb);
                     BindRepeater(CurrentWeb, catId);
                 }
@@ -48,7 +50,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 Utilities.LogToULS(ex);
             }
-        }        
+        }
         #endregion
 
         #region Bind DropDownList
@@ -156,7 +158,7 @@ namespace VP.Sharepoint.CQ.UserControls
             if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
-                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");                
+                HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 Literal ltrDocumentNo = (Literal)e.Item.FindControl("ltrDocumentNo");
                 Literal ltrTitle = (Literal)e.Item.FindControl("ltrTitle");
                 Literal ltrDivHead = (Literal)e.Item.FindControl("ltrDivHead");
@@ -170,14 +172,8 @@ namespace VP.Sharepoint.CQ.UserControls
                 Literal ltrNgayBanHanh = (Literal)e.Item.FindControl("ltrNgayBanHanh");
 
                 ImageButton imgDownload = (ImageButton)e.Item.FindControl("imgDownload");
-                //imgDownload.Src = DocLibUrl + "/save.png";
                 imgDownload.ImageUrl = DocLibUrl + "/save.png";
                 imgDownload.Attributes.Add("onclick", "DownloadFile('" + drv[FieldsName.DocumentsList.InternalName.FilePath] + "')");
-        
-                //imgDownload.CommandArgument = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.FilePath]);
-                //imgDownload.CommandName = "DownloadFile";
-                //imgDownload.Command += new CommandEventHandler(imgDownload_Command);
-
                 ltrDocumentNo.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentNo]);
                 ltrTitle.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.Title]);
                 ltrDivHead.Text = "<div style=\"display: none; border-top: 1px dashed #336666; margin-top: 10px\" class=\"vanban_details\" id='vbId_" + e.Item.ItemIndex + "' >";
@@ -185,20 +181,26 @@ namespace VP.Sharepoint.CQ.UserControls
                 ltrLoaiVB.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentType]);
                 ltrLinhVuc.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentSubject]);
                 ltrNguoiKy.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.SignaturePerson]);
-                ltrNgayHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd/MM/yyyy");
-                lblNgayHetHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.ExpiredDate]).ToString("dd/MM/yyyy");
+                if (Convert.ToString(drv[FieldsName.DocumentsList.InternalName.EffectedDate]) != string.Empty)
+                {
+                    ltrNgayHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd/MM/yyyy");
+                }
+                if (Convert.ToString(drv[FieldsName.DocumentsList.InternalName.ExpiredDate]) != string.Empty)
+                {
+                    lblNgayHetHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.ExpiredDate]).ToString("dd/MM/yyyy");
+                }
                 ltrDivBottom.Text = "</div>";
-                ltrNgayBanHanh.Text = ltrNgayHieuLuc.Text;               
-                aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));                
+                ltrNgayBanHanh.Text = ltrNgayHieuLuc.Text;
+                aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));
             }
         }
 
         protected void imgDownload_Command(object sender, CommandEventArgs e)
         {
-            if (e.CommandName=="DownloadFile")
+            if (e.CommandName == "DownloadFile")
             {
                 Utilities.DownloadFile(CurrentWeb, Convert.ToString(e.CommandArgument));
-            }            
+            }
         }
 
         #region SelectedIndexChange
@@ -235,18 +237,17 @@ namespace VP.Sharepoint.CQ.UserControls
                     {
                         try
                         {
-                            string query = "<Where>";
+                            FilterItem fItem = new FilterItem();
+
                             if (ddlCoQuanBanHanh.SelectedValue != string.Empty)
                             {
-                                query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.PublishPlace, HttpUtility.HtmlEncode(ddlCoQuanBanHanh.SelectedValue));
-                                query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.PublishPlace);
+                                fItem.PublishPlace = ddlCoQuanBanHanh.SelectedValue;
                             }
                             if (ddlLinhVuc.SelectedValue != string.Empty)
                             {
                                 if (ddlLinhVuc.SelectedValue != string.Empty)
                                 {
-                                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.DocumentSubject, HttpUtility.HtmlEncode(ddlLinhVuc.SelectedValue));
-                                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.DocumentSubject);
+                                    fItem.DocumentSubject = ddlLinhVuc.SelectedValue;
                                 }
                             }
 
@@ -254,11 +255,7 @@ namespace VP.Sharepoint.CQ.UserControls
                             {
                                 if (ddlLoaiVanBan.SelectedValue != string.Empty)
                                 {
-                                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.DocumentType, HttpUtility.HtmlEncode(ddlLoaiVanBan.SelectedValue));
-                                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.DocumentType);
-                                }
-                                else
-                                {
+                                    fItem.DocumentType = ddlLoaiVanBan.SelectedValue;
                                 }
                             }
 
@@ -266,14 +263,13 @@ namespace VP.Sharepoint.CQ.UserControls
                             {
                                 if (ddlNguoiKy.SelectedValue != string.Empty)
                                 {
-                                    query += string.Format("<And><Eq><FieldRef Name='{0}' /><Value Type='Lookup'>{1}</Value></Eq>", FieldsName.DocumentsList.InternalName.SignaturePerson, HttpUtility.HtmlEncode(ddlNguoiKy.SelectedValue));
-                                    query += string.Format("<IsNotNull><FieldRef Name='{0}' /></IsNotNull></And>", FieldsName.DocumentsList.InternalName.SignaturePerson);
+                                    fItem.SignaturePerson = ddlNguoiKy.SelectedValue;
                                 }
                             }
 
-                            query += "</Where>";
+                            //query += "</Where>";
                             SPQuery q = new SPQuery();
-                            q.Query = query;
+                            q.Query = fItem.CamlQuery;
                             SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.DocumentsList);
                             DataTable dt = list.GetItems(q).GetDataTable();
                             rptVanBan.DataSource = dt;
@@ -290,6 +286,130 @@ namespace VP.Sharepoint.CQ.UserControls
         }
         #endregion
 
-
     }
+    #region Dynamic calm query building
+    public class FilterItem
+    {
+        public FilterItem()
+        {
+            this.PublishPlace = string.Empty;
+            this.DocumentSubject = string.Empty;
+            this.DocumentType = string.Empty;
+            this.SignaturePerson = string.Empty;
+        }
+        // Create properties
+        public string PublishPlace
+        {
+            get;
+            set;
+        }
+        public string DocumentSubject
+        {
+            get;
+            set;
+        }
+        public string DocumentType
+        {
+            get;
+            set;
+        }
+        public string SignaturePerson
+        {
+            get;
+            set;
+        }
+        public string CamlQuery
+        {
+            get
+            {
+                List<string> objCaml = new List<string>();
+                StringBuilder _caml = new StringBuilder();
+
+                if (!string.IsNullOrEmpty(this.PublishPlace))
+                    objCaml.Add(this.CAML_PublishPlace);
+
+                if (!string.IsNullOrEmpty(this.DocumentSubject))
+                    objCaml.Add(this.CAML_DocumentSubject);
+
+                if (!string.IsNullOrEmpty(this.DocumentType))
+                    objCaml.Add(this.CAML_DocumentType);
+
+                if (!string.IsNullOrEmpty(this.SignaturePerson))
+                    objCaml.Add(this.CAML_SignaturePerson);
+
+                for (int i = 1; i < objCaml.Count; i++)
+                {
+                    _caml.Append("<And>");
+                }
+                //Now create a string out of the CMAL snippets in the list.
+                for (int i = 0; i < objCaml.Count; i++)
+                {
+                    string snippet = objCaml[i];
+                    _caml.AppendFormat(snippet);
+                    if (i == 1)
+                    {
+                        _caml.Append("</And>");
+                    }
+
+                    else if (i > 1)
+                    {
+                        _caml.Append("</And>");
+                    }
+                }
+                string value = string.Empty;
+                if (_caml.ToString().Trim().Length > 0)
+                    value = string.Format(@"<Where>{0}</Where>", _caml.ToString().Trim());
+                //Return the final CAML query
+                return value;
+            }
+        }
+        public string CAML_PublishPlace
+        {
+            get
+            {
+                return string.Format(@"<Eq>
+
+                                         <FieldRef Name='PublishPlace'/>
+                                         <Value Type='Lookup'>{0}</Value>
+                                     </Eq>", this.PublishPlace);
+
+            }
+        }
+
+        public string CAML_DocumentSubject
+        {
+            get
+            {
+                return string.Format(@"<Eq>
+                                         <FieldRef Name='DocumentSubject'/>
+                                         <Value Type='Lookup'>{0}</Value>
+                                     </Eq>", this.DocumentSubject);
+            }
+        }
+
+        public string CAML_DocumentType
+        {
+            get
+            {
+                return string.Format(@"<Eq>
+                                         <FieldRef Name='DocumentType'/>
+                                         <Value Type='Lookup'>{0}</Value>
+                                     </Eq>", this.DocumentType);
+            }
+        }
+
+        public string CAML_SignaturePerson
+        {
+            get
+            {
+                return string.Format(@"<Eq>
+                                         <FieldRef Name='SignaturePerson'/>
+                                         <Value Type='Lookup'>{0}</Value>
+                                     </Eq>", this.SignaturePerson);
+            }
+        }
+    }
+    #endregion
+
+
 }
