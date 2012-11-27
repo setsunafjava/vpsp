@@ -89,8 +89,8 @@ namespace VP.Sharepoint.CQ.UserControls
                     imgNews.Src = WebUrl + "/" + Convert.ToString(drv[FieldsName.NewsList.InternalName.ImageThumb]);
                 }
                 aTitle.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Title]);
-                aDesc.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]);
-                dvContent.InnerText = Convert.ToString(drv[FieldsName.NewsList.InternalName.Content]);
+                aDesc.InnerHtml = Convert.ToString(drv[FieldsName.NewsList.InternalName.Description]);
+                dvContent.InnerHtml = Convert.ToString(drv[FieldsName.NewsList.InternalName.Content]);
                 if (Convert.ToString(drv[FieldsName.NewsList.InternalName.NewsUrl]) == string.Empty)
                 {
                     aTitle.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);                    
