@@ -40,7 +40,7 @@ namespace VP.Sharepoint.CQ.UserControls
             rptCat.DataBind();
             // Bind to news
             DataTable dtNews = Utilities.GetNewsByStatus(CurrentWeb, Constants.NewsStatus.ShouldKnowNews);
-            dtNews = Utilities.GetNewsWithRowLimit(dt, 4);
+            dtNews = Utilities.GetNewsWithRowLimit(dtNews, 4);
             rptNews.DataSource = dtNews;
             rptNews.DataBind();
         }
