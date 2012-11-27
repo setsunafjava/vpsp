@@ -32,7 +32,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             try
             {
-                ibDownloadFile.Click+=new ImageClickEventHandler(ibDownloadFile_Click);
+                ibDownloadFile.Click += new ImageClickEventHandler(ibDownloadFile_Click);
                 if (Page.Request.QueryString["ID"] != null && Page.Request.QueryString["ID"] != string.Empty)
                 {
                     itemId = Convert.ToString(Page.Request.QueryString["ID"]);
@@ -48,7 +48,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 {
                     BindData();
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -75,14 +75,15 @@ namespace VP.Sharepoint.CQ.UserControls
                             {
                                 title = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.Title]);
                                 author = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.Author]);
-                                postedDate = Convert.ToDateTime(listItem[FieldsName.ResourceLibrary.InternalName.PostedDate]).ToString("dd/MM/yyyy");
-                                if (listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != null && listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != string.Empty)
+                                if (Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.PostedDate]) != string.Empty)
+                                    postedDate = Convert.ToDateTime(listItem[FieldsName.ResourceLibrary.InternalName.PostedDate]).ToString("dd/MM/yyyy");
+                                if (listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != null && Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]) != string.Empty)
                                     downloadCount = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]);
                                 urlDownload = listItem[FieldsName.ResourceLibrary.InternalName.FileUrl].ToString();
                                 SPFile OriFile = CurrentWeb.GetFile(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl].ToString());
                                 sizeOfFile = string.Format("{0:0.00}", (decimal)OriFile.Length / 1048576);
                                 fileName = OriFile.Name;
-                                imgThumb = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.FileUrl]);
+                                imgThumb = Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.ImgThumb]);
 
                                 ltrTitle.Text = title;
                                 ltrAuthor.Text = author;
@@ -101,16 +102,11 @@ namespace VP.Sharepoint.CQ.UserControls
                         }
                     }
                 }
-            });       
+            });
         }
         #endregion
 
         protected void ibDownloadFile_Click(object sender, EventArgs e)
-        {
-            UpdateDownloadCount();
-            BindData();
-        }
-        protected void UpdateDownloadCount()
         {
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
@@ -120,29 +116,18 @@ namespace VP.Sharepoint.CQ.UserControls
                     {
                         try
                         {
-                            adminWeb.AllowUnsafeUpdates = true;
-                            CurrentWeb.AllowUnsafeUpdates = true;
-                            SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.ResourceLibrary);
-                            SPListItem listItem = list.GetItemById(Convert.ToInt32(itemId));
-
-                            if (listItem != null)
-                            {
-                                int downloadcount = 0;
-                                if (listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != null && listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != string.Empty)
-                                {
-                                    downloadcount = Convert.ToInt32(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]);
-                                }
-                                listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] = downloadcount + 1;
-                                listItem.Update();                                
-                            }
-                        }
+                            ResourceLibraryBO.UpdateDownloadCount(adminWeb, itemId);
+                            BindData();
+                        }                       
                         catch (Exception ex)
                         {
-                            Utilities.LogToULS(ex);
+                            Utilities.LogToULS(ex.ToString());
                         }
                     }
                 }
             });
+            
         }
+
     }
 }
