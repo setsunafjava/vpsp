@@ -1527,7 +1527,7 @@ namespace VP.Sharepoint.CQ.Common
                 {
                     SPQuery query = new SPQuery();
                     //query.Query = string.Empty;
-                    query.Query = string.Format("<Where><Contains><FieldRef Name='{0}'/><Value Type='MultiChoice'>{1}</Value></Contains></Where>", FieldsName.NewsList.InternalName.Status, strStatus);
+                    query.Query = string.Format("<Where><Contains><FieldRef Name='{0}'/><Value Type='MultiChoice'>{1}</Value></Contains></Where><OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>", FieldsName.NewsList.InternalName.Status, strStatus);
                     SPListItemCollection listItemCollection = list.GetItems(query);
                     return listItemCollection.GetDataTable();
                 }
