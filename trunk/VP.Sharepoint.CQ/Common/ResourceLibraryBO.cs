@@ -181,5 +181,42 @@ namespace VP.Sharepoint.CQ.Common
             }
         }
         #endregion
+
+        #region Update number of download document   
+        public static void UpdateDownloadCount(SPWeb web,string itemId)
+        {
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                using (var adminSite = new SPSite(web.Site.ID))
+                {
+                    using (var adminWeb = adminSite.OpenWeb(web.ID))
+                    {
+                        try
+                        {
+                            adminWeb.AllowUnsafeUpdates = true;
+                            web.AllowUnsafeUpdates = true;
+                            SPList list = Utilities.GetCustomListByUrl(web, ListsName.InternalName.ResourceLibrary);
+                            SPListItem listItem = list.GetItemById(Convert.ToInt32(itemId));
+
+                            if (listItem != null)
+                            {
+                                int downloadcount = 0;
+                                if (listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] != null && Convert.ToString(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]) != string.Empty)
+                                {
+                                    downloadcount = Convert.ToInt32(listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount]);
+                                }
+                                listItem[FieldsName.ResourceLibrary.InternalName.DownloadCount] = downloadcount + 1;
+                                listItem.Update();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Utilities.LogToULS(ex);
+                        }
+                    }
+                }
+            });
+        }
+        #endregion
     }
 }
