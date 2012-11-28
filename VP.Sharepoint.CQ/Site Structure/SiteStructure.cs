@@ -110,7 +110,7 @@ namespace VP.Sharepoint.CQ
                     }
 
                     web.AllowUnsafeUpdates = true;
-                    web.Files.Add(targetDocumentLibraryPath, stream.ToArray(), true);
+                    web.Files.Add(targetDocumentLibraryPath, stream.ToArray(), false);
                 }
             }
             catch (Exception ex)
