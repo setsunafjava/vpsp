@@ -21,10 +21,10 @@
 </div>
 <script type="text/javascript">
     function RedirectURL(strId) {
-        try {
-            var ddl = document.getElementById(strId);
-            var url = ddl.options[ddl.selectedIndex].value;
-            window.open(url, "", "width=1002,height=700,location=1,menubar=1,scrollbars=1,status=1,resizable=1")
+        try {            
+            var ddl = document.getElementById(strId);            
+            var url = ddl.options[ddl.selectedIndex].value;            
+            window.open(url, "", "width=1002,height=700,location=1,menubar=1,scrollbars=1,status=1,resizable=1");            
         } catch (e) {
             location.target = "_blank";
             location.href = url;
