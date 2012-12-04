@@ -46,7 +46,7 @@ namespace VP.Sharepoint.CQ.UserControls
                             adminWeb.AllowUnsafeUpdates = true;
                             SPList list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.DocumentsList);
                             SPQuery query = new SPQuery();
-                            query.Query="<OrderBy><FieldRef Name='EffectedDate' Ascending='False' /></OrderBy>";
+                            query.Query="<OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>";
                             query.RowLimit = 10;
                             SPListItemCollection items = list.GetItems(query);
                             if (items!=null&&items.Count>0)
