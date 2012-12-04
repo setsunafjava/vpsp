@@ -46,7 +46,7 @@ namespace VP.Sharepoint.CQ.Common
             {                
 
                 //Get News
-                string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='ID' Ascending='TRUE' /></OrderBy>";
+                string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>";
                 var query = new SPQuery()
                 {
                     Query = string.Format(CultureInfo.InvariantCulture, caml, FieldsName.ResourceLibrary.InternalName.CategoryId,catId)
@@ -75,7 +75,7 @@ namespace VP.Sharepoint.CQ.Common
             try
             {
                 //Get Cat
-                string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='{2}' /></OrderBy>";
+                string caml = @"<Where><Eq><FieldRef Name='{0}' /><Value Type='Text'>{1}</Value></Eq></Where><OrderBy><FieldRef Name='{2}'  Ascending='FALSE' /></OrderBy>";
                 var query = new SPQuery()
                 {
                     Query = string.Format(CultureInfo.InvariantCulture, caml, FieldsName.CategoryList.InternalName.ParentID, catId, FieldsName.CategoryList.InternalName.Order)                    
