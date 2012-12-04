@@ -69,7 +69,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 HtmlImage imgNews = (HtmlImage)e.Item.FindControl("imgNews");
                 HtmlGenericControl dvDesc = (HtmlGenericControl)e.Item.FindControl("dvDesc");
-                HtmlGenericControl spDate = (HtmlGenericControl)e.Item.FindControl("spDate");
+                HtmlGenericControl spDate = (HtmlGenericControl)e.Item.FindControl("spDate");                
 
                 aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);
                 aLink.HRef = aImg.HRef;
@@ -113,7 +113,6 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                HtmlAnchor aDownload = (HtmlAnchor)e.Item.FindControl("aDownload");
                 Literal ltrDocumentNo = (Literal)e.Item.FindControl("ltrDocumentNo");
                 Literal ltrTitle = (Literal)e.Item.FindControl("ltrTitle");
                 Literal ltrDivHead = (Literal)e.Item.FindControl("ltrDivHead");
@@ -126,9 +125,9 @@ namespace VP.Sharepoint.CQ.UserControls
                 Literal ltrDivBottom = (Literal)e.Item.FindControl("ltrDivBottom");
                 Literal ltrNgayBanHanh = (Literal)e.Item.FindControl("ltrNgayBanHanh");
 
-                HtmlImage imgDownload = (HtmlImage)e.Item.FindControl("imgDownload");
-                imgDownload.Src = DocLibUrl + "/save.png";
-
+                ImageButton imgDownload = (ImageButton)e.Item.FindControl("imgDownload");
+                imgDownload.ImageUrl = DocLibUrl + "/save.png";
+                imgDownload.Attributes.Add("onclick", "DownloadFile('" + drv[FieldsName.DocumentsList.InternalName.FilePath] + "')");
                 ltrDocumentNo.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentNo]);
                 ltrTitle.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.Title]);
                 ltrDivHead.Text = "<div style=\"display: none; border-top: 1px dashed #336666; margin-top: 10px\" class=\"vanban_details\" id='vbId_" + e.Item.ItemIndex + "' >";
@@ -136,15 +135,17 @@ namespace VP.Sharepoint.CQ.UserControls
                 ltrLoaiVB.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentType]);
                 ltrLinhVuc.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.DocumentSubject]);
                 ltrNguoiKy.Text = Convert.ToString(drv[FieldsName.DocumentsList.InternalName.SignaturePerson]);
-                ltrNgayHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd/MM/yyyy");
-                lblNgayHetHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.ExpiredDate]).ToString("dd/MM/yyyy");
+                if (Convert.ToString(drv[FieldsName.DocumentsList.InternalName.EffectedDate]) != string.Empty)
+                {
+                    ltrNgayHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.EffectedDate]).ToString("dd/MM/yyyy");
+                }
+                if (Convert.ToString(drv[FieldsName.DocumentsList.InternalName.ExpiredDate]) != string.Empty)
+                {
+                    lblNgayHetHieuLuc.Text = Convert.ToDateTime(drv[FieldsName.DocumentsList.InternalName.ExpiredDate]).ToString("dd/MM/yyyy");
+                }
                 ltrDivBottom.Text = "</div>";
                 ltrNgayBanHanh.Text = ltrNgayHieuLuc.Text;
-
-
-
                 aLink.Attributes.Add("onclick", string.Format("showDocumentDetail('vbId_{0}');", e.Item.ItemIndex));
-                aDownload.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
             }
         }
 

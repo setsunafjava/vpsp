@@ -63,7 +63,7 @@
             <tbody>
                 <asp:Repeater ID="rptVanBan" runat="server">
                     <ItemTemplate>
-                        <tr class="">
+                        <tr>
                             <td valign="top">
                                 <asp:Literal ID="ltrDocumentNo" runat="server"></asp:Literal>
                             </td>
@@ -84,7 +84,7 @@
                             <td valign="top">
                                 <asp:Literal ID="ltrNgayBanHanh" runat="server"></asp:Literal><br/>
                             </td>
-                        </tr>                     
+                        </tr>
                     </ItemTemplate>
                 </asp:Repeater>
         </tbody>

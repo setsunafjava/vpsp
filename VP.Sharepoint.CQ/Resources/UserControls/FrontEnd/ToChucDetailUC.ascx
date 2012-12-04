@@ -10,6 +10,17 @@
 <%@ Control Language="C#" CodeBehind="ToChucDetailUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.ToChucDetailUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+
+<script type="text/javascript">
+    function showDocumentDetail(id) {
+        var divId = document.getElementById(id);
+        if (divId.style.display == "none")
+            divId.style.display = "block";
+        else
+            divId.style.display = "none";
+    }
+</script>
+
 <div class="sub_page">
     <div runat="server" id="divName" class="title_name_content">
         lãnh đạo sở</div>
@@ -110,7 +121,7 @@
             <tbody>
                 <asp:Repeater ID="rptVanBan" runat="server">
                     <ItemTemplate>
-                        <tr class="">
+                        <tr>
                             <td valign="top">
                                 <asp:Literal ID="ltrDocumentNo" runat="server"></asp:Literal>
                             </td>
@@ -125,13 +136,13 @@
                                     <b>Người ký:</b> <asp:Literal ID="ltrNguoiKy" runat="server"></asp:Literal><br/>
                                     <b>Ngày hiệu lực:</b> <asp:Literal ID="ltrNgayHieuLuc" runat="server"></asp:Literal><br/>
                                     <b>Ngày hết hiệu lực:</b> <asp:Literal ID="lblNgayHetHieuLuc" runat="server"></asp:Literal><br/>
-                                    <b>Tải về:</b><a id="aDownload" runat="server" ><img alt="" title="" id="imgDownload" runat="server"  /></a></<br/>                               
+                                    <b>Tải về:</b><asp:ImageButton id="imgDownload" runat="server"  /></<br/>                               
                                 <asp:Literal ID="ltrDivBottom" runat="server"></asp:Literal>
                             </td>
                             <td valign="top">
                                 <asp:Literal ID="ltrNgayBanHanh" runat="server"></asp:Literal><br/>
                             </td>
-                        </tr>                     
+                        </tr>     
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
@@ -139,11 +150,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    function showDocumentDetail(id) {
-        var divId = document.getElementById(id);
-        if (divId.style.display == "none")
-            divId.style.display = "block";
-        else
-            divId.style.display = "none";
+    function DownloadFile(fileUrl) {
+        window.open(fileUrl, '', 'width:300, height:300');
     }
 </script>
