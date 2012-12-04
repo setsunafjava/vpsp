@@ -54,7 +54,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                 ddlWebURL.DataBind();
                             }
                             ddlWebURL.Items.Insert(0, new ListItem("--Liên kết website--", string.Empty));
-                            ddlWebURL.Attributes.Add("onchange", "RedirectURL('" + ddlWebURL.ClientID + "'");
+                            ddlWebURL.Attributes.Add("onchange", string.Format("RedirectURL('{0}')",ddlWebURL.ClientID));
                         }
                         catch (SPException ex)
                         {
