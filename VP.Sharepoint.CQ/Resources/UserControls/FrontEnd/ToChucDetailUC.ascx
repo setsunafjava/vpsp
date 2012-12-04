@@ -124,7 +124,7 @@
                                     <b>Lĩnh vực:</b> <asp:Literal ID="ltrLinhVuc" runat="server"></asp:Literal><br/>
                                     <b>Người ký:</b> <asp:Literal ID="ltrNguoiKy" runat="server"></asp:Literal><br/>
                                     <b>Ngày hiệu lực:</b> <asp:Literal ID="ltrNgayHieuLuc" runat="server"></asp:Literal><br/>
-                                    <b>Người hết hiệu lực:</b> <asp:Literal ID="lblNgayHetHieuLuc" runat="server"></asp:Literal><br/>
+                                    <b>Ngày hết hiệu lực:</b> <asp:Literal ID="lblNgayHetHieuLuc" runat="server"></asp:Literal><br/>
                                     <b>Tải về:</b><a id="aDownload" runat="server" ><img alt="" title="" id="imgDownload" runat="server"  /></a></<br/>                               
                                 <asp:Literal ID="ltrDivBottom" runat="server"></asp:Literal>
                             </td>

@@ -21,6 +21,8 @@ namespace VP.Sharepoint.CQ.UserControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// 
+        string catId = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             rptTC.ItemDataBound += new RepeaterItemEventHandler(rptTC_ItemDataBound);
@@ -30,7 +32,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 if (Page.Request.QueryString["CatId"] != null && Page.Request.QueryString["CatId"] != string.Empty)
                 {
-                    string catId = Convert.ToString((Page.Request.QueryString["CatId"]));
+                    catId = Convert.ToString((Page.Request.QueryString["CatId"]));
                     divName.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, 
                         FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", "Title");
                     bName.InnerText = divName.InnerText;
@@ -90,16 +92,12 @@ namespace VP.Sharepoint.CQ.UserControls
         protected void BindRepeater(SPWeb spWeb)
         {
             try
-            {
-                SPList list = Utilities.GetCustomListByUrl(spWeb, ListsName.InternalName.DocumentsList);
-                if (list != null)
+            {                
+                DataTable dt = ResourceLibraryBO.GetDocumentsByCatId(spWeb, catId);
+                if (dt != null && dt.Rows.Count > 0)
                 {
-                    DataTable dt = list.Items.GetDataTable();
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        rptVanBan.DataSource = Utilities.GetNewsWithRowLimit(dt, 10); ;
-                        rptVanBan.DataBind();
-                    }
+                    rptVanBan.DataSource = dt;
+                    rptVanBan.DataBind();
                 }
             }
             catch (Exception ex)
