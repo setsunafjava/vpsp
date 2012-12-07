@@ -96,6 +96,8 @@
     <File Path="Resources\Javascript\slide_news.js" Url="Resources/Javascript/slide_news.js" />
     <File Path="Resources\Javascript\slider.js" Url="Resources/Javascript/slider.js" />
     <File Path="Resources\Javascript\tabcontent.js" Url="Resources/Javascript/tabcontent.js" />
+	<File Path="Resources\Javascript\jquery.pajinate.js" Url="Resources/Javascript/jquery.pajinate.js" />
+	  <File Path="Resources\Javascript\jquery.tablePagination.0.5.js" Url="Resources/Javascript/jquery.tablePagination.0.5.js" />
     <File Path="Resources\UserControls\FrontEnd\HeaderUC.ascx" Url="HeaderUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\TopMenuUC.ascx" Url="TopMenuUC.ascx" />
     <File Path="Resources\UserControls\FrontEnd\NewsSlideUC.ascx" Url="NewsSlideUC.ascx" />
@@ -151,5 +153,9 @@
 <File Path="Resources\Css\slidedown-menu2.css" Url="Resources/Css/slidedown-menu2.css" />
 <File Path="Resources\UserControls\BackEnd\DocumentsList.ascx" Url="DocumentsList.ascx" />
 <File Path="Resources\Images\save.png" Url="Resources/Images/save.png" />
+<File Path="Resources\Images\first.gif" Url="Resources/Images/first.gif" />
+<File Path="Resources\Images\last.gif" Url="Resources/Images/last.gif" />
+<File Path="Resources\Images\next.gif" Url="Resources/Images/next.gif" />
+<File Path="Resources\Images\prev.gif" Url="Resources/Images/prev.gif" />
 </Module>
 </Elements>

@@ -22,7 +22,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         /// 
         string catId = string.Empty;
-        public int i = 0;        
+        public int i = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             rptResources.ItemDataBound += new RepeaterItemEventHandler(rptResources_ItemDataBound);
@@ -48,7 +48,7 @@ namespace VP.Sharepoint.CQ.UserControls
         #region GetFileUrlOfItem
         protected string GetFileUrlOfItem(string itemId)
         {
-            string fileUrl=string.Empty;
+            string fileUrl = string.Empty;
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
                 using (var adminSite = new SPSite(CurrentWeb.Site.ID))
@@ -60,13 +60,13 @@ namespace VP.Sharepoint.CQ.UserControls
                             adminWeb.AllowUnsafeUpdates = true;
                             SPList resourcesList = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.ResourceLibrary);
                             SPListItem item = resourcesList.GetItemById(Convert.ToInt32(itemId));
-                            if (item!=null)
+                            if (item != null)
                             {
                                 SPAttachmentCollection attachs = item.Attachments;
-                                if (attachs.Count>0)
+                                if (attachs.Count > 0)
                                 {
                                     fileUrl = attachs.UrlPrefix + attachs[0];
-                                }                                
+                                }
                             }
                         }
                         catch (Exception ex)
@@ -107,12 +107,12 @@ namespace VP.Sharepoint.CQ.UserControls
                 if (e.Item.ItemIndex % 5 == 0)
                 {
                     Literal ltrTrUP = (Literal)e.Item.FindControl("ltrTrUP");
-                    Literal ltrTrDown = (Literal)e.Item.FindControl("ltrTrDown");                    
+                    Literal ltrTrDown = (Literal)e.Item.FindControl("ltrTrDown");
                     ltrTrUP.Text = "<tr>";
-                    if (e.Item.ItemIndex>0)
+                    if (e.Item.ItemIndex > 0)
                     {
                         ltrTrDown.Text = "</tr>";
-                    }                    
+                    }
                 }
             }
         }

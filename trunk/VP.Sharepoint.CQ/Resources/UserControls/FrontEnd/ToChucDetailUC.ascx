@@ -12,6 +12,10 @@
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
 <script type="text/javascript">
+    //paging_document
+    $(document).ready(function () {
+        $('#vanbantb2443').tablePagination({});
+    });
     function showDocumentDetail(id) {
         var divId = document.getElementById(id);
         if (divId.style.display == "none")
@@ -147,6 +151,7 @@
                 </asp:Repeater>
             </tbody>
         </table>
+        <div style="clear:both;"></div>
     </div>
 </div>
 <script type="text/javascript">

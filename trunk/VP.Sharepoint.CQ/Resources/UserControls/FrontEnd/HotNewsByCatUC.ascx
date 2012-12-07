@@ -11,6 +11,21 @@
 <%@ Control Language="C#" CodeBehind="HotNewsByCatUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.HotNewsByCatUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#homehotnewsuc').pajinate({
+            nav_label_first: '<<',
+            nav_label_last: '>>',
+            nav_label_prev: '<',
+            nav_label_next: '>',
+            items_per_page: 10,
+            num_page_links_to_display: 3,
+            show_first_last: false
+        });
+    });      
+</script>
+
 <div class="mod_Corner_Right">
     <div class="bg_title_ModNews">
         <div class="title_cate_News">
@@ -18,7 +33,8 @@
                 Tin nổi bật
             </div>
         </div>
-        <div class="content_F_Right">
+        <div class="content_F_Right" id="homehotnewsuc">
+        <div class="content-paging">
             <asp:Repeater ID="rptHotNews" runat="server">
                 <ItemTemplate>
                     <div class="line_news">
@@ -33,6 +49,9 @@
                     </div>
                 </ItemTemplate>
             </asp:Repeater>            
+            </div>
+            <div class="page_navigation"></div>
+            <div class="cleaner"></div>
         </div>
     </div>
 </div>

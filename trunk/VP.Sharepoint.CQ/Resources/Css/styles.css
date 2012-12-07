@@ -1322,3 +1322,49 @@ ul.fdtablePaginater li {
 	background: url(list.png) left top no-repeat;
 	padding-left: 25px;
 	}
+/*-Paging*/
+
+#tablePagination img
+    {
+        padding: 0px 2px;
+    }
+    
+    #tablePagination_perPage
+    {
+        float: left;
+    }
+    
+    #tablePagination_paginater
+    {
+        float: right;
+    }
+    #tablePagination_rowsPerPage
+    {
+        font-size:9pt;
+        height:20px;
+    }
+    #tablePagination_currPage
+    {
+        font-size:9pt;        
+    }
+    
+.page_navigation , .alt_page_navigation{
+	padding-bottom: 10px;
+	margin:auto;
+}
+
+.page_navigation a, .alt_page_navigation a{	
+	margin:2px;
+	color:black;
+	text-decoration:none;
+	float: left;
+	background-color:#efefef;
+	width:27px;
+	font-size:11px;
+	text-align:center;
+	border:1px solid #dddddd;
+}
+.active_page{
+	background-color:white !important;
+	color:black !important;
+}

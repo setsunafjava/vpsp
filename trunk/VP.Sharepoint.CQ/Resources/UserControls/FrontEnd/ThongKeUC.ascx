@@ -10,35 +10,40 @@
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" CodeBehind="ThongKeUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.ThongKeUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#thongkeuc').pajinate({
+            nav_label_first: '<<',
+            nav_label_last: '>>',
+            nav_label_prev: '<',
+            nav_label_next: '>',
+            items_per_page: 10,
+            show_first_last: true
+        });
+    });      
+</script>
 <div class="sub_page">
     <div class="title_name_content" id="dvCatTitle" runat="server">
         Số liệu tổng quan</div>
-    <div class="content_follow">
-        <asp:Repeater ID="rptNews" runat="server">
-            <ItemTemplate>
-                <div class="typ_static">
-                    <div class="name_static">
-                        <a href="#" id="aLink" runat="server"></a></div>
-                    <div class="short_intro_static" id="dvDesc" runat="server">
+    <div class="content_follow" id="thongkeuc">
+        <div class="content-paging">
+            <asp:Repeater ID="rptNews" runat="server">
+                <ItemTemplate>
+                    <div class="typ_static">
+                        <div class="name_static">
+                            <a href="#" id="aLink" runat="server"></a>
                         </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>       
-    </div>
-    <table>
-        <tbody>
-            <tr>
-                <td>
-                    <a id="ctl00_ctl20_g_dd9bf7d6_ccaf_4e41_b3ec_5e8c21e06dc2_ctl00_lnkPrev">Trước</a>
-                </td>
-                <td>
-                    <span id="ctl00_ctl20_g_dd9bf7d6_ccaf_4e41_b3ec_5e8c21e06dc2_ctl00_lblCurrpage">Trang:
-                        1</span>
-                </td>
-                <td>
-                    <a id="ctl00_ctl20_g_dd9bf7d6_ccaf_4e41_b3ec_5e8c21e06dc2_ctl00_lnkNext">Sau</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        <div class="short_intro_static" id="dvDesc" runat="server">
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+        <div class="info_text">
+        </div>
+        <div class="page_navigation">
+        </div>
+        <div class="cleaner">
+        </div>
+        </div>
 </div>

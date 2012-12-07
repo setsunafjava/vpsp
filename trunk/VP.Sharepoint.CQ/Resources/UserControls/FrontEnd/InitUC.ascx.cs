@@ -26,6 +26,8 @@ namespace VP.Sharepoint.CQ.UserControls
             Utilities.LoadCSS(CurrentWeb, this.Page, "slidedown-menu2.css");
             Utilities.LoadJS(CurrentWeb, this.Page, "jquery-1.7.1.js");
             Utilities.LoadJS(CurrentWeb, this.Page, "tabcontent.js");
+            Utilities.LoadJS(CurrentWeb, this.Page, "jquery.pajinate.js");
+            Utilities.LoadJS(CurrentWeb, this.Page, "jquery.tablePagination.0.5.js");
             Utilities.LoadJS(CurrentWeb, this.Page, "script.js");
             Utilities.LoadJS(CurrentWeb, this.Page, "simpletreemenu.js");
             ltrIE6.Text = "<link rel=\"stylesheet\" type=\"text/css\" href='" + DocLibUrl + "/ie6.css' />";
