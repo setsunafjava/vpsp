@@ -44,8 +44,7 @@ namespace VP.Sharepoint.CQ.UserControls
                             adminWeb.AllowUnsafeUpdates = true;
                             var query = new SPQuery()
                             {
-                                Query = "<OrderBy><FieldRef Name='" + FieldsName.ImageLibrary.InternalName.Order + "' Ascending='TRUE' /></OrderBy>",
-                                RowLimit = 10
+                                Query = "<Where><Eq><FieldRef Name='DisplayStatus' /><Value Type='Choice'>Hiển thị</Value></Eq></Where><OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>",    
                             };
                             var list = Utilities.GetCustomListByUrl(adminWeb, ListsName.InternalName.ImageLibrary);
                             var items = list.GetItems(query);

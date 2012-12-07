@@ -23,7 +23,7 @@ namespace VP.Sharepoint.CQ
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ImageLibrary.InternalName.Description, FieldsName.CategoryList.DisplayName.Description));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ImageLibrary.InternalName.AlbumId, FieldsName.ImageLibrary.DisplayName.AlbumId));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ImageLibrary.InternalName.CategoryId, FieldsName.ImageLibrary.DisplayName.CategoryId));
-            helper.AddField(new NumberFieldCreator(FieldsName.ImageLibrary.InternalName.Status, FieldsName.ImageLibrary.DisplayName.Status));
+            helper.AddField(new ChoiceFieldCreator(FieldsName.ImageLibrary.InternalName.DisplayStatus, FieldsName.ImageLibrary.DisplayName.DisplayStatus) { Choices = { "Hiển thị", "Ẩn" }, EditFormat = SPChoiceFormatType.RadioButtons });
             helper.AddField(new NumberFieldCreator(FieldsName.ImageLibrary.InternalName.Order, FieldsName.ImageLibrary.DisplayName.Order));
             helper.AddField(new SingleLineTextFieldCreator(FieldsName.ImageLibrary.InternalName.FilePath, FieldsName.ImageLibrary.DisplayName.FilePath));            
             SPList list = helper.Apply();
@@ -37,6 +37,7 @@ namespace VP.Sharepoint.CQ
 
             var defaultView = list.DefaultView;
             defaultView.ViewFields.DeleteAll();
+            defaultView.Query = "<OrderBy><FieldRef Name='ID' Ascending='FALSE' /></OrderBy>";
             defaultView.RowLimit = 100;
             defaultView.ViewFields.Add(Constants.EditColumn);
             defaultView.ViewFields.Add(Constants.FieldTitleLinkToItem);

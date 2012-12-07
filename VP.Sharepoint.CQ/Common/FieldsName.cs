@@ -261,6 +261,7 @@
                 public const string CategoryId = "CategoryId";
                 public const string Description = "Description";
                 public const string Status = "Status";
+                public const string DisplayStatus = "DisplayStatus";
                 public const string Order = "Order";
                 public const string FilePath = "FilePath";
             }
@@ -272,6 +273,7 @@
                 public const string CategoryId = "Chuyên mục";
                 public const string Description = "Mô tả";
                 public const string Status = "Trạng thái";
+                public const string DisplayStatus = "Trạng thái hiển thị";
                 public const string Order = "Thứ tự";
                 public const string FilePath = "Đường dẫn file";
             }
