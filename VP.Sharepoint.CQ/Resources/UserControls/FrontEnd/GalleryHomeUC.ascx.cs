@@ -64,10 +64,10 @@ namespace VP.Sharepoint.CQ.UserControls
                                         }
                                         i++;
                                     }
-                                    imgThumb.Src = dt.Rows[0]["FileUrl"].ToString();                                    
-                                    dvTitle.InnerText = dt.Rows[0][FieldsName.ImageLibrary.InternalName.Title].ToString();
+                                    //imgThumb.Src = dt.Rows[0]["FileUrl"].ToString();                                    
+                                    //dvTitle.InnerText = dt.Rows[0][FieldsName.ImageLibrary.InternalName.Title].ToString();
 
-                                    dt.Rows.Remove(dt.Rows[0]);
+                                    //dt.Rows.Remove(dt.Rows[0]);
                                 }
                                 rptImg.DataSource = dt;
                                 rptImg.DataBind();
@@ -88,9 +88,14 @@ namespace VP.Sharepoint.CQ.UserControls
             if (e.Item.ItemType.Equals(ListItemType.Item) || e.Item.ItemType.Equals(ListItemType.AlternatingItem))
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
-                var aLink = (HtmlAnchor)e.Item.FindControl("aLink");
-                aLink.Attributes.Add("onclick", "SwitchImage('" + drv["FileUrl"] + "')");
-                aLink.InnerText = drv[FieldsName.ImageLibrary.InternalName.Title].ToString();
+                HtmlImage imgThumb = (HtmlImage)e.Item.FindControl("imgThumb");
+                HtmlGenericControl dvTitle = (HtmlGenericControl)e.Item.FindControl("dvTitle");
+                imgThumb.Src = Convert.ToString(drv["FileUrl"]);
+                dvTitle.InnerText = Convert.ToString(drv[FieldsName.ImageLibrary.InternalName.Title]);
+
+                //var aLink = (HtmlAnchor)e.Item.FindControl("aLink");
+                //aLink.Attributes.Add("onclick", "SwitchImage('" + drv["FileUrl"] + "')");
+                //aLink.InnerText = drv[FieldsName.ImageLibrary.InternalName.Title].ToString();
             }
         }
     }
