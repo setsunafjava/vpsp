@@ -615,6 +615,7 @@
     <Content Include="Resources\Images\closed.png" />
     <Content Include="Resources\Images\deanduan.gif" />
     <Content Include="Resources\Images\english.jpg" />
+    <Content Include="Resources\Images\first.gif" />
     <Content Include="Resources\Images\flowing-rock.jpg" />
     <Content Include="Resources\Images\grass-blades.jpg" />
     <Content Include="Resources\Images\hanhchinh1cua.gif" />
@@ -644,11 +645,14 @@
     <Content Include="Resources\Images\images769948_440002_2984_1924_EVE_1.jpg" />
     <Content Include="Resources\Images\images_download.jpg" />
     <Content Include="Resources\Images\info_rate.jpg" />
+    <Content Include="Resources\Images\last.gif" />
     <Content Include="Resources\Images\leftarrow.png" />
     <Content Include="Resources\Images\leftshadow.png" />
     <Content Include="Resources\Images\lichcongtac.gif" />
     <Content Include="Resources\Images\list.png" />
+    <Content Include="Resources\Images\next.gif" />
     <Content Include="Resources\Images\open.png" />
+    <Content Include="Resources\Images\prev.gif" />
     <Content Include="Resources\Images\qc_raovat.jpg" />
     <Content Include="Resources\Images\quanlycongvan.gif" />
     <Content Include="Resources\Images\rightarrow.png" />
@@ -672,6 +676,8 @@
     <Content Include="Resources\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Resources\Javascript\jquery.pajinate.js" />
+    <Content Include="Resources\Javascript\jquery.tablePagination.0.5.js" />
     <Content Include="Resources\Javascript\SCRIPT.JS" />
     <Content Include="Resources\Javascript\simpletreemenu.js" />
     <Content Include="Resources\Javascript\slider.js" />

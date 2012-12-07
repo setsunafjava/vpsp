@@ -1608,7 +1608,9 @@ namespace VP.Sharepoint.CQ.Common
             {
                 dtResult.ImportRow(dt.Rows[i]);
             }
-            return dtResult;
+            DataView dv = dtResult.DefaultView;
+            dv.Sort = "ID DESC";
+            return dv.ToTable();
         }
 
         public static string GetPageName(string catType)

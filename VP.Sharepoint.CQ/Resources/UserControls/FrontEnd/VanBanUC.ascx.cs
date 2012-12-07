@@ -139,6 +139,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 if (list != null)
                 {
                     dt = ResourceLibraryBO.GetDocumentsByCatId(spWeb, catId);
+                    dt = Utilities.GetNewsWithRowLimit(dt, 1000);
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         rptVanBan.DataSource = dt;

@@ -43,7 +43,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             DataTable dt = Utilities.GetNewsByStatus(spWeb, Constants.NewsStatus.HotNews, catId);
             //Bind repeater news slide
-            dt = Utilities.GetNewsWithRowLimit(dt, 20);
+            dt = Utilities.GetNewsWithRowLimit(dt, 1000);
             rptHotNews.DataSource = dt;
             rptHotNews.DataBind();
         }

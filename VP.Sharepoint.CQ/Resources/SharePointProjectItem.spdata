@@ -154,5 +154,11 @@
     <ProjectItemFile Source="Css\slidedown-menu2.css" Target="Resources\Css\" Type="ElementFile" />
     <ProjectItemFile Source="UserControls\BackEnd\DocumentsList.ascx" Target="Resources\UserControls\BackEnd\" Type="ElementFile" />
     <ProjectItemFile Source="Images\save.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Javascript\jquery.pajinate.js" Target="Resources\Javascript\" Type="ElementFile" />
+    <ProjectItemFile Source="Javascript\jquery.tablePagination.0.5.js" Target="Resources\Javascript\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\first.gif" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\last.gif" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\next.gif" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\prev.gif" Target="Resources\Images\" Type="ElementFile" />
   </Files>
 </ProjectItem>
