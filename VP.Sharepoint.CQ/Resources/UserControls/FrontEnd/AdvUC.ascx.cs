@@ -108,8 +108,8 @@ namespace VP.Sharepoint.CQ.UserControls
                     "advdocument".Equals(wpTitle) ||
                     "advstatistic".Equals(wpTitle))
                 {
-                    var ltrHeader = (Literal)e.Item.FindControl("ltrHeader");
-                    ltrHeader.Text = "<div class='pos_MOD'><div class='bg_title_mod'>Quảng cáo</div><div style='text-align:center; padding: 7px 0px;'>";
+                    //var ltrHeader = (Literal)e.Item.FindControl("ltrHeader");
+                    //ltrHeader.Text = "<div class='pos_MOD'><div class='bg_title_mod'>Quảng cáo</div><div style='text-align:center; padding: 7px 0px;'>";
                 }
             }
             else if (e.Item.ItemType == ListItemType.Footer)
@@ -125,8 +125,8 @@ namespace VP.Sharepoint.CQ.UserControls
                     "advdocument".Equals(wpTitle) ||
                     "advstatistic".Equals(wpTitle))
                 {
-                    var ltrFooter = (Literal)e.Item.FindControl("ltrFooter");
-                    ltrFooter.Text = "</div></div>";
+                    //var ltrFooter = (Literal)e.Item.FindControl("ltrFooter");
+                    //ltrFooter.Text = "</div></div>";
                 }
             }
         }
