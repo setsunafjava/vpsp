@@ -10,6 +10,7 @@ using VP.Sharepoint.CQ.Core.WebParts;
 using System.Web.UI.WebControls;
 using System.Web;
 using System.Data;
+using System.Web.UI.HtmlControls;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -64,11 +65,16 @@ namespace VP.Sharepoint.CQ.UserControls
                 }
                 else if ("Flash".Equals(Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvType])))
                 {
+                    HtmlGenericControl divAdv = (HtmlGenericControl)e.Item.FindControl("divAdv");
+                    divAdv.Attributes.Add("style", "height:" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvHeight]) + "px;overflow-y:hidden;");
                     ltrQC.Text = @"<embed width='" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvWidth]) +
-                        "' height='" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvHeight]) + 
-                        @"' align='middle' quality='high' wmode='transparent' allowscriptaccess='always' 
+                        "px' height='" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvHeight]) + 
+                        @"px' align='middle' quality='high' wmode='transparent' allowscriptaccess='always' 
                                         type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' alt='' 
-                                        src='" + qcFile + "' />";
+                                        src='" + qcFile + "' /><div style=\"height: " + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvHeight]) + 
+                                               "px; width: " + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvWidth])
+                                               + "px;  position: relative; z-index: 9; top: -" + Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvHeight]) +
+                                               "px; background-image: url('" + DocLibUrl + "/spacer.gif'); background-repeat:repeat;\"></div>";
                 }
                 else if ("Video".Equals(Convert.ToString(qcItem[FieldsName.AdvList.InternalName.AdvType])))
                 {
@@ -130,20 +136,21 @@ namespace VP.Sharepoint.CQ.UserControls
             if (!string.IsNullOrEmpty(((LinkButton)sender).CommandArgument))
             {
                 var qcid = Convert.ToString(((LinkButton)sender).CommandArgument);
-                var advUrl = string.Empty;
-                var advOpen = string.Empty;
-                AdvBO.UpdateAdv(CurrentWeb, ListsName.InternalName.AdvList, qcid, HttpContext.Current, ref advUrl, ref advOpen);
-                if (!string.IsNullOrEmpty(advUrl))
-                {
-                    if (!string.IsNullOrEmpty(advOpen))
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "qc-" + qcid, "window.open('" + advUrl + "');", true);
-                    }
-                    else
-                    {
-                        HttpContext.Current.Response.Redirect(advUrl);
-                    }
-                }
+                //var advUrl = string.Empty;
+                //var advOpen = string.Empty;
+                //AdvBO.UpdateAdv(CurrentWeb, ListsName.InternalName.AdvList, qcid, HttpContext.Current, ref advUrl, ref advOpen);
+                //if (!string.IsNullOrEmpty(advUrl))
+                //{
+                //    if (!string.IsNullOrEmpty(advOpen))
+                //    {
+                //        ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "qc-" + qcid, "window.open('" + advUrl + "');", true);
+                //    }
+                //    else
+                //    {
+                //        HttpContext.Current.Response.Redirect(advUrl);
+                //    }
+                //}
+                SetQC(qcid);
             }
         }
 
@@ -156,7 +163,7 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 if (!string.IsNullOrEmpty(advOpen))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "qc-" + qcid, "window.open('" + advUrl + "');", true);
+                    ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "qc-" + qcid, "window.open('" + advUrl + "','" + Utilities.GetPreByTime(DateTime.Now) + "_window');", true);
                 }
                 else
                 {

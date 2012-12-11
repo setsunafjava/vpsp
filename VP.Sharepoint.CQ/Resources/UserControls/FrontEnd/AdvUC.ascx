@@ -12,7 +12,7 @@
 <asp:Repeater ID="rptAdv" runat="server">
     <HeaderTemplate><asp:Literal ID="ltrHeader" runat="server"></asp:Literal></HeaderTemplate>
     <ItemTemplate>
-        <div>
+        <div runat="server" id="divAdv">
             <asp:LinkButton ID="aLink" runat="server">
                 <asp:Literal ID="ltrQC" runat="server"></asp:Literal></asp:LinkButton>
         </div>
