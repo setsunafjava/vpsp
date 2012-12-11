@@ -10,6 +10,9 @@
 <%@ Control Language="C#" CodeBehind="SoDoToChucUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.SoDoToChucUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
+
+
+
 <div class="mod_Corner_Right">
     <div class="bg_title_ModNews">
         <div class="title_cate_News">

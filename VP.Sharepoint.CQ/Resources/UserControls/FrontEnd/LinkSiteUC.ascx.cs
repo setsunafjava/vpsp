@@ -23,6 +23,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (!Page.IsPostBack)
             {
+                lbWebURL.Width = 200;
                 BindDropDownList();
             }
         }
@@ -48,13 +49,13 @@ namespace VP.Sharepoint.CQ.UserControls
                             DataTable dt = items.GetDataTable();
                             if (dt != null && dt.Rows.Count > 0)
                             {
-                                ddlWebURL.DataSource = dt;
-                                ddlWebURL.DataTextField = FieldsName.WebsiteLink.InternalName.Title;
-                                ddlWebURL.DataValueField = FieldsName.WebsiteLink.InternalName.WebURL;
-                                ddlWebURL.DataBind();
+                                lbWebURL.DataSource = dt;
+                                lbWebURL.DataTextField = FieldsName.WebsiteLink.InternalName.Title;
+                                lbWebURL.DataValueField = FieldsName.WebsiteLink.InternalName.WebURL;
+                                lbWebURL.DataBind();
                             }
-                            ddlWebURL.Items.Insert(0, new ListItem("--Liên kết website--", string.Empty));
-                            ddlWebURL.Attributes.Add("onchange", string.Format("RedirectURL('{0}')",ddlWebURL.ClientID));
+                            //lbWebURL.Items.Insert(0, new ListItem("--Liên kết website--", string.Empty));
+                            lbWebURL.Attributes.Add("onclick", string.Format("RedirectURL('{0}')", lbWebURL.ClientID));
                         }
                         catch (SPException ex)
                         {

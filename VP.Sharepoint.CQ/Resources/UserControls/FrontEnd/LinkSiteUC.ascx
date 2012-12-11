@@ -15,7 +15,7 @@
         Liên kết website</div>
     <div class="inner_pos_Mod">
         <div class="link_website">
-            <asp:DropDownList ID="ddlWebURL" runat="server" CssClass="txt_s" style="width:190px"></asp:DropDownList>           
+            <asp:ListBox ID="lbWebURL" runat="server" CssClass="txt_s"></asp:ListBox>           
         </div>
     </div>
 </div>

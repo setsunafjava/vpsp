@@ -13,13 +13,13 @@ namespace VP.Sharepoint.CQ.UserControls {
     public partial class LinkSiteUC {
         
         /// <summary>
-        /// ddlWebURL control.
+        /// lbWebURL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWebURL;
+        protected global::System.Web.UI.WebControls.ListBox lbWebURL;
         
         /// <summary>
         /// ltrScript control.
