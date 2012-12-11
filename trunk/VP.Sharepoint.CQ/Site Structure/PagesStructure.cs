@@ -43,7 +43,7 @@ namespace VP.Sharepoint.CQ
             //right-left-home
             AddUserControlToPage(web, Constants.DefaultPage, "knowledgehome", "HomeNewsRightUC", 0, "KnowledgeHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "linksitehome", "HomeNewsRightUC", 1, "LinkSiteUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "loginhome", "HomeNewsRightUC", 2, "LoginHomeUC");
+            //AddUserControlToPage(web, Constants.DefaultPage, "loginhome", "HomeNewsRightUC", 2, "LoginHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "advhomecenter", "HomeNewsRightUC", 3, "AdvUC");
             //right-home
             AddUserControlToPage(web, Constants.DefaultPage, "latestdocshome", "RightHomeUC", 0, "LatestDocsUC");

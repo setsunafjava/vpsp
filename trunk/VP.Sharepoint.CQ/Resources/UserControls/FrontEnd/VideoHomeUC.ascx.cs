@@ -104,6 +104,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 var aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.HRef = "javascript:void(0)";
                 aLink.Title = Convert.ToString(drv["Title"]);
+                aLink.InnerText = aLink.Title;
                 var tvCode = "<embed flashvars=\"file=" + Convert.ToString(drv["FileUrl"]) + "&image=" + Convert.ToString(drv["ImageUrl"]) + "&autostart=false\" allowfullscreen=\"true\" allowscripaccess=\"always\" id=\"qn-video-div-player\" name=\"qn-video-div-player\" src=\"" + WebUrl + "/ResourcesList/player.swf\" width=\"286\" />";
                 tvCode = tvCode.Replace("\r\n", "");
                 tvCode = tvCode.Replace("\n", "");

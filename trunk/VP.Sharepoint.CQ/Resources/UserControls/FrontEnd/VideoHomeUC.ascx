@@ -25,7 +25,7 @@
                 <asp:Literal ID="ltrVideo" runat="server"></asp:Literal>
            </div>
            <asp:Repeater ID="rptVideo" runat="server">
-                <HeaderTemplate><div class="list_video"><ul></HeaderTemplate>
+                <HeaderTemplate><div class="list_video" style="height:100px; overflow-y:scroll;"><ul></HeaderTemplate>
                 <ItemTemplate><li><a runat="server" id="aLink"></a></li></ItemTemplate>
 				<FooterTemplate></ul></div></FooterTemplate>
 			</asp:Repeater>

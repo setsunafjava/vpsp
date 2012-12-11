@@ -319,7 +319,7 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
 
                         </td>
                     </tr>
-                    <%--<tr>
+                    <tr>
                         <td>
                             SBJ
                         </td>
@@ -333,7 +333,7 @@ function (name, value) { if (queryString.length > 0) { queryString += "&"; } que
                             <script type="text/javascript">                                document.write(vGoldSbjSell);</script>
 
                         </td>
-                    </tr>--%>
+                    </tr>
                     <tr>
                         <th>
                             Ngoại tệ
