@@ -7,14 +7,24 @@
 <%@ Register TagPrefix="asp" Namespace="System.Web.UI" Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" %>
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages"
     Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<%@ Control Language="C#" CodeBehind="ToChucDetailUC.ascx.cs"
-    Inherits="VP.Sharepoint.CQ.UserControls.ToChucDetailUC" %>
+<%@ Control Language="C#" CodeBehind="ToChucDetailUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.ToChucDetailUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-
 <script type="text/javascript">
-    //paging_document
+    //paging
     $(document).ready(function () {
+        // document paging
         $('#vanbantb2443').tablePagination({});
+        // news paging
+        $('#tochuc_paging').pajinate({
+            nav_label_first: '<<',
+            nav_label_last: '>>',
+            nav_label_prev: '<',
+            nav_label_next: '>',
+            items_per_page: 10,
+            num_page_links_to_display: 20,
+            show_first_last: true
+        });
+
     });
     function showDocumentDetail(id) {
         var divId = document.getElementById(id);
@@ -22,9 +32,8 @@
             divId.style.display = "block";
         else
             divId.style.display = "none";
-    }
+    }    
 </script>
-
 <div class="sub_page">
     <div runat="server" id="divName" class="title_name_content">
         lãnh đạo sở</div>
@@ -53,7 +62,8 @@
                                 <ItemTemplate>
                                     <p>
                                         <font size="2" face="Arial"><strong><u>
-                                            <asp:Literal ID="ltrPosition" runat="server"></asp:Literal></u>:&nbsp;&nbsp;<asp:Literal ID="ltrTitle" runat="server"></asp:Literal></strong></font></p>
+                                            <asp:Literal ID="ltrPosition" runat="server"></asp:Literal></u>:&nbsp;&nbsp;<asp:Literal
+                                                ID="ltrTitle" runat="server"></asp:Literal></strong></font></p>
                                     <ul type="disc">
                                         <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto;
                                             mso-list: l0 level1 lfo1; tab-stops: list .5in"><span style="font-size: 10.0pt; font-family: Arial">
@@ -64,7 +74,8 @@
                                         <li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto;
                                             mso-list: l0 level1 lfo1; tab-stops: list .5in"><span new="" times="" style="font-size: 10.0pt;
                                                 font-family: Arial; mso-fareast-font-family: ">- Email: <u>
-                                                    <asp:Literal ID="ltrEmail" runat="server"></asp:Literal></u>&nbsp;&nbsp; </span></li>
+                                                    <asp:Literal ID="ltrEmail" runat="server"></asp:Literal></u>&nbsp;&nbsp;
+                                            </span></li>
                                     </ul>
                                 </ItemTemplate>
                             </asp:Repeater>
@@ -77,31 +88,35 @@
     <br />
     <div class="title_name_content">
         Tin hoạt động</div>
-    <div class="content_follow">
-        <asp:Repeater ID="rptListNews" runat="server">
-            <ItemTemplate>
-                <div class="news_artical">
-                    <div class="name_artical">
-                        <a id="aLink" runat="server"></a>
-                        <span class="time_update" id="spDate" runat="server"></span>
-                    </div>
-                    <div class="img_thumbail_shortcontent">
-                        <div class="img_thumbail">
-                            <a id="aImg" runat="server">
-                                <img id="imgNews" runat="server" /></div>
-                        </a>
-                        <div class="short_content" id="dvDesc" runat="server">
-                            Giáo dục bắt buộc ở Anh bắt đầu vào bậc tiểu học lúc 5 tuổi. Học sinh tiểu học sẽ
-                            học từ năm nhất lên đến năm thứ sáu mà không phải qua một kỳ thi nào, tuy nhiên
-                            sẽ có cuộc kiểm tra khả năng học sinh khi lên 7 tuổi. Học sinh được chú trọng vào
-                            việc học bằng cách tự khám phá hơn là học thuộc lòng.
+    <div class="content_follow" id="tochuc_paging">
+        <div class="content-paging">
+            <asp:Repeater ID="rptListNews" runat="server">
+                <ItemTemplate>
+                    <div class="news_artical">
+                        <div class="name_artical">
+                            <a id="aLink" runat="server"></a><span class="time_update" id="spDate" runat="server">
+                            </span>
                         </div>
-                        <div class="cleaner">
+                        <div class="img_thumbail_shortcontent">
+                            <div class="img_thumbail">
+                                <a id="aImg" runat="server">
+                                    <img id="imgNews" runat="server" /></div>
+                            </a>
+                            <div class="short_content" id="dvDesc" runat="server">
+                                Giáo dục bắt buộc ở Anh bắt đầu vào bậc tiểu học lúc 5 tuổi. Học sinh tiểu học sẽ
+                                học từ năm nhất lên đến năm thứ sáu mà không phải qua một kỳ thi nào, tuy nhiên
+                                sẽ có cuộc kiểm tra khả năng học sinh khi lên 7 tuổi. Học sinh được chú trọng vào
+                                việc học bằng cách tự khám phá hơn là học thuộc lòng.
+                            </div>
+                            <div class="cleaner">
+                            </div>
                         </div>
                     </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
+        <div class="page_navigation"></div>
+        <div class="cleaner"></div>
     </div>
     <br />
     <div class="title_name_content">
@@ -134,24 +149,31 @@
                                     <asp:Literal ID="ltrTitle" runat="server"></asp:Literal>
                                 </a>
                                 <asp:Literal ID="ltrDivHead" runat="server"></asp:Literal>
-                                    <b>Cơ quan ban hành:</b> <asp:Literal ID="ltrCQ" runat="server"></asp:Literal><br/>
-                                    <b>Loại văn bản:</b> <asp:Literal ID="ltrLoaiVB" runat="server"></asp:Literal><br/>
-                                    <b>Lĩnh vực:</b> <asp:Literal ID="ltrLinhVuc" runat="server"></asp:Literal><br/>
-                                    <b>Người ký:</b> <asp:Literal ID="ltrNguoiKy" runat="server"></asp:Literal><br/>
-                                    <b>Ngày hiệu lực:</b> <asp:Literal ID="ltrNgayHieuLuc" runat="server"></asp:Literal><br/>
-                                    <b>Ngày hết hiệu lực:</b> <asp:Literal ID="lblNgayHetHieuLuc" runat="server"></asp:Literal><br/>
-                                    <b>Tải về:</b><asp:ImageButton id="imgDownload" runat="server"  /></<br/>                               
+                                <b>Cơ quan ban hành:</b>
+                                <asp:Literal ID="ltrCQ" runat="server"></asp:Literal><br />
+                                <b>Loại văn bản:</b>
+                                <asp:Literal ID="ltrLoaiVB" runat="server"></asp:Literal><br />
+                                <b>Lĩnh vực:</b>
+                                <asp:Literal ID="ltrLinhVuc" runat="server"></asp:Literal><br />
+                                <b>Người ký:</b>
+                                <asp:Literal ID="ltrNguoiKy" runat="server"></asp:Literal><br />
+                                <b>Ngày hiệu lực:</b>
+                                <asp:Literal ID="ltrNgayHieuLuc" runat="server"></asp:Literal><br />
+                                <b>Ngày hết hiệu lực:</b>
+                                <asp:Literal ID="lblNgayHetHieuLuc" runat="server"></asp:Literal><br />
+                                <b>Tải về:</b><asp:ImageButton ID="imgDownload" runat="server" /></<br />
                                 <asp:Literal ID="ltrDivBottom" runat="server"></asp:Literal>
                             </td>
                             <td valign="top">
-                                <asp:Literal ID="ltrNgayBanHanh" runat="server"></asp:Literal><br/>
+                                <asp:Literal ID="ltrNgayBanHanh" runat="server"></asp:Literal><br />
                             </td>
-                        </tr>     
+                        </tr>
                     </ItemTemplate>
                 </asp:Repeater>
             </tbody>
         </table>
-        <div style="clear:both;"></div>
+        <div style="clear: both;">
+        </div>
     </div>
 </div>
 <script type="text/javascript">

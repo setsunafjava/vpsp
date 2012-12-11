@@ -54,7 +54,7 @@ namespace VP.Sharepoint.CQ.UserControls
         protected void BindRepeater(string catId)
         {
             DataTable dt = NewsBO.GetNewsByCatId(CurrentWeb, catId);
-            dt = Utilities.GetNewsWithRowLimit(dt, 10);
+            dt = Utilities.GetNewsWithRowLimit(dt, 1000);
             rptListNews.DataSource = dt;
             rptListNews.DataBind();
         }
