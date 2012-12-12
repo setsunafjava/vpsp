@@ -51,10 +51,10 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.DefaultPage, "IconLinkUC", "RightHomeUC", 22, "IconLinkUC");
             AddUserControlToPage(web, Constants.DefaultPage, "VideoHomeUC", "RightHomeUC", 33, "VideoHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "HomeHotNewsUC", "RightHomeUC", 44, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "advhomeright", "RightHomeUC", 55, "AdvUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "advhomeright", "RightHomeUC", 99, "AdvUC");
             AddUserControlToPage(web, Constants.DefaultPage, "GalleryHomeUC", "RightHomeUC", 66, "GalleryHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "boxgiaitri", "RightHomeUC", 77, "ListCatsHomeUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "HitCountUC", "RightHomeUC", 88, "HitCountUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "HitCountUC", "RightHomeUC", 111, "HitCountUC");
             //footer
             AddUserControlToPage(web, Constants.DefaultPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.DefaultPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -67,12 +67,12 @@ namespace VP.Sharepoint.CQ
 
             AddUserControlToPage(web, Constants.NewsPage, "ListNewsByCatUC", "LeftUC", 0, "ListNewsByCatUC");
 
-            AddUserControlToPage(web, Constants.NewsPage, "HotNewsByCatUC", "RightUC", 0, "HotNewsByCatUC");
-            AddUserControlToPage(web, Constants.NewsPage, "latestdocshome", "RightUC", 1, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.NewsPage, "EmailBoxUC", "RightUC", 2, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.NewsPage, "IconLinkUC", "RightUC", 3, "IconLinkUC");
-            AddUserControlToPage(web, Constants.NewsPage, "advnews", "RightUC", 4, "AdvUC");
-            AddUserControlToPage(web, Constants.NewsPage, "HitCountUC", "RightUC", 5, "HitCountUC");
+            AddUserControlToPage(web, Constants.NewsPage, "HotNewsByCatUC", "RightUC", 11, "HotNewsByCatUC");
+            AddUserControlToPage(web, Constants.NewsPage, "latestdocshome", "RightUC", 0, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.NewsPage, "EmailBoxUC", "RightUC", 22, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.NewsPage, "IconLinkUC", "RightUC", 33, "IconLinkUC");
+            AddUserControlToPage(web, Constants.NewsPage, "advnews", "RightUC", 44, "AdvUC");
+            AddUserControlToPage(web, Constants.NewsPage, "HitCountUC", "RightUC", 55, "HitCountUC");
 
             AddUserControlToPage(web, Constants.NewsPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.NewsPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -86,12 +86,12 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.NewsDetailPage, "NewsDetailUC", "LeftUC", 0, "NewsDetailUC");
             AddUserControlToPage(web, Constants.NewsDetailPage, "OtherNewsUC", "LeftUC", 1, "OtherNewsUC");
 
-            AddUserControlToPage(web, Constants.NewsDetailPage, "HotNewsByCatUC", "RightUC", 0, "HotNewsByCatUC");
-            AddUserControlToPage(web, Constants.NewsDetailPage, "latestdocshome", "RightUC", 1, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.NewsDetailPage, "EmailBoxUC", "RightUC", 2, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.NewsDetailPage, "IconLinkUC", "RightUC", 3, "IconLinkUC");
-            AddUserControlToPage(web, Constants.NewsDetailPage, "advnewsdetail", "RightUC", 4, "AdvUC");
-            AddUserControlToPage(web, Constants.NewsDetailPage, "HitCountUC", "RightUC", 5, "HitCountUC");
+            AddUserControlToPage(web, Constants.NewsDetailPage, "HotNewsByCatUC", "RightUC", 11, "HotNewsByCatUC");
+            AddUserControlToPage(web, Constants.NewsDetailPage, "latestdocshome", "RightUC", 0, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.NewsDetailPage, "EmailBoxUC", "RightUC", 22, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.NewsDetailPage, "IconLinkUC", "RightUC", 33, "IconLinkUC");
+            AddUserControlToPage(web, Constants.NewsDetailPage, "advnewsdetail", "RightUC", 44, "AdvUC");
+            AddUserControlToPage(web, Constants.NewsDetailPage, "HitCountUC", "RightUC", 55, "HitCountUC");
 
             AddUserControlToPage(web, Constants.NewsDetailPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.NewsDetailPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -105,12 +105,12 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.OrganizationPage, "ToChucDetailUC", "LeftUC", 0, "ToChucDetailUC");
 
             AddUserControlToPage(web, Constants.OrganizationPage, "SoDoToChucUC", "RightUC", 0, "SoDoToChucUC");
-            AddUserControlToPage(web, Constants.OrganizationPage, "HomeHotNewsUC", "RightUC", 1, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.OrganizationPage, "latestdocshome", "RightUC", 2, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.OrganizationPage, "EmailBoxUC", "RightUC", 3, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.OrganizationPage, "IconLinkUC", "RightUC", 4, "IconLinkUC");
-            AddUserControlToPage(web, Constants.OrganizationPage, "advorganization", "RightUC", 5, "AdvUC");
-            AddUserControlToPage(web, Constants.OrganizationPage, "HitCountUC", "RightUC", 6, "HitCountUC");
+            AddUserControlToPage(web, Constants.OrganizationPage, "HomeHotNewsUC", "RightUC", 22, "HomeHotNewsUC");
+            AddUserControlToPage(web, Constants.OrganizationPage, "latestdocshome", "RightUC", 11, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.OrganizationPage, "EmailBoxUC", "RightUC", 33, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.OrganizationPage, "IconLinkUC", "RightUC", 44, "IconLinkUC");
+            AddUserControlToPage(web, Constants.OrganizationPage, "advorganization", "RightUC", 55, "AdvUC");
+            AddUserControlToPage(web, Constants.OrganizationPage, "HitCountUC", "RightUC", 66, "HitCountUC");
 
             AddUserControlToPage(web, Constants.OrganizationPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.OrganizationPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -124,12 +124,12 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.LibraryPage, "FilesByFolderUC", "LeftUC", 0, "FilesByFolderUC");
 
             AddUserControlToPage(web, Constants.LibraryPage, "FoldersByFolderUC", "RightUC", 0, "FoldersByFolderUC");
-            AddUserControlToPage(web, Constants.LibraryPage, "HomeHotNewsUC", "RightUC", 1, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.LibraryPage, "latestdocshome", "RightUC", 2, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.LibraryPage, "EmailBoxUC", "RightUC", 3, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.LibraryPage, "IconLinkUC", "RightUC", 4, "IconLinkUC");
-            AddUserControlToPage(web, Constants.LibraryPage, "advlibrary", "RightUC", 5, "AdvUC");
-            AddUserControlToPage(web, Constants.LibraryPage, "HitCountUC", "RightUC", 6, "HitCountUC");
+            AddUserControlToPage(web, Constants.LibraryPage, "HomeHotNewsUC", "RightUC", 22, "HomeHotNewsUC");
+            AddUserControlToPage(web, Constants.LibraryPage, "latestdocshome", "RightUC", 11, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.LibraryPage, "EmailBoxUC", "RightUC", 33, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.LibraryPage, "IconLinkUC", "RightUC", 44, "IconLinkUC");
+            AddUserControlToPage(web, Constants.LibraryPage, "advlibrary", "RightUC", 55, "AdvUC");
+            AddUserControlToPage(web, Constants.LibraryPage, "HitCountUC", "RightUC", 66, "HitCountUC");
 
             AddUserControlToPage(web, Constants.LibraryPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.LibraryPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -143,12 +143,12 @@ namespace VP.Sharepoint.CQ
             AddUserControlToPage(web, Constants.LibraryDetailPage, "FileDetailUC", "LeftUC", 0, "FileDetailUC");
 
             AddUserControlToPage(web, Constants.LibraryDetailPage, "FoldersByFolderUC", "RightUC", 0, "FoldersByFolderUC");
-            AddUserControlToPage(web, Constants.LibraryDetailPage, "HomeHotNewsUC", "RightUC", 1, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.LibraryDetailPage, "latestdocshome", "RightUC", 2, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.LibraryDetailPage, "EmailBoxUC", "RightUC", 3, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.LibraryDetailPage, "IconLinkUC", "RightUC", 4, "IconLinkUC");
-            AddUserControlToPage(web, Constants.LibraryDetailPage, "advlibrarydetail", "RightUC", 5, "AdvUC");
-            AddUserControlToPage(web, Constants.LibraryDetailPage, "HitCountUC", "RightUC", 6, "HitCountUC");
+            AddUserControlToPage(web, Constants.LibraryDetailPage, "HomeHotNewsUC", "RightUC", 22, "HomeHotNewsUC");
+            AddUserControlToPage(web, Constants.LibraryDetailPage, "latestdocshome", "RightUC", 11, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.LibraryDetailPage, "EmailBoxUC", "RightUC", 33, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.LibraryDetailPage, "IconLinkUC", "RightUC", 44, "IconLinkUC");
+            AddUserControlToPage(web, Constants.LibraryDetailPage, "advlibrarydetail", "RightUC", 55, "AdvUC");
+            AddUserControlToPage(web, Constants.LibraryDetailPage, "HitCountUC", "RightUC", 66, "HitCountUC");
 
             AddUserControlToPage(web, Constants.LibraryDetailPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.LibraryDetailPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -161,12 +161,12 @@ namespace VP.Sharepoint.CQ
 
             AddUserControlToPage(web, Constants.AboutPage, "AboutUC", "LeftUC", 0, "AboutUC");
 
-            AddUserControlToPage(web, Constants.AboutPage, "HomeHotNewsUC", "RightUC", 0, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.AboutPage, "latestdocshome", "RightUC", 1, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.AboutPage, "EmailBoxUC", "RightUC", 2, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.AboutPage, "IconLinkUC", "RightUC", 3, "IconLinkUC");
-            AddUserControlToPage(web, Constants.AboutPage, "advabout", "RightUC", 4, "AdvUC");
-            AddUserControlToPage(web, Constants.AboutPage, "HitCountUC", "RightUC", 5, "HitCountUC");
+            AddUserControlToPage(web, Constants.AboutPage, "HomeHotNewsUC", "RightUC", 11, "HomeHotNewsUC");
+            AddUserControlToPage(web, Constants.AboutPage, "latestdocshome", "RightUC", 0, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.AboutPage, "EmailBoxUC", "RightUC", 22, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.AboutPage, "IconLinkUC", "RightUC", 33, "IconLinkUC");
+            AddUserControlToPage(web, Constants.AboutPage, "advabout", "RightUC", 44, "AdvUC");
+            AddUserControlToPage(web, Constants.AboutPage, "HitCountUC", "RightUC", 55, "HitCountUC");
 
             AddUserControlToPage(web, Constants.AboutPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.AboutPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -179,12 +179,12 @@ namespace VP.Sharepoint.CQ
 
             AddUserControlToPage(web, Constants.DocumentPage, "VanBanUC", "LeftUC", 0, "VanBanUC");
 
-            AddUserControlToPage(web, Constants.DocumentPage, "HomeHotNewsUC", "RightUC", 0, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.DocumentPage, "latestdocshome", "RightUC", 1, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.DocumentPage, "EmailBoxUC", "RightUC", 2, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.DocumentPage, "IconLinkUC", "RightUC", 3, "IconLinkUC");
-            AddUserControlToPage(web, Constants.DocumentPage, "advdocument", "RightUC", 4, "AdvUC");
-            AddUserControlToPage(web, Constants.DocumentPage, "HitCountUC", "RightUC", 5, "HitCountUC");
+            AddUserControlToPage(web, Constants.DocumentPage, "HomeHotNewsUC", "RightUC", 11, "HomeHotNewsUC");
+            AddUserControlToPage(web, Constants.DocumentPage, "latestdocshome", "RightUC", 0, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.DocumentPage, "EmailBoxUC", "RightUC", 22, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.DocumentPage, "IconLinkUC", "RightUC", 33, "IconLinkUC");
+            AddUserControlToPage(web, Constants.DocumentPage, "advdocument", "RightUC", 44, "AdvUC");
+            AddUserControlToPage(web, Constants.DocumentPage, "HitCountUC", "RightUC", 55, "HitCountUC");
 
             AddUserControlToPage(web, Constants.DocumentPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.DocumentPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -197,12 +197,12 @@ namespace VP.Sharepoint.CQ
 
             AddUserControlToPage(web, Constants.DocumentDetailPage, "VanBanDetailUC", "LeftUC", 0, "VanBanDetailUC");
 
-            AddUserControlToPage(web, Constants.DocumentDetailPage, "HomeHotNewsUC", "RightUC", 0, "HomeHotNewsUC");
-            AddUserControlToPage(web, Constants.DocumentDetailPage, "latestdocshome", "RightUC", 1, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.DocumentDetailPage, "EmailBoxUC", "RightUC", 2, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.DocumentDetailPage, "IconLinkUC", "RightUC", 3, "IconLinkUC");
-            AddUserControlToPage(web, Constants.DocumentDetailPage, "advlibrarydetail", "RightUC", 4, "AdvUC");
-            AddUserControlToPage(web, Constants.DocumentDetailPage, "HitCountUC", "RightUC", 5, "HitCountUC");
+            AddUserControlToPage(web, Constants.DocumentDetailPage, "HomeHotNewsUC", "RightUC", 11, "HomeHotNewsUC");
+            AddUserControlToPage(web, Constants.DocumentDetailPage, "latestdocshome", "RightUC", 0, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.DocumentDetailPage, "EmailBoxUC", "RightUC", 22, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.DocumentDetailPage, "IconLinkUC", "RightUC", 33, "IconLinkUC");
+            AddUserControlToPage(web, Constants.DocumentDetailPage, "advlibrarydetail", "RightUC", 44, "AdvUC");
+            AddUserControlToPage(web, Constants.DocumentDetailPage, "HitCountUC", "RightUC", 55, "HitCountUC");
 
             AddUserControlToPage(web, Constants.DocumentDetailPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.DocumentDetailPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");
@@ -215,12 +215,12 @@ namespace VP.Sharepoint.CQ
 
             AddUserControlToPage(web, Constants.StatisticPage, "ThongKeUC", "LeftUC", 0, "ThongKeUC");
 
-            AddUserControlToPage(web, Constants.StatisticPage, "HotNewsByCatUC", "RightUC", 0, "HotNewsByCatUC");
-            AddUserControlToPage(web, Constants.StatisticPage, "latestdocshome", "RightUC", 1, "LatestDocsUC");
-            AddUserControlToPage(web, Constants.StatisticPage, "EmailBoxUC", "RightUC", 2, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.StatisticPage, "IconLinkUC", "RightUC", 3, "IconLinkUC");
-            AddUserControlToPage(web, Constants.StatisticPage, "advstatistic", "RightUC", 4, "AdvUC");
-            AddUserControlToPage(web, Constants.StatisticPage, "HitCountUC", "RightUC", 5, "HitCountUC");
+            AddUserControlToPage(web, Constants.StatisticPage, "HotNewsByCatUC", "RightUC", 11, "HotNewsByCatUC");
+            AddUserControlToPage(web, Constants.StatisticPage, "latestdocshome", "RightUC", 0, "LatestDocsUC");
+            AddUserControlToPage(web, Constants.StatisticPage, "EmailBoxUC", "RightUC", 22, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.StatisticPage, "IconLinkUC", "RightUC", 33, "IconLinkUC");
+            AddUserControlToPage(web, Constants.StatisticPage, "advstatistic", "RightUC", 44, "AdvUC");
+            AddUserControlToPage(web, Constants.StatisticPage, "HitCountUC", "RightUC", 55, "HitCountUC");
 
             AddUserControlToPage(web, Constants.StatisticPage, "ShouldToKnowUC", "FooterUC", 0, "ShouldToKnowUC");
             AddUserControlToPage(web, Constants.StatisticPage, "BottomMenuUC", "FooterUC", 1, "BottomMenuUC");

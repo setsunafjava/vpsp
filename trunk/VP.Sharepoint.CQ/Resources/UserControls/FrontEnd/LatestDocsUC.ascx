@@ -20,7 +20,7 @@
         <div class="content_F_Right">
             <marquee direction="up" scrolldelay="50" scrollamount="1" truespeed="true" onmouseover="this.stop()"
                 onmouseout="this.start()" height="200px">
-				<ul>
+				<ul class="lates-doc">
                 <asp:Repeater ID="rptDocument" runat="server">
                     <ItemTemplate>
 					<li>

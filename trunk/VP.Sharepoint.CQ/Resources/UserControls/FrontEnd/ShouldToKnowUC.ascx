@@ -11,8 +11,8 @@
 <%@ Control Language="C#" CodeBehind="ShouldToKnowUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.ShouldToKnowUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
-<div class="contact_adv">
-    Liên hệ quảng cáo: Hotline 0904 555 888</div>
+<%--<div class="contact_adv">
+    Liên hệ quảng cáo: Hotline 0904 555 888</div>--%>
 <div class="info_more">
     <div class="bg_title_ModNews">
         <div class="title_cate_News">
