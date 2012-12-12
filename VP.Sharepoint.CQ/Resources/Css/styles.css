@@ -1368,3 +1368,7 @@ ul.fdtablePaginater li {
 	background-color:white !important;
 	color:black !important;
 }
+.lates-doc li a
+{
+    list-style-type:square;
+}
