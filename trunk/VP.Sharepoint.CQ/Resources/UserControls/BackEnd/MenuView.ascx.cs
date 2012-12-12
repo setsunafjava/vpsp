@@ -20,6 +20,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            viewMenu.RowLimit = 1000;
             if (!Page.IsPostBack)
             {
                 
