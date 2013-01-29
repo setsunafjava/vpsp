@@ -273,6 +273,7 @@ namespace VP.Sharepoint.CQ.UserControls
                             q.Query = fItem.CamlQuery;
                             SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.DocumentsList);
                             DataTable dt = list.GetItems(q).GetDataTable();
+                            dt = Utilities.GetNewsWithRowLimit(dt, 1000);
                             rptVanBan.DataSource = dt;
                             rptVanBan.DataBind();
 
