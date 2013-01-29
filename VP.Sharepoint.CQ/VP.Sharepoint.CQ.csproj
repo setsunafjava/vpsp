@@ -738,9 +738,7 @@
     <Content Include="Resources\UserControls\FrontEnd\VanBanUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\FrontEnd\ThongKeUC.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\ThongKeUC.ascx" />
     <Content Include="Resources\UserControls\FrontEnd\SoDoToChucUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>

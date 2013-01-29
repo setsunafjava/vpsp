@@ -46,7 +46,7 @@ namespace VP.Sharepoint.CQ
             helper.AddField(choiceField);
 
             var choiceFields = new MultipleChoiceFieldCreator(FieldsName.MenuList.InternalName.MenuPosition, FieldsName.MenuList.DisplayName.MenuPosition);
-            choiceFields.Choices.AddRange(new[] { "Top menu", "Footer menu" });
+            choiceFields.Choices.AddRange(new[] { "Top menu", "Footer menu", "Đơn vị" });
             helper.AddField(choiceFields);
 
             choiceField = new ChoiceFieldCreator(FieldsName.MenuList.InternalName.OpenType, FieldsName.MenuList.DisplayName.OpenType);
