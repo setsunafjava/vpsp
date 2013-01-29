@@ -17,6 +17,8 @@ namespace VP.Sharepoint.CQ.UserControls
     public partial class SoDoToChucUC : FrontEndUC
     {
         private string currentCatId = string.Empty;
+        ContainerWebPart parentWebpart;
+        SPWeb web;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -25,7 +27,7 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            var parentWebpart = this.Parent as ContainerWebPart;
+            parentWebpart = this.Parent as ContainerWebPart;            
             if ("SoDoToChucUC".Equals(parentWebpart.Title))
             {
                 rptToChuc.ItemDataBound += new RepeaterItemEventHandler(rptToChuc_ItemDataBound);
@@ -38,8 +40,9 @@ namespace VP.Sharepoint.CQ.UserControls
             }
             else if ("SoDoToChucDefaultPageUC".Equals(parentWebpart.Title))
             {
-                //By don vi to here
-                //viet ham databind khac cho phan nay
+                rptToChuc.ItemDataBound += new RepeaterItemEventHandler(rptToChuc_ItemDataBound);
+                //Bind source to menu with type is Đơn vị
+                MenuBO.BindMenu(CurrentWeb, ListsName.InternalName.MenuList, rptToChuc, "Đơn vị");
             }
         }
         #endregion
@@ -57,8 +60,16 @@ namespace VP.Sharepoint.CQ.UserControls
                 aLink.InnerText = Convert.ToString(drv["Title"]);
                 aLink.HRef = "javascript:void(0)";
                 //Bind data to submenu
-                Utilities.BindOrganizationToRpt(CurrentWeb, rptSubToChuc, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.ParentID,
-                    "Text", Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]), FieldsName.CategoryList.InternalName.Order);
+                if ("SoDoToChucUC".Equals(parentWebpart.Title))
+                {
+                    Utilities.BindOrganizationToRpt(CurrentWeb, rptSubToChuc, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.ParentID,
+                        "Text", Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]), FieldsName.CategoryList.InternalName.Order);
+                }
+                else if ("SoDoToChucDefaultPageUC".Equals(parentWebpart.Title))
+                {
+                    //Bind source to menu with type is Đơn vị                    
+                    MenuBO.BindMenu(CurrentWeb, ListsName.InternalName.MenuList, rptSubToChuc, "Đơn vị", Convert.ToString(drv["MenuID"]));
+                }
             }
         }
 
@@ -68,15 +79,23 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 DataRowView drv = (DataRowView)e.Item.DataItem;
                 Literal ltrStyle = (Literal)e.Item.FindControl("ltrStyle");
-                if (currentCatId.Equals(Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID])))
-                {
-                    ltrStyle.Text = "id='initialExpandedMenuItem' style='font-weight:bold;'";
-                }
-                //Bind data to URL
                 HtmlAnchor aLink = (HtmlAnchor)e.Item.FindControl("aLink");
                 aLink.Title = Convert.ToString(drv["Title"]);
                 aLink.InnerText = Convert.ToString(drv["Title"]);
-                aLink.HRef = WebUrl + "/" + Constants.OrganizationPage + ".aspx?CatId=" + Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]);
+                if ("SoDoToChucUC".Equals(parentWebpart.Title))
+                {
+                    if (currentCatId.Equals(Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID])))
+                    {
+                        ltrStyle.Text = "id='initialExpandedMenuItem' style='font-weight:bold;'";
+                    }
+                    //Bind data to URL
+                    aLink.HRef = WebUrl + "/" + Constants.OrganizationPage + ".aspx?CatId=" + Convert.ToString(drv[FieldsName.CategoryList.InternalName.CategoryID]);
+                }
+                else if ("SoDoToChucDefaultPageUC".Equals(parentWebpart.Title))
+                {
+                    //Bind data to URL
+                    Utilities.SetLinkMenu(CurrentWeb, Convert.ToString(drv[FieldsName.MenuList.InternalName.MenuUrl]), drv, aLink);
+                }                
             }
         }
     }
