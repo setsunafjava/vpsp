@@ -10,6 +10,7 @@ using System.Data;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Web;
+using VP.Sharepoint.CQ.Core.WebParts;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -24,12 +25,21 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            rptToChuc.ItemDataBound += new RepeaterItemEventHandler(rptToChuc_ItemDataBound);
-            currentCatId = HttpContext.Current.Request.QueryString["CatId"];
-            if (!Page.IsPostBack)
+            var parentWebpart = this.Parent as ContainerWebPart;
+            if ("SoDoToChucUC".Equals(parentWebpart.Title))
             {
-                Utilities.BindOrganizationToRpt(CurrentWeb, rptToChuc, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryLevel, 
-                    "Text", "2", FieldsName.CategoryList.InternalName.Order);
+                rptToChuc.ItemDataBound += new RepeaterItemEventHandler(rptToChuc_ItemDataBound);
+                currentCatId = HttpContext.Current.Request.QueryString["CatId"];
+                if (!Page.IsPostBack)
+                {
+                    Utilities.BindOrganizationToRpt(CurrentWeb, rptToChuc, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryLevel,
+                        "Text", "2", FieldsName.CategoryList.InternalName.Order);
+                }
+            }
+            else if ("SoDoToChucDefaultPageUC".Equals(parentWebpart.Title))
+            {
+                //By don vi to here
+                //viet ham databind khac cho phan nay
             }
         }
         #endregion

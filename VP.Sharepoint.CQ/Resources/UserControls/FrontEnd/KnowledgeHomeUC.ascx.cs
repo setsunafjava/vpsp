@@ -73,9 +73,9 @@ namespace VP.Sharepoint.CQ.UserControls
 
                 try
                 {
-                    //string Url = "http://www.vietcombank.com.vn/ExchangeRates/ExrateXML.aspx";
-                    string Url = string.Format(CultureInfo.InvariantCulture, "{0}/{1}/{2}", CurrentWeb.Url,
-                                                                ListsName.InternalName.WeatherList, "giavang.xml");
+                    string Url = "http://www.vietcombank.com.vn/ExchangeRates/ExrateXML.aspx";
+                    //string Url = string.Format(CultureInfo.InvariantCulture, "{0}/{1}/{2}", CurrentWeb.Url,
+                    //                                            ListsName.InternalName.WeatherList, "giavang.xml");
                     DataSet ds = new DataSet();
                     string currencyString = "USD SGD JPY EUR RUB";
                     ds.ReadXml(Url);
