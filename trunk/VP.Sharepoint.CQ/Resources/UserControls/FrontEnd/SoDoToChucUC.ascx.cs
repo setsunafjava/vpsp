@@ -27,9 +27,12 @@ namespace VP.Sharepoint.CQ.UserControls
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
+            divDV.Visible = false;
+            divSDTC.Visible = false;
             parentWebpart = this.Parent as ContainerWebPart;            
             if ("SoDoToChucUC".Equals(parentWebpart.Title))
             {
+                divSDTC.Visible = true;
                 rptToChuc.ItemDataBound += new RepeaterItemEventHandler(rptToChuc_ItemDataBound);
                 currentCatId = HttpContext.Current.Request.QueryString["CatId"];
                 if (!Page.IsPostBack)
@@ -40,6 +43,7 @@ namespace VP.Sharepoint.CQ.UserControls
             }
             else if ("SoDoToChucDefaultPageUC".Equals(parentWebpart.Title))
             {
+                divDV.Visible = true;
                 rptToChuc.ItemDataBound += new RepeaterItemEventHandler(rptToChuc_ItemDataBound);
                 //Bind source to menu with type is Đơn vị
                 MenuBO.BindMenu(CurrentWeb, ListsName.InternalName.MenuList, rptToChuc, "Đơn vị");
