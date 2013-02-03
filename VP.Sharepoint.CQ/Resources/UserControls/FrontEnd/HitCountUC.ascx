@@ -14,12 +14,41 @@
     <table>
         <tr>
             <td>
-                Số lượt truy cập:
+                Số đang truy cập:
+            </td>
+            <td>
+                <div id="dvBGNow" runat="server" >
+                <div style="color: #ffffff; text-align: center; position: relative; top: 9px;" id="dvHitCountNow" runat="server"></div>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Số truy cập trong ngày:
+            </td>
+            <td>
+                <div id="dvBGDay" runat="server" >
+                <div style="color: #ffffff; text-align: center; position: relative; top: 9px;" id="dvHitCountDay" runat="server"></div>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Số truy cập trong tuần:
+            </td>
+            <td>
+                <div id="dvBGWeek" runat="server" >
+                <div style="color: #ffffff; text-align: center; position: relative; top: 9px;" id="dvHitCountWeek" runat="server"></div>
+            </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Tổng số truy cập:
             </td>
             <td>
                 <div id="dvBG" runat="server" >
-                <div style="color: #ffffff; text-align: center; position: relative; top: 9px;" id="dvHitCount" runat="server">
-                    </div>
+                <div style="color: #ffffff; text-align: center; position: relative; top: 9px;" id="dvHitCount" runat="server"></div>
             </div>
             </td>
         </tr>

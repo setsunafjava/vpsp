@@ -13,8 +13,11 @@
 <div class="mod_Corner_Right">
     <div class="bg_title_ModNews">
         <div class="title_cate_News">
-            <div class="name_F_Right">
+            <div runat="server" id="divSDTC" class="name_F_Right">
                 Sơ đồ tổ chức
+            </div>
+            <div runat="server" id="divDV" class="name_F_Right">
+                Website đơn vị
             </div>
         </div>
         <div class="content_F_Right">
