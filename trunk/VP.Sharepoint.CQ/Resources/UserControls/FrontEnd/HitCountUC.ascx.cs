@@ -149,29 +149,54 @@ namespace VP.Sharepoint.CQ.UserControls
                             {
                                 Query = camlQuery,
                                 RowLimit = 1,
-                                QueryThrottleMode = SPQueryThrottleOption.Override
+                                //QueryThrottleMode = SPQueryThrottleOption.Override
                             };
                             SPQuery spQueryNow = new SPQuery
                             {
                                 Query = camlQueryNow,
-                                QueryThrottleMode = SPQueryThrottleOption.Override
+                                //QueryThrottleMode = SPQueryThrottleOption.Override
                             };
                             SPQuery spQueryDay = new SPQuery
                             {
                                 Query = camlQueryDay,
-                                QueryThrottleMode = SPQueryThrottleOption.Override
+                                //QueryThrottleMode = SPQueryThrottleOption.Override
                             };
                             SPQuery spQueryWeek = new SPQuery
                             {
                                 Query = camlQueryWeek,
-                                QueryThrottleMode = SPQueryThrottleOption.Override
+                                //QueryThrottleMode = SPQueryThrottleOption.Override
                             };
                             SPList list = Utilities.GetCustomListByUrl(web, ListsName.InternalName.StatisticsList);
+
+                            SPList listConfig = Utilities.GetCustomListByUrl(web, "AllConfigVP");
+
+                            var oldNumber = 0;
+                            if (listConfig != null)
+                            {
+                                SPQuery spQueryConfig = new SPQuery
+                                {
+                                    Query = "<Where>" +
+                                            "<Eq><FieldRef Name='Title' /><Value Type='Text'>OldNumber</Value></Eq>" +
+                                            "</Where>",
+                                    RowLimit = 1
+                                };
+                                var configItems = listConfig.GetItems(spQueryConfig);
+                                if (configItems != null && configItems.Count > 0)
+                                {
+                                    try
+                                    {
+                                        oldNumber = Convert.ToInt32(configItems[0]["Value"]);
+                                    }
+                                    catch (SPException) { }
+                                    catch (Exception){}
+                                }
+                            }
+
                             var itemCount = list.ItemCount;
-                            dvHitCount.InnerText = itemCount.ToString();
+                            dvHitCount.InnerText = (itemCount + oldNumber).ToString();
                             if (HitCountNumber == 0)
                             {
-                                HitCountNumber = itemCount;
+                                HitCountNumber = itemCount + oldNumber;
                                 dvHitCount.InnerText = HitCountNumber.ToString();
                             }
                             if (list != null)
@@ -196,19 +221,21 @@ namespace VP.Sharepoint.CQ.UserControls
                                     WeekHitCountNumber = itemsWeek.Count;
                                     dvHitCountWeek.InnerText = WeekHitCountNumber.ToString();
                                 }
-
-                                SPListItemCollection items = list.GetItems(spQuery);
-                                if (items == null || items.Count <= 0)
+                                if (itemCount <= 4900)
                                 {
-                                    HitCountNumber++;
-                                    dvHitCount.InnerText = HitCountNumber.ToString();
-                                    var item = list.AddItem();
-                                    item[FieldsName.StatisticsList.InternalName.Title] = cLoginName;
-                                    item[FieldsName.StatisticsList.InternalName.UserUrl] = cURL;
-                                    item[FieldsName.StatisticsList.InternalName.UserIP] = cIP;
-                                    item[FieldsName.StatisticsList.InternalName.UserBrowser] = cBrowser;
-                                    web.AllowUnsafeUpdates = true;
-                                    item.Update();
+                                    SPListItemCollection items = list.GetItems(spQuery);
+                                    if (items == null || items.Count <= 0)
+                                    {
+                                        HitCountNumber++;
+                                        //dvHitCount.InnerText = HitCountNumber.ToString();
+                                        var item = list.AddItem();
+                                        item[FieldsName.StatisticsList.InternalName.Title] = cLoginName;
+                                        item[FieldsName.StatisticsList.InternalName.UserUrl] = cURL;
+                                        item[FieldsName.StatisticsList.InternalName.UserIP] = cIP;
+                                        item[FieldsName.StatisticsList.InternalName.UserBrowser] = cBrowser;
+                                        web.AllowUnsafeUpdates = true;
+                                        item.Update();
+                                    }
                                 }
                             }
                         }
