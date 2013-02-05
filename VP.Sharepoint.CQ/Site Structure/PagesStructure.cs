@@ -48,11 +48,11 @@ namespace VP.Sharepoint.CQ
             //right-home
             AddUserControlToPage(web, Constants.DefaultPage, "latestdocshome", "RightHomeUC", 0, "LatestDocsUC");
 
-            AddUserControlToPage(web, Constants.DefaultPage, "SoDoToChucDefaultPageUC", "RightHomeUC", 55, "SoDoToChucUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "SoDoToChucDefaultPageUC", "RightHomeUC", 33, "SoDoToChucUC");
 
-            AddUserControlToPage(web, Constants.DefaultPage, "EmailBoxUC", "RightHomeUC", 111, "EmailBoxUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "IconLinkUC", "RightHomeUC", 222, "IconLinkUC");
-            AddUserControlToPage(web, Constants.DefaultPage, "VideoHomeUC", "RightHomeUC", 333, "VideoHomeUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "EmailBoxUC", "RightHomeUC", 11, "EmailBoxUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "IconLinkUC", "RightHomeUC", 22, "IconLinkUC");
+            AddUserControlToPage(web, Constants.DefaultPage, "VideoHomeUC", "RightHomeUC", 44, "VideoHomeUC");
             AddUserControlToPage(web, Constants.DefaultPage, "HomeHotNewsUC", "RightHomeUC", 444, "HomeHotNewsUC");
             AddUserControlToPage(web, Constants.DefaultPage, "advhomeright", "RightHomeUC", 999, "AdvUC");
             AddUserControlToPage(web, Constants.DefaultPage, "GalleryHomeUC", "RightHomeUC", 666, "GalleryHomeUC");
