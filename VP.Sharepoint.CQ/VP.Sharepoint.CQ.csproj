@@ -739,9 +739,7 @@
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="Resources\UserControls\FrontEnd\ThongKeUC.ascx" />
-    <Content Include="Resources\UserControls\FrontEnd\SoDoToChucUC.ascx">
-      <SubType>ASPXCodeBehind</SubType>
-    </Content>
+    <Content Include="Resources\UserControls\FrontEnd\SoDoToChucUC.ascx" />
     <Content Include="Resources\UserControls\FrontEnd\ToChucDetailUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
