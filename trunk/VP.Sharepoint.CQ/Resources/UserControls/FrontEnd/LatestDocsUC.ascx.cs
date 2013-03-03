@@ -80,6 +80,7 @@ namespace VP.Sharepoint.CQ.UserControls
                         //aLinkHref.HRef = "../" + drv[FieldsName.DocumentsList.InternalName.FilePath];
                         aLinkHref.Attributes.Add("onclick", "DownloadFile('" + drv[FieldsName.DocumentsList.InternalName.FilePath] + "')");
                         aLinkHref.InnerText = drv[FieldsName.DocumentsList.InternalName.Title].ToString();
+                        aLinkHref.Attributes.Add("style", string.Format("background:url('{0}/icon_line_news.jpg') no-repeat scroll left center transparent; padding-left:10px;margin-top:-1px;", DocLibUrl));
                     }  
                 }
                 catch (Exception ex)
