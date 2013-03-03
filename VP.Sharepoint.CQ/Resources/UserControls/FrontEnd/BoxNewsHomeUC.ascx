@@ -23,7 +23,7 @@
                     <ItemTemplate>                    
                        <asp:Literal ID="ltrDivHead" runat="server"></asp:Literal>                       
                             <div class="inside">
-                                <a id="aImg" runat="server"><img id="imgNews" runat="server"  alt="picture" /></a>
+                                <a id="aImg" runat="server"><img id="imgNews" runat="server"  alt="picture"  /></a>
                                 <a id="aLink" runat="server"></a>
                             </div>
                        <asp:Literal ID="ltrDivBottom" runat="server"></asp:Literal>
