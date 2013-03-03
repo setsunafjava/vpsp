@@ -17,7 +17,7 @@
             nav_label_last: '>>',
             nav_label_prev: '<',
             nav_label_next: '>',
-            items_per_page: 5,
+            items_per_page: 10,
             show_first_last: false
         });
     });      

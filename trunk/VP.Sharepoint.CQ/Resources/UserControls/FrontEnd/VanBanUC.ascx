@@ -14,7 +14,8 @@
 
     //paging_document
     $(document).ready(function () {
-        $('#vanbantb2443').tablePagination({});
+        $('#vanbantb2443').tablePagination({
+        });
     });
 
     function showDocumentDetail(id) {

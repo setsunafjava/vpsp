@@ -34,9 +34,9 @@
 			prevArrow: (new Image()).src = "./ResourcesList/prev.gif",
 			lastArrow: (new Image()).src = "./ResourcesList/last.gif",
 			nextArrow: (new Image()).src = "./ResourcesList/next.gif",
-			rowsPerPage : 10,
+			rowsPerPage : 30,
 			currPage : 1,
-			optionsForRows : [10,30,50],
+			optionsForRows : [30,50],
 			ignoreRows : [],
 			topNav : false
 		};  
