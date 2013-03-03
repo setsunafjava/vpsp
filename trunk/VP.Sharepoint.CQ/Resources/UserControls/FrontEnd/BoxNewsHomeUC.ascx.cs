@@ -54,7 +54,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 HtmlImage imgNews = (HtmlImage)e.Item.FindControl("imgNews");
                 Literal ltrDivHead = (Literal)e.Item.FindControl("ltrDivHead");
                 Literal ltrDivBottom = (Literal)e.Item.FindControl("ltrDivBottom");
-
+                imgNews.Height = 100;
                 ltrDivHead.Text = "<div class=\"panel\" id='panel_"+e.Item.ItemIndex+"' >";
                 
                 aImg.HRef = string.Format("../newsdetail.aspx?ID={0}&CatId={1}", drv["ID"], drv[FieldsName.NewsList.InternalName.NewsGroup]);

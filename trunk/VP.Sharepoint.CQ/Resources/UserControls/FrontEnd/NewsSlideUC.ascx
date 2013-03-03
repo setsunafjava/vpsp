@@ -11,6 +11,13 @@
 <%@ Control Language="C#" CodeBehind="NewsSlideUC.ascx.cs"
     Inherits="VP.Sharepoint.CQ.UserControls.NewsSlideUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>    
+
+<style type="text/css">
+.shadetabs li a:hover
+{
+	background-color:#0487F0;
+}
+</style>
 <div class="hot_news-content">
     <div class="artical_hottest">
         <!-------------Home News------------------------>
