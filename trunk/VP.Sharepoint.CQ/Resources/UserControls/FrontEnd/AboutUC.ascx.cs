@@ -30,13 +30,14 @@ namespace VP.Sharepoint.CQ.UserControls
                     {
                         catId = Convert.ToString(Page.Request.QueryString["CatId"]);
                     }
+                    dvCatTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, catId, "Text", FieldsName.CategoryList.InternalName.Title);
 
                     DataTable dt = NewsBO.GetNewsByCatId(CurrentWeb, catId);
                     dt = Utilities.GetNewsWithRowLimit(dt, 1);
 
                     if (dt != null && dt.Rows.Count > 0)
                     {
-                        dvCatTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, Convert.ToString(dt.Rows[0][FieldsName.NewsList.InternalName.NewsGroup]), "Text", FieldsName.CategoryList.InternalName.Title);
+                        //dvCatTitle.InnerText = Utilities.GetValueByField(CurrentWeb, ListsName.InternalName.CategoryList, FieldsName.CategoryList.InternalName.CategoryID, Convert.ToString(dt.Rows[0][FieldsName.NewsList.InternalName.NewsGroup]), "Text", FieldsName.CategoryList.InternalName.Title);
                         dvContent.InnerHtml = Convert.ToString(dt.Rows[0][FieldsName.NewsList.InternalName.Content]);
                     }
                 }
