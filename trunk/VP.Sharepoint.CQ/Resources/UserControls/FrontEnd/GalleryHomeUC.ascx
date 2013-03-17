@@ -11,6 +11,10 @@
 <%@ Control Language="C#" CodeBehind="GalleryHomeUC.ascx.cs" Inherits="VP.Sharepoint.CQ.UserControls.GalleryHomeUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <style type="text/css">
+    .inner_pos_Mod
+    {
+    	height:425px;
+    }
     #slideshowImage
     {        
         position: relative;
@@ -28,13 +32,12 @@
     <div class="bg_title_mod">
         Thư viện ảnh</div>
     <div class="inner_pos_Mod">
-        <div class="img_adv_right_corner">
-            <%--<img id="imgThumb" runat="server" width="289" alt="" />--%>
+        <div class="img_adv_right_corner">            
             <div id="slideshowImage">
                 <asp:Repeater ID="rptImg" runat="server">
                     <ItemTemplate>
                         <div>
-                            <img id="imgThumb" runat="server" width="289" height="289" alt="" />
+                            <img id="imgThumb" runat="server" width="289" alt="" />
                             <div style="text-align: center; padding-top: 5px; color: #0000FF;" id="dvTitle" runat="server">
                                 Ảnh sân vận động thể thao</div>
                         </div>
