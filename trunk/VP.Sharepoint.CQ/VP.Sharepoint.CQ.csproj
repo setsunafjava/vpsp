@@ -802,7 +802,9 @@
     <Content Include="Resources\UserControls\FrontEnd\NewsSlideUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="Resources\UserControls\FrontEnd\TopMenuUC.ascx" />
+    <Content Include="Resources\UserControls\FrontEnd\TopMenuUC.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="Resources\UserControls\FrontEnd\HeaderUC.ascx" />
     <Content Include="Resources\UserControls\FrontEnd\ListCatsHomeUC.ascx">
       <SubType>ASPXCodeBehind</SubType>
