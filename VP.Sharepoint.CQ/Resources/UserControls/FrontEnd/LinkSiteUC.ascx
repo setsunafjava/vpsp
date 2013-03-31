@@ -15,7 +15,7 @@
         Liên kết website</div>
     <div class="inner_pos_Mod">
         <div class="link_website">
-            <asp:ListBox ID="lbWebURL" runat="server" CssClass="txt_s"></asp:ListBox>           
+            <asp:ListBox ID="lbWebURL" runat="server" CssClass="txt_s" Rows="5"></asp:ListBox>
         </div>
     </div>
 </div>

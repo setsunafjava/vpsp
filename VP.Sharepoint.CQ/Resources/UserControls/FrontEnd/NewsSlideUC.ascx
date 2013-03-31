@@ -15,7 +15,7 @@
 <style type="text/css">
 .shadetabs li a:hover
 {
-	background-color:#0487F0;
+	color:#0487F0;
 }
 </style>
 <div class="hot_news-content">
