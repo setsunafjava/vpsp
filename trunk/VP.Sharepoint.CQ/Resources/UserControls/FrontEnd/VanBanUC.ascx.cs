@@ -139,7 +139,7 @@ namespace VP.Sharepoint.CQ.UserControls
                 if (list != null)
                 {
                     dt = ResourceLibraryBO.GetDocumentsByCatId(spWeb, catId);
-                    dt = Utilities.GetNewsWithRowLimit(dt, 1000);
+                    dt = VanBanOrder(dt);
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         rptVanBan.DataSource = dt;
@@ -273,7 +273,7 @@ namespace VP.Sharepoint.CQ.UserControls
                             q.Query = fItem.CamlQuery;
                             SPList list = Utilities.GetCustomListByUrl(CurrentWeb, ListsName.InternalName.DocumentsList);
                             DataTable dt = list.GetItems(q).GetDataTable();
-                            dt = Utilities.GetNewsWithRowLimit(dt, 1000);
+                            dt = VanBanOrder(dt);
                             rptVanBan.DataSource = dt;
                             rptVanBan.DataBind();
 
@@ -288,6 +288,13 @@ namespace VP.Sharepoint.CQ.UserControls
         }
         #endregion
 
+        protected DataTable VanBanOrder(DataTable dt)
+        {            
+            if (dt == null) return null;                        
+            DataView dv = dt.DefaultView;
+            dv.Sort = string.Format("{0} DESC", FieldsName.DocumentsList.InternalName.EffectedDate);
+            return dv.ToTable();
+        }
     }
     #region Dynamic calm query building
     public class FilterItem

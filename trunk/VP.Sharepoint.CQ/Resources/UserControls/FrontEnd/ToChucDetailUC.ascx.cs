@@ -94,7 +94,7 @@ namespace VP.Sharepoint.CQ.UserControls
             try
             {                
                 DataTable dt = ResourceLibraryBO.GetDocumentsByCatId(spWeb, catId);
-                dt = Utilities.GetNewsWithRowLimit(dt, 1000);
+                dt = VanBanOrder(dt);
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     rptVanBan.DataSource = dt;
@@ -166,6 +166,14 @@ namespace VP.Sharepoint.CQ.UserControls
                 ltrMobile.Text = Convert.ToString(drv["Mobile"]);
                 ltrEmail.Text = Convert.ToString(drv["Email"]);
             }
+        }
+
+        protected DataTable VanBanOrder(DataTable dt)
+        {
+            if (dt == null) return null;
+            DataView dv = dt.DefaultView;
+            dv.Sort = string.Format("{0} DESC", FieldsName.DocumentsList.InternalName.EffectedDate);
+            return dv.ToTable();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace VP.Sharepoint.CQ.UserControls
         {
             if (!Page.IsPostBack)
             {
-                lbWebURL.Width = 200;
+                lbWebURL.Width = 200;                
                 BindDropDownList();
             }
         }
