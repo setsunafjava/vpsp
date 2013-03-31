@@ -11,7 +11,7 @@
     Inherits="VP.Sharepoint.CQ.UserControls.LinkSiteUC" %>
 <%@ Register TagPrefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <div class="pos_MOD">
-    <div class="bg_title_mod">
+    <div class="bg_title_mod" style="height:auto">
         Liên kết website</div>
     <div class="inner_pos_Mod">
         <div class="link_website">
