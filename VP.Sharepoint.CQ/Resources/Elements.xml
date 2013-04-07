@@ -157,5 +157,22 @@
 <File Path="Resources\Images\last.gif" Url="Resources/Images/last.gif" />
 <File Path="Resources\Images\next.gif" Url="Resources/Images/next.gif" />
 <File Path="Resources\Images\prev.gif" Url="Resources/Images/prev.gif" />
+<File Path="Resources\Images\0.png" Url="Resources/Images/0.png" />
+<File Path="Resources\Images\1.png" Url="Resources/Images/1.png" />
+<File Path="Resources\Images\2.png" Url="Resources/Images/2.png" />
+<File Path="Resources\Images\3.png" Url="Resources/Images/3.png" />
+<File Path="Resources\Images\4.png" Url="Resources/Images/4.png" />
+<File Path="Resources\Images\5.png" Url="Resources/Images/5.png" />
+<File Path="Resources\Images\6.png" Url="Resources/Images/6.png" />
+<File Path="Resources\Images\7.png" Url="Resources/Images/7.png" />
+<File Path="Resources\Images\8.png" Url="Resources/Images/8.png" />
+<File Path="Resources\Images\9.png" Url="Resources/Images/9.png" />
+<File Path="Resources\Images\icon1.jpg" Url="Resources/Images/icon1.jpg" />
+<File Path="Resources\Images\icon2.jpg" Url="Resources/Images/icon2.jpg" />
+<File Path="Resources\Images\icon3.jpg" Url="Resources/Images/icon3.jpg" />
+<File Path="Resources\Images\icon4.jpg" Url="Resources/Images/icon4.jpg" />
+<File Path="Resources\Images\icon5.jpg" Url="Resources/Images/icon5.jpg" />
+<File Path="Resources\Images\icon6.jpg" Url="Resources/Images/icon6.jpg" />
+<File Path="Resources\Images\icon7.gif" Url="Resources/Images/icon7.gif" />
 </Module>
 </Elements>

@@ -13,75 +13,57 @@ namespace VP.Sharepoint.CQ.UserControls {
     public partial class HitCountUC {
         
         /// <summary>
-        /// dvBGNow control.
+        /// lblCurrent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvBGNow;
+        protected global::System.Web.UI.WebControls.Literal lblCurrent;
         
         /// <summary>
-        /// dvHitCountNow control.
+        /// tdToday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvHitCountNow;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdToday;
         
         /// <summary>
-        /// dvBGDay control.
+        /// tdYesterday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvBGDay;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdYesterday;
         
         /// <summary>
-        /// dvHitCountDay control.
+        /// tdThisWeek control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvHitCountDay;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdThisWeek;
         
         /// <summary>
-        /// dvBGWeek control.
+        /// tdThisMonth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvBGWeek;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdThisMonth;
         
         /// <summary>
-        /// dvHitCountWeek control.
+        /// tdAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvHitCountWeek;
-        
-        /// <summary>
-        /// dvBG control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvBG;
-        
-        /// <summary>
-        /// dvHitCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvHitCount;
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell tdAll;
     }
 }
