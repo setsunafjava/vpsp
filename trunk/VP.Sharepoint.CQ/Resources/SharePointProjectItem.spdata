@@ -160,5 +160,22 @@
     <ProjectItemFile Source="Images\last.gif" Target="Resources\Images\" Type="ElementFile" />
     <ProjectItemFile Source="Images\next.gif" Target="Resources\Images\" Type="ElementFile" />
     <ProjectItemFile Source="Images\prev.gif" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\0.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\1.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\2.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\3.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\4.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\5.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\6.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\7.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\8.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\9.png" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\icon1.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\icon2.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\icon3.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\icon4.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\icon5.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\icon6.jpg" Target="Resources\Images\" Type="ElementFile" />
+    <ProjectItemFile Source="Images\icon7.gif" Target="Resources\Images\" Type="ElementFile" />
   </Files>
 </ProjectItem>

@@ -11,60 +11,19 @@ using Microsoft.SharePoint.Utilities;
 using System.Web.UI.WebControls.WebParts;
 using Microsoft.SharePoint.WebPartPages;
 using System.ComponentModel;
+using System.Text;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
     public partial class HitCountUC : FrontEndUC
     {
         private delegate void MethodInvoker(SPWeb web, HttpContext ctx);
-        [WebBrowsable(true)]
-        [FriendlyName("Tổng số truy cập")]
-        [Description("Tổng số truy cập")]
-        [Category("Thông tin khác")]
-        [WebPartStorage(Storage.Shared)]
-        [Personalizable(PersonalizationScope.Shared)]
-        [DefaultValue("1")]
-        public int HitCountNumber
-        {
-            get;
-            set;
-        }
-        [WebBrowsable(true)]
-        [FriendlyName("Số đang truy cập")]
-        [Description("Số đang truy cập")]
-        [Category("Thông tin khác")]
-        [WebPartStorage(Storage.Shared)]
-        [Personalizable(PersonalizationScope.Shared)]
-        [DefaultValue("1")]
-        public int CurrentHitCountNumber
-        {
-            get;
-            set;
-        }
-        [WebBrowsable(true)]
-        [FriendlyName("Số truy cập trong ngày")]
-        [Description("Số truy cập trong ngày")]
-        [Category("Thông tin khác")]
-        [WebPartStorage(Storage.Shared)]
-        [Personalizable(PersonalizationScope.Shared)]
-        [DefaultValue("1")]
-        public int DayHitCountNumber
-        {
-            get;
-            set;
-        }
-        [WebBrowsable(true)]
-        [FriendlyName("Số truy cập trong tuần")]
-        [Description("Số truy cập trong tuần")]
-        [Category("Thông tin khác")]
-        [WebPartStorage(Storage.Shared)]
-        [Personalizable(PersonalizationScope.Shared)]
-        [DefaultValue("1")]
-        public int WeekHitCountNumber
-        {
-            get;
-            set;
-        }
+        public static int HitCountNumber = 1;
+        public static int CurrentHitCountNumber = 1;
+        public static int DayHitCountNumber = 1;
+        public static int YesterdayHitCountNumber = 1;
+        public static int WeekHitCountNumber = 1;
+        public static int MonthHitCountNumber = 1;
         #region Form Events
         /// <summary>
         /// Load default value to control and other initialize.
@@ -77,14 +36,25 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 MethodInvoker runHitCount = new MethodInvoker(UpdateHitCount);
                 runHitCount.BeginInvoke(CurrentWeb, HttpContext.Current, null, null);
-                dvBG.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
-                dvHitCount.InnerText = HitCountNumber.ToString();
-                dvBGDay.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
-                dvHitCountDay.InnerText = DayHitCountNumber.ToString();
-                dvBGNow.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
-                dvHitCountNow.InnerText = CurrentHitCountNumber.ToString();
-                dvBGWeek.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
-                dvHitCountWeek.InnerText = WeekHitCountNumber.ToString();
+                //dvBG.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
+                //dvHitCount.InnerText = HitCountNumber.ToString();
+                //dvBGDay.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
+                //dvHitCountDay.InnerText = DayHitCountNumber.ToString();
+                //dvBGNow.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
+                //dvHitCountNow.InnerText = CurrentHitCountNumber.ToString();
+                //dvBGWeek.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
+                //dvHitCountWeek.InnerText = WeekHitCountNumber.ToString();
+                //dvBGMonth.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
+                //dvHitCountMonth.InnerText = MonthHitCountNumber.ToString();
+                //dvBGYesterday.Attributes.Add("style", "background-image: url('" + DocLibUrl + "/statistic.jpg'); width: 118px; height: 35px;");
+                //dvHitCountYesterday.InnerText = YesterdayHitCountNumber.ToString();
+
+                tdAll.InnerText = HitCountNumber.ToString();
+                tdToday.InnerText = DayHitCountNumber.ToString();
+                lblCurrent.Text = "<span id='spCurrent'>" + CurrentHitCountNumber.ToString() + "</span>";
+                tdThisWeek.InnerText = WeekHitCountNumber.ToString();
+                tdThisMonth.InnerText = MonthHitCountNumber.ToString();
+                tdYesterday.InnerText = YesterdayHitCountNumber.ToString();
             }
         }
         #endregion
@@ -100,6 +70,8 @@ namespace VP.Sharepoint.CQ.UserControls
             }
             var srartDate = SPUtility.CreateISO8601DateTimeFromSystemDateTime(DateTime.Now.AddDays(-1 * diff));
             var endDate = SPUtility.CreateISO8601DateTimeFromSystemDateTime(DateTime.Now.AddDays(7- diff));
+            var firstOfThisMonth = SPUtility.CreateISO8601DateTimeFromSystemDateTime(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1));
+            var lastOfThisMonth = SPUtility.CreateISO8601DateTimeFromSystemDateTime(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1));
             var cLoginName = "Khách (không đăng nhập)";
             var cURL = ctx.Request.Url.AbsoluteUri.ToString();
 
@@ -132,10 +104,22 @@ namespace VP.Sharepoint.CQ.UserControls
                                 "<Eq><FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'><Today /></Value></Eq>" +
                                 "</Where>";
 
+            var camlQueryYesterday = "<Where>" +
+                                "<Eq><FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'><Today Offset='1' /></Value></Eq>" +
+                                "</Where>";
+
             var camlQueryWeek = "<Where><And><Geq>" +
                                 "<FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'><Today Offset='" + diff + "'></Today></Value></Geq>" +
                                 "<Leq><FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'><Today Offset='" + (diff - 7) + "'></Today></Value></Leq>" +
                                 "</And></Where>";
+
+            var camlQueryMonth = "<Where><And><Geq>" +
+                                "<FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'>"+firstOfThisMonth+"</Value></Geq>" +
+                                "<Leq><FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'>" + lastOfThisMonth + "</Value></Leq>" +
+                                "</And></Where>";
+
+            var camlQueryLastMonth = "<Where><Lt>" +
+                                "<FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'>" + firstOfThisMonth + "</Value></Lt></And></Where>";
 
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
@@ -161,9 +145,24 @@ namespace VP.Sharepoint.CQ.UserControls
                                 Query = camlQueryDay,
                                 //QueryThrottleMode = SPQueryThrottleOption.Override
                             };
+                            SPQuery spQueryYesterday = new SPQuery
+                            {
+                                Query = camlQueryYesterday,
+                                //QueryThrottleMode = SPQueryThrottleOption.Override
+                            };
                             SPQuery spQueryWeek = new SPQuery
                             {
                                 Query = camlQueryWeek,
+                                //QueryThrottleMode = SPQueryThrottleOption.Override
+                            };
+                            SPQuery spQueryMonth = new SPQuery
+                            {
+                                Query = camlQueryMonth,
+                                //QueryThrottleMode = SPQueryThrottleOption.Override
+                            };
+                            SPQuery spQueryLastMonth = new SPQuery
+                            {
+                                Query = camlQueryLastMonth,
                                 //QueryThrottleMode = SPQueryThrottleOption.Override
                             };
                             SPList list = Utilities.GetCustomListByUrl(web, ListsName.InternalName.StatisticsList);
@@ -171,6 +170,7 @@ namespace VP.Sharepoint.CQ.UserControls
                             SPList listConfig = Utilities.GetCustomListByUrl(web, "AllConfigVP");
 
                             var oldNumber = 0;
+                            SPListItem configItem = null;
                             if (listConfig != null)
                             {
                                 SPQuery spQueryConfig = new SPQuery
@@ -186,42 +186,73 @@ namespace VP.Sharepoint.CQ.UserControls
                                     try
                                     {
                                         oldNumber = Convert.ToInt32(configItems[0]["Value"]);
+                                        configItem = configItems[0];
                                     }
                                     catch (SPException) { }
                                     catch (Exception){}
                                 }
                             }
 
-                            var itemCount = list.ItemCount;
-                            dvHitCount.InnerText = (itemCount + oldNumber).ToString();
-                            if (HitCountNumber == 0)
-                            {
-                                HitCountNumber = itemCount + oldNumber;
-                                dvHitCount.InnerText = HitCountNumber.ToString();
-                            }
+                            //HitCountNumber = oldNumber + 1;
+                            tdAll.InnerText = oldNumber.ToString();
                             if (list != null)
                             {
                                 SPListItemCollection itemsNow = list.GetItems(spQueryNow);
                                 if (itemsNow != null && itemsNow.Count > 0)
                                 {
                                     CurrentHitCountNumber = itemsNow.Count;
-                                    dvHitCountNow.InnerText = CurrentHitCountNumber.ToString();
+                                    lblCurrent.Text = "<span id='spCurrent'>" + CurrentHitCountNumber.ToString() + "</span>";
                                 }
 
                                 SPListItemCollection itemsDay = list.GetItems(spQueryDay);
                                 if (itemsDay != null && itemsDay.Count > 0)
                                 {
                                     DayHitCountNumber = itemsDay.Count;
-                                    dvHitCountDay.InnerText = DayHitCountNumber.ToString();
+                                    tdToday.InnerText = DayHitCountNumber.ToString();
+                                }
+
+                                SPListItemCollection itemsYesterday = list.GetItems(spQueryYesterday);
+                                if (itemsYesterday != null && itemsYesterday.Count > 0)
+                                {
+                                    YesterdayHitCountNumber = itemsYesterday.Count;
+                                    tdYesterday.InnerText = YesterdayHitCountNumber.ToString();
                                 }
 
                                 SPListItemCollection itemsWeek = list.GetItems(spQueryWeek);
                                 if (itemsWeek != null && itemsWeek.Count > 0)
                                 {
                                     WeekHitCountNumber = itemsWeek.Count;
-                                    dvHitCountWeek.InnerText = WeekHitCountNumber.ToString();
+                                    tdThisWeek.InnerText = WeekHitCountNumber.ToString();
                                 }
-                                if (itemCount <= 4900)
+                                SPListItemCollection itemsMonth = list.GetItems(spQueryMonth);
+                                if (itemsMonth != null && itemsMonth.Count > 0)
+                                {
+                                    MonthHitCountNumber = itemsMonth.Count;
+                                    tdThisMonth.InnerText = MonthHitCountNumber.ToString();
+                                }
+                                SPListItemCollection itemsLastMonth = list.GetItems(spQueryLastMonth);
+                                if (itemsLastMonth != null && itemsLastMonth.Count > 0)
+                                {
+                                    StringBuilder sbDelete = new StringBuilder();
+                                    sbDelete.Append("<?xml version=\"1.0\" encoding=\"UTF-8\"?><Batch>");
+
+                                    string command = "<Method>" +
+                                                        "<SetList Scope=\"Request\">" + list.ID + "</SetList>" +
+                                                        "<SetVar Name=\"ID\">{0}</SetVar>" +
+                                                        "<SetVar Name=\"Cmd\">Delete</SetVar>" +
+                                                    "</Method>";
+
+                                    foreach (SPListItem item in itemsLastMonth)
+                                    {
+                                        sbDelete.Append(string.Format(command, item.ID.ToString()));
+                                    }
+                                    sbDelete.Append("</Batch>");
+
+                                    web.AllowUnsafeUpdates = true;
+                                    //Run the Batch command
+                                    web.ProcessBatchData(sbDelete.ToString());
+                                }
+                                if (list.ItemCount <= 4900)
                                 {
                                     SPListItemCollection items = list.GetItems(spQuery);
                                     if (items == null || items.Count <= 0)
@@ -235,6 +266,10 @@ namespace VP.Sharepoint.CQ.UserControls
                                         item[FieldsName.StatisticsList.InternalName.UserBrowser] = cBrowser;
                                         web.AllowUnsafeUpdates = true;
                                         item.Update();
+
+                                        configItem["Value"] = oldNumber + 1;
+                                        web.AllowUnsafeUpdates = true;
+                                        configItem.SystemUpdate(false);
                                     }
                                 }
                             }
