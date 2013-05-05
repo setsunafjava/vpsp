@@ -14,6 +14,7 @@ using System.Data;
 using System.Net;
 using System.IO;
 using System.Text;
+using Microsoft.SharePoint.Utilities;
 
 namespace VP.Sharepoint.CQ.UserControls
 {
@@ -147,7 +148,7 @@ namespace VP.Sharepoint.CQ.UserControls
                         imgUrl = str1 + "." + str2;
                     }
                 }
-                item[FieldsName.NewsList.InternalName.Description] = desc;
+                item[FieldsName.NewsList.InternalName.Description] = desc.Replace("-amp;", "&").Replace("&amp;", "&").Replace("&lt;", "<").Replace("&gt;", ">").Replace("&quot;", "\"").Replace("&apos;", "'");
                 if (!string.IsNullOrEmpty(imgUrl))
                 {
                     item[FieldsName.NewsList.InternalName.ImageThumb] = imgUrl;
@@ -234,7 +235,7 @@ namespace VP.Sharepoint.CQ.UserControls
                         imgUrl = str1 + "." + str2;
                     }
                 }
-                item[FieldsName.NewsList.InternalName.Description] = desc;
+                item[FieldsName.NewsList.InternalName.Description] = desc.Replace("-amp;", "&").Replace("&amp;", "&").Replace("&lt;", "<").Replace("&gt;", ">").Replace("&quot;", "\"").Replace("&apos;", "'");
                 if (!string.IsNullOrEmpty(imgUrl))
                 {
                     item[FieldsName.NewsList.InternalName.ImageThumb] = imgUrl;

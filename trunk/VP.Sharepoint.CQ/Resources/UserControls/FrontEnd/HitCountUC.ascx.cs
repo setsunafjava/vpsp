@@ -68,6 +68,8 @@ namespace VP.Sharepoint.CQ.UserControls
             {
                 diff += 7;
             }
+            var startWeekDate = DateTime.Now.AddDays(-1 * diff).Date;
+            var dateToDelete = SPUtility.CreateISO8601DateTimeFromSystemDateTime(DateTime.Now.AddHours(-1));
             var srartDate = SPUtility.CreateISO8601DateTimeFromSystemDateTime(DateTime.Now.AddDays(-1 * diff));
             var endDate = SPUtility.CreateISO8601DateTimeFromSystemDateTime(DateTime.Now.AddDays(7- diff));
             var firstOfThisMonth = SPUtility.CreateISO8601DateTimeFromSystemDateTime(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1));
@@ -119,7 +121,10 @@ namespace VP.Sharepoint.CQ.UserControls
                                 "</And></Where>";
 
             var camlQueryLastMonth = "<Where><Lt>" +
-                                "<FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'>" + firstOfThisMonth + "</Value></Lt></And></Where>";
+                                "<FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='FALSE'>" + firstOfThisMonth + "</Value></Lt></Where>";
+            var camlQueryToDelete = "<Where>" +
+                                "<Lt><FieldRef Name='" + Constants.Created + "' /><Value Type='DateTime' IncludeTimeValue='TRUE'>" + dateToDelete + "</Value></Lt>" +
+                                "</Where>";
 
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
@@ -140,37 +145,45 @@ namespace VP.Sharepoint.CQ.UserControls
                                 Query = camlQueryNow,
                                 //QueryThrottleMode = SPQueryThrottleOption.Override
                             };
-                            SPQuery spQueryDay = new SPQuery
-                            {
-                                Query = camlQueryDay,
-                                //QueryThrottleMode = SPQueryThrottleOption.Override
-                            };
-                            SPQuery spQueryYesterday = new SPQuery
-                            {
-                                Query = camlQueryYesterday,
-                                //QueryThrottleMode = SPQueryThrottleOption.Override
-                            };
-                            SPQuery spQueryWeek = new SPQuery
-                            {
-                                Query = camlQueryWeek,
-                                //QueryThrottleMode = SPQueryThrottleOption.Override
-                            };
-                            SPQuery spQueryMonth = new SPQuery
-                            {
-                                Query = camlQueryMonth,
-                                //QueryThrottleMode = SPQueryThrottleOption.Override
-                            };
-                            SPQuery spQueryLastMonth = new SPQuery
-                            {
-                                Query = camlQueryLastMonth,
-                                //QueryThrottleMode = SPQueryThrottleOption.Override
-                            };
+                            //SPQuery spQueryDay = new SPQuery
+                            //{
+                            //    Query = camlQueryDay,
+                            //    //QueryThrottleMode = SPQueryThrottleOption.Override
+                            //};
+                            //SPQuery spQueryYesterday = new SPQuery
+                            //{
+                            //    Query = camlQueryYesterday,
+                            //    //QueryThrottleMode = SPQueryThrottleOption.Override
+                            //};
+                            //SPQuery spQueryWeek = new SPQuery
+                            //{
+                            //    Query = camlQueryWeek,
+                            //    //QueryThrottleMode = SPQueryThrottleOption.Override
+                            //};
+                            //SPQuery spQueryMonth = new SPQuery
+                            //{
+                            //    Query = camlQueryMonth,
+                            //    //QueryThrottleMode = SPQueryThrottleOption.Override
+                            //};
+                            //SPQuery spQueryLastMonth = new SPQuery
+                            //{
+                            //    Query = camlQueryLastMonth,
+                            //    //QueryThrottleMode = SPQueryThrottleOption.Override
+                            //};
                             SPList list = Utilities.GetCustomListByUrl(web, ListsName.InternalName.StatisticsList);
 
                             SPList listConfig = Utilities.GetCustomListByUrl(web, "AllConfigVP");
 
                             var oldNumber = 0;
                             SPListItem configItem = null;
+                            var dayNumber = 0;
+                            SPListItem dayItem = null;
+                            var yesterdayNumber = 0;
+                            SPListItem yesterdayItem = null;
+                            var weekNumber = 0;
+                            SPListItem weekItem = null;
+                            var monthNumber = 0;
+                            SPListItem monthItem = null;
                             if (listConfig != null)
                             {
                                 SPQuery spQueryConfig = new SPQuery
@@ -191,10 +204,23 @@ namespace VP.Sharepoint.CQ.UserControls
                                     catch (SPException) { }
                                     catch (Exception){}
                                 }
+                                
+                                yesterdayItem = GetValue(web, listConfig, "YesterdayNumBer", ref yesterdayNumber);
+                                dayItem = GetValue(web, listConfig, "DayNumBer", ref dayNumber);
+                                weekItem = GetValue(web, listConfig, "WeekNumBer", ref weekNumber);
+                                monthItem = GetValue(web, listConfig, "MonthNumBer", ref monthNumber);
                             }
 
-                            //HitCountNumber = oldNumber + 1;
+                            HitCountNumber = oldNumber;
                             tdAll.InnerText = oldNumber.ToString();
+                            DayHitCountNumber = dayNumber;
+                            tdToday.InnerText = DayHitCountNumber.ToString();
+                            YesterdayHitCountNumber = yesterdayNumber;
+                            tdYesterday.InnerText = YesterdayHitCountNumber.ToString();
+                            WeekHitCountNumber = weekNumber;
+                            tdThisWeek.InnerText = WeekHitCountNumber.ToString();
+                            MonthHitCountNumber = monthNumber;
+                            tdThisMonth.InnerText = MonthHitCountNumber.ToString();
                             if (list != null)
                             {
                                 SPListItemCollection itemsNow = list.GetItems(spQueryNow);
@@ -204,34 +230,35 @@ namespace VP.Sharepoint.CQ.UserControls
                                     lblCurrent.Text = "<span id='spCurrent'>" + CurrentHitCountNumber.ToString() + "</span>";
                                 }
 
-                                SPListItemCollection itemsDay = list.GetItems(spQueryDay);
-                                if (itemsDay != null && itemsDay.Count > 0)
-                                {
-                                    DayHitCountNumber = itemsDay.Count;
-                                    tdToday.InnerText = DayHitCountNumber.ToString();
-                                }
+                                //SPListItemCollection itemsDay = list.GetItems(spQueryDay);
+                                //if (itemsDay != null && itemsDay.Count > 0)
+                                //{
+                                //    DayHitCountNumber = itemsDay.Count;
+                                //    tdToday.InnerText = DayHitCountNumber.ToString();
+                                //}
 
-                                SPListItemCollection itemsYesterday = list.GetItems(spQueryYesterday);
-                                if (itemsYesterday != null && itemsYesterday.Count > 0)
-                                {
-                                    YesterdayHitCountNumber = itemsYesterday.Count;
-                                    tdYesterday.InnerText = YesterdayHitCountNumber.ToString();
-                                }
+                                //SPListItemCollection itemsYesterday = list.GetItems(spQueryYesterday);
+                                //if (itemsYesterday != null && itemsYesterday.Count > 0)
+                                //{
+                                //    YesterdayHitCountNumber = itemsYesterday.Count;
+                                //    tdYesterday.InnerText = YesterdayHitCountNumber.ToString();
+                                //}
 
-                                SPListItemCollection itemsWeek = list.GetItems(spQueryWeek);
-                                if (itemsWeek != null && itemsWeek.Count > 0)
-                                {
-                                    WeekHitCountNumber = itemsWeek.Count;
-                                    tdThisWeek.InnerText = WeekHitCountNumber.ToString();
-                                }
-                                SPListItemCollection itemsMonth = list.GetItems(spQueryMonth);
-                                if (itemsMonth != null && itemsMonth.Count > 0)
-                                {
-                                    MonthHitCountNumber = itemsMonth.Count;
-                                    tdThisMonth.InnerText = MonthHitCountNumber.ToString();
-                                }
-                                SPListItemCollection itemsLastMonth = list.GetItems(spQueryLastMonth);
-                                if (itemsLastMonth != null && itemsLastMonth.Count > 0)
+                                //SPListItemCollection itemsWeek = list.GetItems(spQueryWeek);
+                                //if (itemsWeek != null && itemsWeek.Count > 0)
+                                //{
+                                //    WeekHitCountNumber = itemsWeek.Count;
+                                //    tdThisWeek.InnerText = WeekHitCountNumber.ToString();
+                                //}
+                                //SPListItemCollection itemsMonth = list.GetItems(spQueryMonth);
+                                //if (itemsMonth != null && itemsMonth.Count > 0)
+                                //{
+                                //    MonthHitCountNumber = itemsMonth.Count;
+                                //    tdThisMonth.InnerText = MonthHitCountNumber.ToString();
+                                //}
+                                SPListItemCollection itemsToDelete = list.GetItems(new SPQuery{Query = camlQueryToDelete});
+
+                                if (itemsToDelete != null && itemsToDelete.Count > 0)
                                 {
                                     StringBuilder sbDelete = new StringBuilder();
                                     sbDelete.Append("<?xml version=\"1.0\" encoding=\"UTF-8\"?><Batch>");
@@ -242,7 +269,7 @@ namespace VP.Sharepoint.CQ.UserControls
                                                         "<SetVar Name=\"Cmd\">Delete</SetVar>" +
                                                     "</Method>";
 
-                                    foreach (SPListItem item in itemsLastMonth)
+                                    foreach (SPListItem item in itemsToDelete)
                                     {
                                         sbDelete.Append(string.Format(command, item.ID.ToString()));
                                     }
@@ -270,6 +297,48 @@ namespace VP.Sharepoint.CQ.UserControls
                                         configItem["Value"] = oldNumber + 1;
                                         web.AllowUnsafeUpdates = true;
                                         configItem.SystemUpdate(false);
+
+                                        var dayModified = Convert.ToDateTime(Convert.ToString(dayItem["Modified"]));
+                                        if (dayModified.Date < DateTime.Now.Date)
+                                        {
+                                            dayItem["Value"] = 1;
+                                            web.AllowUnsafeUpdates = true;
+                                            dayItem.Update();
+                                        }
+                                        else
+                                        {
+                                            dayItem["Value"] = dayNumber + 1;
+                                            web.AllowUnsafeUpdates = true;
+                                            dayItem.Update();
+                                        }
+
+                                        var weekModified = Convert.ToDateTime(Convert.ToString(weekItem["Modified"]));
+                                        if (weekModified.Date < startWeekDate)
+                                        {
+                                            weekItem["Value"] = 1;
+                                            web.AllowUnsafeUpdates = true;
+                                            weekItem.Update();
+                                        }
+                                        else
+                                        {
+                                            weekItem["Value"] = weekNumber + 1;
+                                            web.AllowUnsafeUpdates = true;
+                                            weekItem.Update();
+                                        }
+
+                                        var monthModified = Convert.ToDateTime(Convert.ToString(monthItem["Modified"]));
+                                        if (monthModified.Date < (new DateTime(DateTime.Now.Year,DateTime.Now.Month,1)).Date)
+                                        {
+                                            monthItem["Value"] = 1;
+                                            web.AllowUnsafeUpdates = true;
+                                            monthItem.Update();
+                                        }
+                                        else
+                                        {
+                                            monthItem["Value"] = monthNumber + 1;
+                                            web.AllowUnsafeUpdates = true;
+                                            monthItem.Update();
+                                        }
                                     }
                                 }
                             }
@@ -281,6 +350,86 @@ namespace VP.Sharepoint.CQ.UserControls
                     }
                 }
             });
+        }
+
+        private SPListItem GetValue(SPWeb web, SPList list, string keyStr, ref int returnValue) {
+            SPQuery spQueryConfig = new SPQuery
+            {
+                Query = "<Where>" +
+                        "<Eq><FieldRef Name='Title' /><Value Type='Text'>" + keyStr + "</Value></Eq>" +
+                        "</Where>",
+                RowLimit = 1
+            };
+            var configItems = list.GetItems(spQueryConfig);
+            if (configItems != null && configItems.Count > 0)
+            {
+                try
+                {
+                    int diff = DateTime.Now.DayOfWeek - DayOfWeek.Monday;
+                    if (diff < 0)
+                    {
+                        diff += 7;
+                    }
+                    var startWeekDate = DateTime.Now.AddDays(-1 * diff).Date;
+
+                    var dateModified = Convert.ToDateTime(Convert.ToString(configItems[0]["Modified"]));
+                    if (keyStr.Equals("YesterdayNumber") && dateModified.Date < DateTime.Now.Date)
+                    {
+                        var itemToUpdate = configItems[0];
+                        var yNumber = GetValue(list, "DayNumber");
+                        itemToUpdate["Value"] = yNumber;
+                        web.AllowUnsafeUpdates = true;
+                        itemToUpdate.Update();
+                        returnValue = yNumber;
+                        return configItems[0];
+                    }
+                    if (keyStr.Equals("DayNumber") && dateModified.Date < DateTime.Now.Date)
+                    {
+                        returnValue = 1;
+                        return configItems[0];
+                    }
+                    if (keyStr.Equals("WeekNumber") && dateModified.Date < startWeekDate)
+                    {
+                        returnValue = 1;
+                        return configItems[0];
+                    }
+                    if (keyStr.Equals("MonthNumber") && dateModified.Date < (new DateTime(DateTime.Now.Year,DateTime.Now.Month,1)).Date)
+                    {
+                        returnValue = 1;
+                        return configItems[0];
+                    }
+                    returnValue = Convert.ToInt32(configItems[0]["Value"]);
+                    return configItems[0];
+                }
+                catch (SPException) { }
+                catch (Exception) { }
+            }
+
+            returnValue = 1;
+            return null;
+        }
+
+        private int GetValue(SPList list, string keyStr)
+        {
+            SPQuery spQueryConfig = new SPQuery
+            {
+                Query = "<Where>" +
+                        "<Eq><FieldRef Name='Title' /><Value Type='Text'>" + keyStr + "</Value></Eq>" +
+                        "</Where>",
+                RowLimit = 1
+            };
+            var configItems = list.GetItems(spQueryConfig);
+            if (configItems != null && configItems.Count > 0)
+            {
+                try
+                {
+                    return Convert.ToInt32(configItems[0]["Value"]);
+                 }
+                catch (SPException) { }
+                catch (Exception) { }
+            }
+
+            return 1;
         }
     }
 }
