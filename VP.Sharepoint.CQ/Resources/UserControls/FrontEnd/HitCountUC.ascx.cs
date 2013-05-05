@@ -373,27 +373,27 @@ namespace VP.Sharepoint.CQ.UserControls
                     var startWeekDate = DateTime.Now.AddDays(-1 * diff).Date;
 
                     var dateModified = Convert.ToDateTime(Convert.ToString(configItems[0]["Modified"]));
-                    if (keyStr.Equals("YesterdayNumber") && dateModified.Date < DateTime.Now.Date)
+                    if (keyStr.Equals("YesterdayNumBer") && dateModified.Date < DateTime.Now.Date)
                     {
                         var itemToUpdate = configItems[0];
-                        var yNumber = GetValue(list, "DayNumber");
+                        var yNumber = GetValue(list, "DayNumBer");
                         itemToUpdate["Value"] = yNumber;
                         web.AllowUnsafeUpdates = true;
                         itemToUpdate.Update();
                         returnValue = yNumber;
                         return configItems[0];
                     }
-                    if (keyStr.Equals("DayNumber") && dateModified.Date < DateTime.Now.Date)
+                    if (keyStr.Equals("DayNumBer") && dateModified.Date < DateTime.Now.Date)
                     {
                         returnValue = 1;
                         return configItems[0];
                     }
-                    if (keyStr.Equals("WeekNumber") && dateModified.Date < startWeekDate)
+                    if (keyStr.Equals("WeekNumBer") && dateModified.Date < startWeekDate)
                     {
                         returnValue = 1;
                         return configItems[0];
                     }
-                    if (keyStr.Equals("MonthNumber") && dateModified.Date < (new DateTime(DateTime.Now.Year,DateTime.Now.Month,1)).Date)
+                    if (keyStr.Equals("MonthNumBer") && dateModified.Date < (new DateTime(DateTime.Now.Year,DateTime.Now.Month,1)).Date)
                     {
                         returnValue = 1;
                         return configItems[0];
