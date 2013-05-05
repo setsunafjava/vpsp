@@ -1587,8 +1587,8 @@ namespace VP.Sharepoint.CQ.Common
         public static string StripHTML(string inputString)
         {
             string HTML_TAG_PATTERN = "<.*?>";
-            return Regex.Replace
-              (inputString, HTML_TAG_PATTERN, string.Empty);
+            return System.Web.HttpUtility.HtmlDecode(Regex.Replace
+              (inputString, HTML_TAG_PATTERN, string.Empty));
         }
 
         public static int ConvertToInt(string strVal)
